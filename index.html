@@ -4,93 +4,215 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ahmed Gharib | AGBINSIGHTS</title>
-    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
         body {
             background-color: #030b17;
             color: white;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', sans-serif;
             margin: 0;
-            padding: 20px;
+            text-align: center;
         }
-        .container {
+
+        /* Header Section - التصميم العلوي */
+        header {
+            padding: 60px 20px;
+            background: radial-gradient(circle at center, #0a192f 0%, #030b17 100%);
+        }
+
+        h1 {
+            color: #4ed9ff;
+            font-size: 45px;
+            margin-bottom: 5px;
+            text-shadow: 0 0 20px rgba(78, 217, 255, 0.5);
+        }
+
+        .subtitle {
+            color: #8892b0;
+            font-size: 14px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .bio {
+            max-width: 600px;
+            margin: 20px auto;
+            color: #ccd6f6;
+            line-height: 1.6;
+        }
+
+        .social-icons a {
+            color: #4ed9ff;
+            font-size: 20px;
+            margin: 0 10px;
+            text-decoration: none;
+            border: 1px solid #4ed9ff;
+            padding: 10px;
+            border-radius: 50%;
+            transition: 0.3s;
+        }
+
+        .social-icons a:hover {
+            background: rgba(78, 217, 255, 0.1);
+            box-shadow: 0 0 15px #4ed9ff;
+        }
+
+        /* Top Selection Tabs (Daily, Detail, Modern) */
+        .tabs {
             display: flex;
             justify-content: center;
-            gap: 20px;
-            padding: 40px;
-            flex-wrap: wrap;
+            gap: 15px;
+            margin: 40px 0;
         }
-        .section-title {
+
+        .tab {
+            background: #0a192f;
+            border: 1px solid #4ed9ff;
             color: #4ed9ff;
-            margin-left: 5%;
-            font-size: 24px;
-            border-left: 4px solid #4ed9ff;
-            padding-left: 15px;
-            margin-top: 40px;
+            padding: 10px 25px;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
         }
-        .card {
+
+        .tab:hover { background: #4ed9ff; color: #030b17; }
+
+        /* Sections Titles */
+        .section-title {
+            text-align: left;
+            margin-left: 10%;
+            color: #4ed9ff;
+            border-left: 3px solid #4ed9ff;
+            padding-left: 15px;
+            font-size: 20px;
+            margin-top: 50px;
+        }
+
+        /* Expertise Grid */
+        .expertise-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            padding: 20px;
+        }
+
+        .exp-card {
             background: #0a192f;
             border: 1px solid rgba(78, 217, 255, 0.2);
-            border-radius: 12px;
-            padding: 30px;
-            width: 180px;
-            text-align: center;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            cursor: pointer;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
-        }
-        .card:hover {
-            transform: translateY(-15px) scale(1.05);
-            border-color: #4ed9ff;
-            box-shadow: 0 20px 40px rgba(78, 217, 255, 0.2);
-        }
-        .card.active { border: 2px solid #4ed9ff; box-shadow: 0 0 25px rgba(78, 217, 255, 0.3); }
-        .card i { font-size: 40px; color: #4ed9ff; margin-bottom: 15px; display: block; }
-        
-        /* شبكة المشاريع لظهور كل الصور */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 20px;
-            padding: 40px;
-        }
-        .project-card img {
-            width: 100%;
+            padding: 20px;
+            width: 120px;
             border-radius: 10px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+            transition: 0.4s;
+            cursor: pointer;
+        }
+
+        .exp-card:hover {
+            transform: translateY(-10px);
+            border-color: #4ed9ff;
+            box-shadow: 0 10px 20px rgba(78, 217, 255, 0.2);
+        }
+
+        .exp-card i { font-size: 25px; color: #4ed9ff; margin-bottom: 10px; display: block; }
+        .exp-card span { font-size: 11px; color: #ccd6f6; }
+
+        /* Projects Layout - 3D Effect */
+        .projects-container {
+            padding: 40px 10%;
+        }
+
+        .project-item {
+            display: flex;
+            align-items: center;
+            background: #0a192f;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            overflow: hidden;
+            border: 1px solid rgba(78, 217, 255, 0.1);
+            transition: 0.3s;
+        }
+
+        .project-item:hover {
+            transform: scale(1.02);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        }
+
+        .project-img { width: 60%; }
+        .project-img img { width: 100%; display: block; }
+
+        .project-info {
+            width: 40%;
+            padding: 30px;
+            text-align: left;
+        }
+
+        .project-info h3 { color: #4ed9ff; margin-top: 0; }
+        .project-info p { color: #8892b0; font-size: 14px; }
+
+        .view-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            border: 1px solid #4ed9ff;
+            color: #4ed9ff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 12px;
+            margin-top: 15px;
         }
     </style>
 </head>
 <body>
 
+    <header>
+        <h1>Ahmed Gharib</h1>
+        <div class="subtitle">#AGBINSIGHTS</div>
+        <p class="bio">I transform complex data into clear insights and strategic business solutions.</p>
+        <div class="social-icons">
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            <a href="mailto:info@agbinsights.com"><i class="far fa-envelope"></i></a>
+        </div>
+    </header>
+
+    <div class="tabs">
+        <div class="tab">DAILY</div>
+        <div class="tab">DETAIL</div>
+        <div class="tab">MODERN</div>
+    </div>
+
     <h2 class="section-title">01. Technical Expertise</h2>
-    <div class="container">
-        <div class="card"><i class="fas fa-network-wired"></i><h3>Data Modeling</h3></div>
-        <div class="card"><i class="fas fa-microchip"></i><h3>ETL (Power Query)</h3></div>
-        <div class="card"><i class="fas fa-code"></i><h3>Advanced DAX</h3></div>
-        <div class="card active"><i class="fas fa-chart-line"></i><h3>Visual Storytelling</h3></div>
+    <div class="expertise-container">
+        <div class="exp-card"><i class="fas fa-database"></i><span>Data Modeling</span></div>
+        <div class="exp-card"><i class="fas fa-link"></i><span>Relationships</span></div>
+        <div class="exp-card"><i class="fas fa-microchip"></i><span>ETL (Power Query)</span></div>
+        <div class="exp-card"><i class="fas fa-code"></i><span>Advanced DAX</span></div>
+        <div class="exp-card"><i class="fas fa-chart-line"></i><span>Visual Storytelling</span></div>
     </div>
 
     <h2 class="section-title">02. Featured Projects</h2>
-    <div class="projects-grid">
-        <div class="project-card"><img src="hr.png.png"></div>
-        <div class="project-card"><img src="hr.png2.png"></div>
-        <div class="project-card"><img src="hr.png3.png"></div>
-        <div class="project-card"><img src="sales.png1.png"></div>
-        <div class="project-card"><img src="sales.png2.png"></div>
-        <div class="project-card"><img src="sales.png3.png"></div>
-    </div>
-
-    <h2 class="section-title">03. Contact</h2>
-    <div class="container">
-        <div class="card">
-            <i class="fas fa-envelope"></i>
-            <h3>Email Me</h3>
-            <p style="font-size: 12px;">info@agbinsights.com</p>
+    <div class="projects-container">
+        <div class="project-item">
+            <div class="project-img"><img src="hr.png.png"></div>
+            <div class="project-info">
+                <h3>HR Attrition Analysis</h3>
+                <p>A comprehensive dashboard identifying key drivers of employee turnover, providing actionable insights for workforce retention.</p>
+                <a href="#" class="view-btn">View Full Analysis</a>
+            </div>
+        </div>
+        <div class="project-item">
+            <div class="project-info" style="text-align: right;">
+                <h3>Sales Performance</h3>
+                <p>Tracking revenue trends and regional performance to optimize commercial growth and profitability.</p>
+                <a href="#" class="view-btn">Explore Dashboard</a>
+            </div>
+            <div class="project-img"><img src="sales.png1.png"></div>
         </div>
     </div>
+
+    <footer style="padding: 40px; color: #495670; font-size: 12px;">
+        Designed & Built by Ahmed Gharib © 2025 | AGBINSIGHTS
+    </footer>
 
 </body>
 </html>
