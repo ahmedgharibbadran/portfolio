@@ -9,13 +9,12 @@
     
     <style>
         body {
-            background-color: #030b17; /* اللون الكحلي الغامق */
+            background-color: #030b17;
             color: white;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 20px;
         }
-
         .container {
             display: flex;
             justify-content: center;
@@ -23,7 +22,6 @@
             padding: 40px;
             flex-wrap: wrap;
         }
-
         .section-title {
             color: #4ed9ff;
             margin-left: 5%;
@@ -32,8 +30,6 @@
             padding-left: 15px;
             margin-top: 40px;
         }
-
-        /* تنسيق الكروت بتأثير 3D */
         .card {
             background: #0a192f;
             border: 1px solid rgba(78, 217, 255, 0.2);
@@ -45,49 +41,25 @@
             cursor: pointer;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
         }
-
-        /* حركة الرفع والظلال عند ملامسة الماوس */
         .card:hover {
             transform: translateY(-15px) scale(1.05);
             border-color: #4ed9ff;
             box-shadow: 0 20px 40px rgba(78, 217, 255, 0.2);
         }
-
-        .card.active {
-            border: 2px solid #4ed9ff;
-            box-shadow: 0 0 25px rgba(78, 217, 255, 0.3);
-        }
-
-        .card i {
-            font-size: 40px;
-            color: #4ed9ff;
-            margin-bottom: 15px;
-            display: block;
-        }
-
-        .card h3 {
-            font-size: 14px;
-            margin: 0;
-            font-weight: 500;
-        }
-
-        /* تنسيق صور المشاريع */
+        .card.active { border: 2px solid #4ed9ff; box-shadow: 0 0 25px rgba(78, 217, 255, 0.3); }
+        .card i { font-size: 40px; color: #4ed9ff; margin-bottom: 15px; display: block; }
+        
+        /* شبكة المشاريع لظهور كل الصور */
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 20px;
             padding: 40px;
         }
-
         .project-card img {
             width: 100%;
-            border-radius: 15px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
-            transition: transform 0.3s;
-        }
-
-        .project-card img:hover {
-            transform: scale(1.02);
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
         }
     </style>
 </head>
@@ -95,35 +67,28 @@
 
     <h2 class="section-title">01. Technical Expertise</h2>
     <div class="container">
-        <div class="card">
-            <i class="fas fa-network-wired"></i>
-            <h3>Data Modeling</h3>
-        </div>
-        <div class="card">
-            <i class="fas fa-link"></i>
-            <h3>Relationships</h3>
-        </div>
-        <div class="card">
-            <i class="fas fa-microchip"></i>
-            <h3>ETL (Power Query)</h3>
-        </div>
-        <div class="card">
-            <i class="fas fa-code"></i>
-            <h3>Advanced DAX</h3>
-        </div>
-        <div class="card active">
-            <i class="fas fa-chart-line"></i>
-            <h3>Visual Storytelling</h3>
-        </div>
+        <div class="card"><i class="fas fa-network-wired"></i><h3>Data Modeling</h3></div>
+        <div class="card"><i class="fas fa-microchip"></i><h3>ETL (Power Query)</h3></div>
+        <div class="card"><i class="fas fa-code"></i><h3>Advanced DAX</h3></div>
+        <div class="card active"><i class="fas fa-chart-line"></i><h3>Visual Storytelling</h3></div>
     </div>
 
     <h2 class="section-title">02. Featured Projects</h2>
     <div class="projects-grid">
-        <div class="project-card">
-            <img src="hr.png.png" alt="HR Dashboard">
-        </div>
-        <div class="project-card">
-            <img src="sales.png1.png" alt="Sales Insights">
+        <div class="project-card"><img src="hr.png.png"></div>
+        <div class="project-card"><img src="hr.png2.png"></div>
+        <div class="project-card"><img src="hr.png3.png"></div>
+        <div class="project-card"><img src="sales.png1.png"></div>
+        <div class="project-card"><img src="sales.png2.png"></div>
+        <div class="project-card"><img src="sales.png3.png"></div>
+    </div>
+
+    <h2 class="section-title">03. Contact</h2>
+    <div class="container">
+        <div class="card">
+            <i class="fas fa-envelope"></i>
+            <h3>Email Me</h3>
+            <p style="font-size: 12px;">info@agbinsights.com</p>
         </div>
     </div>
 
