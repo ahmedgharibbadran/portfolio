@@ -26,7 +26,6 @@
             box-shadow: 0 0 40px rgba(78, 217, 255, 0.2);
         }
         .welcome-logo { width: 100px; height: 100px; margin-bottom: 20px; border-radius: 50%; border: 2px solid var(--neon-blue); object-fit: cover; }
-        .welcome-box h2 { color: var(--neon-blue); margin-bottom: 15px; }
         .start-btn {
             background: var(--neon-blue); color: var(--dark-bg);
             padding: 12px 35px; border: none; border-radius: 5px;
@@ -34,38 +33,54 @@
         }
 
         /* الموقع الرئيسي */
-        #main-site { opacity: 0; transition: 1s ease-in-out; display: none; }
+        #main-site { opacity: 0; transition: 1s ease-in-out; display: none; perspective: 1200px; }
         
         nav { width: 100%; padding: 15px 8%; display: flex; justify-content: space-between; align-items: center; box-sizing: border-box; }
         .nav-brand { display: flex; align-items: center; gap: 12px; }
         .nav-logo-img { width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--neon-blue); object-fit: cover; }
         .nav-text { font-weight: 800; color: var(--neon-blue); letter-spacing: 2px; }
 
-        header { padding: 40px 20px 20px; background: radial-gradient(circle at center, #0a192f 0%, #030b17 100%); }
-        h1 { color: var(--neon-blue); font-size: clamp(28px, 6vw, 45px); margin: 10px 0; }
+        header { padding: 40px 20px 10px; background: radial-gradient(circle at center, #0a192f 0%, #030b17 100%); }
+        h1 { color: var(--neon-blue); font-size: clamp(28px, 6vw, 45px); margin: 5px 0; font-weight: bold; }
         
-        .about-section { max-width: 700px; margin: 15px auto; color: #8892b0; font-size: 17px; line-height: 1.6; }
+        .about-section { max-width: 700px; margin: 10px auto 20px; color: #8892b0; font-size: 17px; line-height: 1.6; }
         .highlight { color: var(--neon-blue); font-weight: bold; }
 
-        /* الكروت */
-        .intro-cards { display: flex; justify-content: center; gap: 15px; margin: 20px auto; max-width: 900px; flex-wrap: wrap; padding: 0 20px; }
-        .i-card { background: rgba(10, 25, 47, 0.8); padding: 15px; border-radius: 12px; border: 1px solid rgba(78, 217, 255, 0.1); flex: 1; min-width: 150px; }
-        .i-card h3 { color: #4effca; margin: 0; font-size: 14px; }
+        .intro-cards { display: flex; justify-content: center; gap: 15px; margin: 10px auto 20px; max-width: 900px; flex-wrap: wrap; padding: 0 20px; }
+        .i-card { background: rgba(10, 25, 47, 0.8); padding: 15px; border-radius: 12px; border: 1px solid rgba(78, 217, 255, 0.1); flex: 1; min-width: 140px; }
+        .i-card h3 { color: #4effca; margin: 0; font-size: 13px; letter-spacing: 1px; }
 
-        /* المهارات */
-        .section-title { text-align: left; margin: 30px 0 20px 10%; color: var(--neon-blue); border-left: 3px solid var(--neon-blue); padding-left: 15px; }
-        .skills-row { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; padding: 0 5%; }
-        .s-box { background: var(--card-bg); border: 1px solid rgba(78, 217, 255, 0.1); padding: 20px; border-radius: 15px; min-width: 120px; }
-        .s-box i { font-size: 30px; margin-bottom: 10px; display: block; }
+        /* مهارات 3D */
+        .section-title { text-align: left; margin: 20px 0 20px 10%; color: var(--neon-blue); border-left: 3px solid var(--neon-blue); padding-left: 15px; font-weight: bold; }
+        .skills-row { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; padding: 0 5%; margin-bottom: 40px; }
+        .s-box { 
+            background: var(--card-bg); border: 1px solid rgba(78, 217, 255, 0.1); 
+            padding: 25px 15px; border-radius: 15px; min-width: 130px; 
+            transition: 0.5s; transform-style: preserve-3d; cursor: pointer;
+        }
+        .s-box:hover { 
+            transform: translateY(-10px) rotateX(10deg) rotateY(10deg); 
+            border-color: var(--neon-blue); 
+            box-shadow: 0 15px 30px rgba(0,0,0,0.5);
+        }
+        .s-box i { font-size: 32px; margin-bottom: 12px; display: block; transition: 0.3s; }
+        .s-box:hover i { transform: translateZ(20px); }
+        .s-box span { font-size: 12px; font-weight: bold; color: #ccd6f6; }
 
         /* المشاريع */
-        .project-item { background: var(--card-bg); display: flex; align-items: center; margin: 20px 10%; border-radius: 20px; overflow: hidden; border: 1px solid rgba(78, 217, 255, 0.05); }
+        .project-item { background: var(--card-bg); display: flex; align-items: center; margin: 25px 10%; border-radius: 20px; overflow: hidden; border: 1px solid rgba(78, 217, 255, 0.05); transition: 0.4s; }
+        .project-item:hover { transform: scale(1.02); }
         .p-img { width: 50%; } .p-img img { width: 100%; display: block; }
-        .p-text { width: 50%; padding: 30px; text-align: left; }
-        .btn-view { border: 1px solid var(--neon-blue); color: var(--neon-blue); padding: 8px 20px; border-radius: 5px; cursor: pointer; display: inline-block; margin-top: 15px; }
+        .p-text { width: 50%; padding: 40px; text-align: left; }
+        .btn-view { border: 1px solid var(--neon-blue); color: var(--neon-blue); padding: 10px 25px; border-radius: 5px; cursor: pointer; display: inline-block; margin-top: 15px; font-weight: bold; text-decoration: none; }
+        .btn-view:hover { background: var(--neon-blue); color: var(--dark-bg); }
 
-        footer { padding: 40px 20px; background: #020811; border-top: 1px solid rgba(78, 217, 255, 0.05); }
-        .social-icons a { color: var(--neon-blue); font-size: 20px; margin: 0 10px; text-decoration: none; }
+        /* الفوتر */
+        footer { padding: 60px 20px; background: #020811; border-top: 1px solid rgba(78, 217, 255, 0.05); }
+        .social-icons { margin-bottom: 20px; }
+        .social-icons a { color: var(--neon-blue); font-size: 22px; margin: 0 15px; text-decoration: none; border: 1px solid var(--neon-blue); padding: 10px; border-radius: 50%; transition: 0.3s; display: inline-block; }
+        .social-icons a:hover { background: var(--neon-blue); color: var(--dark-bg); transform: translateY(-5px); }
+        .footer-email { color: var(--neon-blue); font-weight: bold; letter-spacing: 1px; margin-top: 10px; display: block; text-decoration: none; }
     </style>
 </head>
 <body>
@@ -85,9 +100,11 @@
             <img src="logo.png" class="nav-logo-img" alt="Logo">
             <span class="nav-text">AGBINSIGHTS</span>
         </div>
+        <div style="font-size: 10px; letter-spacing: 2px; opacity: 0.5;">PORTFOLIO 2025</div>
     </nav>
 
     <header>
+        <div style="color: var(--neon-blue); font-size: 10px; letter-spacing: 4px; margin-bottom: 5px; font-weight: bold;">DATA ANALYST PORTFOLIO</div>
         <h1>Ahmed Gharib</h1>
         <div class="about-section">
             I turn raw data into <span class="highlight">meaningful stories</span>. Specialized in Power BI and Excel to help businesses make <span class="highlight">smarter decisions</span>.
@@ -102,17 +119,17 @@
     <div class="section-title">01. Technical Expertise</div>
     <div class="skills-row">
         <div class="s-box"><i class="fas fa-chart-bar" style="color: var(--pbi-yellow);"></i><span>Power BI</span></div>
-        <div class="s-box"><i class="fas fa-file-excel" style="color: var(--excel-green);"></i><span>Excel</span></div>
-        <div class="s-box"><i class="fas fa-project-diagram"></i><span>Modeling</span></div>
-        <div class="s-box"><i class="fas fa-lightbulb"></i><span>Visuals</span></div>
+        <div class="s-box"><i class="fas fa-file-excel" style="color: var(--excel-green);"></i><span>Advanced Excel</span></div>
+        <div class="s-box"><i class="fas fa-project-diagram"></i><span>Data Modeling</span></div>
+        <div class="s-box"><i class="fas fa-lightbulb"></i><span>Visual Storytelling</span></div>
     </div>
 
     <div class="section-title">02. Featured Projects</div>
     <div class="project-item">
         <div class="p-img"><img src="hr.png.png"></div>
         <div class="p-text">
-            <h3>HR Analysis</h3>
-            <p>Identifying key drivers of employee turnover.</p>
+            <h3>HR Attrition Analysis</h3>
+            <p>Identifying key drivers of employee turnover using advanced Power BI modeling.</p>
             <div class="btn-view" onclick="showStudy('hr')">View Case Study</div>
         </div>
     </div>
@@ -121,7 +138,7 @@
         <div class="p-img"><img src="sales.png1.png"></div>
         <div class="p-text" style="text-align: right;">
             <h3>Sales Performance</h3>
-            <p>Strategic revenue tracking and dashboards.</p>
+            <p>Strategic revenue tracking and performance dashboards for growth.</p>
             <div class="btn-view" onclick="showStudy('sales')">View Case Study</div>
         </div>
     </div>
@@ -132,13 +149,14 @@
             <a href="https://wa.me/201020189281" target="_blank"><i class="fab fa-whatsapp"></i></a>
             <a href="mailto:info@agbinsights.com"><i class="far fa-envelope"></i></a>
         </div>
-        <p style="color: var(--neon-blue); margin-top: 15px;">info@agbinsights.com</p>
+        <a href="mailto:info@agbinsights.com" class="footer-email">info@agbinsights.com</a>
+        <div style="margin-top: 30px; font-size: 11px; color: #495670;">© 2025 Ahmed Gharib | AGBINSIGHTS</div>
     </footer>
 </div>
 
-<div id="case-study-view" style="display:none; padding: 50px;">
-    <div onclick="hideStudy()" style="color:var(--neon-blue); cursor:pointer; margin-bottom:20px;">← Back</div>
-    <div id="study-images"></div>
+<div id="case-study-view" style="display:none; padding: 40px 5%;">
+    <div onclick="hideStudy()" style="color:var(--neon-blue); cursor:pointer; margin-bottom:30px; font-weight:bold; text-align:left;">← Back to Home</div>
+    <div id="study-images" style="max-width: 1000px; margin: auto;"></div>
 </div>
 
 <script>
@@ -158,7 +176,7 @@
     };
 
     function showStudy(id) {
-        document.getElementById('study-images').innerHTML = data[id].map(img => `<img src="${img}" style="width:100%; margin-bottom:20px; border-radius:10px;">`).join('');
+        document.getElementById('study-images').innerHTML = data[id].map(img => `<img src="${img}" style="width:100%; margin-bottom:30px; border-radius:15px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">`).join('');
         document.getElementById('main-site').style.display = 'none';
         document.getElementById('case-study-view').style.display = 'block';
         window.scrollTo(0,0);
