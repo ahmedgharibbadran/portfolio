@@ -6,93 +6,66 @@
     <title>Ahmed Gharib | AGBINSIGHTS</title>
     
     <link rel="icon" type="image/png" href="logo.png">
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
         :root { --neon-blue: #4ed9ff; --dark-bg: #030b17; --card-bg: #0a192f; --pbi-yellow: #f2c811; --excel-green: #21a366; }
         
         body { background-color: var(--dark-bg); color: white; font-family: 'Segoe UI', sans-serif; margin: 0; text-align: center; scroll-behavior: smooth; overflow-x: hidden; }
         
-        /* 1. نافذة الترحيب */
+        /* شاشة الترحيب */
         #welcome-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(3, 11, 23, 0.98);
+            background: #030b17;
             display: flex; align-items: center; justify-content: center;
-            z-index: 9999; transition: 0.6s;
+            z-index: 10000; transition: 0.8s ease-in-out;
         }
         .welcome-box {
             background: var(--card-bg); border: 1px solid var(--neon-blue);
             padding: 40px; border-radius: 20px; max-width: 400px;
-            box-shadow: 0 0 40px rgba(78, 217, 255, 0.15);
+            box-shadow: 0 0 40px rgba(78, 217, 255, 0.2);
         }
         .welcome-logo { width: 100px; height: 100px; margin-bottom: 20px; border-radius: 50%; border: 2px solid var(--neon-blue); object-fit: cover; }
         .welcome-box h2 { color: var(--neon-blue); margin-bottom: 15px; }
-        .welcome-box p { color: #ccd6f6; line-height: 1.6; font-size: 16px; }
         .start-btn {
             background: var(--neon-blue); color: var(--dark-bg);
             padding: 12px 35px; border: none; border-radius: 5px;
             font-weight: bold; cursor: pointer; margin-top: 25px; transition: 0.3s;
         }
-        .start-btn:hover { transform: scale(1.05); box-shadow: 0 0 20px var(--neon-blue); }
 
-        /* Navbar */
-        nav {
-            width: 100%; padding: 15px 8%; display: flex; justify-content: space-between; 
-            align-items: center; position: absolute; top: 0; box-sizing: border-box; z-index: 100;
-        }
+        /* الموقع الرئيسي */
+        #main-site { opacity: 0; transition: 1s ease-in-out; display: none; }
+        
+        nav { width: 100%; padding: 15px 8%; display: flex; justify-content: space-between; align-items: center; box-sizing: border-box; }
         .nav-brand { display: flex; align-items: center; gap: 12px; }
         .nav-logo-img { width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--neon-blue); object-fit: cover; }
-        .nav-text { font-weight: 800; color: var(--neon-blue); letter-spacing: 2px; font-size: 16px; }
+        .nav-text { font-weight: 800; color: var(--neon-blue); letter-spacing: 2px; }
 
-        /* الهيكل الرئيسي وتصحيح الفجوة */
-        #main-site { opacity: 0.2; filter: blur(8px); transition: 1.2s; perspective: 1200px; }
+        header { padding: 40px 20px 20px; background: radial-gradient(circle at center, #0a192f 0%, #030b17 100%); }
+        h1 { color: var(--neon-blue); font-size: clamp(28px, 6vw, 45px); margin: 10px 0; }
         
-        header { padding: 110px 20px 0px; background: radial-gradient(circle at center, #0a192f 0%, #030b17 100%); }
-        
-        .name-logo-container { display: flex; align-items: center; justify-content: center; gap: 15px; margin-bottom: 15px; }
-        h1 { color: var(--neon-blue); font-size: clamp(28px, 6vw, 45px); margin: 0; font-weight: bold; }
-
-        /* الوصف تحت الاسم */
-        .about-section { max-width: 700px; margin: 15px auto; color: #8892b0; font-size: 17px; line-height: 1.8; padding: 0 20px; }
+        .about-section { max-width: 700px; margin: 15px auto; color: #8892b0; font-size: 17px; line-height: 1.6; }
         .highlight { color: var(--neon-blue); font-weight: bold; }
 
-        /* كروت المنهجية */
-        .intro-cards { display: flex; justify-content: center; gap: 15px; margin: 20px auto 10px; max-width: 900px; flex-wrap: wrap; }
-        .i-card { background: rgba(10, 25, 47, 0.6); padding: 20px; border-radius: 12px; border: 1px solid rgba(78, 217, 255, 0.1); flex: 1; min-width: 150px; }
-        .i-card h3 { color: #4effca; margin: 0; font-size: 14px; letter-spacing: 1.5px; }
-        .i-card p { color: #8892b0; font-size: 12px; margin-top: 5px; }
+        /* الكروت */
+        .intro-cards { display: flex; justify-content: center; gap: 15px; margin: 20px auto; max-width: 900px; flex-wrap: wrap; padding: 0 20px; }
+        .i-card { background: rgba(10, 25, 47, 0.8); padding: 15px; border-radius: 12px; border: 1px solid rgba(78, 217, 255, 0.1); flex: 1; min-width: 150px; }
+        .i-card h3 { color: #4effca; margin: 0; font-size: 14px; }
 
-        /* مهارات تقنية */
-        .section-title { text-align: left; margin: 25px 0 20px 10%; color: var(--neon-blue); border-left: 3px solid var(--neon-blue); padding-left: 15px; font-size: 18px; }
-        .skills-row { display: flex; justify-content: center; gap: 15px; margin: 10px 0 40px; flex-wrap: wrap; padding: 0 5%; }
-        .s-box { 
-            background: var(--card-bg); border: 1px solid rgba(78, 217, 255, 0.1); 
-            padding: 25px 15px; border-radius: 15px; transition: 0.5s;
-            flex: 1; min-width: 130px; max-width: 180px; cursor: pointer;
-        }
-        .s-box:hover { transform: translateY(-10px); border-color: var(--neon-blue); }
-        .s-box i { font-size: 35px; margin-bottom: 15px; display: block; }
-        .s-box span { font-size: 12px; color: #ccd6f6; font-weight: bold; }
+        /* المهارات */
+        .section-title { text-align: left; margin: 30px 0 20px 10%; color: var(--neon-blue); border-left: 3px solid var(--neon-blue); padding-left: 15px; }
+        .skills-row { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; padding: 0 5%; }
+        .s-box { background: var(--card-bg); border: 1px solid rgba(78, 217, 255, 0.1); padding: 20px; border-radius: 15px; min-width: 120px; }
+        .s-box i { font-size: 30px; margin-bottom: 10px; display: block; }
 
         /* المشاريع */
-        .project-item { 
-            background: var(--card-bg); display: flex; align-items: center; 
-            margin: 30px 10%; border-radius: 20px; overflow: hidden; 
-            transition: 0.5s; border: 1px solid rgba(78, 217, 255, 0.05); 
-        }
-        .p-img { width: 55%; } .p-img img { width: 100%; display: block; }
-        .p-text { width: 45%; padding: 40px; text-align: left; }
-        
-        .btn-view { border: 1px solid var(--neon-blue); color: var(--neon-blue); padding: 10px 25px; border-radius: 5px; cursor: pointer; transition: 0.3s; font-weight: bold; }
-        .btn-view:hover { background: var(--neon-blue); color: var(--dark-bg); }
+        .project-item { background: var(--card-bg); display: flex; align-items: center; margin: 20px 10%; border-radius: 20px; overflow: hidden; border: 1px solid rgba(78, 217, 255, 0.05); }
+        .p-img { width: 50%; } .p-img img { width: 100%; display: block; }
+        .p-text { width: 50%; padding: 30px; text-align: left; }
+        .btn-view { border: 1px solid var(--neon-blue); color: var(--neon-blue); padding: 8px 20px; border-radius: 5px; cursor: pointer; display: inline-block; margin-top: 15px; }
 
-        /* الفوتر */
-        footer { padding: 60px 20px; background: #020811; border-top: 1px solid rgba(78, 217, 255, 0.05); }
-        .footer-cta { color: var(--neon-blue); font-size: 22px; margin-bottom: 30px; font-weight: bold; }
-        .social-icons a { color: var(--neon-blue); font-size: 22px; margin: 0 15px; border: 1px solid var(--neon-blue); padding: 12px; border-radius: 50%; display: inline-block; transition: 0.4s; text-decoration: none; }
-        .social-icons a:hover { background: var(--neon-blue); color: var(--dark-bg); transform: translateY(-5px); }
-
-        #case-study-view { display: none; background: var(--dark-bg); min-height: 100vh; padding: 40px 5%; }
+        footer { padding: 40px 20px; background: #020811; border-top: 1px solid rgba(78, 217, 255, 0.05); }
+        .social-icons a { color: var(--neon-blue); font-size: 20px; margin: 0 10px; text-decoration: none; }
     </style>
 </head>
 <body>
@@ -101,7 +74,7 @@
     <div class="welcome-box">
         <img src="logo.png" class="welcome-logo" alt="Logo">
         <h2>Hello, I'm Ahmed!</h2>
-        <p>Step into my data universe where complex numbers become clear business stories.</p>
+        <p>Ready to explore my data universe?</p>
         <button class="start-btn" onclick="startExploring()">Start Exploring</button>
     </div>
 </div>
@@ -115,13 +88,10 @@
     </nav>
 
     <header>
-        <div style="color: var(--neon-blue); font-size: 10px; letter-spacing: 4px; margin-bottom: 15px;">DATA ANALYST PORTFOLIO</div>
         <h1>Ahmed Gharib</h1>
-        
         <div class="about-section">
-            I turn raw data into <span class="highlight">meaningful stories</span>. Specialized in Power BI, Excel, and Data Modeling to help businesses make <span class="highlight">smarter decisions</span>.
+            I turn raw data into <span class="highlight">meaningful stories</span>. Specialized in Power BI and Excel to help businesses make <span class="highlight">smarter decisions</span>.
         </div>
-
         <div class="intro-cards">
             <div class="i-card"><h3>DAILY</h3><p>Skill Development</p></div>
             <div class="i-card"><h3>DETAIL</h3><p>Oriented Analyst</p></div>
@@ -132,19 +102,17 @@
     <div class="section-title">01. Technical Expertise</div>
     <div class="skills-row">
         <div class="s-box"><i class="fas fa-chart-bar" style="color: var(--pbi-yellow);"></i><span>Power BI</span></div>
-        <div class="s-box"><i class="fas fa-file-excel" style="color: var(--excel-green);"></i><span>Advanced Excel</span></div>
-        <div class="s-box"><i class="fas fa-project-diagram"></i><span>Data Modeling</span></div>
-        <div class="s-box"><i class="fas fa-calculator"></i><span>DAX Queries</span></div>
-        <div class="s-box"><i class="fas fa-lightbulb"></i><span>Visual Storytelling</span></div>
+        <div class="s-box"><i class="fas fa-file-excel" style="color: var(--excel-green);"></i><span>Excel</span></div>
+        <div class="s-box"><i class="fas fa-project-diagram"></i><span>Modeling</span></div>
+        <div class="s-box"><i class="fas fa-lightbulb"></i><span>Visuals</span></div>
     </div>
 
     <div class="section-title">02. Featured Projects</div>
-    
     <div class="project-item">
         <div class="p-img"><img src="hr.png.png"></div>
         <div class="p-text">
-            <h3>HR Attrition Analysis</h3>
-            <p>Identifying key drivers of employee turnover using advanced Power BI data modeling.</p>
+            <h3>HR Analysis</h3>
+            <p>Identifying key drivers of employee turnover.</p>
             <div class="btn-view" onclick="showStudy('hr')">View Case Study</div>
         </div>
     </div>
@@ -153,13 +121,53 @@
         <div class="p-img"><img src="sales.png1.png"></div>
         <div class="p-text" style="text-align: right;">
             <h3>Sales Performance</h3>
-            <p>Strategic revenue tracking and performance dashboards for commercial growth.</p>
+            <p>Strategic revenue tracking and dashboards.</p>
             <div class="btn-view" onclick="showStudy('sales')">View Case Study</div>
         </div>
     </div>
 
     <footer>
-        <div class="footer-cta">Ready to unlock your data's potential?</div>
         <div class="social-icons">
-            <a href="https://www.linkedin.com/in/ahmed-gharib-20989a272/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-            <a href="https://wa.me/201020189281" target="_
+            <a href="https://www.linkedin.com/in/ahmed-gharib-20989a272/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://wa.me/201020189281" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            <a href="mailto:info@agbinsights.com"><i class="far fa-envelope"></i></a>
+        </div>
+        <p style="color: var(--neon-blue); margin-top: 15px;">info@agbinsights.com</p>
+    </footer>
+</div>
+
+<div id="case-study-view" style="display:none; padding: 50px;">
+    <div onclick="hideStudy()" style="color:var(--neon-blue); cursor:pointer; margin-bottom:20px;">← Back</div>
+    <div id="study-images"></div>
+</div>
+
+<script>
+    function startExploring() {
+        document.getElementById('welcome-overlay').style.opacity = '0';
+        setTimeout(() => {
+            document.getElementById('welcome-overlay').style.display = 'none';
+            const main = document.getElementById('main-site');
+            main.style.display = 'block';
+            setTimeout(() => main.style.opacity = '1', 50);
+        }, 800);
+    }
+
+    const data = {
+        'hr': ['hr.png.png', 'hr.png2.png', 'hr.png3.png'],
+        'sales': ['sales.png1.png', 'sales.png2.png', 'sales.png3.png']
+    };
+
+    function showStudy(id) {
+        document.getElementById('study-images').innerHTML = data[id].map(img => `<img src="${img}" style="width:100%; margin-bottom:20px; border-radius:10px;">`).join('');
+        document.getElementById('main-site').style.display = 'none';
+        document.getElementById('case-study-view').style.display = 'block';
+        window.scrollTo(0,0);
+    }
+
+    function hideStudy() {
+        document.getElementById('main-site').style.display = 'block';
+        document.getElementById('case-study-view').style.display = 'none';
+    }
+</script>
+</body>
+</html>
