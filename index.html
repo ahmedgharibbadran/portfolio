@@ -10,7 +10,7 @@
         
         body { background-color: var(--dark-bg); color: white; font-family: 'Segoe UI', sans-serif; margin: 0; text-align: center; scroll-behavior: smooth; overflow-x: hidden; }
         
-        /* 1. نافذة الترحيب (Welcome Screen) */
+        /* 1. نافذة الترحيب الذكية */
         #welcome-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(3, 11, 23, 0.98);
@@ -33,7 +33,7 @@
         }
         .start-btn:hover { transform: scale(1.05); box-shadow: 0 0 20px var(--neon-blue); }
 
-        /* 2. الهيكل الرئيسي للموقع */
+        /* 2. الهيكل الرئيسي */
         #main-site { opacity: 0.2; filter: blur(8px); transition: 1.2s; }
         header { padding: 100px 20px; background: radial-gradient(circle at center, #0a192f 0%, #030b17 100%); }
         
@@ -47,20 +47,21 @@
         .about-section { max-width: 700px; margin: 20px auto; color: #8892b0; font-size: 16px; line-height: 1.7; padding: 0 20px; }
         .highlight { color: var(--neon-blue); font-weight: bold; }
 
-        /* كروت الأزرار والمهارات 3D */
+        /* مهارات وأدوات تقنية 3D */
         .top-cards, .skills-row { display: flex; justify-content: center; gap: 15px; margin: 40px 0; flex-wrap: wrap; padding: 0 10px; }
         .t-card, .s-box { 
             background: var(--card-bg); border: 1px solid rgba(78, 217, 255, 0.1); 
             padding: 20px; border-radius: 12px; transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            min-width: 100px;
         }
         .t-card:hover, .s-box:hover { transform: translateY(-10px) rotateX(5deg); border-color: var(--neon-blue); box-shadow: 0 15px 30px rgba(0,0,0,0.5); }
         .t-card h4 { color: var(--neon-blue); margin: 0 0 5px 0; font-size: 12px; letter-spacing: 1px; }
         .t-card p { color: #8892b0; margin: 0; font-size: 9px; text-transform: uppercase; }
 
-        .s-box i { color: var(--neon-blue); font-size: 22px; margin-bottom: 10px; display: block; }
-        .s-box span { font-size: 10px; color: #ccd6f6; font-weight: bold; }
+        .s-box i { color: var(--neon-blue); font-size: 26px; margin-bottom: 12px; display: block; }
+        .s-box span { font-size: 11px; color: #ccd6f6; font-weight: bold; white-space: nowrap; }
 
-        /* قسم المشاريع */
+        /* المشاريع */
         .section-title { text-align: left; margin: 60px 0 20px 10%; color: var(--neon-blue); border-left: 3px solid var(--neon-blue); padding-left: 15px; font-size: 18px; letter-spacing: 1px; }
         .project-item { 
             background: var(--card-bg); display: flex; align-items: center; 
@@ -121,7 +122,7 @@
             </div>
         </div>
         <div class="about-section">
-            I turn raw data into <span class="highlight">meaningful stories</span>. Specialized in Power BI, DAX, and ETL to help businesses make <span class="highlight">smarter decisions</span>.
+            I turn raw data into <span class="highlight">meaningful stories</span>. Specialized in <span class="highlight">Power BI, Excel, and SQL</span> to help businesses make smarter decisions.
         </div>
     </header>
 
@@ -133,11 +134,11 @@
 
     <div class="section-title">01. Technical Expertise</div>
     <div class="skills-row">
-        <div class="s-box"><i class="fas fa-database"></i><span>Modeling</span></div>
-        <div class="s-box"><i class="fas fa-link"></i><span>Relations</span></div>
-        <div class="s-box"><i class="fas fa-microchip"></i><span>ETL</span></div>
-        <div class="s-box"><i class="fas fa-code"></i><span>DAX</span></div>
-        <div class="s-box"><i class="fas fa-chart-pie"></i><span>Visuals</span></div>
+        <div class="s-box"><i class="fas fa-chart-bar"></i><span>Power BI</span></div>
+        <div class="s-box"><i class="fas fa-file-excel"></i><span>Advanced Excel</span></div>
+        <div class="s-box"><i class="fas fa-database"></i><span>SQL & Modeling</span></div>
+        <div class="s-box"><i class="fas fa-code"></i><span>DAX Queries</span></div>
+        <div class="s-box"><i class="fas fa-sync-alt"></i><span>ETL Processes</span></div>
     </div>
 
     <div class="section-title">02. Featured Projects</div>
@@ -154,7 +155,7 @@
         <div class="p-img"><img src="sales.png1.png"></div>
         <div class="p-text" style="text-align: right;">
             <h3>Sales Performance</h3>
-            <p>Tracking revenue growth and regional performance to optimize commercial strategies.</p>
+            <p>Strategic revenue tracking and regional performance dashboard for commercial growth.</p>
             <div class="btn-view" onclick="showStudy('sales')">View Case Study</div>
         </div>
     </div>
@@ -178,11 +179,10 @@
     <div class="back-btn-container">
         <div class="back-btn" onclick="hideStudy()">← Back to Home</div>
     </div>
-    <div id="study-images" style="max-width: 1000px; margin: auto;" class="study-content"></div>
+    <div id="study-images" class="study-content"></div>
 </div>
 
 <script>
-    // التحكم في شاشة الترحيب
     function startExploring() {
         document.getElementById('welcome-overlay').style.opacity = '0';
         setTimeout(() => {
@@ -192,13 +192,11 @@
         }, 600);
     }
 
-    // بيانات الصور للمشاريع
     const data = {
         'hr': ['hr.png.png', 'hr.png2.png', 'hr.png3.png'],
         'sales': ['sales.png1.png', 'sales.png2.png', 'sales.png3.png']
     };
 
-    // وظيفة عرض المشروع
     function showStudy(id) {
         const viewer = document.getElementById('study-images');
         viewer.innerHTML = data[id].map(img => `<img src="${img}">`).join('');
@@ -207,7 +205,6 @@
         window.scrollTo(0,0);
     }
 
-    // وظيفة العودة للرئيسية
     function hideStudy() {
         document.getElementById('main-site').style.display = 'block';
         document.getElementById('case-study-view').style.display = 'none';
