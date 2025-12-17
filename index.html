@@ -46,9 +46,16 @@
         .about-section { max-width: 700px; margin: 10px auto 20px; color: #8892b0; font-size: 17px; line-height: 1.6; }
         .highlight { color: var(--neon-blue); font-weight: bold; }
 
-        .intro-cards { display: flex; justify-content: center; gap: 15px; margin: 10px auto 20px; max-width: 900px; flex-wrap: wrap; padding: 0 20px; }
-        .i-card { background: rgba(10, 25, 47, 0.8); padding: 15px; border-radius: 12px; border: 1px solid rgba(78, 217, 255, 0.1); flex: 1; min-width: 140px; }
-        .i-card h3 { color: #4effca; margin: 0; font-size: 13px; letter-spacing: 1px; }
+        /* كروت المنهجية 3D */
+        .intro-cards { display: flex; justify-content: center; gap: 15px; margin: 10px auto 20px; max-width: 900px; flex-wrap: wrap; padding: 0 20px; perspective: 1000px; }
+        .i-card { 
+            background: rgba(10, 25, 47, 0.8); padding: 15px; border-radius: 12px; 
+            border: 1px solid rgba(78, 217, 255, 0.1); flex: 1; min-width: 140px;
+            transition: 0.5s; transform-style: preserve-3d; cursor: default;
+        }
+        .i-card:hover { transform: translateY(-10px) rotateX(15deg); border-color: var(--neon-blue); box-shadow: 0 10px 25px rgba(0,0,0,0.4); }
+        .i-card h3 { color: #4effca; margin: 0; font-size: 13px; letter-spacing: 1px; transform: translateZ(20px); }
+        .i-card p { transform: translateZ(15px); }
 
         /* مهارات 3D */
         .section-title { text-align: left; margin: 20px 0 20px 10%; color: var(--neon-blue); border-left: 3px solid var(--neon-blue); padding-left: 15px; font-weight: bold; }
@@ -64,23 +71,22 @@
             box-shadow: 0 15px 30px rgba(0,0,0,0.5);
         }
         .s-box i { font-size: 32px; margin-bottom: 12px; display: block; transition: 0.3s; }
-        .s-box:hover i { transform: translateZ(20px); }
-        .s-box span { font-size: 12px; font-weight: bold; color: #ccd6f6; }
+        .s-box:hover i { transform: translateZ(30px); }
+        .s-box span { font-size: 12px; font-weight: bold; color: #ccd6f6; display: block; transform: translateZ(20px); }
 
         /* المشاريع */
         .project-item { background: var(--card-bg); display: flex; align-items: center; margin: 25px 10%; border-radius: 20px; overflow: hidden; border: 1px solid rgba(78, 217, 255, 0.05); transition: 0.4s; }
-        .project-item:hover { transform: scale(1.02); }
+        .project-item:hover { transform: scale(1.01); }
         .p-img { width: 50%; } .p-img img { width: 100%; display: block; }
         .p-text { width: 50%; padding: 40px; text-align: left; }
-        .btn-view { border: 1px solid var(--neon-blue); color: var(--neon-blue); padding: 10px 25px; border-radius: 5px; cursor: pointer; display: inline-block; margin-top: 15px; font-weight: bold; text-decoration: none; }
+        .btn-view { border: 1px solid var(--neon-blue); color: var(--neon-blue); padding: 10px 25px; border-radius: 5px; cursor: pointer; display: inline-block; margin-top: 15px; font-weight: bold; text-decoration: none; transition: 0.3s; }
         .btn-view:hover { background: var(--neon-blue); color: var(--dark-bg); }
 
         /* الفوتر */
         footer { padding: 60px 20px; background: #020811; border-top: 1px solid rgba(78, 217, 255, 0.05); }
-        .social-icons { margin-bottom: 20px; }
-        .social-icons a { color: var(--neon-blue); font-size: 22px; margin: 0 15px; text-decoration: none; border: 1px solid var(--neon-blue); padding: 10px; border-radius: 50%; transition: 0.3s; display: inline-block; }
+        .social-icons { margin-bottom: 10px; }
+        .social-icons a { color: var(--neon-blue); font-size: 22px; margin: 0 15px; text-decoration: none; border: 1px solid var(--neon-blue); padding: 12px; border-radius: 50%; transition: 0.3s; display: inline-block; }
         .social-icons a:hover { background: var(--neon-blue); color: var(--dark-bg); transform: translateY(-5px); }
-        .footer-email { color: var(--neon-blue); font-weight: bold; letter-spacing: 1px; margin-top: 10px; display: block; text-decoration: none; }
     </style>
 </head>
 <body>
@@ -100,7 +106,6 @@
             <img src="logo.png" class="nav-logo-img" alt="Logo">
             <span class="nav-text">AGBINSIGHTS</span>
         </div>
-        <div style="font-size: 10px; letter-spacing: 2px; opacity: 0.5;">PORTFOLIO 2025</div>
     </nav>
 
     <header>
@@ -149,8 +154,7 @@
             <a href="https://wa.me/201020189281" target="_blank"><i class="fab fa-whatsapp"></i></a>
             <a href="mailto:info@agbinsights.com"><i class="far fa-envelope"></i></a>
         </div>
-        <a href="mailto:info@agbinsights.com" class="footer-email">info@agbinsights.com</a>
-        <div style="margin-top: 30px; font-size: 11px; color: #495670;">© 2025 Ahmed Gharib | AGBINSIGHTS</div>
+        <div style="margin-top: 30px; font-size: 11px; color: #495670;">© Ahmed Gharib | AGBINSIGHTS</div>
     </footer>
 </div>
 
