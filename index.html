@@ -4,101 +4,98 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ahmed Gharib | AGBINSIGHTS</title>
-    <link rel="icon" type="image/png" href="logo.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        :root { --assal-blue: #1e40af; --assal-bg: #f8fafc; --dark: #0f172a; }
-        
-        body { background-color: var(--assal-bg); color: #334155; font-family: 'Inter', sans-serif; margin: 0; overflow-x: hidden; }
+        :root { --blue: #1e40af; --bg: #f8fafc; --text: #0f172a; }
+        body { background: var(--bg); color: #334155; font-family: 'Inter', sans-serif; margin: 0; }
 
         /* شاشة الترحيب */
-        #welcome-overlay { position: fixed; inset: 0; background: white; display: flex; align-items: center; justify-content: center; z-index: 10000; transition: 0.8s ease; }
-        .welcome-box { text-align: center; }
-        .welcome-logo { width: 110px; height: 110px; border-radius: 50%; border: 3px solid var(--assal-blue); margin-bottom: 20px; }
-        .start-btn { background: var(--dark); color: white; padding: 12px 35px; border: none; border-radius: 6px; font-weight: 700; cursor: pointer; transition: 0.3s; }
+        #welcome { position: fixed; inset: 0; background: white; display: flex; align-items: center; justify-content: center; z-index: 10000; transition: 0.8s; }
+        .welcome-content { text-align: center; }
+        .w-logo { width: 100px; height: 100px; border-radius: 50%; border: 3px solid var(--blue); margin-bottom: 15px; }
 
-        #main-site { display: none; opacity: 0; transition: 1s ease; }
-
-        /* Navbar - ثابت تماماً */
-        nav { width: 100%; padding: 15px 5%; display: flex; align-items: center; background: white; border-bottom: 1px solid #e2e8f0; position: sticky; top: 0; z-index: 1000; box-sizing: border-box; }
-        .nav-brand { display: flex; align-items: center; gap: 10px; margin-right: auto; }
-        .nav-logo-img { width: 35px; height: 35px; border-radius: 50%; }
-        
-        .lang-switcher { display: flex; gap: 10px; margin-left: auto; }
-        .lang-btn { cursor: pointer; border-radius: 50%; width: 30px; height: 30px; overflow: hidden; border: 2px solid transparent; transition: 0.3s; }
-        .lang-btn img { width: 100%; height: 100%; object-fit: cover; }
-        .lang-btn.active { border-color: var(--assal-blue); transform: scale(1.1); }
-
-        header { padding: 60px 20px; text-align: center; }
-        h1 { color: var(--dark); font-size: clamp(35px, 8vw, 65px); font-weight: 800; margin: 0; }
-        .job-tag { color: var(--assal-blue); font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-top: 10px; display: block; }
-
-        .section-title { text-align: left; margin: 40px 10% 20px; color: var(--dark); border-left: 4px solid var(--assal-blue); padding-left: 15px; font-weight: 800; }
-        body[dir="rtl"] .section-title { text-align: right; border-left: none; border-right: 4px solid var(--assal-blue); padding-right: 15px; }
-
-        /* نظام الصفوف (4 فوق و 5 تحت) مع 3D */
-        .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; padding: 0 10%; margin-bottom: 30px; }
-        .grid-5 { display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px; padding: 0 10%; margin-bottom: 50px; }
-        
-        .card-3d { 
-            background: white; padding: 25px 15px; border-radius: 12px; border: 1px solid #e2e8f0; 
-            text-align: center; transition: 0.5s; cursor: pointer;
+        /* الهيدر المظبوط */
+        nav { 
+            display: flex; justify-content: space-between; align-items: center; 
+            padding: 15px 5%; background: white; border-bottom: 1px solid #e2e8f0; 
+            position: sticky; top: 0; z-index: 1000; direction: ltr !important; 
         }
-        .card-3d:hover { transform: translateY(-10px) rotateX(10deg) rotateY(10deg); border-color: var(--assal-blue); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
-        .card-3d i { font-size: 30px; color: var(--assal-blue); margin-bottom: 12px; display: block; }
-        .card-3d span { font-weight: 700; color: var(--dark); font-size: 13px; }
+        .nav-left { display: flex; align-items: center; gap: 10px; }
+        .nav-right { display: flex; gap: 15px; align-items: center; }
+        .flag-btn { cursor: pointer; width: 30px; height: 30px; border-radius: 50%; border: 2px solid transparent; transition: 0.3s; }
+        .flag-btn.active { border-color: var(--blue); transform: scale(1.2); }
 
-        /* المشاريع - تفاصيل كاملة */
-        .project-card { background: white; border: 1px solid #e2e8f0; margin: 30px 10%; border-radius: 20px; overflow: hidden; display: flex; transition: 0.4s; }
-        .p-img { width: 45%; } .p-img img { width: 100%; height: 100%; object-fit: cover; }
-        .p-info { width: 55%; padding: 40px; }
-        .view-btn { display: inline-block; margin-top: 20px; padding: 10px 25px; background: var(--assal-blue); color: white; text-decoration: none; border-radius: 5px; font-weight: 600; }
+        header { text-align: center; padding: 60px 20px; }
+        h1 { font-size: clamp(35px, 8vw, 60px); color: var(--text); margin: 0; }
+
+        /* الأيقونات 3D والصفوف */
+        .section-title { margin: 40px 10%; font-weight: 800; border-left: 4px solid var(--blue); padding-left: 15px; }
+        body[dir="rtl"] .section-title { border-left: none; border-right: 4px solid var(--blue); padding-right: 15px; text-align: right; }
+
+        .row-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; padding: 0 10%; }
+        .row-5 { display: grid; grid-template-columns: repeat(5, 1fr); gap: 15px; padding: 20px 10%; }
+
+        .card-3d { 
+            background: white; padding: 25px; border-radius: 15px; border: 1px solid #e2e8f0;
+            text-align: center; transition: 0.4s; perspective: 1000px; cursor: pointer;
+        }
+        .card-3d:hover { transform: translateY(-10px) rotateY(10deg); box-shadow: 0 15px 30px rgba(0,0,0,0.1); border-color: var(--blue); }
+        .card-3d i { font-size: 35px; color: var(--blue); margin-bottom: 10px; display: block; }
+
+        /* المشاريع - نظام الـ Modal */
+        .project-box { background: white; border-radius: 20px; margin: 20px 10%; display: flex; overflow: hidden; border: 1px solid #e2e8f0; }
+        .p-img { width: 45%; cursor: pointer; } .p-img img { width: 100%; height: 100%; object-fit: cover; }
+        .p-content { width: 55%; padding: 40px; }
+
+        /* نافذة التفاصيل */
+        .modal { position: fixed; inset: 0; background: rgba(0,0,0,0.8); display: none; align-items: center; justify-content: center; z-index: 2000; padding: 20px; }
+        .modal-body { background: white; padding: 30px; border-radius: 20px; max-width: 800px; width: 100%; position: relative; }
+        .close-modal { position: absolute; top: 15px; right: 20px; font-size: 30px; cursor: pointer; }
 
         @media (max-width: 768px) {
-            .grid-4, .grid-5 { grid-template-columns: repeat(2, 1fr); gap: 10px; }
-            .project-card { flex-direction: column; }
-            .p-img, .p-info { width: 100%; }
+            .row-4, .row-5 { grid-template-columns: repeat(2, 1fr); }
+            .project-box { flex-direction: column; } .p-img, .p-content { width: 100%; }
         }
     </style>
 </head>
 <body>
 
-<div id="welcome-overlay">
-    <div class="welcome-box">
-        <img src="logo.png" class="welcome-logo">
-        <h2 style="font-weight: 800; margin: 0 0 20px;">Ahmed Gharib</h2>
-        <button class="start-btn" id="w-btn" onclick="enterSite()">Enter Portfolio</button>
+<div id="welcome">
+    <div class="welcome-content">
+        <img src="logo.png" class="w-logo">
+        <h2 style="font-weight: 900;">Ahmed Gharib</h2>
+        <button class="start-btn" style="background:var(--text); color:white; padding:12px 30px; border:none; border-radius:5px; cursor:pointer;" onclick="start()">Open Experience</button>
     </div>
 </div>
 
-<div id="main-site">
+<div id="main" style="display:none">
     <nav>
-        <div class="nav-brand">
-            <img src="logo.png" class="nav-logo-img">
-            <span style="font-weight: 800; color: var(--dark);">AGBINSIGHTS</span>
+        <div class="nav-left">
+            <img src="logo.png" style="width:35px; border-radius:50%">
+            <span style="font-weight:900; color:var(--text)">AGBINSIGHTS</span>
         </div>
-        <div class="lang-switcher">
-            <div class="lang-btn active" onclick="changeLang('en', this)"><img src="https://flagcdn.com/w40/us.png"></div>
-            <div class="lang-btn" onclick="changeLang('ar', this)"><img src="https://flagcdn.com/w40/eg.png"></div>
-            <div class="lang-btn" onclick="changeLang('es', this)"><img src="https://flagcdn.com/w40/es.png"></div>
+        <div class="nav-right">
+            <img src="https://flagcdn.com/w40/us.png" class="flag-btn active" onclick="setLang('en', this)">
+            <img src="https://flagcdn.com/w40/eg.png" class="flag-btn" onclick="setLang('ar', this)">
+            <img src="https://flagcdn.com/w40/es.png" class="flag-btn" onclick="setLang('es', this)">
         </div>
     </nav>
 
     <header>
-        <h1 id="h-name">Ahmed Gharib</h1>
-        <span class="job-tag" id="tag">Data Analyst</span>
+        <h1 id="n">Ahmed Gharib</h1>
+        <p id="t" style="color:var(--blue); font-weight:700; letter-spacing:3px;">DATA ANALYST</p>
     </header>
 
-    <div class="section-title" id="t1">ANALYTICS JOURNEY</div>
-    <div class="grid-4">
-        <div class="card-3d"><i class="fas fa-database"></i><span id="s1">EXTRACT</span></div>
-        <div class="card-3d"><i class="fas fa-broom"></i><span id="s2">CLEAN</span></div>
-        <div class="card-3d"><i class="fas fa-layer-group"></i><span id="s3">MODEL</span></div>
-        <div class="card-3d"><i class="fas fa-chart-line"></i><span id="s4">INSIGHT</span></div>
+    <div class="section-title" id="s1">THE ANALYTICS JOURNEY</div>
+    <div class="row-4">
+        <div class="card-3d"><i class="fas fa-database"></i><span>EXTRACT</span></div>
+        <div class="card-3d"><i class="fas fa-broom"></i><span>CLEAN</span></div>
+        <div class="card-3d"><i class="fas fa-layer-group"></i><span>MODEL</span></div>
+        <div class="card-3d"><i class="fas fa-chart-line"></i><span>INSIGHT</span></div>
     </div>
 
-    <div class="section-title" id="t2">TECHNICAL SKILLS</div>
-    <div class="grid-5">
+    <div class="section-title" id="s2">TECHNICAL EXPERTISE</div>
+    <div class="row-5">
         <div class="card-3d"><i class="fas fa-chart-bar"></i><span>Power BI</span></div>
         <div class="card-3d"><i class="fas fa-file-excel"></i><span>Excel</span></div>
         <div class="card-3d"><i class="fas fa-calculator"></i><span>DAX</span></div>
@@ -106,65 +103,47 @@
         <div class="card-3d"><i class="fas fa-brain"></i><span>Analysis</span></div>
     </div>
 
-    <div class="section-title" id="t3">FEATURED PROJECTS</div>
-    <div class="project-card">
-        <div class="p-img"><img src="hr.png.png"></div>
-        <div class="p-info">
-            <h3 id="p1-t">HR Attrition Project</h3>
-            <p id="p1-d">Comprehensive study of employee retention and turnover factors.</p>
-            <a href="hr-details.html" class="view-btn" id="v1">View Full Project</a>
+    <div class="section-title" id="s3">PORTFOLIO</div>
+    <div class="project-box">
+        <div class="p-img" onclick="showP('hr.png.png', 'HR Analysis', 'Comprehensive study of staff retention.')"><img src="hr.png.png"></div>
+        <div class="p-content">
+            <h3 id="p1-t">HR Analysis</h3>
+            <button onclick="showP('hr.png.png', 'HR Analysis', 'Full details here...')" style="background:var(--blue); color:white; border:none; padding:10px 20px; border-radius:5px; cursor:pointer;">View Full Project</button>
         </div>
     </div>
+</div>
 
-    <div class="project-card" style="flex-direction: row-reverse;">
-        <div class="p-img"><img src="sales.png1.png"></div>
-        <div class="p-info">
-            <h3 id="p2-t">Sales Performance</h3>
-            <p id="p2-d">Interactive dashboard for revenue tracking and forecasting.</p>
-            <a href="sales-details.html" class="view-btn" id="v2">View Full Project</a>
-        </div>
+<div id="pModal" class="modal">
+    <div class="modal-body">
+        <span class="close-modal" onclick="closeP()">&times;</span>
+        <h2 id="m-title"></h2>
+        <img id="m-img" src="" style="width:100%; border-radius:10px; margin:20px 0;">
+        <p id="m-desc"></p>
     </div>
-
-    <footer style="text-align: center; padding: 40px; border-top: 1px solid #e2e8f0;">
-        <p>© 2025 AHMED GHARIB - AGBINSIGHTS</p>
-    </footer>
 </div>
 
 <script>
-    function enterSite() {
-        document.getElementById('welcome-overlay').style.opacity = '0';
+    function start() {
+        document.getElementById('welcome').style.opacity = '0';
         setTimeout(() => {
-            document.getElementById('welcome-overlay').style.display = 'none';
-            document.getElementById('main-site').style.display = 'block';
-            setTimeout(() => document.getElementById('main-site').style.opacity = '1', 50);
+            document.getElementById('welcome').style.display = 'none';
+            document.getElementById('main').style.display = 'block';
         }, 800);
     }
 
-    const dict = {
-        'en': { tag: "Data Analyst", t1: "01. JOURNEY", s1: "EXTRACT", s2: "CLEAN", s3: "MODEL", s4: "INSIGHT", t2: "02. SKILLS", t3: "PROJECTS", p1t: "HR Analysis", p1d: "Study of employee turnover.", p2t: "Sales Report", p2d: "Revenue forecasting.", v: "View Full Project", wBtn: "Enter Portfolio" },
-        'ar': { tag: "محلل بيانات", t1: "01. الرحلة", s1: "استخراج", s2: "تنظيف", s3: "نمذجة", s4: "رؤية", t2: "02. المهارات", t3: "المشاريع المختارة", p1t: "تحليل الموظفين", p1d: "دراسة معدلات الاستقالة.", p2t: "تقرير المبيعات", p2d: "توقعات أداء المبيعات.", v: "عرض المشروع بالكامل", wBtn: "دخول المعرض" }
-    };
+    function showP(img, title, desc) {
+        document.getElementById('m-img').src = img;
+        document.getElementById('m-title').innerText = title;
+        document.getElementById('m-desc').innerText = desc;
+        document.getElementById('pModal').style.display = 'flex';
+    }
+    function closeP() { document.getElementById('pModal').style.display = 'none'; }
 
-    function changeLang(lang, btn) {
-        const d = dict[lang] || dict['en'];
-        document.getElementById('tag').innerText = d.tag;
-        document.getElementById('t1').innerText = d.t1;
-        document.getElementById('s1').innerText = d.s1;
-        document.getElementById('s2').innerText = d.s2;
-        document.getElementById('s3').innerText = d.s3;
-        document.getElementById('s4').innerText = d.s4;
-        document.getElementById('t2').innerText = d.t2;
-        document.getElementById('t3').innerText = d.t3;
-        document.getElementById('p1-t').innerText = d.p1t;
-        document.getElementById('p1-d').innerText = d.p1d;
-        document.getElementById('p2-t').innerText = d.p2t;
-        document.getElementById('p2-d').innerText = d.p2d;
-        document.getElementById('v1').innerText = d.v;
-        document.getElementById('v2').innerText = d.v;
-        document.getElementById('w-btn').innerText = d.wBtn;
-        document.body.dir = lang === 'ar' ? 'rtl' : 'ltr';
-        document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+    function setLang(lang, btn) {
+        document.body.dir = (lang === 'ar' ? 'rtl' : 'ltr');
+        document.querySelectorAll('.flag-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
+        // هنا تضيف ترجمة النصوص s1, s2, s3 كما فعلنا سابقاً
     }
 </script>
 </body>
