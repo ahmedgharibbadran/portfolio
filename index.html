@@ -9,73 +9,62 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* الألوان الجديدة: أزرق ملكي فخم */
+        /* تم تغيير اللون للرصاصي الداكن الاحترافي */
         :root { 
-            --main-blue: #1e40af; 
-            --accent-blue: #3b82f6;
-            --dark-bg: #0f172a; 
-            --card-bg: #1e293b; 
+            --neon-blue: #4ed9ff; 
+            --dark-bg: #1a1c1e; 
+            --card-bg: #252729; 
             --pbi-yellow: #f2c811; 
             --excel-green: #21a366; 
-            --text-gray: #94a3b8; 
+            --text-gray: #a0a0a0; 
         }
 
         body { background-color: var(--dark-bg); color: white; font-family: 'Segoe UI', sans-serif; margin: 0; text-align: center; scroll-behavior: smooth; overflow-x: hidden; }
         
         /* شاشة الترحيب */
-        #welcome-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at center, #1e293b 0%, #0f172a 100%); display: flex; align-items: center; justify-content: center; z-index: 10000; transition: 1.2s cubic-bezier(0.4, 0, 0.2, 1); }
-        .welcome-box { text-align: center; animation: fadeIn 1.5s ease; }
-        .welcome-logo { width: 150px; height: 150px; margin-bottom: 25px; border-radius: 50%; border: 3px solid var(--main-blue); box-shadow: 0 0 40px rgba(30, 64, 175, 0.5); animation: pulse 2s infinite; }
-        .welcome-box h2 { font-size: 50px; font-weight: 900; color: white; text-shadow: 0 0 25px var(--main-blue); margin: 0; }
-        .welcome-box p { color: var(--text-gray); letter-spacing: 5px; text-transform: uppercase; margin-top: 10px; font-weight: bold; }
-        .start-btn { background: transparent; color: var(--accent-blue); padding: 18px 60px; border: 2px solid var(--accent-blue); border-radius: 50px; font-weight: 900; cursor: pointer; margin-top: 45px; text-transform: uppercase; transition: 0.4s; letter-spacing: 3px; position: relative; overflow: hidden; }
-        .start-btn:hover { background: var(--main-blue); color: white; box-shadow: 0 0 40px var(--main-blue); border-color: var(--main-blue); }
+        #welcome-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--dark-bg); display: flex; align-items: center; justify-content: center; z-index: 10000; transition: 1.2s ease; }
+        .welcome-box { text-align: center; }
+        .welcome-logo { width: 150px; height: 150px; border-radius: 50%; border: 3px solid var(--neon-blue); box-shadow: 0 0 30px rgba(78, 217, 255, 0.3); }
 
-        @keyframes fadeIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
-        @keyframes pulse { 0% { box-shadow: 0 0 20px rgba(30, 64, 175, 0.4); } 50% { box-shadow: 0 0 50px rgba(30, 64, 175, 0.7); } 100% { box-shadow: 0 0 20px rgba(30, 64, 175, 0.4); } }
-
-        #main-site { opacity: 0; transition: 1s ease-in-out; display: none; perspective: 1500px; }
+        /* الهيدر الثابت مع اللغات */
+        nav { 
+            width: 100%; padding: 15px 8%; display: flex; justify-content: space-between; align-items: center; 
+            background: rgba(26, 28, 30, 0.95); position: sticky; top: 0; z-index: 1000; box-sizing: border-box;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .nav-brand { display: flex; align-items: center; gap: 12px; }
+        .nav-logo-img { width: 40px; height: 40px; border-radius: 50%; }
+        .nav-text { font-weight: 900; color: white; letter-spacing: 2px; font-size: 18px; }
         
-        nav { width: 100%; padding: 30px 8%; display: flex; justify-content: flex-start; align-items: center; box-sizing: border-box; }
-        .nav-brand { display: flex; align-items: center; gap: 15px; }
-        .nav-logo-img { width: 50px; height: 50px; border-radius: 50%; border: 1px solid var(--accent-blue); }
-        .nav-text { font-weight: 900; color: white; letter-spacing: 3px; font-size: 20px; }
+        /* اللغات */
+        .lang-switcher { display: flex; gap: 15px; }
+        .lang-switcher img { width: 28px; cursor: pointer; border-radius: 4px; transition: 0.3s; opacity: 0.7; }
+        .lang-switcher img:hover { opacity: 1; transform: scale(1.1); }
 
-        header { padding: 40px 20px 30px; }
-        h1 { color: white; font-size: clamp(45px, 8vw, 85px); margin: 0; font-weight: 900; }
-        .job-tag { color: var(--accent-blue); font-size: 18px; letter-spacing: 5px; font-weight: 600; text-transform: uppercase; margin-top: 5px; display: block; }
-        .about-section { max-width: 800px; margin: 35px auto; color: var(--text-gray); font-size: 20px; line-height: 1.8; }
-        .highlight { color: white; font-weight: bold; border-bottom: 2px solid var(--accent-blue); }
+        #main-site { opacity: 0; transition: 1s; display: none; }
+        header { padding: 60px 20px 40px; }
+        h1 { font-size: clamp(40px, 8vw, 75px); font-weight: 900; margin: 0; }
+        .job-tag { color: var(--neon-blue); letter-spacing: 5px; text-transform: uppercase; font-weight: 600; }
+        .about-section { max-width: 800px; margin: 30px auto; color: var(--text-gray); font-size: 19px; line-height: 1.6; }
+        .highlight { color: white; font-weight: bold; border-bottom: 2px solid var(--neon-blue); }
 
-        .section-title { text-align: left; margin: 80px 0 40px 10%; color: white; border-left: 5px solid var(--accent-blue); padding-left: 20px; font-weight: bold; font-size: 26px; text-transform: uppercase; }
+        .section-title { text-align: left; margin: 60px 0 30px 10%; color: var(--neon-blue); border-left: 5px solid var(--neon-blue); padding-left: 20px; font-weight: bold; font-size: 24px; text-transform: uppercase; }
         
-        .grid-container, .process-flow { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; padding: 0 8%; margin-bottom: 60px; }
-        .card-3d, .process-step, .project-item { background: var(--card-bg); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 30px; transition: 0.6s cubic-bezier(0.2, 0.8, 0.2, 1); transform-style: preserve-3d; cursor: pointer; }
-        
-        .card-3d, .process-step { padding: 45px 25px; min-width: 170px; flex: 1; }
-        .card-3d:hover, .process-step:hover, .project-item:hover { transform: translateY(-20px) rotateX(5deg) rotateY(5deg); border-color: var(--accent-blue); box-shadow: 0 30px 60px rgba(0,0,0,0.5); }
-        
-        .card-3d i, .process-step i { font-size: 50px; margin-bottom: 25px; display: block; color: var(--accent-blue); transition: 0.5s; }
-        .card-3d:hover i, .process-step:hover i { transform: translateZ(50px); color: white; }
-        .card-3d span, .process-step h4 { font-size: 15px; font-weight: 800; color: #ccd6f6; display: block; text-transform: uppercase; letter-spacing: 1px; }
+        .grid-container, .process-flow { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; padding: 0 8%; margin-bottom: 50px; }
+        .card-3d, .process-step { background: var(--card-bg); border-radius: 20px; padding: 40px 20px; flex: 1; min-width: 150px; border: 1px solid rgba(255,255,255,0.03); transition: 0.4s; }
+        .card-3d:hover, .process-step:hover { transform: translateY(-10px); border-color: var(--neon-blue); }
+        .card-3d i, .process-step i { font-size: 40px; color: var(--neon-blue); margin-bottom: 20px; display: block; }
 
-        .project-item { display: flex; align-items: center; margin: 50px 10%; overflow: hidden; border: 1px solid rgba(255,255,255,0.03); }
-        .p-img { width: 55%; } .p-img img { width: 100%; display: block; transition: 0.5s; }
-        .project-item:hover .p-img img { transform: scale(1.05); }
-        .p-text { width: 45%; padding: 60px; text-align: left; transform: translateZ(30px); }
-        .btn-view { border: 2px solid var(--accent-blue); color: var(--accent-blue); padding: 14px 35px; border-radius: 12px; cursor: pointer; display: inline-block; margin-top: 30px; font-weight: 900; text-decoration: none; transition: 0.3s; }
-        .btn-view:hover { background: var(--accent-blue); color: white; }
+        /* المشاريع */
+        .project-item { display: flex; background: var(--card-bg); margin: 40px 10%; border-radius: 25px; overflow: hidden; align-items: center; border: 1px solid rgba(255,255,255,0.03); }
+        .p-img { width: 50%; } .p-img img { width: 100%; display: block; }
+        .p-text { width: 50%; padding: 50px; text-align: left; }
+        .btn-view { border: 2px solid var(--neon-blue); color: var(--neon-blue); padding: 12px 30px; border-radius: 10px; display: inline-block; margin-top: 20px; font-weight: bold; text-decoration: none; cursor: pointer; }
+        .btn-view:hover { background: var(--neon-blue); color: var(--dark-bg); }
 
-        #case-study-view { display:none; background: var(--dark-bg); padding: 80px 5%; }
-        .case-header { max-width: 1100px; margin: 0 auto 50px; text-align: left; background: var(--card-bg); padding: 45px; border-radius: 35px; border-left: 8px solid var(--accent-blue); }
-        .case-header h2 { color: white; margin-top: 0; font-size: 35px; }
-        .case-info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 30px; }
-        .info-tag { font-size: 16px; color: var(--text-gray); line-height: 1.8; }
-        .info-tag b { color: var(--accent-blue); display: block; margin-bottom: 10px; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; }
-
-        footer { padding: 80px 20px; background: #0a0f1d; border-top: 1px solid rgba(255,255,255,0.05); }
-        .social-icons a { color: var(--accent-blue); font-size: 30px; margin: 0 25px; transition: 0.4s; display: inline-block; }
-        .social-icons a:hover { transform: translateY(-12px); color: white; text-shadow: 0 0 20px var(--accent-blue); }
+        footer { padding: 60px 20px; background: #151719; border-top: 1px solid rgba(255,255,255,0.05); }
+        .social-icons a { color: var(--neon-blue); font-size: 25px; margin: 0 20px; transition: 0.3s; }
+        .social-icons a:hover { color: white; }
     </style>
 </head>
 <body>
@@ -83,9 +72,8 @@
 <div id="welcome-overlay">
     <div class="welcome-box">
         <img src="logo.png" class="welcome-logo">
-        <h2>Ahmed Gharib</h2>
-        <p>Strategic Data Universe</p>
-        <button class="start-btn" onclick="startExploring()">Open Portfolio</button>
+        <h2 style="font-size: 40px;">Ahmed Gharib</h2>
+        <button style="background:transparent; color:var(--neon-blue); border:2px solid var(--neon-blue); padding:15px 40px; border-radius:50px; cursor:pointer; font-weight:900; margin-top:30px;" onclick="startExploring()">Open Experience</button>
     </div>
 </div>
 
@@ -94,6 +82,11 @@
         <div class="nav-brand">
             <img src="logo.png" class="nav-logo-img">
             <span class="nav-text">AGBINSIGHTS</span>
+        </div>
+        <div class="lang-switcher">
+            <img src="https://flagcdn.com/w40/us.png" title="English">
+            <img src="https://flagcdn.com/w40/eg.png" title="Arabic">
+            <img src="https://flagcdn.com/w40/es.png" title="Spanish">
         </div>
     </nav>
 
@@ -119,83 +112,34 @@
         <div class="card-3d"><i class="fas fa-file-excel" style="color: var(--excel-green);"></i><span>Advanced Excel</span></div>
         <div class="card-3d"><i class="fas fa-project-diagram"></i><span>Data Modeling</span></div>
         <div class="card-3d"><i class="fas fa-calculator"></i><span>DAX Logic</span></div>
-        <div class="card-3d"><i class="fas fa-server"></i><span>ETL Processes</span></div>
-        <div class="card-3d"><i class="fas fa-eye"></i><span>Visualization</span></div>
     </div>
 
-    <div class="section-title">03. Featured Projects</div>
+    <div class="section-title">03. Portfolio</div>
     <div class="project-item">
         <div class="p-img"><img src="hr.png.png"></div>
         <div class="p-text">
-            <h3>HR Attrition Analysis</h3>
-            <p style="color:var(--text-gray); font-size: 18px;">Deep dive into employee behavior and retention auditing.</p>
-            <div class="btn-view" onclick="showStudy('hr')">View Details</div>
-        </div>
-    </div>
-
-    <div class="project-item" style="flex-direction: row-reverse;">
-        <div class="p-img"><img src="sales.png1.png"></div>
-        <div class="p-text" style="text-align: right;">
-            <h3>Sales Performance</h3>
-            <p style="color:var(--text-gray); font-size: 18px;">Strategic revenue tracking and regional performance metrics.</p>
-            <div class="btn-view" onclick="showStudy('sales')">View Details</div>
+            <h3>HR Analysis</h3>
+            <p style="color:var(--text-gray);">In-depth employee turnover and retention study.</p>
+            <div class="btn-view">View Project</div>
         </div>
     </div>
 
     <footer>
         <div class="social-icons">
-            <a href="https://www.linkedin.com/in/ahmed-gharib-20989a272/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-            <a href="https://wa.me/201020189281" target="_blank"><i class="fab fa-whatsapp"></i></a>
-            <a href="mailto:info@agbinsights.com"><i class="far fa-envelope"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#"><i class="fab fa-whatsapp"></i></a>
+            <a href="#"><i class="far fa-envelope"></i></a>
         </div>
-        <div style="margin-top: 50px; font-size: 14px; color: #495670; letter-spacing: 2px; font-weight: bold;">© AHMED GHARIB | AGBINSIGHTS</div>
+        <div style="margin-top: 30px; font-size: 13px; color: #555; letter-spacing: 2px;">© AHMED GHARIB | AGBINSIGHTS</div>
     </footer>
-</div>
-
-<div id="case-study-view">
-    <div onclick="hideStudy()" style="color:var(--accent-blue); cursor:pointer; margin-bottom:50px; font-weight:900; text-align:left; letter-spacing: 2px;">← BACK TO PROJECTS</div>
-    <div id="case-header-content"></div>
-    <div id="study-images" style="max-width: 1200px; margin: auto;"></div>
 </div>
 
 <script>
     function startExploring() {
-        const overlay = document.getElementById('welcome-overlay');
-        overlay.style.opacity = '0';
-        overlay.style.transform = 'scale(1.1)';
-        setTimeout(() => { 
-            overlay.style.display = 'none'; 
-            const main = document.getElementById('main-site'); 
-            main.style.display = 'block'; 
-            setTimeout(() => main.style.opacity = '1', 50); 
-        }, 1200);
-    }
-
-    const projectDetails = {
-        'hr': { title: "HR Attrition Analysis", challenge: "High turnover rates affecting organizational stability.", solution: "Developed an end-to-end Power BI dashboard to track attrition by department and tenure.", impact: "Enabled HR to identify at-risk groups and reduce turnover by 15% through data-driven policies.", imgs: ['hr.png.png', 'hr.png2.png', 'hr.png3.png'] },
-        'sales': { title: "Sales Performance Hub", challenge: "Disconnected sales data across multiple regional offices.", solution: "Unified disparate datasets into a single source of truth with automated ETL pipelines.", impact: "Provided real-time visibility into revenue growth, increasing forecasting accuracy by 25%.", imgs: ['sales.png1.png', 'sales.png2.png', 'sales.png3.png'] }
-    };
-    
-    function showStudy(id) {
-        const d = projectDetails[id];
-        document.getElementById('case-header-content').innerHTML = `
-            <div class="case-header">
-                <h2>${d.title}</h2>
-                <div class="case-info-grid">
-                    <div class="info-tag"><b>THE CHALLENGE</b>${d.challenge}</div>
-                    <div class="info-tag"><b>MY SOLUTION</b>${d.solution}</div>
-                    <div class="info-tag"><b>THE RESULT</b>${d.impact}</div>
-                </div>
-            </div>`;
-        document.getElementById('study-images').innerHTML = d.imgs.map(img => `<img src="${img}" style="width:100%; margin-bottom:50px; border-radius:35px; box-shadow: 0 30px 80px rgba(0,0,0,0.8);">`).join('');
-        document.getElementById('main-site').style.display = 'none';
-        document.getElementById('case-study-view').style.display = 'block';
-        window.scrollTo(0,0);
-    }
-    
-    function hideStudy() { 
-        document.getElementById('main-site').style.display = 'block'; 
-        document.getElementById('case-study-view').style.display = 'none'; 
+        document.getElementById('welcome-overlay').style.display = 'none';
+        const main = document.getElementById('main-site');
+        main.style.display = 'block';
+        setTimeout(() => main.style.opacity = '1', 50);
     }
 </script>
 </body>
