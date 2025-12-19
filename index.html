@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" id="html-tag">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,56 +9,76 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
+        /* تم تغيير النيون للأزرق وتوحيد ألوان الأيقونات */
         :root { --neon-blue: #007bff; --dark-bg: #e0e0e0; --card-bg: #ffffff; --text-gray: #555555; }
         body { background-color: var(--dark-bg); color: #333; font-family: 'Segoe UI', sans-serif; margin: 0; text-align: center; scroll-behavior: smooth; overflow-x: hidden; }
         
-        /* Navigation & Language Switcher */
-        nav { width: 100%; padding: 20px 8%; display: flex; justify-content: space-between; align-items: center; box-sizing: border-box; background: rgba(224, 224, 224, 0.9); position: sticky; top: 0; z-index: 1000; }
+        #welcome-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #e0e0e0; display: flex; align-items: center; justify-content: center; z-index: 10000; transition: 1.2s cubic-bezier(0.4, 0, 0.2, 1); }
+        .welcome-box { text-align: center; animation: fadeIn 1.5s ease; }
+        .welcome-logo { width: 150px; height: 150px; margin-bottom: 25px; border-radius: 50%; border: 3px solid var(--neon-blue); box-shadow: 0 0 40px var(--neon-blue); animation: pulse 2s infinite; }
+        .welcome-box h2 { font-size: 50px; font-weight: 900; color: #333; text-shadow: 0 0 5px rgba(0,0,0,0.1); margin: 0; }
+        .welcome-box p { color: var(--text-gray); letter-spacing: 5px; text-transform: uppercase; margin-top: 10px; font-weight: bold; }
+        .start-btn { background: transparent; color: #333; padding: 18px 60px; border: 2px solid #333; border-radius: 50px; font-weight: 900; cursor: pointer; margin-top: 45px; text-transform: uppercase; transition: 0.4s; letter-spacing: 3px; position: relative; overflow: hidden; }
+        .start-btn:hover { background: var(--neon-blue); color: white; border-color: var(--neon-blue); }
+
+        @keyframes fadeIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
+        @keyframes pulse { 0% { box-shadow: 0 0 20px var(--neon-blue); } 50% { box-shadow: 0 0 50px var(--neon-blue); } 100% { box-shadow: 0 0 20px var(--neon-blue); } }
+
+        #main-site { opacity: 0; transition: 1s ease-in-out; display: none; perspective: 1500px; }
+        
+        nav { width: 100%; padding: 30px 8%; display: flex; justify-content: flex-start; align-items: center; box-sizing: border-box; }
         .nav-brand { display: flex; align-items: center; gap: 15px; }
         .nav-logo-img { width: 50px; height: 50px; border-radius: 50%; border: 1px solid var(--neon-blue); }
         .nav-text { font-weight: 900; color: #333; letter-spacing: 3px; font-size: 20px; }
-        
-        .lang-switcher { display: flex; gap: 12px; }
-        .lang-switcher img { width: 28px; height: 20px; cursor: pointer; border-radius: 3px; transition: 0.3s; opacity: 0.7; border: 1px solid transparent; object-fit: cover; }
-        .lang-switcher img:hover { opacity: 1; transform: scale(1.1); border-color: var(--neon-blue); }
 
-        header { padding: 60px 20px 40px; }
+        header { padding: 40px 20px 30px; }
         h1 { color: #333; font-size: clamp(45px, 8vw, 85px); margin: 0; font-weight: 900; }
-        .job-tag { color: var(--neon-blue); font-size: 18px; letter-spacing: 5px; font-weight: 600; text-transform: uppercase; margin: 10px 0; display: block; }
-        .about-section { max-width: 800px; margin: 20px auto; color: var(--text-gray); font-size: 20px; line-height: 1.6; }
-        .highlight { color: var(--neon-blue); font-weight: bold; text-decoration: underline; }
+        .job-tag { color: var(--neon-blue); font-size: 18px; letter-spacing: 5px; font-weight: 600; text-transform: uppercase; margin-top: 5px; display: block; }
+        .about-section { max-width: 800px; margin: 35px auto; color: var(--text-gray); font-size: 20px; line-height: 1.8; }
+        .highlight { color: var(--neon-blue); font-weight: bold; }
 
         .section-title { text-align: left; margin: 80px 0 40px 10%; color: #333; border-left: 5px solid var(--neon-blue); padding-left: 20px; font-weight: bold; font-size: 26px; text-transform: uppercase; }
-        [dir="rtl"] .section-title { text-align: right; border-left: none; border-right: 5px solid var(--neon-blue); padding-right: 20px; margin-right: 10%; margin-left: 0; }
-
-        .grid-container, .process-flow { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; padding: 0 8%; margin-bottom: 60px; }
-        .card-3d, .process-step { background: var(--card-bg); padding: 40px 20px; min-width: 180px; flex: 1; border-radius: 25px; transition: 0.4s; border: 1px solid rgba(0,0,0,0.05); }
-        .card-3d:hover, .process-step:hover { transform: translateY(-10px); border-color: var(--neon-blue); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
         
-        .card-3d i, .process-step i { font-size: 45px; margin-bottom: 20px; display: block; color: var(--neon-blue); }
-        .card-3d span, .process-step h4 { font-size: 15px; font-weight: 800; color: #333; text-transform: uppercase; }
+        .grid-container, .process-flow { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; padding: 0 8%; margin-bottom: 60px; }
+        .card-3d, .process-step, .project-item { background: var(--card-bg); border: 1px solid rgba(0,0,0,0.05); border-radius: 30px; transition: 0.6s cubic-bezier(0.2, 0.8, 0.2, 1); transform-style: preserve-3d; cursor: pointer; }
+        
+        .card-3d, .process-step { padding: 45px 25px; min-width: 170px; flex: 1; }
+        .card-3d:hover, .process-step:hover, .project-item:hover { transform: translateY(-20px) rotateX(10deg) rotateY(10deg); border-color: var(--neon-blue); box-shadow: 0 30px 60px rgba(0,0,0,0.1); }
+        
+        /* توحيد لون الأيقونات للأزرق */
+        .card-3d i, .process-step i { font-size: 50px; margin-bottom: 25px; display: block; color: var(--neon-blue); transition: 0.5s; }
+        .card-3d:hover i, .process-step:hover i { transform: translateZ(50px); }
+        .card-3d span, .process-step h4 { font-size: 15px; font-weight: 800; color: #333; display: block; text-transform: uppercase; letter-spacing: 1px; }
 
-        /* Portfolio Section */
-        .project-card { background: var(--card-bg); margin: 40px 10%; border-radius: 30px; display: flex; align-items: center; overflow: hidden; border: 1px solid rgba(0,0,0,0.05); text-align: left; }
-        [dir="rtl"] .project-card { text-align: right; flex-direction: row-reverse; }
-        .project-img { width: 50%; } .project-img img { width: 100%; display: block; }
-        .project-info { width: 50%; padding: 50px; }
-        .btn-view { background: var(--neon-blue); color: white; padding: 12px 30px; border-radius: 10px; text-decoration: none; display: inline-block; margin-top: 20px; font-weight: bold; transition: 0.3s; cursor: pointer; border: none; }
-        .btn-view:hover { opacity: 0.9; transform: scale(1.05); }
+        .project-item { display: flex; align-items: center; margin: 50px 10%; overflow: hidden; border: 1px solid rgba(0,0,0,0.05); }
+        .p-img { width: 55%; } .p-img img { width: 100%; display: block; transition: 0.5s; }
+        .project-item:hover .p-img img { transform: scale(1.05); }
+        .p-text { width: 45%; padding: 60px; text-align: left; transform: translateZ(30px); color: #333; }
+        .btn-view { border: 2px solid var(--neon-blue); color: var(--neon-blue); padding: 14px 35px; border-radius: 12px; cursor: pointer; display: inline-block; margin-top: 30px; font-weight: 900; text-decoration: none; transition: 0.3s; }
+        .btn-view:hover { background: var(--neon-blue); color: white; }
 
-        /* Modal / Details View */
-        #details-view { display:none; position: fixed; top:0; left:0; width:100%; height:100%; background: var(--dark-bg); z-index: 2000; overflow-y: auto; padding: 50px 10%; box-sizing: border-box; }
-        .close-btn { cursor:pointer; color: var(--neon-blue); font-weight: 900; margin-bottom: 30px; display: block; text-align: left; }
-        [dir="rtl"] .close-btn { text-align: right; }
-        .details-content { background: white; padding: 40px; border-radius: 30px; border-left: 8px solid var(--neon-blue); margin-bottom: 30px; }
-        [dir="rtl"] .details-content { border-left: none; border-right: 8px solid var(--neon-blue); }
+        #case-study-view { display:none; background: var(--dark-bg); padding: 80px 5%; }
+        .case-header { max-width: 1100px; margin: 0 auto 50px; text-align: left; background: var(--card-bg); padding: 45px; border-radius: 35px; border-left: 8px solid var(--neon-blue); }
+        .case-header h2 { color: var(--neon-blue); margin-top: 0; font-size: 35px; }
+        .case-info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 30px; }
+        .info-tag { font-size: 16px; color: var(--text-gray); line-height: 1.8; }
+        .info-tag b { color: #333; display: block; margin-bottom: 10px; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; }
 
-        footer { padding: 60px; background: #d0d0d0; margin-top: 100px; }
-        .social-icons a { color: #333; font-size: 25px; margin: 0 15px; transition: 0.3s; }
-        .social-icons a:hover { color: var(--neon-blue); }
+        footer { padding: 100px 20px; background: #d0d0d0; border-top: 1px solid rgba(0,0,0,0.05); }
+        .social-icons a { color: #333; font-size: 30px; margin: 0 25px; transition: 0.4s; display: inline-block; }
+        .social-icons a:hover { transform: translateY(-12px); color: var(--neon-blue); }
     </style>
 </head>
 <body>
+
+<div id="welcome-overlay">
+    <div class="welcome-box">
+        <img src="logo.png" class="welcome-logo">
+        <h2>Ahmed Gharib</h2>
+        <p>Strategic Data Universe</p>
+        <button class="start-btn" onclick="startExploring()">Open Portfolio</button>
+    </div>
+</div>
 
 <div id="main-site">
     <nav>
@@ -66,145 +86,108 @@
             <img src="logo.png" class="nav-logo-img">
             <span class="nav-text">AGBINSIGHTS</span>
         </div>
-        <div class="lang-switcher">
-            <img src="https://flagcdn.com/w40/us.png" onclick="setLang('en')" title="English">
-            <img src="https://flagcdn.com/w40/eg.png" onclick="setLang('ar')" title="العربية">
-            <img src="https://flagcdn.com/w40/es.png" onclick="setLang('es')" title="Español">
-        </div>
     </nav>
 
     <header>
-        <h1 data-key="name">Ahmed Gharib</h1>
-        <span class="job-tag" data-key="role">Data Analyst</span>
-        <div class="about-section" id="about-text">
+        <h1>Ahmed Gharib</h1>
+        <span class="job-tag">Data Analyst</span>
+        <div class="about-section">
             I turn raw data into <span class="highlight">meaningful stories</span>. Specialized in Power BI and Excel to help businesses make <span class="highlight">smarter decisions</span>.
         </div>
     </header>
 
-    <div class="section-title" data-key="title1">01. The Analytics Journey</div>
+    <div class="section-title">01. The Analytics Journey</div>
     <div class="process-flow">
-        <div class="process-step"><i class="fas fa-database"></i><h4 data-key="step1">Extract</h4></div>
-        <div class="process-step"><i class="fas fa-broom"></i><h4 data-key="step2">Clean</h4></div>
-        <div class="process-step"><i class="fas fa-layer-group"></i><h4 data-key="step3">Model</h4></div>
-        <div class="process-step"><i class="fas fa-chart-line"></i><h4 data-key="step4">Insight</h4></div>
+        <div class="process-step"><i class="fas fa-database"></i><h4>Extract</h4></div>
+        <div class="process-step"><i class="fas fa-broom"></i><h4>Clean</h4></div>
+        <div class="process-step"><i class="fas fa-layer-group"></i><h4>Model</h4></div>
+        <div class="process-step"><i class="fas fa-chart-line"></i><h4>Insight</h4></div>
     </div>
 
-    <div class="section-title" data-key="title2">02. Technical Expertise</div>
+    <div class="section-title">02. Technical Expertise</div>
     <div class="grid-container">
         <div class="card-3d"><i class="fas fa-chart-bar"></i><span>Power BI</span></div>
-        <div class="card-3d"><i class="fas fa-file-excel"></i><span>Excel</span></div>
-        <div class="card-3d"><i class="fas fa-calculator"></i><span>DAX</span></div>
-        <div class="card-3d"><i class="fas fa-project-diagram"></i><span data-key="skill4">Modeling</span></div>
-        <div class="card-3d"><i class="fas fa-brain"></i><span data-key="skill5">Analysis</span></div>
+        <div class="card-3d"><i class="fas fa-file-excel"></i><span>Advanced Excel</span></div>
+        <div class="card-3d"><i class="fas fa-project-diagram"></i><span>Data Modeling</span></div>
+        <div class="card-3d"><i class="fas fa-calculator"></i><span>DAX Logic</span></div>
+        <div class="card-3d"><i class="fas fa-server"></i><span>ETL Processes</span></div>
+        <div class="card-3d"><i class="fas fa-eye"></i><span>Visualization</span></div>
     </div>
 
-    <div class="section-title" data-key="title3">03. Portfolio</div>
-    <div class="project-card">
-        <div class="project-img"><img src="hr.png.png"></div>
-        <div class="project-info">
-            <h3 data-key="proj1_title">HR Analysis</h3>
-            <p data-key="proj1_desc">Analyzing employee attrition and departmental performance.</p>
-            <button class="btn-view" onclick="showProj('hr')" data-key="view_btn">View Full Project</button>
+    <div class="section-title">03. Featured Projects</div>
+    <div class="project-item">
+        <div class="p-img"><img src="hr.png.png"></div>
+        <div class="p-text">
+            <h3>HR Attrition Analysis</h3>
+            <p style="color:var(--text-gray); font-size: 18px;">Deep dive into employee behavior and retention auditing.</p>
+            <div class="btn-view" onclick="showStudy('hr')">View Details</div>
+        </div>
+    </div>
+
+    <div class="project-item" style="flex-direction: row-reverse;">
+        <div class="p-img"><img src="sales.png1.png"></div>
+        <div class="p-text" style="text-align: right;">
+            <h3>Sales Performance</h3>
+            <p style="color:var(--text-gray); font-size: 18px;">Strategic revenue tracking and regional performance metrics.</p>
+            <div class="btn-view" onclick="showStudy('sales')">View Details</div>
         </div>
     </div>
 
     <footer>
         <div class="social-icons">
-            <a href="#"><i class="fab fa-linkedin"></i></a>
-            <a href="#"><i class="fab fa-whatsapp"></i></a>
-            <a href="#"><i class="far fa-envelope"></i></a>
+            <a href="https://www.linkedin.com/in/ahmed-gharib-20989a272/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://wa.me/201020189281" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            <a href="mailto:info@agbinsights.com"><i class="far fa-envelope"></i></a>
         </div>
-        <p style="margin-top:20px; font-weight:bold;">© AHMED GHARIB | AGBINSIGHTS</p>
+        <div style="margin-top: 50px; font-size: 14px; color: #495670; letter-spacing: 2px; font-weight: bold;">© AHMED GHARIB | AGBINSIGHTS</div>
     </footer>
 </div>
 
-<div id="details-view">
-    <span class="close-btn" onclick="hideProj()" data-key="back_btn">← BACK TO PROJECTS</span>
-    <div id="details-content" class="details-content"></div>
-    <div id="details-images"></div>
+<div id="case-study-view">
+    <div onclick="hideStudy()" style="color:var(--neon-blue); cursor:pointer; margin-bottom:50px; font-weight:900; text-align:left; letter-spacing: 2px;">← BACK TO PROJECTS</div>
+    <div id="case-header-content"></div>
+    <div id="study-images" style="max-width: 1200px; margin: auto;"></div>
 </div>
 
 <script>
-    const translations = {
-        en: {
-            role: "Data Analyst",
-            about: 'I turn raw data into <span class="highlight">meaningful stories</span>. Specialized in Power BI and Excel to help businesses make <span class="highlight">smarter decisions</span>.',
-            title1: "01. The Analytics Journey",
-            step1: "Extract", step2: "Clean", step3: "Model", step4: "Insight",
-            title2: "02. Technical Expertise",
-            skill4: "Modeling", skill5: "Analysis",
-            title3: "03. Portfolio",
-            proj1_title: "HR Analysis",
-            proj1_desc: "Analyzing employee attrition and departmental performance.",
-            view_btn: "View Full Project",
-            back_btn: "← BACK TO PROJECTS",
-            hr_details: "This dashboard analyzes employee attrition rates, tenure, and departmental turnover to provide actionable HR insights."
-        },
-        ar: {
-            role: "محلل بيانات",
-            about: 'أقوم بتحويل البيانات الخام إلى <span class="highlight">قصص مؤثرة</span>. متخصص في Power BI و Excel لمساعدة الشركات على اتخاذ <span class="highlight">قرارات أذكى</span>.',
-            title1: "01. رحلة تحليل البيانات",
-            step1: "استخراج", step2: "تنظيف", step3: "نمذجة", step4: "رؤية",
-            title2: "02. الخبرات التقنية",
-            skill4: "نمذجة", skill5: "تحليل",
-            title3: "03. معرض الأعمال",
-            proj1_title: "تحليل الموارد البشرية",
-            proj1_desc: "تحليل معدلات ترك العمل وأداء الأقسام المختلفة.",
-            view_btn: "عرض المشروع بالكامل",
-            back_btn: "→ العودة للمشاريع",
-            hr_details: "يقوم هذا التقرير بتحليل معدلات ترك العمل، ومدة الخدمة، ودوران الموظفين في الأقسام لتقديم رؤى قابلة للتنفيذ."
-        },
-        es: {
-            role: "Analista de Datos",
-            about: 'Convierto datos sin procesar en <span class="highlight">historias significativas</span>. Especializado en Power BI y Excel para ayudar a tomar <span class="highlight">decisiones inteligentes</span>.',
-            title1: "01. El Viaje del Análisis",
-            step1: "Extraer", step2: "Limpiar", step3: "Modelar", step4: "Insight",
-            title2: "02. Experiencia Técnica",
-            skill4: "Modelado", skill5: "Análisis",
-            title3: "03. Portafolio",
-            proj1_title: "Análisis de RRHH",
-            proj1_desc: "Análisis de la rotación de empleados y el desempeño departamental.",
-            view_btn: "Ver Proyecto Completo",
-            back_btn: "← VOLVER A PROYECTOS",
-            hr_details: "Este tablero analiza las tasas de rotación, la antigüedad y el desempeño por departamento para brindar información estratégica."
-        }
-    };
-
-    let currentLang = 'en';
-
-    function setLang(lang) {
-        currentLang = lang;
-        document.getElementById('html-tag').dir = (lang === 'ar') ? 'rtl' : 'ltr';
-        
-        // Update static texts
-        document.querySelectorAll('[data-key]').forEach(el => {
-            const key = el.getAttribute('data-key');
-            if (translations[lang][key]) el.innerText = translations[lang][key];
-        });
-        
-        // Update special HTML content
-        document.getElementById('about-text').innerHTML = translations[lang].about;
+    function startExploring() {
+        const overlay = document.getElementById('welcome-overlay');
+        overlay.style.opacity = '0';
+        overlay.style.transform = 'scale(1.1)';
+        setTimeout(() => { 
+            overlay.style.display = 'none'; 
+            const main = document.getElementById('main-site'); 
+            main.style.display = 'block'; 
+            setTimeout(() => main.style.opacity = '1', 50); 
+        }, 1200);
     }
 
-    function showProj(id) {
-        const content = document.getElementById('details-content');
-        const images = document.getElementById('details-images');
-        
-        if(id === 'hr') {
-            content.innerHTML = `<h2>${translations[currentLang].proj1_title}</h2><p>${translations[currentLang].hr_details}</p>`;
-            images.innerHTML = `<img src="hr.png.png" style="width:100%; border-radius:20px; box-shadow:0 10px 30px rgba(0,0,0,0.1);">`;
-        }
-        
+    const projectDetails = {
+        'hr': { title: "HR Attrition Analysis", challenge: "High turnover rates affecting organizational stability.", solution: "Developed an end-to-end Power BI dashboard to track attrition by department and tenure.", impact: "Enabled HR to identify at-risk groups and reduce turnover by 15% through data-driven policies.", imgs: ['hr.png.png', 'hr.png2.png', 'hr.png3.png'] },
+        'sales': { title: "Sales Performance Hub", challenge: "Disconnected sales data across multiple regional offices.", solution: "Unified disparate datasets into a single source of truth with automated ETL pipelines.", impact: "Provided real-time visibility into revenue growth, increasing forecasting accuracy by 25%.", imgs: ['sales.png1.png', 'sales.png2.png', 'sales.png3.png'] }
+    };
+    
+    function showStudy(id) {
+        const d = projectDetails[id];
+        document.getElementById('case-header-content').innerHTML = `
+            <div class="case-header">
+                <h2>${d.title}</h2>
+                <div class="case-info-grid">
+                    <div class="info-tag"><b>THE CHALLENGE</b>${d.challenge}</div>
+                    <div class="info-tag"><b>MY SOLUTION</b>${d.solution}</div>
+                    <div class="info-tag"><b>THE RESULT</b>${d.impact}</div>
+                </div>
+            </div>`;
+        document.getElementById('study-images').innerHTML = d.imgs.map(img => <img src="${img}" style="width:100%; margin-bottom:50px; border-radius:35px; box-shadow: 0 30px 80px rgba(0,0,0,0.1);">).join('');
         document.getElementById('main-site').style.display = 'none';
-        document.getElementById('details-view').style.display = 'block';
+        document.getElementById('case-study-view').style.display = 'block';
         window.scrollTo(0,0);
     }
-
-    function hideProj() {
-        document.getElementById('main-site').style.display = 'block';
-        document.getElementById('details-view').style.display = 'none';
+    
+    function hideStudy() { 
+        document.getElementById('main-site').style.display = 'block'; 
+        document.getElementById('case-study-view').style.display = 'none'; 
     }
 </script>
-
 </body>
 </html>
