@@ -6,176 +6,170 @@
     <title>Ahmed Gharib | AGBINSIGHTS</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        :root { --main-blue: #1e40af; --bg: #ffffff; --card-bg: #f8fafc; --text: #0f172a; }
-        * { box-sizing: border-box; transition: 0.3s ease; }
-        body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', sans-serif; margin: 0; overflow-x: hidden; }
+        :root { --blue: #1e40af; --dark: #0f172a; --text: #334155; }
+        * { box-sizing: border-box; margin: 0; padding: 0; transition: 0.3s ease; }
+        body { font-family: 'Segoe UI', sans-serif; background: #fff; color: var(--dark); overflow-x: hidden; }
 
-        /* شاشة الترحيب - تأكدت إنها ظاهرة */
-        #welcome { 
-            position: fixed; inset: 0; background: white; 
-            display: flex; flex-direction: column; align-items: center; justify-content: center; 
-            z-index: 10000; opacity: 1; 
-        }
-        .w-logo { width: 120px; height: 120px; border-radius: 50%; border: 3px solid var(--main-blue); margin-bottom: 20px; }
-        .open-btn { background: var(--text); color: white; padding: 12px 35px; border: none; border-radius: 8px; font-weight: 700; cursor: pointer; }
+        /* شاشة الترحيب */
+        #welcome { position: fixed; inset: 0; background: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 9999; }
+        .w-img { width: 140px; height: 140px; border-radius: 50%; border: 4px solid var(--blue); margin-bottom: 20px; }
+        .enter-btn { background: var(--dark); color: white; padding: 12px 35px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; }
 
-        /* الهيدر الثابت */
+        /* الهيدر */
         nav { 
             display: flex; justify-content: space-between; align-items: center; 
-            padding: 15px 5%; background: white; border-bottom: 1px solid #e2e8f0; 
-            position: sticky; top: 0; z-index: 999; direction: ltr !important; 
+            padding: 15px 5%; background: #fff; border-bottom: 1px solid #f1f5f9;
+            position: sticky; top: 0; z-index: 1000; direction: ltr !important; 
         }
-        .nav-left { display: flex; align-items: center; gap: 10px; }
-        .nav-logo-img { width: 40px; height: 40px; border-radius: 50%; }
-        .nav-right { display: flex; gap: 12px; }
-        .flag { cursor: pointer; width: 30px; height: 30px; border-radius: 50%; border: 2px solid transparent; }
-        .flag.active { border-color: var(--main-blue); transform: scale(1.1); }
+        .nav-left { display: flex; align-items: center; gap: 15px; }
+        .nav-left img { width: 45px; border-radius: 50%; }
+        .nav-social { display: flex; gap: 15px; margin-left: 20px; font-size: 20px; }
+        .nav-social a { color: var(--dark); text-decoration: none; }
+        .nav-social a:hover { color: var(--blue); }
 
-        header { text-align: center; padding: 60px 20px; }
-        h1 { font-size: 50px; font-weight: 900; margin: 0; }
-        .title-tag { color: var(--main-blue); font-weight: 800; letter-spacing: 3px; }
+        .nav-flags { display: flex; gap: 10px; }
+        .flag { cursor: pointer; width: 32px; height: 32px; border-radius: 50%; border: 2px solid transparent; }
+        .flag.active { border-color: var(--blue); transform: scale(1.1); }
 
-        .section-title { margin: 40px 10%; font-weight: 900; border-left: 5px solid var(--main-blue); padding-left: 15px; }
-        body[dir="rtl"] .section-title { border-left: none; border-right: 5px solid var(--main-blue); padding-right: 15px; text-align: right; }
+        /* الهيدر الرئيسي */
+        header { text-align: center; padding: 80px 20px; background: #f8fafc; }
+        header h1 { font-size: clamp(40px, 8vw, 60px); font-weight: 900; margin-bottom: 5px; }
+        header .role { color: var(--blue); font-weight: 800; letter-spacing: 3px; font-size: 20px; }
+        header .tagline { color: var(--text); font-size: 18px; margin-top: 15px; font-weight: 500; }
 
-        /* توزيع الأيقونات 4 و 5 */
-        .grid-container { padding: 0 10%; display: grid; gap: 20px; }
+        .container { max-width: 1200px; margin: auto; padding: 0 5%; }
+        .section-title { margin: 60px 0 30px; font-size: 24px; font-weight: 900; border-left: 5px solid var(--blue); padding-left: 15px; }
+        body[dir="rtl"] .section-title { border-left: none; border-right: 5px solid var(--blue); padding-right: 15px; text-align: right; }
+
+        /* الأيقونات */
+        .grid-layout { display: grid; gap: 20px; margin-bottom: 40px; }
         .row-4 { grid-template-columns: repeat(4, 1fr); }
-        .row-5 { grid-template-columns: repeat(5, 1fr); margin-top: 20px; }
-        
-        .card-3d { background: var(--card-bg); padding: 25px; border-radius: 15px; border: 1px solid #e2e8f0; text-align: center; cursor: pointer; }
-        .card-3d:hover { transform: translateY(-10px) rotateY(10deg); border-color: var(--main-blue); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
-        .card-3d i { font-size: 35px; color: var(--main-blue); margin-bottom: 10px; display: block; }
+        .row-5 { grid-template-columns: repeat(5, 1fr); }
+        .card { background: #fff; border: 1px solid #e2e8f0; padding: 30px; border-radius: 20px; text-align: center; }
+        .card i { font-size: 35px; color: var(--blue); margin-bottom: 15px; display: block; }
+        .card span { font-weight: 800; font-size: 14px; }
 
         /* المشاريع */
-        .project-card { background: white; border-radius: 20px; margin: 30px 10%; display: flex; overflow: hidden; border: 1px solid #e2e8f0; }
-        .p-img { width: 45%; } .p-img img { width: 100%; height: 100%; object-fit: cover; }
-        .p-info { width: 55%; padding: 40px; }
-        .view-btn { background: var(--main-blue); color: white; padding: 10px 25px; border-radius: 5px; text-decoration: none; display: inline-block; margin-top: 15px; font-weight: 700; }
+        .project-card { display: flex; background: #fff; border-radius: 25px; margin-bottom: 40px; overflow: hidden; border: 1px solid #eee; }
+        .p-img { width: 50%; } .p-img img { width: 100%; height: 100%; object-fit: cover; }
+        .p-info { width: 50%; padding: 40px; display: flex; flex-direction: column; justify-content: center; }
+        .view-btn { background: var(--blue); color: #fff; padding: 12px 25px; border-radius: 8px; text-decoration: none; width: fit-content; margin-top: 20px; font-weight: 800; }
 
-        /* الـ Modal للتفاصيل */
-        .modal { position: fixed; inset: 0; background: rgba(0,0,0,0.8); display: none; align-items: center; justify-content: center; z-index: 2000; padding: 20px; }
-        .modal-box { background: white; padding: 30px; border-radius: 20px; max-width: 800px; width: 100%; position: relative; }
-        .close { position: absolute; top: 10px; right: 20px; font-size: 30px; cursor: pointer; }
+        /* المودال */
+        .modal { position: fixed; inset: 0; background: rgba(0,0,0,0.9); display: none; align-items: center; justify-content: center; z-index: 2000; padding: 20px; }
+        .modal-box { background: #fff; border-radius: 20px; max-width: 1000px; width: 100%; max-height: 90vh; overflow-y: auto; padding: 30px; position: relative; }
+        .close { position: absolute; top: 20px; right: 20px; font-size: 40px; cursor: pointer; }
+        .modal-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 20px 0; }
+        .modal-grid img { width: 100%; border-radius: 10px; border: 1px solid #eee; }
 
-        @media (max-width: 768px) { .row-4, .row-5 { grid-template-columns: repeat(2, 1fr); } .project-card { flex-direction: column; } .p-img, .p-info { width: 100%; } }
+        @media (max-width: 768px) { .row-4, .row-5 { grid-template-columns: repeat(2, 1fr); } .project-card { flex-direction: column; } .p-img, .p-info { width: 100%; } .modal-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
 
 <div id="welcome">
-    <img src="logo.png" class="w-logo">
-    <h2 style="font-weight: 900;">Ahmed Gharib</h2>
-    <button class="open-btn" id="L-btn-entry" onclick="openSite()">Open Experience</button>
+    <img src="logo.png" class="w-img">
+    <h1 style="font-weight: 900; margin-bottom: 20px;">Ahmed Gharib</h1>
+    <button class="enter-btn" id="L-btn" onclick="start()">Open Experience</button>
 </div>
 
-<div id="main-site" style="display:none;">
+<div id="main" style="display:none">
     <nav>
         <div class="nav-left">
-            <img src="logo.png" class="nav-logo-img">
-            <span style="font-weight:900;">AGBINSIGHTS</span>
+            <img src="logo.png">
+            <span style="font-weight:900; font-size: 20px;">AGBINSIGHTS</span>
+            <div class="nav-social">
+                <a href="https://linkedin.com/in/ahmed-gharib" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="mailto:contact@agbinsights.com"><i class="fas fa-envelope"></i></a>
+            </div>
         </div>
-        <div class="nav-right">
-            <img src="https://flagcdn.com/w40/us.png" class="flag active" onclick="setL('en', this)">
-            <img src="https://flagcdn.com/w40/eg.png" class="flag" onclick="setL('ar', this)">
-            <img src="https://flagcdn.com/w40/es.png" class="flag" onclick="setL('es', this)">
+        <div class="nav-flags">
+            <img src="https://flagcdn.com/w40/us.png" class="flag active" onclick="setLang('en', this)">
+            <img src="https://flagcdn.com/w40/eg.png" class="flag" onclick="setLang('ar', this)">
+            <img src="https://flagcdn.com/w40/es.png" class="flag" onclick="setLang('es', this)">
         </div>
     </nav>
 
     <header>
         <h1 id="L-name">Ahmed Gharib</h1>
-        <span class="title-tag" id="L-tag">DATA ANALYST</span>
+        <div class="role" id="L-role">DATA ANALYST</div>
+        <div class="tagline" id="L-tag">Empowering businesses through data-driven insights.</div>
     </header>
 
-    <div class="section-title" id="L-s1">01. THE ANALYTICS JOURNEY</div>
-    <div class="grid-container row-4">
-        <div class="card-3d"><i class="fas fa-database"></i><span id="L-i1">EXTRACT</span></div>
-        <div class="card-3d"><i class="fas fa-broom"></i><span id="L-i2">CLEAN</span></div>
-        <div class="card-3d"><i class="fas fa-layer-group"></i><span id="L-i3">MODEL</span></div>
-        <div class="card-3d"><i class="fas fa-chart-line"></i><span id="L-i4">INSIGHT</span></div>
-    </div>
+    <div class="container">
+        <div class="section-title" id="L-s1">01. THE ANALYTICS JOURNEY</div>
+        <div class="grid-layout row-4">
+            <div class="card"><i class="fas fa-database"></i><span id="L-i1">EXTRACT</span></div>
+            <div class="card"><i class="fas fa-broom"></i><span id="L-i2">CLEAN</span></div>
+            <div class="card"><i class="fas fa-layer-group"></i><span id="L-i3">MODEL</span></div>
+            <div class="card"><i class="fas fa-chart-line"></i><span id="L-i4">INSIGHT</span></div>
+        </div>
 
-    <div class="section-title" id="L-s2">02. TECHNICAL EXPERTISE</div>
-    <div class="grid-container row-5">
-        <div class="card-3d"><i class="fas fa-chart-bar"></i><span>Power BI</span></div>
-        <div class="card-3d"><i class="fas fa-file-excel"></i><span>Excel</span></div>
-        <div class="card-3d"><i class="fas fa-calculator"></i><span>DAX Logic</span></div>
-        <div class="card-3d"><i class="fas fa-project-diagram"></i><span>Modeling</span></div>
-        <div class="card-3d"><i class="fas fa-brain"></i><span>Analysis</span></div>
-    </div>
+        <div class="section-title" id="L-s2">02. TECHNICAL EXPERTISE</div>
+        <div class="grid-layout row-5">
+            <div class="card"><i class="fas fa-chart-bar"></i><span>Power BI</span></div>
+            <div class="card"><i class="fas fa-file-excel"></i><span>Excel</span></div>
+            <div class="card"><i class="fas fa-calculator"></i><span>DAX Logic</span></div>
+            <div class="card"><i class="fas fa-project-diagram"></i><span>Modeling</span></div>
+            <div class="card"><i class="fas fa-brain"></i><span>Analysis</span></div>
+        </div>
 
-    <div class="section-title" id="L-s3">03. PORTFOLIO</div>
-    
-    <div class="project-card">
-        <div class="p-img"><img src="hr.png.png"></div>
-        <div class="p-info">
-            <h3 id="L-p1t">HR Analysis</h3>
-            <p id="L-p1d">In-depth employee turnover and retention study.</p>
-            <a href="javascript:void(0)" class="view-btn" onclick="openP('HR Analysis', 'hr.png.png', 'This dashboard analyzes employee attrition rates, tenure, and departmental turnover to provide actionable HR insights.')">View Project</a>
+        <div class="section-title" id="L-s3">03. PORTFOLIO</div>
+        <div class="project-card">
+            <div class="p-img"><img src="hr.png.png"></div>
+            <div class="p-info">
+                <h3 id="L-p1t">HR Analysis</h3>
+                <p id="L-p1d">In-depth employee turnover and retention study.</p>
+                <a href="javascript:void(0)" class="view-btn" onclick="openP('HR Analysis', 'hr.png.png', 'hr2.png', 'hr3.png', 'Strategic analysis of human resources and attrition patterns.')">View Details</a>
+            </div>
         </div>
     </div>
 
-    <div class="project-card" style="flex-direction: row-reverse;">
-        <div class="p-img"><img src="sales.png1.png"></div>
-        <div class="p-info">
-            <h3 id="L-p2t">Sales Report</h3>
-            <p id="L-p2d">Revenue growth and forecasting dashboard.</p>
-            <a href="javascript:void(0)" class="view-btn" onclick="openP('Sales Report', 'sales.png1.png', 'A comprehensive look at sales performance, profit margins, and trend forecasting across multiple regions.')">View Project</a>
-        </div>
-    </div>
-
-    <footer style="text-align: center; padding: 40px; border-top: 1px solid #e2e8f0; font-weight: 800;">
-        © 2025 AHMED GHARIB - AGBINSIGHTS
+    <footer style="text-align: center; padding: 40px; border-top: 1px solid #eee;">
+        <div style="font-weight: 800; color: var(--dark);">© 2025 AHMED GHARIB - AGBINSIGHTS</div>
     </footer>
 </div>
 
 <div id="pModal" class="modal">
     <div class="modal-box">
         <span class="close" onclick="closeP()">&times;</span>
-        <h2 id="m-t" style="font-weight: 900;"></h2>
-        <img id="m-i" src="" style="width: 100%; border-radius: 10px; margin: 15px 0;">
-        <p id="m-d" style="font-size: 18px;"></p>
+        <h2 id="m-title" style="font-weight: 900;"></h2>
+        <div class="modal-grid">
+            <img id="m-i1" src=""><img id="m-i2" src=""><img id="m-i3" src="">
+        </div>
+        <p id="m-desc" style="font-size: 18px; line-height: 1.6;"></p>
     </div>
 </div>
 
 <script>
-    function openSite() {
-        document.getElementById('welcome').style.opacity = '0';
-        setTimeout(() => {
-            document.getElementById('welcome').style.display = 'none';
-            document.getElementById('main-site').style.display = 'block';
-        }, 300);
-    }
-
-    const trans = {
-        'en': { tag: "DATA ANALYST", s1: "01. THE JOURNEY", s2: "02. EXPERTISE", s3: "03. PORTFOLIO", i1: "EXTRACT", i2: "CLEAN", i3: "MODEL", i4: "INSIGHT", p1t: "HR Analysis", p1d: "In-depth employee turnover study.", p2t: "Sales Report", p2d: "Revenue and forecasting.", btn: "Open Experience" },
-        'ar': { tag: "محلل بيانات", s1: "01. الرحلة", s2: "02. المهارات", s3: "03. المشاريع", i1: "استخراج", i2: "تنظيف", i3: "نمذجة", i4: "رؤية", p1t: "تحليل الموظفين", p1d: "دراسة شاملة لمعدلات الاستقالة.", p2t: "تقرير المبيعات", p2d: "توقعات أداء المبيعات.", btn: "دخول المعرض" }
+    function start() { document.getElementById('welcome').style.display = 'none'; document.getElementById('main').style.display = 'block'; }
+    
+    const content = {
+        'en': { role: "DATA ANALYST", tag: "Empowering businesses through data-driven insights.", s1: "01. JOURNEY", s2: "02. EXPERTISE", s3: "03. PORTFOLIO", i1: "EXTRACT", i2: "CLEAN", i3: "MODEL", i4: "INSIGHT", btn: "Open Experience" },
+        'ar': { role: "محلل بيانات", tag: "تمكين الشركات من خلال رؤى البيانات.", s1: "01. رحلة العمل", s2: "02. المهارات", s3: "03. المشاريع", i1: "استخراج", i2: "تنظيف", i3: "نمذجة", i4: "رؤية", btn: "دخول" },
+        'es': { role: "ANALISTA DE DATOS", tag: "Potenciando empresas mediante conocimientos basados en datos.", s1: "01. EL VIAJE", s2: "02. EXPERIENCIA", s3: "03. PORTAFOLIO", i1: "EXTRACTO", i2: "LIMPIEZA", i3: "MODELO", i4: "VISIÓN", btn: "Abrir" }
     };
 
-    function setL(l, btn) {
-        const d = trans[l] || trans['en'];
+    function setLang(l, btn) {
+        const d = content[l];
         document.body.dir = (l === 'ar' ? 'rtl' : 'ltr');
+        document.getElementById('L-role').innerText = d.role;
         document.getElementById('L-tag').innerText = d.tag;
         document.getElementById('L-s1').innerText = d.s1;
         document.getElementById('L-s2').innerText = d.s2;
         document.getElementById('L-s3').innerText = d.s3;
         document.getElementById('L-i1').innerText = d.i1;
-        document.getElementById('L-i2').innerText = d.i2;
-        document.getElementById('L-i3').innerText = d.i3;
-        document.getElementById('L-i4').innerText = d.i4;
-        document.getElementById('L-p1t').innerText = d.p1t;
-        document.getElementById('L-p1d').innerText = d.p1d;
-        document.getElementById('L-p2t').innerText = d.p2t;
-        document.getElementById('L-p2d').innerText = d.p2d;
-        document.getElementById('L-btn-entry').innerText = d.btn;
+        document.getElementById('L-btn').innerText = d.btn;
         document.querySelectorAll('.flag').forEach(f => f.classList.remove('active'));
         btn.classList.add('active');
     }
 
-    function openP(t, i, d) {
-        document.getElementById('m-t').innerText = t;
-        document.getElementById('m-i').src = i;
-        document.getElementById('m-d').innerText = d;
+    function openP(t, i1, i2, i3, d) {
+        document.getElementById('m-title').innerText = t;
+        document.getElementById('m-i1').src = i1;
+        document.getElementById('m-i2').src = i1; 
+        document.getElementById('m-i3').src = i1;
+        document.getElementById('m-desc').innerText = d;
         document.getElementById('pModal').style.display = 'flex';
     }
     function closeP() { document.getElementById('pModal').style.display = 'none'; }
