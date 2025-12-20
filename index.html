@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" id="html-tag">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,67 +9,59 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
+        /* الألوان المطلوبة فقط: أبيض، أزرق، أسود */
         :root { 
-            --honey-gold: #d4a373; 
-            --light-honey: #faedcd; 
-            --dark-honey: #bc6c25; 
-            --bg-cream: #fefae0; 
-            --card-white: #ffffff; 
+            --pure-white: #ffffff;
+            --main-blue: #0046ad; /* أزرق رسمي */
+            --deep-black: #000000;
+            --soft-gray: #f8f9fa; /* للتعامل مع الخلفيات البيضاء */
+            --text-main: #1a1a1a;
         }
 
-        body { background-color: var(--bg-cream); color: #283618; font-family: 'Segoe UI', sans-serif; margin: 0; text-align: center; scroll-behavior: smooth; }
+        body { background-color: var(--pure-white); color: var(--deep-black); font-family: 'Segoe UI', sans-serif; margin: 0; text-align: center; scroll-behavior: smooth; overflow-x: hidden; }
         
-        /* Welcome Screen */
-        #welcome-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at center, var(--light-honey) 0%, var(--honey-gold) 100%); display: flex; align-items: center; justify-content: center; z-index: 10000; transition: 1.2s; }
+        /* شاشة ترحيب رسمية */
+        #welcome-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--deep-black); display: flex; align-items: center; justify-content: center; z-index: 10000; transition: 1s cubic-bezier(0.4, 0, 0.2, 1); }
         .welcome-box { text-align: center; }
-        .welcome-logo { width: 140px; height: 140px; margin-bottom: 20px; border-radius: 50%; border: 4px solid var(--dark-honey); }
-        .welcome-box h2 { font-size: 45px; font-weight: 900; color: var(--dark-honey); margin: 0; }
-        .start-btn { background: var(--dark-honey); color: white; padding: 15px 50px; border: none; border-radius: 50px; font-weight: 900; cursor: pointer; margin-top: 30px; text-transform: uppercase; }
+        .welcome-logo { width: 140px; height: 140px; margin-bottom: 25px; border-radius: 50%; border: 2px solid var(--pure-white); }
+        .welcome-box h2 { font-size: 45px; font-weight: 900; color: var(--pure-white); margin: 0; }
+        .welcome-box p { color: #888; letter-spacing: 5px; text-transform: uppercase; margin-top: 10px; font-weight: bold; }
+        .start-btn { background: var(--main-blue); color: white; padding: 18px 60px; border: none; border-radius: 4px; font-weight: 900; cursor: pointer; margin-top: 45px; text-transform: uppercase; transition: 0.3s; letter-spacing: 2px; }
+        .start-btn:hover { background: white; color: black; }
 
         #main-site { opacity: 0; transition: 1s ease-in-out; display: none; perspective: 1500px; }
         
-        /* Navigation مع تثبيت الأعلام */
-        nav { width: 100%; padding: 25px 8%; display: flex; justify-content: space-between; align-items: center; box-sizing: border-box; }
+        nav { width: 100%; padding: 25px 8%; display: flex; justify-content: space-between; align-items: center; box-sizing: border-box; border-bottom: 1px solid #eee; }
         .nav-brand { display: flex; align-items: center; gap: 12px; }
-        .nav-logo-img { width: 45px; height: 45px; border-radius: 50%; border: 2px solid var(--honey-gold); }
-        .nav-text { font-weight: 900; color: var(--dark-honey); letter-spacing: 2px; font-size: 18px; }
+        .nav-logo-img { width: 45px; height: 45px; border-radius: 50%; border: 1px solid var(--deep-black); }
+        .nav-text { font-weight: 900; color: var(--deep-black); letter-spacing: 2px; font-size: 20px; }
 
-        /* ستايل الأعلام الثابت */
-        .lang-switcher { display: flex; gap: 10px; }
-        .lang-switcher img { width: 28px; height: 20px; cursor: pointer; transition: 0.3s; border-radius: 4px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-        .lang-switcher img:hover { transform: scale(1.1); }
+        header { padding: 60px 20px 40px; background: var(--soft-gray); }
+        h1 { color: var(--deep-black); font-size: clamp(40px, 7vw, 75px); margin: 0; font-weight: 900; }
+        .job-tag { color: var(--main-blue); font-size: 16px; letter-spacing: 4px; font-weight: 700; text-transform: uppercase; margin-top: 10px; display: block; }
+        .about-section { max-width: 800px; margin: 30px auto; color: #444; font-size: 19px; line-height: 1.6; }
 
-        header { padding: 40px 20px 20px; }
-        h1 { color: var(--dark-honey); font-size: clamp(40px, 8vw, 75px); margin: 0; font-weight: 900; }
-        .job-tag { color: var(--honey-gold); font-size: 16px; letter-spacing: 4px; font-weight: 700; text-transform: uppercase; display: block; margin-top: 10px; }
+        .section-title { text-align: left; margin: 80px 0 40px 10%; color: var(--deep-black); border-left: 6px solid var(--main-blue); padding-left: 20px; font-weight: 900; font-size: 24px; text-transform: uppercase; }
+        
+        .grid-container, .process-flow { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; padding: 0 8%; margin-bottom: 60px; }
+        .card-3d, .process-step { background: var(--pure-white); border: 1px solid #ddd; padding: 40px 20px; min-width: 170px; flex: 1; border-radius: 15px; transition: 0.5s; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        
+        .card-3d:hover, .process-step:hover { transform: translateY(-10px); border-color: var(--main-blue); box-shadow: 0 15px 30px rgba(0, 70, 173, 0.1); }
+        
+        .card-3d i, .process-step i { font-size: 45px; margin-bottom: 20px; display: block; color: var(--main-blue); }
+        .card-3d span, .process-step h4 { font-size: 14px; font-weight: 800; color: var(--deep-black); display: block; text-transform: uppercase; }
 
-        .section-title { text-align: left; margin: 60px 0 30px 10%; color: var(--dark-honey); border-left: 5px solid var(--honey-gold); padding-left: 20px; font-weight: bold; font-size: 24px; text-transform: uppercase; }
-        [dir="rtl"] .section-title { text-align: right; border-left: none; border-right: 5px solid var(--honey-gold); padding-right: 20px; margin-right: 10%; margin-left: 0; }
+        /* المشاريع */
+        .project-item { display: flex; align-items: center; margin: 40px 10%; background: var(--pure-white); border: 1px solid #eee; border-radius: 20px; overflow: hidden; transition: 0.5s; }
+        .project-item:hover { box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+        .p-img { width: 50%; } .p-img img { width: 100%; display: block; }
+        .p-text { width: 50%; padding: 50px; text-align: left; }
+        .btn-view { background: var(--main-blue); color: white; padding: 12px 30px; border-radius: 5px; cursor: pointer; display: inline-block; margin-top: 25px; font-weight: 700; text-decoration: none; transition: 0.3s; }
+        .btn-view:hover { background: var(--deep-black); }
 
-        /* Grid الأقفات في صفين */
-        .grid-layout { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; padding: 0 10%; margin-bottom: 50px; }
-        .grid-6 { grid-template-columns: repeat(3, 1fr); }
-
-        .card-honey { background: var(--card-white); padding: 35px 20px; border-radius: 25px; transition: 0.5s; box-shadow: 0 8px 15px rgba(0,0,0,0.04); border: 1px solid var(--light-honey); }
-        .card-honey:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(188, 108, 37, 0.12); border-color: var(--honey-gold); }
-        .card-honey i { font-size: 40px; color: var(--honey-gold); margin-bottom: 15px; display: block; }
-        .card-honey span, .card-honey h4 { font-size: 14px; font-weight: 800; color: var(--dark-honey); text-transform: uppercase; }
-
-        .project-item { display: flex; align-items: center; margin: 40px 10%; background: var(--card-white); border-radius: 25px; overflow: hidden; box-shadow: 0 8px 15px rgba(0,0,0,0.04); }
-        [dir="rtl"] .project-item { flex-direction: row-reverse; }
-        .p-img { width: 55%; } .p-img img { width: 100%; display: block; }
-        .p-text { width: 45%; padding: 35px; text-align: left; }
-        [dir="rtl"] .p-text { text-align: right; }
-        .btn-view { background: var(--dark-honey); color: white; padding: 12px 30px; border-radius: 10px; cursor: pointer; display: inline-block; margin-top: 15px; font-weight: 800; text-decoration: none; }
-
-        footer { padding: 60px 20px; background: var(--light-honey); margin-top: 40px; }
-        .social-icons a { color: var(--dark-honey); font-size: 28px; margin: 0 15px; }
-
-        @media (max-width: 768px) {
-            .grid-layout, .grid-6 { grid-template-columns: 1fr; }
-            .project-item { flex-direction: column; }
-            .p-img, .p-text { width: 100%; }
-        }
+        footer { padding: 80px 20px; background: var(--deep-black); color: white; }
+        .social-icons a { color: var(--pure-white); font-size: 25px; margin: 0 20px; transition: 0.3s; }
+        .social-icons a:hover { color: var(--main-blue); }
     </style>
 </head>
 <body>
@@ -78,49 +70,52 @@
     <div class="welcome-box">
         <img src="logo.png" class="welcome-logo">
         <h2>Ahmed Gharib</h2>
+        <p>Strategic Data Universe</p>
         <button class="start-btn" onclick="startExploring()">Open Portfolio</button>
     </div>
 </div>
 
 <div id="main-site">
     <nav>
-        <div class="nav-brand"><img src="logo.png" class="nav-logo-img"><span class="nav-text">AGBINSIGHTS</span></div>
-        <div class="lang-switcher">
-            <img src="https://flagcdn.com/w40/us.png" onclick="setLang('en')" title="English">
-            <img src="https://flagcdn.com/w40/eg.png" onclick="setLang('ar')" title="العربية">
+        <div class="nav-brand">
+            <img src="logo.png" class="nav-logo-img">
+            <span class="nav-text">AGBINSIGHTS</span>
         </div>
     </nav>
 
     <header>
-        <h1 id="txt-name">Ahmed Gharib</h1>
-        <span class="job-tag" id="txt-role">Data Analyst</span>
+        <h1>Ahmed Gharib</h1>
+        <span class="job-tag">Data Analyst</span>
+        <div class="about-section">
+            I turn raw data into <b>meaningful stories</b>. Specialized in Power BI and Excel to help businesses make smarter decisions.
+        </div>
     </header>
 
-    <div class="section-title" id="txt-t1">01. The Analytics Journey</div>
-    <div class="grid-layout">
-        <div class="card-honey"><i class="fas fa-database"></i><h4 id="txt-s1">Extract</h4></div>
-        <div class="card-honey"><i class="fas fa-broom"></i><h4 id="txt-s2">Clean</h4></div>
-        <div class="card-honey"><i class="fas fa-layer-group"></i><h4 id="txt-s3">Model</h4></div>
-        <div class="card-honey"><i class="fas fa-chart-line"></i><h4 id="txt-s4">Insight</h4></div>
+    <div class="section-title">01. Process</div>
+    <div class="process-flow">
+        <div class="process-step"><i class="fas fa-database"></i><h4>Extract</h4></div>
+        <div class="process-step"><i class="fas fa-broom"></i><h4>Clean</h4></div>
+        <div class="process-step"><i class="fas fa-layer-group"></i><h4>Model</h4></div>
+        <div class="process-step"><i class="fas fa-chart-line"></i><h4>Insight</h4></div>
     </div>
 
-    <div class="section-title" id="txt-t2">02. Technical Expertise</div>
-    <div class="grid-layout grid-6">
-        <div class="card-honey"><i class="fas fa-chart-bar"></i><span>Power BI</span></div>
-        <div class="card-honey"><i class="fas fa-file-excel"></i><span>Advanced Excel</span></div>
-        <div class="card-honey"><i class="fas fa-project-diagram"></i><span id="txt-sk3">Data Modeling</span></div>
-        <div class="card-honey"><i class="fas fa-calculator"></i><span id="txt-sk4">DAX Logic</span></div>
-        <div class="card-honey"><i class="fas fa-server"></i><span id="txt-sk5">ETL Processes</span></div>
-        <div class="card-honey"><i class="fas fa-eye"></i><span id="txt-sk6">Visualization</span></div>
+    <div class="section-title">02. Expertise</div>
+    <div class="grid-container">
+        <div class="card-3d"><i class="fas fa-chart-bar"></i><span>Power BI</span></div>
+        <div class="card-3d"><i class="fas fa-file-excel"></i><span>Excel</span></div>
+        <div class="card-3d"><i class="fas fa-project-diagram"></i><span>Modeling</span></div>
+        <div class="card-3d"><i class="fas fa-calculator"></i><span>DAX</span></div>
+        <div class="card-3d"><i class="fas fa-server"></i><span>ETL</span></div>
+        <div class="card-3d"><i class="fas fa-eye"></i><span>Visualization</span></div>
     </div>
 
-    <div class="section-title" id="txt-t3">03. Featured Projects</div>
+    <div class="section-title">03. Projects</div>
     <div class="project-item">
         <div class="p-img"><img src="hr.png.png"></div>
         <div class="p-text">
-            <h3 id="txt-p1t">HR Attrition Analysis</h3>
-            <p id="txt-p1d">Deep dive into employee behavior.</p>
-            <a href="hr.png.png" target="_blank" class="btn-view" id="txt-btn1">View Portfolio</a>
+            <h3>HR Attrition Analysis</h3>
+            <p style="color:#555;">Data-driven insights into employee retention.</p>
+            <div class="btn-view" onclick="showStudy('hr')">View Details</div>
         </div>
     </div>
 
@@ -129,44 +124,11 @@
             <a href="https://www.linkedin.com/in/ahmed-gharib-20989a272/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
             <a href="mailto:info@agbinsights.com"><i class="far fa-envelope"></i></a>
         </div>
-        <div style="margin-top: 25px; font-weight: bold; color: var(--dark-honey);">© AHMED GHARIB | AGBINSIGHTS</div>
+        <p style="margin-top: 30px; font-size: 12px; color: #666;">© AHMED GHARIB | AGBINSIGHTS</p>
     </footer>
 </div>
 
 <script>
-    const dictionary = {
-        en: {
-            role: "Data Analyst", t1: "01. The Analytics Journey", t2: "02. Technical Expertise", t3: "03. Featured Projects",
-            s1: "Extract", s2: "Clean", s3: "Model", s4: "Insight", sk3: "Data Modeling", sk4: "DAX Logic", sk5: "ETL Processes", sk6: "Visualization",
-            p1t: "HR Attrition Analysis", p1d: "Deep dive into employee behavior.", btn: "View Portfolio"
-        },
-        ar: {
-            role: "محلل بيانات", t1: "01. رحلة تحليل البيانات", t2: "02. الخبرات التقنية", t3: "03. أهم المشاريع",
-            s1: "استخراج", s2: "تنظيف", s3: "نمذجة", s4: "رؤية", sk3: "نمذجة البيانات", sk4: "منطق DAX", sk5: "عمليات ETL", sk6: "تصوير البيانات",
-            p1t: "تحليل الموارد البشرية", p1d: "دراسة عميقة لسلوك الموظفين.", btn: "عرض الملف"
-        }
-    };
-
-    function setLang(lang) {
-        const d = dictionary[lang];
-        document.getElementById('html-tag').dir = (lang === 'ar') ? 'rtl' : 'ltr';
-        document.getElementById('txt-role').innerText = d.role;
-        document.getElementById('txt-t1').innerText = d.t1;
-        document.getElementById('txt-t2').innerText = d.t2;
-        document.getElementById('txt-t3').innerText = d.t3;
-        document.getElementById('txt-s1').innerText = d.s1;
-        document.getElementById('txt-s2').innerText = d.s2;
-        document.getElementById('txt-s3').innerText = d.s3;
-        document.getElementById('txt-s4').innerText = d.s4;
-        document.getElementById('txt-sk3').innerText = d.sk3;
-        document.getElementById('txt-sk4').innerText = d.sk4;
-        document.getElementById('txt-sk5').innerText = d.sk5;
-        document.getElementById('txt-sk6').innerText = d.sk6;
-        document.getElementById('txt-p1t').innerText = d.p1t;
-        document.getElementById('txt-p1d').innerText = d.p1d;
-        document.getElementById('txt-btn1').innerText = d.btn;
-    }
-
     function startExploring() {
         const overlay = document.getElementById('welcome-overlay');
         overlay.style.opacity = '0';
@@ -175,8 +137,9 @@
             const main = document.getElementById('main-site'); 
             main.style.display = 'block'; 
             setTimeout(() => main.style.opacity = '1', 50); 
-        }, 1200);
+        }, 1000);
     }
+    // باقي الـ Functions بتاعة الـ Case Study تضاف هنا حسب رغبتك
 </script>
 </body>
 </html>
