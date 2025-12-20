@@ -3,127 +3,98 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ahmed Gharib | AGBINSIGHTS - Strategic Data Analyst</title>
-    
-    <meta name="description" content="Ahmed Gharib (AGBINSIGHTS) - Professional Data Analyst specializing in Power BI, Excel, and Strategic Data Visualizations.">
-    <meta name="keywords" content="Data Analyst, Power BI, Excel, Dashboard, Ahmed Gharib, AGBINSIGHTS, Data Visualization">
+    <title>Ahmed Gharib | AGBINSIGHTS</title>
     
     <link rel="icon" type="image/png" href="logo.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     
     <style>
         :root { 
             --main-blue: #0056b3; 
-            --accent-gold: #b38b00;
             --bg-white: #ffffff; 
-            --deep-black: #050505;
-            --light-gray: #f8f9fa;
-            --text-gray: #444444; 
+            --deep-black: #000000;
+            --text-gray: #555555; 
         }
 
-        * { transition: all 0.3s ease; }
-        body { background-color: var(--bg-white); color: var(--deep-black); font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; text-align: center; scroll-behavior: smooth; overflow-x: hidden; }
+        body { background-color: var(--bg-white); color: var(--deep-black); font-family: 'Segoe UI', sans-serif; margin: 0; text-align: center; scroll-behavior: smooth; overflow-x: hidden; }
         body.rtl { direction: rtl; }
         
-        /* شاشة الترحيب الفخمة */
+        /* شاشة الترحيب */
         #welcome-overlay { 
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
-            background: radial-gradient(circle, #ffffff 0%, #f0f0f0 100%);
+            background: var(--bg-white);
             display: flex; align-items: center; justify-content: center; 
-            z-index: 10000; transition: 0.8s cubic-bezier(0.4, 0, 0.2, 1); 
+            z-index: 10000; transition: 1s ease-in-out; 
         }
-        .welcome-box { text-align: center; transform: scale(0.9); opacity: 0; animation: fadeInUp 1s forwards; }
-        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-        
-        .welcome-logo { width: 140px; height: 140px; margin-bottom: 25px; border-radius: 50%; border: 4px solid var(--main-blue); box-shadow: 0 10px 30px rgba(0,86,179,0.2); }
-        .welcome-box h2 { font-size: clamp(35px, 10vw, 55px); font-weight: 900; color: var(--deep-black); margin: 0; letter-spacing: -1px; }
-        .welcome-box p { color: var(--main-blue); letter-spacing: 5px; text-transform: uppercase; margin-top: 10px; font-weight: 800; font-size: 14px; }
-        
+        .welcome-box { text-align: center; padding: 20px; }
+        .welcome-logo { width: 120px; height: 120px; margin-bottom: 25px; border-radius: 50%; border: 3px solid var(--main-blue); }
+        .welcome-box h2 { font-size: clamp(30px, 10vw, 50px); font-weight: 900; color: var(--deep-black); margin: 0; }
+        .welcome-box p { color: var(--text-gray); letter-spacing: 3px; text-transform: uppercase; margin-top: 10px; font-weight: bold; font-size: 14px; }
         .start-btn { 
-            background: var(--main-blue); color: white; padding: 18px 45px; 
+            background: var(--main-blue); color: white; padding: 15px 40px; 
             border: none; border-radius: 50px; font-weight: 900; cursor: pointer; 
             margin-top: 40px; text-transform: uppercase; letter-spacing: 2px;
-            box-shadow: 0 15px 35px rgba(0,86,179,0.3);
         }
-        .start-btn:hover { transform: translateY(-3px); box-shadow: 0 20px 40px rgba(0,86,179,0.4); background: #004494; }
 
-        #main-site { opacity: 0; display: none; }
+        #main-site { opacity: 0; transition: 1s ease-in-out; display: none; }
         
-        /* نافيجيشن بار زجاجي */
+        /* الهيدر */
         nav { 
-            position: sticky; top: 0; background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px);
-            width: 100%; padding: 15px 8%; display: flex !important; justify-content: space-between !important; 
-            align-items: center; border-bottom: 1px solid rgba(0,0,0,0.05); z-index: 1000; box-sizing: border-box;
+            width: 100%; padding: 15px 5%; 
+            display: flex !important; 
+            flex-direction: row !important; 
+            justify-content: space-between !important; 
+            align-items: center; 
+            border-bottom: 1px solid #eee; 
+            box-sizing: border-box;
+            direction: ltr !important; 
         }
-        .nav-brand { display: flex; align-items: center; gap: 12px; }
-        .nav-logo-img { width: 40px; height: 40px; border-radius: 50%; border: 2px solid var(--main-blue); }
-        .nav-text { font-weight: 900; color: var(--main-blue); letter-spacing: 1.5px; font-size: 18px; }
+        .nav-brand { display: flex; align-items: center; gap: 10px; }
+        .nav-logo-img { width: 35px; height: 35px; border-radius: 50%; border: 1px solid var(--main-blue); }
+        .nav-text { font-weight: 900; color: var(--main-blue); letter-spacing: 1px; font-size: 16px; }
 
-        .flag-btn { width: 30px; height: 30px; cursor: pointer; border-radius: 50%; border: 2px solid transparent; opacity: 0.5; }
-        .flag-btn.active { opacity: 1; border-color: var(--main-blue); transform: scale(1.2); }
+        .lang-switch { display: flex; gap: 8px; align-items: center; }
+        .flag-btn { width: 28px; height: 28px; cursor: pointer; border-radius: 50%; object-fit: cover; border: 2px solid transparent; transition: 0.3s; opacity: 0.4; }
+        .flag-btn.active { opacity: 1; border-color: var(--main-blue); transform: scale(1.1); }
 
-        header { padding: 80px 20px; background: linear-gradient(180deg, #fff 0%, #fdfdfd 100%); }
-        h1 { color: var(--deep-black); font-size: clamp(40px, 8vw, 85px); margin: 0; font-weight: 900; line-height: 1; }
-        .job-tag { color: var(--main-blue); font-size: 16px; letter-spacing: 5px; font-weight: 700; text-transform: uppercase; margin-top: 20px; display: block; }
-        .about-text { max-width: 750px; margin: 30px auto 0; color: var(--text-gray); font-size: 19px; line-height: 1.8; }
+        header { padding: 40px 20px; }
+        h1 { color: var(--deep-black); font-size: clamp(35px, 8vw, 75px); margin: 0; font-weight: 900; line-height: 1.1; }
+        .job-tag { color: var(--main-blue); font-size: 14px; letter-spacing: 3px; font-weight: 600; text-transform: uppercase; margin-top: 10px; display: block; }
+        .about-text { max-width: 800px; margin: 25px auto 0; color: var(--text-gray); font-size: 17px; line-height: 1.6; padding: 0 10px; }
 
-        /* عناوين الأقسام */
-        .section-title { 
-            text-align: center; margin: 80px 0 40px; font-size: 14px; letter-spacing: 4px; 
-            color: var(--main-blue); font-weight: 900; text-transform: uppercase;
-        }
-        .section-title::after { content: ''; display: block; width: 40px; height: 3px; background: var(--main-blue); margin: 10px auto; }
+        .section-title { text-align: left; margin: 40px 0 20px 5%; color: var(--deep-black); border-left: 5px solid var(--main-blue); padding-left: 15px; font-weight: bold; font-size: 20px; text-transform: uppercase; }
+        body.rtl .section-title { text-align: right; border-left: none; border-right: 5px solid var(--main-blue); padding-left: 0; padding-right: 15px; margin: 40px 5% 20px 0; }
 
-        /* الكروت والشبكة */
-        .grid-container, .process-flow { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; padding: 0 8%; }
-        .card-3d, .process-step { 
-            background: #fff; border: 1px solid #f0f0f0; padding: 40px 20px; 
-            min-width: 180px; flex: 1; border-radius: 24px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.02);
-        }
-        .card-3d:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.08); border-color: var(--main-blue); }
-        .card-3d i { font-size: 40px; color: var(--main-blue); margin-bottom: 20px; }
-        .card-3d span { font-weight: 700; display: block; font-size: 16px; }
+        .grid-container, .process-flow { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; padding: 0 5%; margin-bottom: 40px; }
+        .card-3d, .process-step { background: var(--bg-white); border: 1px solid #ddd; padding: 30px 15px; min-width: 140px; flex: 1; border-radius: 15px; }
+        .card-3d i, .process-step i { font-size: 35px; margin-bottom: 15px; display: block; color: var(--main-blue); }
 
-        /* المشاريع الاستراتيجية */
-        .project-item { 
-            display: flex; flex-direction: column; margin: 40px 8%; background: #fff; 
-            border-radius: 30px; overflow: hidden; border: 1px solid #f0f0f0;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.05);
-        }
-        .p-img { width: 100%; position: relative; overflow: hidden; }
-        .p-img img { width: 100%; display: block; transition: 0.8s cubic-bezier(0.2, 1, 0.3, 1); }
-        .project-item:hover .p-img img { transform: scale(1.03); }
-        .p-text { width: 100%; padding: 50px; text-align: left; align-self: center; }
-        body.rtl .p-text { text-align: right; }
-
-        @media (min-width: 992px) {
-            .project-item { flex-direction: row; height: 450px; }
-            .p-img { width: 60%; height: 100%; }
-            .p-img img { height: 100%; object-fit: cover; }
-            .p-text { width: 40%; }
+        /* تعديل المشاريع للموبايل */
+        .project-item { display: flex; flex-direction: column; align-items: center; margin: 30px 5%; background: var(--bg-white); border: 1px solid #eee; border-radius: 20px; overflow: hidden; }
+        .p-img { width: 100%; } .p-img img { width: 100%; display: block; }
+        .p-text { width: 100%; padding: 30px; text-align: center; box-sizing: border-box; }
+        body.rtl .p-text { text-align: center; }
+        
+        /* إعادة الشكل الأصلي للشاشات الكبيرة */
+        @media (min-width: 768px) {
+            .project-item { flex-direction: row; text-align: left; }
+            .p-img { width: 55%; }
+            .p-text { width: 45%; text-align: left; padding: 40px; }
+            body.rtl .p-text { text-align: right; }
+            .section-title { font-size: 24px; margin-left: 10%; }
+            body.rtl .section-title { margin-right: 10%; }
+            .nav-text { font-size: 20px; }
+            .flag-btn { width: 32px; height: 32px; }
         }
 
-        .btn-view { 
-            background: var(--deep-black); color: #fff; padding: 15px 35px; 
-            border-radius: 12px; cursor: pointer; display: inline-block; 
-            margin-top: 25px; font-weight: 700; text-decoration: none;
-        }
-        .btn-view:hover { background: var(--main-blue); transform: translateX(5px); }
+        .btn-view { border: 2px solid var(--main-blue); color: var(--main-blue); padding: 10px 25px; border-radius: 10px; cursor: pointer; display: inline-block; margin-top: 15px; font-weight: 800; text-decoration: none; }
+        
+        #case-study-view { display:none; background: var(--bg-white); padding: 40px 5%; }
+        .case-header { max-width: 1000px; margin: 0 auto 30px; text-align: left; background: #f9f9f9; padding: 25px; border-radius: 20px; border-left: 6px solid var(--main-blue); }
+        body.rtl .case-header { text-align: right; border-left: none; border-right: 6px solid var(--main-blue); }
 
-        /* فوتر احترافي */
-        footer { padding: 100px 20px; background: var(--deep-black); color: #fff; }
-        .footer-logo { width: 60px; filter: brightness(0) invert(1); margin-bottom: 30px; }
-        .social-icons { margin-bottom: 30px; }
-        .social-icons a { color: #fff; font-size: 28px; margin: 0 20px; opacity: 0.6; }
-        .social-icons a:hover { opacity: 1; color: var(--main-blue); }
-
-        /* دراسة الحالة */
-        #case-study-view { display:none; background: #fff; padding: 60px 8%; text-align: left; }
-        body.rtl #case-study-view { text-align: right; }
-        .case-card { background: var(--light-gray); padding: 40px; border-radius: 30px; margin-bottom: 40px; border-left: 8px solid var(--main-blue); }
-        body.rtl .case-card { border-left: none; border-right: 8px solid var(--main-blue); }
+        footer { padding: 60px 20px; background: var(--deep-black); color: white; margin-top: 40px; }
+        .social-icons a { color: white; font-size: 25px; margin: 0 15px; text-decoration: none; }
     </style>
 </head>
 <body>
@@ -150,62 +121,57 @@
         </div>
     </nav>
 
-    <header class="animate__animated animate__fadeIn">
+    <header>
         <h1 id="main-name">Ahmed Gharib</h1>
-        <span class="job-tag" id="job-title">Strategic Data Analyst</span>
+        <span class="job-tag" id="job-title">Data Analyst</span>
         <p class="about-text" id="about-me"></p>
     </header>
 
     <div class="section-title" id="title-journey"></div>
     <div class="process-flow">
-        <div class="process-step"><i class="fas fa-search-dollar"></i><h4 id="step1"></h4></div>
+        <div class="process-step"><i class="fas fa-database"></i><h4 id="step1"></h4></div>
         <div class="process-step"><i class="fas fa-broom"></i><h4 id="step2"></h4></div>
-        <div class="process-step"><i class="fas fa-brain"></i><h4 id="step3"></h4></div>
+        <div class="process-step"><i class="fas fa-layer-group"></i><h4 id="step3"></h4></div>
         <div class="process-step"><i class="fas fa-chart-line"></i><h4 id="step4"></h4></div>
     </div>
 
     <div class="section-title" id="title-expertise"></div>
     <div class="grid-container">
-        <div class="card-3d"><i class="fas fa-bolt"></i><span>Power BI</span></div>
-        <div class="card-3d"><i class="fas fa-table"></i><span>Advanced Excel</span></div>
+        <div class="card-3d"><i class="fas fa-chart-bar"></i><span>Power BI</span></div>
+        <div class="card-3d"><i class="fas fa-file-excel"></i><span>Excel</span></div>
         <div class="card-3d"><i class="fas fa-project-diagram"></i><span id="skill3"></span></div>
-        <div class="card-3d"><i class="fas fa-code"></i><span id="skill4"></span></div>
-        <div class="card-3d"><i class="fas fa-database"></i><span>ETL Expert</span></div>
-        <div class="card-3d"><i class="fas fa-magic"></i><span id="skill6"></span></div>
+        <div class="card-3d"><i class="fas fa-calculator"></i><span id="skill4"></span></div>
+        <div class="card-3d"><i class="fas fa-server"></i><span>ETL</span></div>
+        <div class="card-3d"><i class="fas fa-eye"></i><span id="skill6"></span></div>
     </div>
 
     <div class="section-title" id="title-projects"></div>
-    
     <div class="project-item">
         <div class="p-img"><img src="hr.png.png"></div>
         <div class="p-text">
-            <h3 style="font-size: 28px; margin-bottom: 15px;" id="p1-title"></h3>
-            <p style="color:var(--text-gray); margin-bottom: 25px;" id="p1-desc"></p>
+            <h3 id="p1-title"></h3>
             <div class="btn-view" onclick="showStudy('hr')" id="p1-btn"></div>
         </div>
     </div>
-
     <div class="project-item" id="p2-container">
         <div class="p-img"><img src="sales.png1.png"></div>
         <div class="p-text">
-            <h3 style="font-size: 28px; margin-bottom: 15px;" id="p2-title"></h3>
-            <p style="color:var(--text-gray); margin-bottom: 25px;" id="p2-desc"></p>
+            <h3 id="p2-title"></h3>
             <div class="btn-view" onclick="showStudy('sales')" id="p2-btn"></div>
         </div>
     </div>
 
     <footer>
-        <img src="logo.png" class="footer-logo">
         <div class="social-icons">
-            <a href="https://www.linkedin.com/in/ahmed-gharib-20989a272/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-            <a href="mailto:info@agbinsights.com"><i class="far fa-envelope"></i></a>
+            <a href="https://www.linkedin.com/in/ahmed-gharib-20989a272/" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="mailto:info@agbinsights.com"><i class="fas fa-envelope"></i></a>
         </div>
-        <p style="opacity: 0.5; font-size: 13px; letter-spacing: 2px;">© 2025 AGBINSIGHTS | DATA THAT DECIDES</p>
+        <p style="margin-top: 20px; opacity: 0.6; font-size: 12px;">© AHMED GHARIB | AGBINSIGHTS</p>
     </footer>
 </div>
 
 <div id="case-study-view">
-    <div onclick="hideStudy()" id="back-btn" style="color:var(--main-blue); cursor:pointer; margin-bottom:40px; font-weight:900;"></div>
+    <div onclick="hideStudy()" id="back-btn" style="color:var(--main-blue); cursor:pointer; margin-bottom:30px; font-weight:bold; text-align:inherit;"></div>
     <div id="case-header-content"></div>
     <div id="study-images"></div>
 </div>
@@ -216,43 +182,43 @@
     const translations = {
         en: {
             name: "Ahmed Gharib",
-            welcomeBtn: "Explore My Data Universe",
-            job: "Strategic Data Analyst",
-            about: "I transform chaotic data into <b>profitable roadmaps</b>. Specializing in Power BI ecosystems that don't just show numbers—they drive massive business growth.",
-            journey: "The Analytics Life-Cycle",
-            expertise: "Strategic Toolkit",
-            projects: "Success Stories",
-            step1: "Sourcing", step2: "Wrangling", step3: "Modeling", step4: "Impact",
-            skill3: "Architecture", skill4: "DAX Logic", skill6: "Visual Story",
-            viewBtn: "View Project Impact",
-            back: "← BACK TO STRATEGY",
-            ch: "THE CHALLENGE", sol: "THE SOLUTION", imp: "THE IMPACT"
+            welcomeBtn: "Open Portfolio",
+            job: "Data Analyst",
+            about: "I turn raw data into <b>meaningful stories</b>. Specialized in Power BI and Excel to help businesses make smarter decisions.",
+            journey: "01. Journey",
+            expertise: "02. Expertise",
+            projects: "03. Projects",
+            step1: "Extract", step2: "Clean", step3: "Model", step4: "Insight",
+            skill3: "Modeling", skill4: "DAX Logic", skill6: "Viz",
+            viewBtn: "View Details",
+            back: "← BACK TO HOME",
+            ch: "CHALLENGE", sol: "SOLUTION", imp: "IMPACT"
         },
         ar: {
             name: "أحمد غريب",
-            welcomeBtn: "استكشف عالم البيانات",
-            job: "محلل بيانات استراتيجي",
-            about: "أحول فوضى البيانات إلى <b>خرائط طريق مربحة</b>. متخصص في أنظمة Power BI التي لا تعرض الأرقام فقط، بل تدفع الشركات نحو نمو هائل.",
-            journey: "دورة حياة البيانات",
-            expertise: "الأدوات الاستراتيجية",
-            projects: "قصص النجاح",
-            step1: "الاستخراج", step2: "التنقية", step3: "النمذجة", step4: "الأثر",
-            skill3: "هيكلة البيانات", skill4: "منطق DAX", skill6: "السرد البصري",
-            viewBtn: "عرض أثر المشروع",
+            welcomeBtn: "افتح المعرض",
+            job: "محلل بيانات",
+            about: "أقوم بتحويل البيانات الخام إلى <b>قصص ذات مغزى</b>. متخصص في Power BI و Excel لمساعدة الشركات على اتخاذ قرارات ذكية.",
+            journey: "01. الرحلة",
+            expertise: "02. الخبرات",
+            projects: "03. المشاريع",
+            step1: "استخراج", step2: "تنظيف", step3: "نمذجة", step4: "رؤية",
+            skill3: "النمذجة", skill4: "منطق DAX", skill6: "تصوير",
+            viewBtn: "عرض التفاصيل",
             back: "→ العودة للرئيسية",
-            ch: "التحدي الاستراتيجي", sol: "الحل التقني", imp: "الأثر الملموس"
+            ch: "التحدي", sol: "الحل", imp: "الأثر"
         },
         es: {
             name: "Ahmed Gharib",
-            welcomeBtn: "Explorar Mi Universo",
-            job: "Analista de Datos Estratégico",
-            about: "Transformo datos caóticos en <b>hojas de ruta rentables</b>. Especialista en Power BI para convertir números en decisiones de alto impacto.",
-            journey: "Ciclo de Analítica",
-            expertise: "Herramientas",
-            projects: "Casos de Éxito",
-            step1: "Origen", step2: "Limpieza", step3: "Modelado", step4: "Visión",
-            skill3: "Arquitectura", skill4: "Lógica DAX", skill6: "Narrativa",
-            viewBtn: "Ver Impacto",
+            welcomeBtn: "Abrir Portafolio",
+            job: "Analista de Datos",
+            about: "Convierto datos sin procesar en <b>historias significativas</b>. Especializado en Power BI y Excel para ayudar a las empresas.",
+            journey: "01. Trayectoria",
+            expertise: "02. Experiencia",
+            projects: "03. Proyectos",
+            step1: "Extraer", step2: "Limpiar", step3: "Modelar", step4: "Perspectiva",
+            skill3: "Modelado", skill4: "Lógica DAX", skill6: "Visualización",
+            viewBtn: "Ver Detalles",
             back: "← VOLVER AL INICIO",
             ch: "DESAFÍO", sol: "SOLUCIÓN", imp: "IMPACTO"
         }
@@ -260,15 +226,15 @@
 
     const projectData = {
         hr: { 
-            en: { title: "HR Intelligence Hub", desc: "Reducing employee turnover costs by identifying high-risk segments using predictive modeling.", c: "Company was losing 30% of top performers annually.", s: "Dynamic Power BI Attrition Tracker with 'What-If' analysis.", i: "Reduced recruitment costs by 15% in 6 months." },
-            ar: { title: "مركز ذكاء الموارد البشرية", desc: "خفض تكاليف دوران الموظفين من خلال تحديد الفئات المعرضة للاستقالة باستخدام النمذجة التنبؤية.", c: "الشركة كانت تفقد 30% من أفضل كفاءاتها سنوياً.", s: "لوحة تحكم ديناميكية مع تحليل 'ماذا لو' (What-If).", i: "خفض تكاليف التوظيف بنسبة 15% خلال 6 أشهر." },
-            es: { title: "Hub de Inteligencia de RRHH", desc: "Reducción de costos de rotación mediante modelos predictivos.", c: "Pérdida del 30% del talento clave anual.", s: "Rastreador de rotación en Power BI con análisis dinámico.", i: "Reducción de costos en un 15%." },
+            en: { title: "HR Attrition Analysis", c: "High turnover rates.", s: "End-to-end Dashboard.", i: "15% reduction." },
+            ar: { title: "تحليل استقالات الموظفين", c: "معدلات دوران وظيفي عالية.", s: "لوحة بيانات متكاملة.", i: "خفض الاستقالات بنسبة 15%." },
+            es: { title: "Análisis de Rotación de RRHH", c: "Altas tasas de rotación.", s: "Dashboard completo.", i: "Reducción del 15%." },
             imgs: ['hr.png.png', 'hr.png2.png', 'hr.png3.png']
         },
         sales: {
-            en: { title: "Sales Revenue Ecosystem", desc: "Consolidating fragmented global data into a unified performance command center.", c: "Inconsistent reporting across 5 international branches.", s: "Unified ETL pipeline connecting 10+ data sources.", i: "25% improvement in forecasting accuracy." },
-            ar: { title: "منظومة إيرادات المبيعات", desc: "دمج البيانات العالمية المشتتة في مركز قيادة موحد للأداء.", c: "تقارير غير متناسقة عبر 5 فروع دولية مختلفة.", s: "بناء مسار بيانات موحد يربط أكثر من 10 مصادر.", i: "تحسين دقة التوقعات بنسبة 25%." },
-            es: { title: "Ecosistema de Ventas", desc: "Consolidación de datos globales fragmentados.", c: "Informes inconsistentes en 5 sucursales internacionales.", s: "Pipeline de ETL unificado para 10+ fuentes de datos.", i: "Mejora del 25% en precisión de pronósticos." },
+            en: { title: "Sales Performance Hub", c: "Disconnected datasets.", s: "Unified ETL Pipeline.", i: "25% accuracy boost." },
+            ar: { title: "مركز أداء المبيعات", c: "مجموعات بيانات غير مترابطة.", s: "بناء مسار بيانات موحد.", i: "زيادة دقة التوقعات بنسبة 25%." },
+            es: { title: "Hub de Rendimiento de Ventas", c: "Datos desconectados.", s: "Pipeline de ETL unificado.", i: "Mejora del 25% en precisión." },
             imgs: ['sales.png1.png', 'sales.png2.png', 'sales.png3.png']
         }
     };
@@ -276,9 +242,17 @@
     function updateUI() {
         const t = translations[currentLang];
         document.body.className = currentLang === 'ar' ? 'rtl' : '';
+        
         document.querySelectorAll('.flag-btn').forEach(f => f.classList.remove('active'));
-        const activeFlag = document.getElementById(`lang-${currentLang}`);
-        if(activeFlag) activeFlag.classList.add('active');
+        document.getElementById(lang-${currentLang}).classList.add('active');
+
+        // تعديل ترتيب المشروع الثاني برمجياً بناءً على حجم الشاشة
+        const p2 = document.getElementById('p2-container');
+        if(window.innerWidth > 768) {
+            p2.style.flexDirection = 'row-reverse';
+        } else {
+            p2.style.flexDirection = 'column';
+        }
 
         document.getElementById('welcome-name').innerText = t.name;
         document.getElementById('main-name').innerText = t.name;
@@ -295,12 +269,8 @@
         document.getElementById('skill3').innerText = t.skill3;
         document.getElementById('skill4').innerText = t.skill4;
         document.getElementById('skill6').innerText = t.skill6;
-        
         document.getElementById('p1-title').innerText = projectData.hr[currentLang].title;
-        document.getElementById('p1-desc').innerText = projectData.hr[currentLang].desc;
         document.getElementById('p2-title').innerText = projectData.sales[currentLang].title;
-        document.getElementById('p2-desc').innerText = projectData.sales[currentLang].desc;
-        
         document.getElementById('p1-btn').innerText = t.viewBtn;
         document.getElementById('p2-btn').innerText = t.viewBtn;
         document.getElementById('back-btn').innerText = t.back;
@@ -315,31 +285,28 @@
     function startExploring() {
         const overlay = document.getElementById('welcome-overlay');
         overlay.style.opacity = '0';
-        overlay.style.transform = 'scale(1.1)';
         setTimeout(() => { 
             overlay.style.display = 'none'; 
             const main = document.getElementById('main-site'); 
             main.style.display = 'block'; 
             setTimeout(() => main.style.opacity = '1', 50); 
-            updateUI();
-        }, 800);
+            updateUI(); // تأكيد التحديث بعد الظهور
+        }, 1000);
     }
 
     function showStudy(id) {
         const d = projectData[id][currentLang];
         const t = translations[currentLang];
         document.getElementById('case-header-content').innerHTML = `
-            <div class="case-card animate__animated animate__fadeInLeft">
-                <h1 style="color:var(--main-blue); margin:0 0 20px 0; font-size:40px;">${d.title}</h1>
-                <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap:30px;">
-                    <div><b style="color:var(--deep-black); font-size:18px;">${t.ch}</b><p style="color:var(--text-gray); font-size:17px; margin:10px 0;">${d.c}</p></div>
-                    <div><b style="color:var(--deep-black); font-size:18px;">${t.sol}</b><p style="color:var(--text-gray); font-size:17px; margin:10px 0;">${d.s}</p></div>
-                    <div><b style="color:var(--deep-black); font-size:18px;">${t.imp}</b><p style="color:var(--text-gray); font-size:17px; margin:10px 0;">${d.i}</p></div>
+            <div class="case-header">
+                <h2>${d.title}</h2>
+                <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap:15px;">
+                    <div><b>${t.ch}:</b><br>${d.c}</div>
+                    <div><b>${t.sol}:</b><br>${d.s}</div>
+                    <div><b>${t.imp}:</b><br>${d.i}</div>
                 </div>
             </div>`;
-        document.getElementById('study-images').innerHTML = projectData[id].imgs.map(img => 
-            `<img src="${img}" class="animate__animated animate__fadeInUp" style="width:100%; margin-bottom:50px; border-radius:30px; box-shadow:0 30px 60px rgba(0,0,0,0.12);">`
-        ).join('');
+        document.getElementById('study-images').innerHTML = projectData[id].imgs.map(img => <img src="${img}" style="width:100%; margin-bottom:20px; border-radius:15px;">).join('');
         document.getElementById('main-site').style.display = 'none';
         document.getElementById('case-study-view').style.display = 'block';
         window.scrollTo(0,0);
@@ -348,11 +315,10 @@
     function hideStudy() { 
         document.getElementById('main-site').style.display = 'block'; 
         document.getElementById('case-study-view').style.display = 'none'; 
-        window.scrollTo(0, document.getElementById('title-projects').offsetTop - 50);
     }
 
+    window.addEventListener('resize', updateUI);
     updateUI();
 </script>
 </body>
 </html>
-
