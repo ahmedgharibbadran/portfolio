@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ahmed Gharib | AGBINSIGHTS</title>
     
+    <link rel="icon" type="image/png" href="logo.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
@@ -18,12 +19,7 @@
         body { background-color: var(--bg-white); color: var(--deep-black); font-family: 'Segoe UI', sans-serif; margin: 0; text-align: center; scroll-behavior: smooth; overflow-x: hidden; }
         body.rtl { direction: rtl; }
         
-        /* تصميم اللوجو المودرن AGB */
-        .agb-logo-wrap { display: flex; align-items: center; gap: 8px; cursor: pointer; text-decoration: none; }
-        .agb-box { background: var(--deep-black); color: white; padding: 4px 10px; font-weight: 900; font-size: 20px; border-radius: 4px; letter-spacing: -1px; }
-        .agb-box span.g-blue { color: #4dabff; }
-        .nav-text-brand { font-weight: 300; letter-spacing: 3px; font-size: 14px; color: var(--deep-black); }
-
+        /* شاشة الترحيب */
         #welcome-overlay { 
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
             background: var(--bg-white);
@@ -31,25 +27,31 @@
             z-index: 10000; transition: 1s ease-in-out; 
         }
         .welcome-box { text-align: center; padding: 20px; }
-        .welcome-logo-big { font-size: 80px; font-weight: 900; letter-spacing: -5px; line-height: 1; margin-bottom: 10px; }
-
+        .welcome-logo { width: 120px; height: 120px; margin-bottom: 25px; border-radius: 50%; border: 3px solid var(--main-blue); }
+        .welcome-box h2 { font-size: clamp(30px, 10vw, 50px); font-weight: 900; color: var(--deep-black); margin: 0; }
+        .welcome-box p { color: var(--text-gray); letter-spacing: 3px; text-transform: uppercase; margin-top: 10px; font-weight: bold; font-size: 14px; }
         .start-btn { 
-            background: var(--deep-black); color: white; padding: 15px 40px; 
-            border: none; border-radius: 5px; font-weight: 900; cursor: pointer; 
+            background: var(--main-blue); color: white; padding: 15px 40px; 
+            border: none; border-radius: 50px; font-weight: 900; cursor: pointer; 
             margin-top: 40px; text-transform: uppercase; letter-spacing: 2px;
         }
 
         #main-site { opacity: 0; transition: 1s ease-in-out; display: none; }
         
+        /* الهيدر */
         nav { 
             width: 100%; padding: 15px 5%; 
             display: flex !important; 
+            flex-direction: row !important; 
             justify-content: space-between !important; 
             align-items: center; 
             border-bottom: 1px solid #eee; 
             box-sizing: border-box;
             direction: ltr !important; 
         }
+        .nav-brand { display: flex; align-items: center; gap: 10px; }
+        .nav-logo-img { width: 35px; height: 35px; border-radius: 50%; border: 1px solid var(--main-blue); }
+        .nav-text { font-weight: 900; color: var(--main-blue); letter-spacing: 1px; font-size: 16px; }
 
         .lang-switch { display: flex; gap: 8px; align-items: center; }
         .flag-btn { width: 28px; height: 28px; cursor: pointer; border-radius: 50%; object-fit: cover; border: 2px solid transparent; transition: 0.3s; opacity: 0.4; }
@@ -76,6 +78,10 @@
             .p-img { width: 55%; }
             .p-text { width: 45%; text-align: left; padding: 40px; }
             body.rtl .p-text { text-align: right; }
+            .section-title { font-size: 24px; margin-left: 10%; }
+            body.rtl .section-title { margin-right: 10%; }
+            .nav-text { font-size: 20px; }
+            .flag-btn { width: 32px; height: 32px; }
         }
 
         .btn-view { border: 2px solid var(--main-blue); color: var(--main-blue); padding: 10px 25px; border-radius: 10px; cursor: pointer; display: inline-block; margin-top: 15px; font-weight: 800; text-decoration: none; }
@@ -92,18 +98,18 @@
 
 <div id="welcome-overlay">
     <div class="welcome-box">
-        <div class="welcome-logo-big">A<span style="color:var(--main-blue)">G</span>B</div>
+        <img src="logo.png" class="welcome-logo">
         <h2 id="welcome-name">Ahmed Gharib</h2>
-        <p id="welcome-slogan">Strategic Insights Universe</p> 
+        <p id="welcome-slogan">Strategic Data Universe</p> 
         <button class="start-btn" onclick="startExploring()" id="welcome-btn">Open Portfolio</button>
     </div>
 </div>
 
 <div id="main-site">
     <nav>
-        <div class="agb-logo-wrap">
-            <div class="agb-box">A<span class="g-blue">G</span>B</div>
-            <span class="nav-text-brand">INSIGHTS</span>
+        <div class="nav-brand">
+            <img src="logo.png" class="nav-logo-img">
+            <span class="nav-text">AGBINSIGHTS</span>
         </div>
         <div class="lang-switch">
             <img src="https://flagcdn.com/w40/gb.png" class="flag-btn" id="lang-en" onclick="setLang('en')" title="English">
@@ -172,43 +178,61 @@
 
     const translations = {
         en: {
-            name: "Ahmed Gharib", welcomeBtn: "Open Portfolio", job: "Data Analyst",
-            about: "I turn raw data into <b>meaningful stories</b>. Specialized in Power BI and Excel.",
-            journey: "01. Journey", expertise: "02. Expertise", projects: "03. Projects",
+            name: "Ahmed Gharib",
+            welcomeBtn: "Open Portfolio",
+            job: "Data Analyst",
+            about: "I turn raw data into <b>meaningful stories</b>. Specialized in Power BI and Excel to help businesses make smarter decisions.",
+            journey: "01. Journey",
+            expertise: "02. Expertise",
+            projects: "03. Projects",
             step1: "Extract", step2: "Clean", step3: "Model", step4: "Insight",
             skill3: "Modeling", skill4: "DAX Logic", skill6: "Viz",
-            viewBtn: "View Details", back: "← BACK TO HOME", ch: "CHALLENGE", sol: "SOLUTION", imp: "IMPACT"
+            viewBtn: "View Details",
+            back: "← BACK TO HOME",
+            ch: "CHALLENGE", sol: "SOLUTION", imp: "IMPACT"
         },
         ar: {
-            name: "أحمد غريب", welcomeBtn: "افتح المعرض", job: "محلل بيانات",
-            about: "أقوم بتحويل البيانات الخام إلى <b>قصص ذات مغزى</b>. متخصص في Power BI و Excel.",
-            journey: "01. الرحلة", expertise: "02. الخبرات", projects: "03. المشاريع",
+            name: "أحمد غريب",
+            welcomeBtn: "افتح المعرض",
+            job: "محلل بيانات",
+            about: "أقوم بتحويل البيانات الخام إلى <b>قصص ذات مغزى</b>. متخصص في Power BI و Excel لمساعدة الشركات على اتخاذ قرارات ذكية.",
+            journey: "01. الرحلة",
+            expertise: "02. الخبرات",
+            projects: "03. المشاريع",
             step1: "استخراج", step2: "تنظيف", step3: "نمذجة", step4: "رؤية",
             skill3: "النمذجة", skill4: "منطق DAX", skill6: "تصوير",
-            viewBtn: "عرض التفاصيل", back: "→ العودة للرئيسية", ch: "التحدي", sol: "الحل", imp: "الأثر"
+            viewBtn: "عرض التفاصيل",
+            back: "→ العودة للرئيسية",
+            ch: "التحدي", sol: "الحل", imp: "الأثر"
         },
         es: {
-            name: "Ahmed Gharib", welcomeBtn: "Abrir Portafolio", job: "Analista de Datos",
-            about: "Convierto datos sin procesar en <b>historias significativas</b>.",
-            journey: "01. Trayectoria", expertise: "02. Experiencia", projects: "03. Proyectos",
+            name: "Ahmed Gharib",
+            welcomeBtn: "Abrir Portafolio",
+            job: "Analista de Datos",
+            about: "Convierto datos sin procesar en <b>historias significativas</b>. Especializado en Power BI y Excel para ayudar a las empresas.",
+            journey: "01. Trayectoria",
+            expertise: "02. Experiencia",
+            projects: "03. Proyectos",
             step1: "Extraer", step2: "Limpiar", step3: "Modelar", step4: "Perspectiva",
             skill3: "Modelado", skill4: "Lógica DAX", skill6: "Visualización",
-            viewBtn: "Ver Detalles", back: "← VOLVER AL INICIO", ch: "DESAFÍO", sol: "SOLUCIÓN", imp: "IMPACTO"
+            viewBtn: "Ver Detalles",
+            back: "← VOLVER AL INICIO",
+            ch: "DESAFÍO", sol: "SOLUCIÓN", imp: "IMPACTO"
         }
     };
 
     const projectData = {
         hr: { 
-            en: { title: "HR Attrition Analysis", c: "High turnover.", s: "Dashboard.", i: "15% reduction." },
-            ar: { title: "تحليل استقالات الموظفين", c: "دوران وظيفي عالٍ.", s: "لوحة بيانات.", i: "خفض 15%." },
-            es: { title: "Rotación RRHH", c: "Alta rotación.", s: "Dashboard.", i: "Reducción 15%." },
-            imgs: ['hr.png.png', 'hr.png2.png']
+            en: { title: "HR Attrition Analysis", c: "High turnover rates.", s: "End-to-end Dashboard.", i: "15% reduction." },
+            ar: { title: "تحليل استقالات الموظفين", c: "معدلات دوران وظيفي عالية.", s: "لوحة بيانات متكاملة.", i: "خفض الاستقالات بنسبة 15%." },
+            es: { title: "Análisis de Rotación de RRHH", c: "Altas tasas de rotación.", s: "Dashboard completo.", i: "Reducción del 15%." },
+            imgs: ['hr.png.png', 'hr.png2.png', 'hr.png3.png']
         },
         sales: {
-            en: { title: "Sales Hub", c: "Messy data.", s: "ETL Pipeline.", i: "25% accuracy." },
-            ar: { title: "مركز المبيعات", c: "بيانات مشتتة.", s: "مسار بيانات.", i: "دقة 25%." },
-            es: { title: "Ventas Hub", c: "Datos mixtos.", s: "ETL Pipeline.", i: "Precisión 25%." },
-            imgs: ['sales.png1.png', 'sales.png2.png']
+            en: { title: "Sales Performance Hub", c: "Disconnected datasets.", s: "Unified ETL Pipeline.", i: "25% accuracy boost." },
+            ar: { title: "مركز أداء المبيعات", c: "مجموعات بيانات غير مترابطة.", s: "بناء مسار بيانات موحد.", i: "زيادة دقة التوقعات بنسبة 25%." },
+            es: { title: "Hub de Rendimiento de Ventas", c: "Datos desconectados.", s: "Pipeline de ETL unificado.", i: "Mejora del 25% en precisión." },
+            imgs: ['sales.png1.png', 'sales.png2.png', 'sales.png3.png']
         }
     };
 
@@ -217,7 +241,15 @@
         document.body.className = currentLang === 'ar' ? 'rtl' : '';
         
         document.querySelectorAll('.flag-btn').forEach(f => f.classList.remove('active'));
-        document.getElementById('lang-' + currentLang).classList.add('active');
+        const activeFlag = document.getElementById('lang-' + currentLang);
+        if(activeFlag) activeFlag.classList.add('active');
+
+        const p2 = document.getElementById('p2-container');
+        if(window.innerWidth > 768) {
+            p2.style.flexDirection = 'row-reverse';
+        } else {
+            p2.style.flexDirection = 'column';
+        }
 
         document.getElementById('welcome-name').innerText = t.name;
         document.getElementById('main-name').innerText = t.name;
@@ -282,6 +314,7 @@
         document.getElementById('case-study-view').style.display = 'none'; 
     }
 
+    window.addEventListener('resize', updateUI);
     updateUI();
 </script>
 </body>
