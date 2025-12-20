@@ -36,10 +36,12 @@
 
         #main-site { opacity: 0; display: none; }
         
+        /* التعديل هنا: تثبيت مكان اللوجو واللغات */
         nav { 
             width: 100%; padding: 15px 5%; 
             display: flex; justify-content: space-between; align-items: center; 
             border-bottom: 1px solid #eee; box-sizing: border-box;
+            direction: ltr !important; /* هذا السطر يضمن بقاء اللوجو يسار واللغات يمين دائماً */
         }
         .nav-brand { display: flex; align-items: center; gap: 10px; }
         .nav-logo-img { width: 35px; height: 35px; border-radius: 50%; }
@@ -181,7 +183,7 @@
 
 <script>
     let currentLang = localStorage.getItem('ahmedLang') || 'en';
-    let lastScrollPos = 0; // متغير لحفظ موقع التمرير
+    let lastScrollPos = 0; 
 
     const translations = {
         en: {
@@ -273,7 +275,7 @@
     }
 
     function showStudy(id) {
-        lastScrollPos = window.scrollY; // حفظ مكان التمرير الحالي
+        lastScrollPos = window.scrollY; 
         const d = projectData[id][currentLang];
         const t = translations[currentLang];
         document.getElementById('case-header-content').innerHTML = `
@@ -296,7 +298,6 @@
     function hideStudy() { 
         document.getElementById('main-site').style.display = 'block'; 
         document.getElementById('case-study-view').style.display = 'none'; 
-        // العودة لنفس الموقع المحفوظ
         window.scrollTo({
             top: lastScrollPos,
             behavior: 'instant' 
