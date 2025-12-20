@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ahmed Gharib | AGBINSIGHTS</title>
+    <title>Ahmed Gharib | AGBINSIGHTS - Strategic Data Analyst</title>
+    
+    <meta name="description" content="Ahmed Gharib (AGBINSIGHTS) - Professional Data Analyst specializing in Power BI, Excel, and Strategic Data Visualizations.">
+    <meta name="keywords" content="Data Analyst, Power BI, Excel, Dashboard, Ahmed Gharib, AGBINSIGHTS, Data Visualization">
     
     <link rel="icon" type="image/png" href="logo.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -66,16 +69,16 @@
         body.rtl .section-title { text-align: right; border-left: none; border-right: 5px solid var(--main-blue); padding-left: 0; padding-right: 15px; margin: 40px 5% 20px 0; }
 
         .grid-container, .process-flow { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; padding: 0 5%; margin-bottom: 40px; }
-        .card-3d, .process-step { background: var(--bg-white); border: 1px solid #ddd; padding: 30px 15px; min-width: 140px; flex: 1; border-radius: 15px; }
+        .card-3d, .process-step { background: var(--bg-white); border: 1px solid #ddd; padding: 30px 15px; min-width: 140px; flex: 1; border-radius: 15px; transition: 0.3s; }
+        .card-3d:hover { border-color: var(--main-blue); transform: translateY(-5px); }
         .card-3d i, .process-step i { font-size: 35px; margin-bottom: 15px; display: block; color: var(--main-blue); }
 
-        /* تعديل المشاريع للموبايل */
         .project-item { display: flex; flex-direction: column; align-items: center; margin: 30px 5%; background: var(--bg-white); border: 1px solid #eee; border-radius: 20px; overflow: hidden; }
-        .p-img { width: 100%; } .p-img img { width: 100%; display: block; }
+        .p-img { width: 100%; overflow: hidden; } 
+        .p-img img { width: 100%; display: block; transition: 0.5s; }
+        .project-item:hover .p-img img { transform: scale(1.05); }
         .p-text { width: 100%; padding: 30px; text-align: center; box-sizing: border-box; }
-        body.rtl .p-text { text-align: center; }
         
-        /* إعادة الشكل الأصلي للشاشات الكبيرة */
         @media (min-width: 768px) {
             .project-item { flex-direction: row; text-align: left; }
             .p-img { width: 55%; }
@@ -83,18 +86,18 @@
             body.rtl .p-text { text-align: right; }
             .section-title { font-size: 24px; margin-left: 10%; }
             body.rtl .section-title { margin-right: 10%; }
-            .nav-text { font-size: 20px; }
-            .flag-btn { width: 32px; height: 32px; }
         }
 
-        .btn-view { border: 2px solid var(--main-blue); color: var(--main-blue); padding: 10px 25px; border-radius: 10px; cursor: pointer; display: inline-block; margin-top: 15px; font-weight: 800; text-decoration: none; }
+        .btn-view { border: 2px solid var(--main-blue); color: var(--main-blue); padding: 10px 25px; border-radius: 10px; cursor: pointer; display: inline-block; margin-top: 15px; font-weight: 800; text-decoration: none; transition: 0.3s; }
+        .btn-view:hover { background: var(--main-blue); color: #fff; }
         
         #case-study-view { display:none; background: var(--bg-white); padding: 40px 5%; }
         .case-header { max-width: 1000px; margin: 0 auto 30px; text-align: left; background: #f9f9f9; padding: 25px; border-radius: 20px; border-left: 6px solid var(--main-blue); }
         body.rtl .case-header { text-align: right; border-left: none; border-right: 6px solid var(--main-blue); }
 
         footer { padding: 60px 20px; background: var(--deep-black); color: white; margin-top: 40px; }
-        .social-icons a { color: white; font-size: 25px; margin: 0 15px; text-decoration: none; }
+        .social-icons a { color: white; font-size: 25px; margin: 0 15px; text-decoration: none; transition: 0.3s; }
+        .social-icons a:hover { color: var(--main-blue); }
     </style>
 </head>
 <body>
@@ -123,7 +126,7 @@
 
     <header>
         <h1 id="main-name">Ahmed Gharib</h1>
-        <span class="job-tag" id="job-title">Data Analyst</span>
+        <span class="job-tag" id="job-title">Strategic Data Analyst</span>
         <p class="about-text" id="about-me"></p>
     </header>
 
@@ -182,59 +185,59 @@
     const translations = {
         en: {
             name: "Ahmed Gharib",
-            welcomeBtn: "Open Portfolio",
-            job: "Data Analyst",
-            about: "I turn raw data into <b>meaningful stories</b>. Specialized in Power BI and Excel to help businesses make smarter decisions.",
-            journey: "01. Journey",
-            expertise: "02. Expertise",
-            projects: "03. Projects",
-            step1: "Extract", step2: "Clean", step3: "Model", step4: "Insight",
-            skill3: "Modeling", skill4: "DAX Logic", skill6: "Viz",
-            viewBtn: "View Details",
+            welcomeBtn: "Explore My Data Universe",
+            job: "Strategic Data Analyst",
+            about: "I bridge the gap between <b>complex data</b> and <b>business growth</b>. Specialized in creating interactive Power BI ecosystems that drive decisions.",
+            journey: "01. My Workflow",
+            expertise: "02. Technical Toolkit",
+            projects: "03. Case Studies",
+            step1: "Sourcing", step2: "Wrangling", step3: "Modeling", step4: "Insights",
+            skill3: "Data Modeling", skill4: "Advanced DAX", skill6: "Storytelling",
+            viewBtn: "View Case Study",
             back: "← BACK TO HOME",
-            ch: "CHALLENGE", sol: "SOLUTION", imp: "IMPACT"
+            ch: "THE CHALLENGE", sol: "MY SOLUTION", imp: "THE IMPACT"
         },
         ar: {
             name: "أحمد غريب",
-            welcomeBtn: "افتح المعرض",
-            job: "محلل بيانات",
-            about: "أقوم بتحويل البيانات الخام إلى <b>قصص ذات مغزى</b>. متخصص في Power BI و Excel لمساعدة الشركات على اتخاذ قرارات ذكية.",
-            journey: "01. الرحلة",
-            expertise: "02. الخبرات",
-            projects: "03. المشاريع",
-            step1: "استخراج", step2: "تنظيف", step3: "نمذجة", step4: "رؤية",
-            skill3: "النمذجة", skill4: "منطق DAX", skill6: "تصوير",
-            viewBtn: "عرض التفاصيل",
+            welcomeBtn: "استكشف عالم البيانات",
+            job: "محلل بيانات استراتيجي",
+            about: "أقوم بسد الفجوة بين <b>البيانات المعقدة</b> و<b>نمو الشركات</b>. متخصص في بناء أنظمة Power BI تفاعلية تدعم اتخاذ القرارات الذكية.",
+            journey: "01. منهجية العمل",
+            expertise: "02. المهارات التقنية",
+            projects: "03. دراسات الحالة",
+            step1: "جمع المصادر", step2: "معالجة البيانات", step3: "النمذجة", step4: "استخراج الرؤى",
+            skill3: "نمذجة البيانات", skill4: "منطق DAX المتقدم", skill6: "سرد القصص الرقمية",
+            viewBtn: "تفاصيل المشروع",
             back: "→ العودة للرئيسية",
-            ch: "التحدي", sol: "الحل", imp: "الأثر"
+            ch: "التحدي", sol: "الحل التقني", imp: "الأثر الملموس"
         },
         es: {
             name: "Ahmed Gharib",
-            welcomeBtn: "Abrir Portafolio",
-            job: "Analista de Datos",
-            about: "Convierto datos sin procesar en <b>historias significativas</b>. Especializado en Power BI y Excel para ayudar a las empresas.",
-            journey: "01. Trayectoria",
-            expertise: "02. Experiencia",
-            projects: "03. Proyectos",
-            step1: "Extraer", step2: "Limpiar", step3: "Modelar", step4: "Perspectiva",
-            skill3: "Modelado", skill4: "Lógica DAX", skill6: "Visualización",
+            welcomeBtn: "Explorar Mi Universo",
+            job: "Analista de Datos Estratégico",
+            about: "Conecto <b>datos complejos</b> con el <b>crecimiento empresarial</b>. Especialista en Power BI para transformar números en decisiones rentables.",
+            journey: "01. Mi Proceso",
+            expertise: "02. Herramientas",
+            projects: "03. Casos de Éxito",
+            step1: "Extracción", step2: "Limpieza", step3: "Modelado", step4: "Impacto",
+            skill3: "Arquitectura", skill4: "Lógica DAX", skill6: "Narración",
             viewBtn: "Ver Detalles",
             back: "← VOLVER AL INICIO",
-            ch: "DESAFÍO", sol: "SOLUCIÓN", imp: "IMPACTO"
+            ch: "EL DESAFÍO", sol: "MI SOLUCIÓN", imp: "EL IMPACTO"
         }
     };
 
     const projectData = {
         hr: { 
-            en: { title: "HR Attrition Analysis", c: "High turnover rates.", s: "End-to-end Dashboard.", i: "15% reduction." },
-            ar: { title: "تحليل استقالات الموظفين", c: "معدلات دوران وظيفي عالية.", s: "لوحة بيانات متكاملة.", i: "خفض الاستقالات بنسبة 15%." },
-            es: { title: "Análisis de Rotación de RRHH", c: "Altas tasas de rotación.", s: "Dashboard completo.", i: "Reducción del 15%." },
+            en: { title: "HR Attrition & Retention Intelligence", c: "High turnover rates were increasing recruitment costs by 30%.", s: "Built an end-to-end attrition predictor dashboard to identify risk groups.", i: "Helped HR reduce turnover by 15% via targeted employee engagement." },
+            ar: { title: "ذكاء استبقاء واستقالات الموظفين", c: "كانت معدلات الاستقالة ترفع تكاليف التوظيف بنسبة 30%.", s: "بناء لوحة تحكم تتنبأ بمخاطر ترك العمل وتحدد المجموعات الأكثر عرضة للاستقالة.", i: "مساعدة قسم الموارد البشرية في خفض الاستقالات بنسبة 15%." },
+            es: { title: "Inteligencia de Retención de RRHH", c: "Las altas tasas de rotación aumentaban los costos un 30%.", s: "Dashboard predictor para identificar grupos de riesgo y causas.", i: "Reducción de la rotación en un 15% mediante acciones enfocadas." },
             imgs: ['hr.png.png', 'hr.png2.png', 'hr.png3.png']
         },
         sales: {
-            en: { title: "Sales Performance Hub", c: "Disconnected datasets.", s: "Unified ETL Pipeline.", i: "25% accuracy boost." },
-            ar: { title: "مركز أداء المبيعات", c: "مجموعات بيانات غير مترابطة.", s: "بناء مسار بيانات موحد.", i: "زيادة دقة التوقعات بنسبة 25%." },
-            es: { title: "Hub de Rendimiento de Ventas", c: "Datos desconectados.", s: "Pipeline de ETL unificado.", i: "Mejora del 25% en precisión." },
+            en: { title: "Sales Performance Ecosystem", c: "Siloed data from different regions led to inaccurate forecasting.", s: "Centralized ETL pipeline with Power BI to unify cross-border sales data.", i: "Boosted forecasting accuracy by 25% and optimized inventory levels." },
+            ar: { title: "منظومة أداء المبيعات الشاملة", c: "تشتت البيانات بين المناطق الجغرافية أدى لتوقعات غير دقيقة.", s: "توحيد مسار البيانات (ETL) وربط المبيعات عبر الحدود في واجهة واحدة.", i: "زيادة دقة التوقعات بنسبة 25% وتحسين إدارة المخزون." },
+            es: { title: "Ecosistema de Ventas", c: "Datos fragmentados que impedían pronósticos financieros precisos.", s: "Pipeline de ETL unificado para consolidar ventas globales.", i: "Mejora del 25% en precisión y optimización de inventarios." },
             imgs: ['sales.png1.png', 'sales.png2.png', 'sales.png3.png']
         }
     };
@@ -242,17 +245,12 @@
     function updateUI() {
         const t = translations[currentLang];
         document.body.className = currentLang === 'ar' ? 'rtl' : '';
-        
         document.querySelectorAll('.flag-btn').forEach(f => f.classList.remove('active'));
-        document.getElementById(`lang-${currentLang}`).classList.add('active');
+        const activeFlag = document.getElementById(`lang-${currentLang}`);
+        if(activeFlag) activeFlag.classList.add('active');
 
-        // تعديل ترتيب المشروع الثاني برمجياً بناءً على حجم الشاشة
         const p2 = document.getElementById('p2-container');
-        if(window.innerWidth > 768) {
-            p2.style.flexDirection = 'row-reverse';
-        } else {
-            p2.style.flexDirection = 'column';
-        }
+        if(window.innerWidth > 768) { p2.style.flexDirection = 'row-reverse'; } else { p2.style.flexDirection = 'column'; }
 
         document.getElementById('welcome-name').innerText = t.name;
         document.getElementById('main-name').innerText = t.name;
@@ -290,7 +288,7 @@
             const main = document.getElementById('main-site'); 
             main.style.display = 'block'; 
             setTimeout(() => main.style.opacity = '1', 50); 
-            updateUI(); // تأكيد التحديث بعد الظهور
+            updateUI();
         }, 1000);
     }
 
@@ -299,14 +297,14 @@
         const t = translations[currentLang];
         document.getElementById('case-header-content').innerHTML = `
             <div class="case-header">
-                <h2>${d.title}</h2>
-                <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap:15px;">
-                    <div><b>${t.ch}:</b><br>${d.c}</div>
-                    <div><b>${t.sol}:</b><br>${d.s}</div>
-                    <div><b>${t.imp}:</b><br>${d.i}</div>
+                <h2 style="color:var(--main-blue); margin-top:0;">${d.title}</h2>
+                <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:20px;">
+                    <div><b style="color:var(--deep-black)">${t.ch}</b><p style="color:var(--text-gray); margin:5px 0;">${d.c}</p></div>
+                    <div><b style="color:var(--deep-black)">${t.sol}</b><p style="color:var(--text-gray); margin:5px 0;">${d.s}</p></div>
+                    <div><b style="color:var(--deep-black)">${t.imp}</b><p style="color:var(--text-gray); margin:5px 0;">${d.i}</p></div>
                 </div>
             </div>`;
-        document.getElementById('study-images').innerHTML = projectData[id].imgs.map(img => `<img src="${img}" style="width:100%; margin-bottom:20px; border-radius:15px;">`).join('');
+        document.getElementById('study-images').innerHTML = projectData[id].imgs.map(img => `<img src="${img}" style="width:100%; margin-bottom:30px; border-radius:20px; box-shadow:0 10px 30px rgba(0,0,0,0.1);">`).join('');
         document.getElementById('main-site').style.display = 'none';
         document.getElementById('case-study-view').style.display = 'block';
         window.scrollTo(0,0);
@@ -315,6 +313,7 @@
     function hideStudy() { 
         document.getElementById('main-site').style.display = 'block'; 
         document.getElementById('case-study-view').style.display = 'none'; 
+        window.scrollTo(0, document.getElementById('title-projects').offsetTop - 100);
     }
 
     window.addEventListener('resize', updateUI);
