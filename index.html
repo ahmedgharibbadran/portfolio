@@ -9,59 +9,63 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* الألوان المطلوبة فقط: أبيض، أزرق، أسود */
         :root { 
-            --pure-white: #ffffff;
-            --main-blue: #0046ad; /* أزرق رسمي */
+            --main-blue: #0056b3; 
+            --bg-white: #ffffff; 
             --deep-black: #000000;
-            --soft-gray: #f8f9fa; /* للتعامل مع الخلفيات البيضاء */
-            --text-main: #1a1a1a;
+            --text-gray: #555555; 
         }
 
-        body { background-color: var(--pure-white); color: var(--deep-black); font-family: 'Segoe UI', sans-serif; margin: 0; text-align: center; scroll-behavior: smooth; overflow-x: hidden; }
+        body { background-color: var(--bg-white); color: var(--deep-black); font-family: 'Segoe UI', sans-serif; margin: 0; text-align: center; scroll-behavior: smooth; overflow-x: hidden; }
         
-        /* شاشة ترحيب رسمية */
-        #welcome-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--deep-black); display: flex; align-items: center; justify-content: center; z-index: 10000; transition: 1s cubic-bezier(0.4, 0, 0.2, 1); }
+        /* شاشة الترحيب: الخلفية بيضاء، الكلام أسود، الزرار أزرق */
+        #welcome-overlay { 
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+            background: var(--bg-white); /* خلفية بيضاء */
+            display: flex; align-items: center; justify-content: center; 
+            z-index: 10000; transition: 1.2s cubic-bezier(0.4, 0, 0.2, 1); 
+        }
         .welcome-box { text-align: center; }
-        .welcome-logo { width: 140px; height: 140px; margin-bottom: 25px; border-radius: 50%; border: 2px solid var(--pure-white); }
-        .welcome-box h2 { font-size: 45px; font-weight: 900; color: var(--pure-white); margin: 0; }
-        .welcome-box p { color: #888; letter-spacing: 5px; text-transform: uppercase; margin-top: 10px; font-weight: bold; }
-        .start-btn { background: var(--main-blue); color: white; padding: 18px 60px; border: none; border-radius: 4px; font-weight: 900; cursor: pointer; margin-top: 45px; text-transform: uppercase; transition: 0.3s; letter-spacing: 2px; }
-        .start-btn:hover { background: white; color: black; }
+        .welcome-logo { width: 150px; height: 150px; margin-bottom: 25px; border-radius: 50%; border: 3px solid var(--main-blue); }
+        .welcome-box h2 { font-size: 50px; font-weight: 900; color: var(--deep-black); margin: 0; }
+        .welcome-box p { color: var(--text-gray); letter-spacing: 5px; text-transform: uppercase; margin-top: 10px; font-weight: bold; }
+        .start-btn { 
+            background: var(--main-blue); /* الزرار أزرق */
+            color: white; padding: 18px 60px; border: none; border-radius: 50px; 
+            font-weight: 900; cursor: pointer; margin-top: 45px; text-transform: uppercase; 
+            transition: 0.4s; letter-spacing: 3px; 
+        }
+        .start-btn:hover { background: var(--deep-black); color: white; }
 
         #main-site { opacity: 0; transition: 1s ease-in-out; display: none; perspective: 1500px; }
         
-        nav { width: 100%; padding: 25px 8%; display: flex; justify-content: space-between; align-items: center; box-sizing: border-box; border-bottom: 1px solid #eee; }
-        .nav-brand { display: flex; align-items: center; gap: 12px; }
-        .nav-logo-img { width: 45px; height: 45px; border-radius: 50%; border: 1px solid var(--deep-black); }
-        .nav-text { font-weight: 900; color: var(--deep-black); letter-spacing: 2px; font-size: 20px; }
+        nav { width: 100%; padding: 30px 8%; display: flex; justify-content: flex-start; align-items: center; box-sizing: border-box; border-bottom: 1px solid #eee; }
+        .nav-brand { display: flex; align-items: center; gap: 15px; }
+        .nav-logo-img { width: 45px; height: 45px; border-radius: 50%; border: 1px solid var(--main-blue); }
+        .nav-text { font-weight: 900; color: var(--main-blue); letter-spacing: 2px; font-size: 20px; }
 
-        header { padding: 60px 20px 40px; background: var(--soft-gray); }
-        h1 { color: var(--deep-black); font-size: clamp(40px, 7vw, 75px); margin: 0; font-weight: 900; }
-        .job-tag { color: var(--main-blue); font-size: 16px; letter-spacing: 4px; font-weight: 700; text-transform: uppercase; margin-top: 10px; display: block; }
-        .about-section { max-width: 800px; margin: 30px auto; color: #444; font-size: 19px; line-height: 1.6; }
+        header { padding: 40px 20px 30px; }
+        h1 { color: var(--deep-black); font-size: clamp(45px, 8vw, 80px); margin: 0; font-weight: 900; }
+        .job-tag { color: var(--main-blue); font-size: 18px; letter-spacing: 5px; font-weight: 600; text-transform: uppercase; margin-top: 5px; display: block; }
 
-        .section-title { text-align: left; margin: 80px 0 40px 10%; color: var(--deep-black); border-left: 6px solid var(--main-blue); padding-left: 20px; font-weight: 900; font-size: 24px; text-transform: uppercase; }
+        .section-title { text-align: left; margin: 60px 0 30px 10%; color: var(--deep-black); border-left: 5px solid var(--main-blue); padding-left: 20px; font-weight: bold; font-size: 24px; text-transform: uppercase; }
         
-        .grid-container, .process-flow { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; padding: 0 8%; margin-bottom: 60px; }
-        .card-3d, .process-step { background: var(--pure-white); border: 1px solid #ddd; padding: 40px 20px; min-width: 170px; flex: 1; border-radius: 15px; transition: 0.5s; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
-        
-        .card-3d:hover, .process-step:hover { transform: translateY(-10px); border-color: var(--main-blue); box-shadow: 0 15px 30px rgba(0, 70, 173, 0.1); }
-        
+        /* عرض الكروت في صفوف */
+        .grid-container, .process-flow { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; padding: 0 8%; margin-bottom: 50px; }
+        .card-3d, .process-step { background: var(--bg-white); border: 1px solid #ddd; padding: 40px 20px; min-width: 170px; flex: 1; border-radius: 20px; transition: 0.5s; }
+        .card-3d:hover, .process-step:hover { transform: translateY(-10px); border-color: var(--main-blue); box-shadow: 0 15px 30px rgba(0,0,0,0.05); }
         .card-3d i, .process-step i { font-size: 45px; margin-bottom: 20px; display: block; color: var(--main-blue); }
-        .card-3d span, .process-step h4 { font-size: 14px; font-weight: 800; color: var(--deep-black); display: block; text-transform: uppercase; }
+        .card-3d span, .process-step h4 { font-size: 14px; font-weight: 800; color: var(--deep-black); text-transform: uppercase; }
 
         /* المشاريع */
-        .project-item { display: flex; align-items: center; margin: 40px 10%; background: var(--pure-white); border: 1px solid #eee; border-radius: 20px; overflow: hidden; transition: 0.5s; }
-        .project-item:hover { box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
-        .p-img { width: 50%; } .p-img img { width: 100%; display: block; }
-        .p-text { width: 50%; padding: 50px; text-align: left; }
-        .btn-view { background: var(--main-blue); color: white; padding: 12px 30px; border-radius: 5px; cursor: pointer; display: inline-block; margin-top: 25px; font-weight: 700; text-decoration: none; transition: 0.3s; }
-        .btn-view:hover { background: var(--deep-black); }
+        .project-item { display: flex; align-items: center; margin: 40px 10%; background: var(--bg-white); border: 1px solid #eee; border-radius: 25px; overflow: hidden; }
+        .p-img { width: 55%; } .p-img img { width: 100%; display: block; }
+        .p-text { width: 45%; padding: 40px; text-align: left; }
+        .btn-view { border: 2px solid var(--main-blue); color: var(--main-blue); padding: 12px 30px; border-radius: 10px; cursor: pointer; display: inline-block; margin-top: 20px; font-weight: 800; text-decoration: none; transition: 0.3s; }
+        .btn-view:hover { background: var(--main-blue); color: white; }
 
-        footer { padding: 80px 20px; background: var(--deep-black); color: white; }
-        .social-icons a { color: var(--pure-white); font-size: 25px; margin: 0 20px; transition: 0.3s; }
-        .social-icons a:hover { color: var(--main-blue); }
+        #case-study-view { display:none; background: var(--bg-white); padding: 80px 5%; }
+        .case-header { max-width: 1000px; margin: 0 auto 40px; text-align: left; background: #fcfcfc; padding: 40px; border-radius: 25px; border-left: 6px solid var(--main-blue); }
     </style>
 </head>
 <body>
@@ -77,21 +81,15 @@
 
 <div id="main-site">
     <nav>
-        <div class="nav-brand">
-            <img src="logo.png" class="nav-logo-img">
-            <span class="nav-text">AGBINSIGHTS</span>
-        </div>
+        <div class="nav-brand"><img src="logo.png" class="nav-logo-img"><span class="nav-text">AGBINSIGHTS</span></div>
     </nav>
 
     <header>
         <h1>Ahmed Gharib</h1>
         <span class="job-tag">Data Analyst</span>
-        <div class="about-section">
-            I turn raw data into <b>meaningful stories</b>. Specialized in Power BI and Excel to help businesses make smarter decisions.
-        </div>
     </header>
 
-    <div class="section-title">01. Process</div>
+    <div class="section-title">01. Journey</div>
     <div class="process-flow">
         <div class="process-step"><i class="fas fa-database"></i><h4>Extract</h4></div>
         <div class="process-step"><i class="fas fa-broom"></i><h4>Clean</h4></div>
@@ -106,26 +104,30 @@
         <div class="card-3d"><i class="fas fa-project-diagram"></i><span>Modeling</span></div>
         <div class="card-3d"><i class="fas fa-calculator"></i><span>DAX</span></div>
         <div class="card-3d"><i class="fas fa-server"></i><span>ETL</span></div>
-        <div class="card-3d"><i class="fas fa-eye"></i><span>Visualization</span></div>
+        <div class="card-3d"><i class="fas fa-eye"></i><span>Viz</span></div>
     </div>
 
     <div class="section-title">03. Projects</div>
     <div class="project-item">
         <div class="p-img"><img src="hr.png.png"></div>
         <div class="p-text">
-            <h3>HR Attrition Analysis</h3>
-            <p style="color:#555;">Data-driven insights into employee retention.</p>
+            <h3>HR Analysis</h3>
             <div class="btn-view" onclick="showStudy('hr')">View Details</div>
         </div>
     </div>
-
-    <footer>
-        <div class="social-icons">
-            <a href="https://www.linkedin.com/in/ahmed-gharib-20989a272/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-            <a href="mailto:info@agbinsights.com"><i class="far fa-envelope"></i></a>
+    <div class="project-item" style="flex-direction: row-reverse;">
+        <div class="p-img"><img src="sales.png1.png"></div>
+        <div class="p-text" style="text-align: right;">
+            <h3>Sales Performance</h3>
+            <div class="btn-view" onclick="showStudy('sales')">View Details</div>
         </div>
-        <p style="margin-top: 30px; font-size: 12px; color: #666;">© AHMED GHARIB | AGBINSIGHTS</p>
-    </footer>
+    </div>
+</div>
+
+<div id="case-study-view">
+    <div onclick="hideStudy()" style="color:var(--main-blue); cursor:pointer; margin-bottom:40px; font-weight:bold;">← BACK</div>
+    <div id="case-header-content"></div>
+    <div id="study-images"></div>
 </div>
 
 <script>
@@ -137,9 +139,34 @@
             const main = document.getElementById('main-site'); 
             main.style.display = 'block'; 
             setTimeout(() => main.style.opacity = '1', 50); 
-        }, 1000);
+        }, 1200);
     }
-    // باقي الـ Functions بتاعة الـ Case Study تضاف هنا حسب رغبتك
+
+    const projectDetails = {
+        'hr': { title: "HR Attrition Analysis", challenge: "High turnover rates.", solution: "Power BI dashboard.", impact: "Reduced turnover by 15%.", imgs: ['hr.png.png', 'hr.png2.png'] },
+        'sales': { title: "Sales Performance Hub", challenge: "Disconnected data.", solution: "Unified ETL pipeline.", impact: "25% accuracy increase.", imgs: ['sales.png1.png', 'sales.png2.png'] }
+    };
+
+    function showStudy(id) {
+        const d = projectDetails[id];
+        document.getElementById('case-header-content').innerHTML = `
+            <div class="case-header">
+                <h2>${d.title}</h2>
+                <div style="display:grid; grid-template-columns: 1fr 1fr; gap:20px;">
+                    <div><b>CHALLENGE:</b><br>${d.challenge}</div>
+                    <div><b>RESULT:</b><br>${d.impact}</div>
+                </div>
+            </div>`;
+        document.getElementById('study-images').innerHTML = d.imgs.map(img => `<img src="${img}" style="width:100%; margin-bottom:20px; border-radius:15px; border:1px solid #eee;">`).join('');
+        document.getElementById('main-site').style.display = 'none';
+        document.getElementById('case-study-view').style.display = 'block';
+        window.scrollTo(0,0);
+    }
+
+    function hideStudy() { 
+        document.getElementById('main-site').style.display = 'block'; 
+        document.getElementById('case-study-view').style.display = 'none'; 
+    }
 </script>
 </body>
 </html>
