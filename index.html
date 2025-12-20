@@ -44,8 +44,9 @@
             direction: ltr !important; /* هذا السطر يضمن بقاء اللوجو يسار واللغات يمين دائماً */
         }
         .nav-brand { display: flex; align-items: center; gap: 10px; }
-        .nav-logo-img { width: 35px; height: 35px; border-radius: 50%; }
+        ..nav-logo-img { height: 50px; width: auto; }
         .nav-text { font-weight: 900; color: var(--main-blue); font-size: 18px; }
+        .welcome-logo { width: 150px; height: auto; margin-bottom: 20px; }
 
         .lang-switch { display: flex; gap: 8px; align-items: center; }
         .flag-btn { width: 28px; height: 28px; cursor: pointer; border-radius: 50%; opacity: 0.4; transition: 0.3s; object-fit: cover; border: 1px solid #ddd; }
@@ -104,7 +105,7 @@
 
 <div id="welcome-overlay">
     <div class="welcome-box">
-        <src="agb-logo.png.jpg" class="welcome-logo">
+        <img src="agb-logo.png.jpg" class="welcome-logo">
         <h2 id="welcome-name">Ahmed Gharib</h2>
         <p>Turning Complex Data into Strategic Assets</p> 
         <button class="start-btn" onclick="startExploring()" id="welcome-btn">Explore Insights</button>
@@ -308,6 +309,7 @@
 </script>
 </body>
 </html>
+
 
 
 
