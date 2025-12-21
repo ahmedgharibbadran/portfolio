@@ -109,11 +109,27 @@ body.rtl .section-title { text-align: right; border-left: none; border-right: 5p
             cursor: default; 
             text-align: center;
         }
-/* لضمان إن الموبايل يفضل محتفظ بشكله (مثلاً أيقونتين جنب بعض) */
+/* التعديل المظبوط للموبايل */
 @media (max-width: 480px) {
+    .grid-container, .process-flow {
+        padding: 0 5%; /* تقليل الهوامش لتوفير مساحة */
+        gap: 10px;
+    }
     .card-3d, .process-step {
-        flex: 1 1 calc(50% - 20px); 
-        min-width: 120px;
+        flex: 1 1 calc(50% - 15px); /* يضمن ظهور عنصرين في كل سطر */
+        min-width: 130px;
+        padding: 15px 5px; 
+        flex-direction: column !important; /* يخلي الأيقونة فوق النص عشان ميزنقوش بعض */
+        text-align: center !important;
+        justify-content: center !important;
+    }
+    .card-3d i, .process-step i {
+        font-size: 35px; /* تصغير بسيط للأيقونة عشان تناسب حجم الكرت */
+        margin-bottom: 10px;
+    }
+    .card-3d span, .process-step h4 {
+        font-size: 13px; /* حجم خط مناسب للموبايل */
+        display: block;
     }
 }
 /* تنسيق العناصر الأساسي لضمان وجود الأيقونة بجانب النص */
@@ -471,6 +487,7 @@ function showJourney(id) {
 </script>
 </body>
 </html>
+
 
 
 
