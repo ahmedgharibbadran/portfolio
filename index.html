@@ -56,17 +56,20 @@
         .nav-logo-img:hover { transform: scale(1.1); filter: drop-shadow(0 0 10px rgba(0, 86, 179, 0.2)); }
         .lang-switch { display: flex; gap: 12px; align-items: center; }
         }
-       /* شكل الأعلام الأساسي (دائري وملون) */
+      /* شكل الأعلام النهائي - دائري ملون */
         .flag-btn { 
             width: 32px !important; 
             height: 32px !important; 
+            min-width: 32px !important;
+            min-height: 32px !important;
             cursor: pointer; 
-            border-radius: 50% !important; /* هذا السطر سيجعلها دائرية فوراً */
+            border-radius: 50% !important; 
+            overflow: hidden !important;
+            object-fit: cover !important; 
             opacity: 0.8; 
             transition: 0.3s; 
-            object-fit: cover !important; 
             border: 2px solid transparent !important;
-            filter: grayscale(0%) !important; /* يضمن بقاء الألوان طبيعية */
+            display: inline-block !important;
         }
 
         .flag-btn:hover { 
@@ -74,12 +77,13 @@
             transform: scale(1.1); 
         }
 
-        /* تمييز العلم النشط بالبرواز الأزرق */
+        /* تمييز العلم النشط */
         .flag-btn.active { 
             opacity: 1 !important; 
             border: 2px solid var(--main-blue) !important; 
             transform: scale(1.15);
-            box-shadow: 0 0 10px rgba(0, 86, 179, 0.3);
+            box-shadow: 0 0 10px rgba(0, 86, 179, 0.4);
+        }
         }
         header { padding: 50px 20px; }
         h1 { font-size: clamp(35px, 8vw, 75px); margin: 0; font-weight: 900; }
@@ -353,6 +357,7 @@
 </script>
 </body>
 </html>
+
 
 
 
