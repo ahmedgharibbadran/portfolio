@@ -146,7 +146,7 @@ body.rtl .section-title { text-align: right; border-left: none; border-right: 5p
             border-radius: 20px; 
             overflow: hidden; 
             width: 100%; 
-        }
+        }</div>
 
         .p-img { width: 100%; line-height: 0; }
         .p-img img { width: 100%; height: auto; display: block; object-fit: cover; }
@@ -216,24 +216,46 @@ body.rtl .section-title { text-align: right; border-left: none; border-right: 5p
         <p class="about-text" id="about-me"></p>
     </header>
 
-    <div class="section-title" id="title-journey"></div>
-    <div class="process-flow">
-      <div class="process-step" onclick="showJourney('understand')" style="cursor: pointer;"><i class="fas fa-bullseye"></i><h4 id="step1"></h4></div>
-        <div class="process-step" onclick="showJourney('extract')" style="cursor: pointer;"><i class="fas fa-database"></i><h4 id="step2"></h4></div>
-        <div class="process-step" onclick="showJourney('clean')" style="cursor: pointer;"><i class="fas fa-broom"></i><h4 id="step3"></h4></div>
-        <div class="process-step" onclick="showJourney('model')" style="cursor: pointer;"><i class="fas fa-layer-group"></i><h4 id="step4"></h4></div>
-        <div class="process-step" onclick="showJourney('insight')" style="cursor: pointer;"><i class="fas fa-chart-line"></i><h4 id="step5"></h4></div>
+  <div class="section-title" id="title-journey"></div>
+<div class="process-flow">
+    <div class="process-step" onclick="showJourney('understand')" style="cursor: pointer;"><i class="fas fa-bullseye"></i><h4 id="step1"></h4></div>
+    <div class="process-step" onclick="showJourney('extract')" style="cursor: pointer;"><i class="fas fa-database"></i><h4 id="step2"></h4></div>
+    <div class="process-step" onclick="showJourney('clean')" style="cursor: pointer;"><i class="fas fa-broom"></i><h4 id="step3"></h4></div>
+    <div class="process-step" onclick="showJourney('model')" style="cursor: pointer;"><i class="fas fa-project-diagram"></i><h4 id="step4"></h4></div>
+ <div class="process-step" onclick="showJourney('insight')" style="cursor: pointer;"><i class="fas fa-chart-line"></i><h4 id="step5"></h4></div>
+</div> 
+<div class="section-title" id="title-expertise"></div>.
+    ### 2. إصلاح كلمة "undefined"
+في الصورة رقم (101)، تظهر الترجمة العربية والإسبانية لديك، ولكنك لم تضف المفتاح `step5` بداخلها. الكود في السطر 350 يبحث عن `t.step5` ولا يجده فيظهر undefined.
 
-    <div class="section-title" id="title-expertise"></div>
-    <div class="grid-container">
-        <div class="card-3d"><i class="fas fa-chart-bar"></i><span>Power BI</span></div>
-        <div class="card-3d"><i class="fas fa-file-excel"></i><span>Excel</span></div>
-        <div class="card-3d"><i class="fas fa-project-diagram"></i><span id="skill3"></span></div>
-        <div class="card-3d"><i class="fas fa-calculator"></i><span id="skill4"></span></div>
-        <div class="card-3d"><i class="fas fa-server"></i><span>ETL</span></div>
-        <div class="card-3d"><i class="fas fa-eye"></i><span id="skill6"></span></div>
-    </div>
+**التعديل المطلوب في كائن `translations`:**
+اذهب إلى السطر 287 (بداية القسم العربي `ar`) وأضف `step5` كما يلي:
+* **داخل `ar`:** أضف `"step5": "رؤية",`
+* **داخل `es`:** أضف `"step5": "Perspectiva",`
+* **داخل `en`:** تأكد من وجود `"step5": "Insight",`
 
+---
+
+### 3. إصلاح مشكلة الصفحة الفاضية
+الأيقونات تفتح صفحة فاضية لأن الدالة `showJourney` في السطر 435 تعتمد على جلب بيانات من `journeyData`. إذا كانت الكلمة المكتوبة في الـ `onclick` لا تطابق المفتاح الموجود في البيانات، ستظهر فارغة.
+
+**تأكد من مطابقة هذه الكلمات حرفياً:**
+* في السطر 225: استخدم `showJourney('insight')`.
+* في السطر 347: تأكد من وجود مفتاح بنفس الاسم `insight: { ... }` داخل كائن `journeyData`. (أنت قمت بإضافته بالفعل في الصورة 97 وهو صحيح، المشكلة فقط كانت في تداخل الـ DIVs الذي يمنع الدالة من العمل أحياناً).
+
+### ملخص الخطوات الآن:
+1. اذهب للسطر **226** وتأكد من وجود `</div>` لإغلاق قسم الرحلة.
+2. اذهب للسطر **294** وأضف `"step5": "رؤية",` داخل قسم الترجمة العربية.
+3. اضغط على **Commit changes** الأخضر لحفظ التعديلات.
+
+**هل تود أن أصيغ لك كائن `translations` بالكامل لتنسخه وتضمن عدم وجود أخطاء في الفواصل؟**
+    <div class="card-3d"><i class="fas fa-chart-bar"></i><span>Power BI</span></div>
+    <div class="card-3d"><i class="fas fa-file-excel"></i><span>Excel</span></div>
+    <div class="card-3d"><i class="fas fa-project-diagram"></i><span id="skill3"></span></div>
+    <div class="card-3d"><i class="fas fa-calculator"></i><span id="skill4"></span></div>
+    <div class="card-3d"><i class="fas fa-server"></i><span>ETL</span></div>
+    <div class="card-3d"><i class="fas fa-eye"></i><span id="skill6"></span></div>
+</div>
     <div class="section-title" id="title-projects"></div>
     <div class="projects-wrapper">
         <div class="project-item">
@@ -272,43 +294,43 @@ body.rtl .section-title { text-align: right; border-left: none; border-right: 5p
     let lastScrollPos = 0; 
 
 const translations = {
-        en: {
-            name: "Ahmed Gharib", 
-            welcomeBtn: "Explore Insights", 
-            job: "Data Analyst",
-            tagline: "Turning Complex Data into Actionable Insights",
-            about: "I transform complex data into <b>actionable insights</b> that drive business growth. Specialized in Power BI & Excel.",
-            journey: "01. Journey", expertise: "02. Expertise", projects: "03. Projects",
-            step1: "Understand", step2: "Extract", step3: "Clean", step4: "Model", step5: "Insight",
-            skill3: "Modeling", skill4: "DAX Logic", skill6: "Viz",
-            viewBtn: "View Details", back: "← BACK TO HOME",
-            obj: "OBJECTIVE", ch: "CHALLENGE", sol: "SOLUTION", imp: "IMPACT", tool: "TOOLS"
-        },
-        ar: {
-            name: "أحمد غريب", 
-            welcomeBtn: "استكشاف التفاصيل", 
-            job: "محلل بيانات",
-            tagline: "تحويل البيانات المعقدة إلى رؤى استراتيجية",
-            about: "أقوم بتحويل البيانات المعقدة إلى <b>رؤى قابلة للتنفيذ</b> تدفع نمو الأعمال. متخصص في Power BI و Excel.",
-            journey: "01. الرحلة", expertise: "02. الخبرات", projects: "03. المشاريع",
-            step1: "الفهم", step2: "استخراج", step3: "تنظيف", step4: "نمذجة", step5: "رؤية",
-            skill3: "النمذجة", skill4: "منطق DAX", skill6: "تصوير",
-            viewBtn: "عرض التفاصيل", back: "→ العودة للرئيسية",
-            obj: "الهدف", ch: "التحدي", sol: "الحل", imp: "الأثر", tool: "الأدوات"
-        },
-        es: {
-            name: "Ahmed Gharib", 
-            welcomeBtn: "Explorar Detalles", 
-            job: "Analista de Datos",
-            tagline: "Convirtiendo Datos Complejos en Perspectivas Accionables",
-            about: "Convierto datos complejos en <b>perspectivas accionables</b> que impulsan el crecimiento. Especialista en Power BI y Excel.",
-            journey: "01. Trayectoria", expertise: "02. Experiencia", projects: "03. Proyectos",
-            step1: "Entender", step2: "Extraer", step3: "Limpiar", step4: "Modelar", step5: "Perspectiva",
-            skill3: "Modelado", skill4: "Lógica DAX", skill6: "Viz",
-            viewBtn: "Ver Detalles", back: "← VOLVER AL INICIO",
-            obj: "OBJETIVO", ch: "DESAFÍO", sol: "SOLUCIÓN", imp: "IMPACTO", tool: "HERRAMIENTAS"
-        }
-    }; // تأكد من وجود هذا القوس والفاصلة المنقوطة هنا
+    en: {
+        name: "Ahmed Gharib",
+        welcomeBtn: "Explore Insights",
+        job: "Data Analyst",
+        tagline: "Turning Complex Data into Actionable Insights",
+        about: "I transform complex data into <b>actionable insights</b> that drive business growth. Specialized in Power BI & Excel.",
+        journey: "01. Journey", expertise: "02. Expertise", projects: "03. Projects",
+        step1: "Understand", step2: "Extract", step3: "Clean", step4: "Model", step5: "Insight",
+        skill3: "Modeling", skill4: "DAX Logic", skill6: "Viz",
+        viewBtn: "View Details", back: "← BACK TO HOME",
+        obj: "OBJECTIVE", ch: "CHALLENGE", sol: "SOLUTION", imp: "IMPACT", tool: "TOOLS"
+    },
+    ar: {
+        name: "أحمد غريب",
+        welcomeBtn: "استكشاف التفاصيل",
+        job: "محلل بيانات",
+        tagline: "تحويل البيانات المعقدة إلى رؤى استراتيجية",
+        about: "أقوم بتحويل البيانات المعقدة إلى <b>رؤى قابلة للتنفيذ</b> تدفع نمو الأعمال. متخصص في Power BI و Excel.",
+        journey: "01. الرحلة", expertise: "02. الخبرات", projects: "03. المشاريع",
+        step1: "استيعاب", step2: "استخراج", step3: "تنظيف", step4: "نمذجة", step5: "رؤية",
+        skill3: "النمذجة", skill4: "منطق DAX", skill6: "تصوير",
+        viewBtn: "عرض التفاصيل", back: "← العودة للرئيسية",
+        obj: "الهدف", ch: "التحدي", sol: "الحل", imp: "الأثر", tool: "الأدوات"
+    },
+    es: {
+        name: "Ahmed Gharib",
+        welcomeBtn: "Explorar Detalles",
+        job: "Analista de Datos",
+        tagline: "Convirtiendo Datos Complejos en Perspectivas Accionables",
+        about: "Convierto datos complejos en <b>perspectivas accionables</b> que impulsan el crecimiento. Especialista en Power BI y Excel.",
+        journey: "01. Trayectoria", expertise: "02. Experiencia", projects: "03. Proyectos",
+        step1: "Entender", step2: "Extraer", step3: "Limpiar", step4: "Modelar", step5: "Perspectiva",
+        skill3: "Modelado", skill4: "Lógica DAX", skill6: "Viz",
+        viewBtn: "Ver Detalles", back: "← VOLVER AL INICIO",
+        obj: "OBJETIVO", ch: "DESAFÍO", sol: "SOLUCIÓN", imp: "IMPACTO", tool: "HERRAMIENTAS"
+    }
+}; // تأكد من وجود هذا القوس والفاصلة المنقوطة هنا
     const projectData = {
         hr: { 
             en: { title: "HR Attrition Analysis", o: "Identify key factors behind employee turnover and improve retention.", c: "The company faced high turnover rates in specific departments with no clear reason.", s: "Developed an interactive Power BI dashboard with advanced DAX to track attrition by age, department, and salary.", i: "Identified a 15% turnover reduction opportunity by addressing salary bands.", t: "Power BI, Power Query, DAX" },
@@ -452,6 +474,7 @@ function showJourney(id) {
 </script>
 </body>
 </html>
+
 
 
 
