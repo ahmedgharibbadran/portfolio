@@ -38,20 +38,26 @@
         
         /* التعديل هنا: تثبيت مكان اللوجو واللغات */
         nav { 
-            width: 100%; padding: 5px 5%; 
-            display: flex; justify-content: space-between; align-items: center; 
-           box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            direction: ltr !important; /* هذا السطر يضمن بقاء اللوجو يسار واللغات يمين دائماً */
+            width: 100%; 
+            padding: 8px 5%; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            background: white;
+            position: sticky; 
+            top: 0; 
+            z-index: 1000;
+            box-sizing: border-box; /* يمنع الهيدر من الخروج عن حدود الشاشة */
+            direction: ltr !important; /* يحافظ على اللوجو يسار واللغات يمين */
         }
         .nav-brand { display: flex; align-items: center; gap: 10px; }
-        .nav-logo-img { height: 45px; width: auto; }
-        .nav-text { font-weight: 900; color: var(--main-blue); font-size: 16px; }
-        .welcome-logo { width: 150px; height: auto; margin-bottom: 20px; }
+        .nav-logo-img { height: 48px; width: auto; } /* المقاس المثالي للوجو */
+        .nav-text { font-weight: 900; color: var(--main-blue); font-size: 17px; }
 
         .lang-switch { display: flex; gap: 8px; align-items: center; }
         .flag-btn { width: 28px; height: 28px; cursor: pointer; border-radius: 50%; opacity: 0.4; transition: 0.3s; object-fit: cover; border: 1px solid #ddd; }
         .flag-btn.active { opacity: 1; border: 2px solid var(--main-blue); transform: scale(1.1); }
-
         header { padding: 50px 20px; }
         h1 { font-size: clamp(35px, 8vw, 75px); margin: 0; font-weight: 900; }
         .job-tag { color: var(--main-blue); font-size: 14px; letter-spacing: 3px; font-weight: 600; text-transform: uppercase; }
@@ -188,7 +194,9 @@
 
     const translations = {
         en: {
-            name: "Ahmed Gharib", welcomeBtn: "Open Portfolio", job: "Data Analyst",
+            name: "Ahmed Gharib", 
+            welcomeBtn: "Explore Insights", 
+            job: "Data Analyst",
             about: "I turn raw data into <b>meaningful stories</b>. Specialized in Power BI and Excel to help businesses make smarter decisions.",
             journey: "01. Journey", expertise: "02. Expertise", projects: "03. Projects",
             step1: "Extract", step2: "Clean", step3: "Model", step4: "Insight",
@@ -197,7 +205,9 @@
             obj: "OBJECTIVE", ch: "CHALLENGE", sol: "SOLUTION", imp: "IMPACT", tool: "TOOLS"
         },
         ar: {
-            name: "أحمد غريب", welcomeBtn: "افتح المعرض", job: "محلل بيانات",
+            name: "أحمد غريب", 
+            welcomeBtn: "استكشاف التفاصيل", 
+            job: "محلل بيانات",
             about: "أقوم بتحويل البيانات الخام إلى <b>قصص ذات مغزى</b>. متخصص في Power BI و Excel لمساعدة الشركات على اتخاذ قرارات ذكية.",
             journey: "01. الرحلة", expertise: "02. الخبرات", projects: "03. المشاريع",
             step1: "استخراج", step2: "تنظيف", step3: "نمذجة", step4: "رؤية",
@@ -206,7 +216,9 @@
             obj: "الهدف", ch: "التحدي", sol: "الحل", imp: "الأثر", tool: "الأدوات"
         },
         es: {
-            name: "Ahmed Gharib", welcomeBtn: "Abrir Portafolio", job: "Analista de Datos",
+            name: "Ahmed Gharib", 
+            welcomeBtn: "Explorar Detalles", 
+            job: "Analista de Datos",
             about: "Convierto datos sin procesar en <b>historias significativas</b>. Especializado en Power BI y Excel para ayudar a las empresas.",
             journey: "01. Trayectoria", expertise: "02. Experiencia", projects: "03. Proyectos",
             step1: "Extraer", step2: "Limpiar", step3: "Modelar", step4: "Perspectiva",
@@ -309,6 +321,7 @@
 </script>
 </body>
 </html>
+
 
 
 
