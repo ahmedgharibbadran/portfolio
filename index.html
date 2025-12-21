@@ -37,7 +37,8 @@
         #main-site { opacity: 0; display: none; }
         
         /* التعديل هنا: تثبيت مكان اللوجو واللغات */
-nav { 
+/* التعديل النهائي: تثبيت مكان اللوجو واللغات وضبط المساحات */
+        nav { 
             width: 100%; 
             padding: 10px 5%; 
             display: flex; 
@@ -74,18 +75,59 @@ nav {
             border: 2px solid var(--main-blue) !important; 
             transform: scale(1.15);
         }
+    /* التنسيق العام للأقسام والعناصر */
+header { padding: 60px 20px; text-align: center; }
+h1 { font-size: clamp(35px, 8vw, 75px); margin: 0; font-weight: 900; }
+.job-tag { color: var(--main-blue); font-size: 14px; letter-spacing: 3px; font-weight: 600; text-transform: uppercase; display: block; margin-top: 10px; }
+.about-text { max-width: 800px; margin: 25px auto; color: var(--text-gray); font-size: 17px; line-height: 1.6; }
 
-        header { padding: 30px 20px; } /* تقليل المساحة الكبيرة هنا */
-        h1 { font-size: clamp(35px, 8vw, 75px); margin: 0; font-weight: 900; }
-        .projects-wrapper { display: flex; flex-direction: column; gap: 30px; padding: 0 10%; }
-        .project-item { 
-            display: flex; flex-direction: column; background: #fff; 
-            border: 1px solid #eee; border-radius: 20px; overflow: hidden;
-            width: 100%; transition: 0.3s;
+.section-title { 
+    text-align: left; margin: 40px 0 20px 10%; color: var(--deep-black); 
+    border-left: 5px solid var(--main-blue); padding-left: 15px; 
+    font-weight: bold; font-size: 24px;
+}
+body.rtl .section-title { text-align: right; border-left: none; border-right: 5px solid var(--main-blue); padding-left: 0; padding-right: 15px; margin: 40px 10% 20px 0; }
+
+/* إصلاح شبكة المهارات والرحلة مع الحفاظ على وضع الموبايل */
+        .grid-container, .process-flow { 
+            display: flex; 
+            justify-content: center; 
+            gap: 15px; 
+            flex-wrap: wrap; 
+            padding: 0 10%; 
+            margin-bottom: 40px; 
         }
-        .p-img { width: 100%; }
-        .p-img img { width: 100%; display: block; object-fit: cover; }
-        .p-text { width: 100%; padding: 30px; text-align: center; box-sizing: border-box; }
+
+        .card-3d, .process-step { 
+            background: #fff; 
+            border: 1px solid #eee; 
+            padding: 25px 15px; 
+            flex: 1 1 130px; 
+            max-width: 200px;
+            border-radius: 15px; 
+            transition: all 0.3s ease; 
+            cursor: default; 
+            text-align: center;
+        }
+/* لضمان إن الموبايل يفضل محتفظ بشكله (مثلاً أيقونتين جنب بعض) */
+@media (max-width: 480px) {
+    .card-3d, .process-step {
+        flex: 1 1 calc(50% - 20px); 
+        min-width: 120px;
+    }
+}
+.card-3d i, .process-step i { font-size: 35px; margin-bottom: 15px; display: block; color: var(--main-blue); }
+
+/* تنسيق المشاريع */
+.projects-wrapper { display: flex; flex-direction: column; gap: 30px; padding: 0 10%; }
+.project-item { 
+    display: flex; flex-direction: column; background: #fff; 
+    border: 1px solid #eee; border-radius: 20px; overflow: hidden; width: 100%; 
+}
+@media (min-width: 768px) {
+    .project-item { flex-direction: row; }
+    .p-img, .p-text { width: 50%; }
+}
         
         @media (min-width: 768px) {
             .project-item { flex-direction: row; text-align: left; }
@@ -331,6 +373,7 @@ nav {
 </script>
 </body>
 </html>
+
 
 
 
