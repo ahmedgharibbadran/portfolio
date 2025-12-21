@@ -37,9 +37,9 @@
         #main-site { opacity: 0; display: none; }
         
         /* التعديل هنا: تثبيت مكان اللوجو واللغات */
-        nav { 
+nav { 
             width: 100%; 
-            padding: 8px 5%; 
+            padding: 10px 5%; 
             display: flex; 
             justify-content: space-between; 
             align-items: center; 
@@ -48,47 +48,35 @@
             position: sticky; 
             top: 0; 
             z-index: 1000;
-            box-sizing: border-box; /* يمنع الهيدر من الخروج عن حدود الشاشة */
-            direction: ltr !important; /* يحافظ على اللوجو يسار واللغات يمين */
-        }
-     .nav-brand { display: flex; align-items: center; gap: 10px; }
-        .nav-logo-img { height: 100px; width: auto; transition: 0.4s ease; cursor: pointer; } 
-        .nav-logo-img:hover { transform: scale(1.1); filter: drop-shadow(0 0 10px rgba(0, 86, 179, 0.2)); }
-        .lang-switch { display: flex; gap: 12px; align-items: center; }
-        }
-   https://github.com/ahmedgharibbadran/AGBINSGHTS/blob/main/index.html
-        }
-        .flag-btn:hover { 
-            opacity: 1; 
-            transform: scale(1.1); 
+            box-sizing: border-box;
+            direction: ltr !important;
         }
 
-        /* تمييز العلم النشط */
+        .nav-brand { display: flex; align-items: center; gap: 10px; }
+        .nav-logo-img { height: 50px; width: auto; transition: 0.4s ease; cursor: pointer; } 
+        .nav-logo-img:hover { transform: scale(1.1); }
+        
+        .lang-switch { display: flex; gap: 12px; align-items: center; }
+
+        .flag-btn { 
+            width: 32px !important; 
+            height: 32px !important; 
+            cursor: pointer; 
+            border-radius: 50% !important; 
+            opacity: 0.8; 
+            transition: 0.3s; 
+            object-fit: cover !important; 
+            border: 2px solid transparent !important;
+        }
+
         .flag-btn.active { 
             opacity: 1 !important; 
             border: 2px solid var(--main-blue) !important; 
             transform: scale(1.15);
-            box-shadow: 0 0 10px rgba(0, 86, 179, 0.4);
         }
-        }
-        header { padding: 50px 20px; }
+
+        header { padding: 30px 20px; } /* تقليل المساحة الكبيرة هنا */
         h1 { font-size: clamp(35px, 8vw, 75px); margin: 0; font-weight: 900; }
-        .job-tag { color: var(--main-blue); font-size: 14px; letter-spacing: 3px; font-weight: 600; text-transform: uppercase; }
-        .about-text { max-width: 800px; margin: 25px auto; color: var(--text-gray); font-size: 17px; line-height: 1.6; }
-
-        .section-title { text-align: left; margin: 40px 0 20px 10%; color: var(--deep-black); border-left: 5px solid var(--main-blue); padding-left: 15px; font-weight: bold; font-size: 22px; }
-        body.rtl .section-title { text-align: right; border-left: none; border-right: 5px solid var(--main-blue); padding-left: 0; padding-right: 15px; margin: 40px 10% 20px 0; }
-
-        .grid-container, .process-flow { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; padding: 0 10%; margin-bottom: 40px; }
-        .card-3d, .process-step { 
-            background: #fff; border: 1px solid #eee; padding: 25px 15px; 
-            min-width: 130px; flex: 1; border-radius: 15px; 
-            transition: all 0.3s ease; cursor: default;
-        }
-        .card-3d:hover, .process-step:hover { transform: translateY(-5px); box-shadow: var(--glow-effect); border-color: var(--main-blue); }
-        .card-3d i, .process-step i { font-size: 35px; margin-bottom: 15px; display: block; color: var(--main-blue); transition: 0.3s; }
-        .card-3d:hover i, .process-step:hover i { transform: scale(1.2); }
-
         .projects-wrapper { display: flex; flex-direction: column; gap: 30px; padding: 0 10%; }
         .project-item { 
             display: flex; flex-direction: column; background: #fff; 
@@ -343,6 +331,7 @@
 </script>
 </body>
 </html>
+
 
 
 
