@@ -218,37 +218,14 @@ body.rtl .section-title { text-align: right; border-left: none; border-right: 5p
 
   <div class="section-title" id="title-journey"></div>
 <div class="process-flow">
+ <div class="process-flow">
     <div class="process-step" onclick="showJourney('understand')" style="cursor: pointer;"><i class="fas fa-bullseye"></i><h4 id="step1"></h4></div>
     <div class="process-step" onclick="showJourney('extract')" style="cursor: pointer;"><i class="fas fa-database"></i><h4 id="step2"></h4></div>
     <div class="process-step" onclick="showJourney('clean')" style="cursor: pointer;"><i class="fas fa-broom"></i><h4 id="step3"></h4></div>
     <div class="process-step" onclick="showJourney('model')" style="cursor: pointer;"><i class="fas fa-project-diagram"></i><h4 id="step4"></h4></div>
- <div class="process-step" onclick="showJourney('insight')" style="cursor: pointer;"><i class="fas fa-chart-line"></i><h4 id="step5"></h4></div>
-</div> 
+    <div class="process-step" onclick="showJourney('insight')" style="cursor: pointer;"><i class="fas fa-chart-line"></i><h4 id="step5"></h4></div>
+</div>
 <div class="section-title" id="title-expertise"></div>.
-    ### 2. إصلاح كلمة "undefined"
-في الصورة رقم (101)، تظهر الترجمة العربية والإسبانية لديك، ولكنك لم تضف المفتاح `step5` بداخلها. الكود في السطر 350 يبحث عن `t.step5` ولا يجده فيظهر undefined.
-
-**التعديل المطلوب في كائن `translations`:**
-اذهب إلى السطر 287 (بداية القسم العربي `ar`) وأضف `step5` كما يلي:
-* **داخل `ar`:** أضف `"step5": "رؤية",`
-* **داخل `es`:** أضف `"step5": "Perspectiva",`
-* **داخل `en`:** تأكد من وجود `"step5": "Insight",`
-
----
-
-### 3. إصلاح مشكلة الصفحة الفاضية
-الأيقونات تفتح صفحة فاضية لأن الدالة `showJourney` في السطر 435 تعتمد على جلب بيانات من `journeyData`. إذا كانت الكلمة المكتوبة في الـ `onclick` لا تطابق المفتاح الموجود في البيانات، ستظهر فارغة.
-
-**تأكد من مطابقة هذه الكلمات حرفياً:**
-* في السطر 225: استخدم `showJourney('insight')`.
-* في السطر 347: تأكد من وجود مفتاح بنفس الاسم `insight: { ... }` داخل كائن `journeyData`. (أنت قمت بإضافته بالفعل في الصورة 97 وهو صحيح، المشكلة فقط كانت في تداخل الـ DIVs الذي يمنع الدالة من العمل أحياناً).
-
-### ملخص الخطوات الآن:
-1. اذهب للسطر **226** وتأكد من وجود `</div>` لإغلاق قسم الرحلة.
-2. اذهب للسطر **294** وأضف `"step5": "رؤية",` داخل قسم الترجمة العربية.
-3. اضغط على **Commit changes** الأخضر لحفظ التعديلات.
-
-**هل تود أن أصيغ لك كائن `translations` بالكامل لتنسخه وتضمن عدم وجود أخطاء في الفواصل؟**
     <div class="card-3d"><i class="fas fa-chart-bar"></i><span>Power BI</span></div>
     <div class="card-3d"><i class="fas fa-file-excel"></i><span>Excel</span></div>
     <div class="card-3d"><i class="fas fa-project-diagram"></i><span id="skill3"></span></div>
@@ -313,8 +290,8 @@ const translations = {
         tagline: "تحويل البيانات المعقدة إلى رؤى استراتيجية",
         about: "أقوم بتحويل البيانات المعقدة إلى <b>رؤى قابلة للتنفيذ</b> تدفع نمو الأعمال. متخصص في Power BI و Excel.",
         journey: "01. الرحلة", expertise: "02. الخبرات", projects: "03. المشاريع",
-        step1: "استيعاب", step2: "استخراج", step3: "تنظيف", step4: "نمذجة", step5: "رؤية",
-        skill3: "النمذجة", skill4: "منطق DAX", skill6: "تصوير",
+        step1: "الفهم", step2: "استخراج", step3: "تنظيف", step4: "نمذجة", step5: "رؤية",
+        skill3: "نمذجة", skill4: "منطق DAX", skill6: "تصوير",
         viewBtn: "عرض التفاصيل", back: "← العودة للرئيسية",
         obj: "الهدف", ch: "التحدي", sol: "الحل", imp: "الأثر", tool: "الأدوات"
     },
@@ -330,7 +307,7 @@ const translations = {
         viewBtn: "Ver Detalles", back: "← VOLVER AL INICIO",
         obj: "OBJETIVO", ch: "DESAFÍO", sol: "SOLUCIÓN", imp: "IMPACTO", tool: "HERRAMIENTAS"
     }
-}; // تأكد من وجود هذا القوس والفاصلة المنقوطة هنا
+};
     const projectData = {
         hr: { 
             en: { title: "HR Attrition Analysis", o: "Identify key factors behind employee turnover and improve retention.", c: "The company faced high turnover rates in specific departments with no clear reason.", s: "Developed an interactive Power BI dashboard with advanced DAX to track attrition by age, department, and salary.", i: "Identified a 15% turnover reduction opportunity by addressing salary bands.", t: "Power BI, Power Query, DAX" },
@@ -474,6 +451,7 @@ function showJourney(id) {
 </script>
 </body>
 </html>
+
 
 
 
