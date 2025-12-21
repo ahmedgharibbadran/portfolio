@@ -55,21 +55,20 @@
         .nav-logo-img { height: 100px; width: auto; transition: 0.4s ease; cursor: pointer; } 
         .nav-logo-img:hover { transform: scale(1.1); filter: drop-shadow(0 0 10px rgba(0, 86, 179, 0.2)); }
         .lang-switch { display: flex; gap: 12px; align-items: center; }
-        /* العلم بشكل عام يكون باهت وغير ملون تماماً */
-        .flag-btn { 
-            width: 32px; height: 32px; cursor: pointer; border-radius: 50%; 
-            opacity: 0.3; transition: 0.4s ease; object-fit: cover; 
-            border: 2px solid transparent; filter: grayscale(100%); 
         }
-
-        /* عند الوقوف بالماوس يظهر اللون قليلاً */
-        .flag-btn:hover { opacity: 0.7; filter: grayscale(0%); transform: scale(1.1); }
-
-        /* العلم المختار (النشط) يكون واضحاً جداً وعليه إطار أزرق */
+        .flag-btn { 
+            width: 30px; height: 30px; cursor: pointer; border-radius: 50%; 
+            opacity: 0.8; transition: 0.3s; object-fit: cover; 
+            border: 2px solid transparent; 
+        }
+        .flag-btn:hover { opacity: 1; transform: scale(1.1); }
+        
+        /* هذا الجزء هو المسؤول عن تمييز العلم النشط بالبرواز الأزرق */
         .flag-btn.active { 
-            opacity: 1 !important; filter: grayscale(0%) !important; 
-            border: 2px solid var(--main-blue); transform: scale(1.3); 
-            box-shadow: 0 0 12px rgba(0, 86, 179, 0.3);
+            opacity: 1 !important; 
+            border: 2px solid var(--main-blue) !important; 
+            transform: scale(1.15);
+            box-shadow: 0 0 10px rgba(0, 86, 179, 0.2);
         }
         header { padding: 50px 20px; }
         h1 { font-size: clamp(35px, 8vw, 75px); margin: 0; font-weight: 900; }
@@ -288,6 +287,8 @@
         document.getElementById('p1-btn').innerText = t.viewBtn;
         document.getElementById('p2-btn').innerText = t.viewBtn;
         document.getElementById('back-btn').innerText = t.back;
+       document.querySelectorAll('.flag-btn').forEach(f => f.classList.remove('active'));
+    if(document.getElementById('lang-' + currentLang)) document.getElementById('lang-' + currentLang).classList.add('active');
     }
 
     function setLang(lang) {
@@ -341,6 +342,7 @@
 </script>
 </body>
 </html>
+
 
 
 
