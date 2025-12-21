@@ -191,7 +191,8 @@
     let currentLang = localStorage.getItem('ahmedLang') || 'en';
     let lastScrollPos = 0; 
 
-   en: {
+  const translations = {
+        en: {
             name: "Ahmed Gharib", 
             welcomeBtn: "Explore Insights", 
             job: "Data Analyst",
@@ -227,6 +228,7 @@
             viewBtn: "Ver Detalles", back: "← VOLVER AL INICIO",
             obj: "OBJETIVO", ch: "DESAFÍO", sol: "SOLUCIÓN", imp: "IMPACTO", tool: "HERRAMIENTAS"
         }
+    }; // تأكد من وجود هذا القوس والفاصلة المنقوطة هنا
     const projectData = {
         hr: { 
             en: { title: "HR Attrition Analysis", o: "Identify key factors behind employee turnover and improve retention.", c: "The company faced high turnover rates in specific departments with no clear reason.", s: "Developed an interactive Power BI dashboard with advanced DAX to track attrition by age, department, and salary.", i: "Identified a 15% turnover reduction opportunity by addressing salary bands.", t: "Power BI, Power Query, DAX" },
@@ -324,6 +326,7 @@
 </script>
 </body>
 </html>
+
 
 
 
