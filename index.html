@@ -195,7 +195,6 @@
         .rating-input { width: 80%; padding: 12px; border: 1px solid #ddd; border-radius: 10px; margin-bottom: 10px; font-family: inherit; }
         .submit-rate-btn { background: var(--main-blue); color: white; border: none; padding: 10px 25px; border-radius: 8px; cursor: pointer; font-weight: bold; }
 
-        /* --- الفوتر --- */
         footer { 
             padding: 60px 20px; 
             background: #000000; 
@@ -422,7 +421,6 @@
 
     function updateUI() {
         const t = translations[currentLang];
-        const logoPath = isDarkMode ? 'agb-logo.png.1.jpeg' : 'agb-logo-png.png';
         
         document.body.className = currentLang === 'ar' ? 'rtl' : '';
         if (isDarkMode) document.body.classList.add('dark-theme');
@@ -514,7 +512,6 @@
         const newRate = document.createElement('div');
         newRate.className = "card-3d reveal active";
         
-        // كشف اللغة المكتوبة لتحديد اتجاه التقييم الجديد
         const isArabic = /[\u0600-\u06FF]/.test(comment);
         newRate.setAttribute('dir', isArabic ? 'rtl' : 'ltr');
         newRate.style.textAlign = isArabic ? 'right' : 'left';
