@@ -211,7 +211,6 @@
         body.dark-theme footer .social-icons a { color: #000000 !important; }
         body.dark-theme footer p { color: #000000 !important; opacity: 0.8; }
 
-        /* تعديل الخلفية للوضع الداكن لتطابق طلبك */
         body.dark-theme { --bg-white: #111111; --deep-black: #ffffff; --text-gray: #bbbbbb; }
         body.dark-theme .card-3d, body.dark-theme .process-step, body.dark-theme .project-item, body.dark-theme .case-header, body.dark-theme .rating-input-section { background: #000000; border-color: #222; }
         body.dark-theme nav { background: #111111; }
@@ -418,7 +417,7 @@
         insight: {
             en: { title: "Insight", desc: "Providing actionable insights and strategic recommendations." },
             ar: { title: "مرحلة الرؤية", desc: "تحويل البيانات إلى توصيات استراتيجية ورؤى قابلة للتنفيذ مباشرة." },
-            es: { title: "Perspectiva", desc: "Proporcionar рекомендации estratégicas." }
+            es: { title: "Perspectiva", desc: "Proporcionar recomendaciones estratégicas." }
         }
     };
 
@@ -428,11 +427,11 @@
         document.body.className = currentLang === 'ar' ? 'rtl' : '';
         if (isDarkMode) {
             document.body.classList.add('dark-theme');
-            // تغيير اللوجو للوضع الداكن
+            // تغيير اللوجو للوضع الداكن فقط (agb-logo.png.1.jpeg)
             document.getElementById('nav-logo-img').src = "agb-logo.png.1.jpeg";
             document.getElementById('welcome-logo-img').src = "agb-logo.png.1.jpeg";
         } else {
-            // تغيير اللوجو للوضع الفاتح
+            // تغيير اللوجو للوضع الفاتح (agb-logo-png.png)
             document.getElementById('nav-logo-img').src = "agb-logo-png.png";
             document.getElementById('welcome-logo-img').src = "agb-logo-png.png";
         }
@@ -583,7 +582,6 @@
         window.scrollTo(0,0);
     }
 
-    window.addEventListener("scroll", reveal);
     function reveal() {
         var reveals = document.querySelectorAll(".reveal");
         for (var i = 0; i < reveals.length; i++) {
@@ -594,7 +592,7 @@
             }
         }
     }
-    // تنفيذ التحديث الأولي عند التحميل
+    window.addEventListener("scroll", reveal);
     updateUI();
 </script>
 
