@@ -158,25 +158,23 @@ body.rtl .section-title { text-align: right; border-left: none; border-right: 5p
 
 /* تنسيق الأيقونات */
 .card-3d i, .process-step i {
-    font-size: 45px;
+    font-size: 32px;    /* الحجم الحالي ممتاز جداً */
     color: var(--main-blue);
+    opacity: 0.7;       /* أضف هذا السطر لجعل اللون الأزرق خفيفاً وغير ضخم */
     transition: all 0.3s ease;
-    margin-bottom: 0; /* لإلغاء الفجوة القديمة */
+    margin-bottom: 0; 
 }
-
 /* تأثير النور والحركة عند الوقوف (Hover) */
-.card-3d:hover, .process-step:hover {
-    transform: translateY(-5px);
-    border-color: var(--main-blue);
-    box-shadow: 0 0 20px rgba(0, 122, 255, 0.4); /* هذا هو تأثير النور */
+.card-3d:hover i, .process-step:hover i {
+    text-shadow: none !important; /* إلغاء التوهج يحافظ على نحافة الأيقونة */
+    opacity: 1;                  /* اللون يرجع قوياً فقط عند الإشارة بالماوس */
+    transform: scale(1.1);
 }
-
 /* زيادة توهج الأيقونة نفسها عند الوقوف */
 .card-3d:hover i, .process-step:hover i {
     text-shadow: 0 0 10px rgba(0, 122, 255, 0.6);
     transform: scale(1.1);
 }
-
 /* ضبط الاتجاه للعربي (يمين لليسار) */
 body.rtl .card-3d {
     flex-direction: row-reverse;
@@ -269,11 +267,11 @@ body.rtl .card-3d {
 
   <div class="section-title" id="title-journey"></div>
  <div class="process-flow">
-    <div class="process-step" onclick="showJourney('understand')" style="cursor: pointer;"><i class="fas fa-bullseye"></i><h4 id="step1"></h4></div>
-    <div class="process-step" onclick="showJourney('extract')" style="cursor: pointer;"><i class="fas fa-database"></i><h4 id="step2"></h4></div>
-    <div class="process-step" onclick="showJourney('clean')" style="cursor: pointer;"><i class="fas fa-broom"></i><h4 id="step3"></h4></div>
-    <div class="process-step" onclick="showJourney('model')" style="cursor: pointer;"><i class="fas fa-project-diagram"></i><h4 id="step4"></h4></div>
-    <div class="process-step" onclick="showJourney('insight')" style="cursor: pointer;"><i class="fas fa-chart-line"></i><h4 id="step5"></h4></div>
+    <div class="process-step" onclick="showJourney('understand')"><i class="far fa-circle-dot"></i><h4 id="step1"></h4></div>
+<div class="process-step" onclick="showJourney('extract')"><i class="far fa-copy"></i><h4 id="step2"></h4></div>
+<div class="process-step" onclick="showJourney('clean')"><i class="fas fa-wand-magic-sparkles" style="font-size: 0.8em;"></i><h4 id="step3"></h4></div>
+<div class="process-step" onclick="showJourney('model')"><i class="far fa-square-plus"></i><h4 id="step4"></h4></div>
+<div class="process-step" onclick="showJourney('insight')"><i class="far fa-lightbulb"></i><h4 id="step5"></h4></div>
 </div>
 <div class="section-title" id="title-expertise"></div>
 <div class="grid-container"> <div class="card-3d"><i class="fas fa-chart-bar"></i><span>Power BI</span></div>
@@ -500,6 +498,7 @@ function showJourney(id) {
 </script>
 </body>
 </html>
+
 
 
 
