@@ -268,6 +268,7 @@
             <i class="fas fa-star" data-value="4"></i>
             <i class="fas fa-star" data-value="5"></i>
         </div>
+        <input type="text" id="user-name" class="rating-input" placeholder="Name / الاسم"><br>
         <textarea id="user-comment" class="rating-input" rows="2" placeholder="Write your feedback..."></textarea><br>
         <button class="submit-rate-btn" onclick="submitRating()" id="submit-rate">Submit</button>
     </div>
@@ -275,12 +276,14 @@
     <div class="grid-container" id="ratings-display">
         <div class="card-3d reveal">
             <i class="fas fa-quote-left" style="font-size: 20px; opacity: 0.5;"></i>
-            <p style="font-style: italic; font-size: 14px; margin: 10px 0;" id="rate-1"></p>
+            <strong style="display:block; margin-top:5px; color:var(--main-blue);">John Doe</strong>
+            <p style="font-style: italic; font-size: 14px; margin: 5px 0;" id="rate-1"></p>
             <div style="color: #ffce00;">★★★★★</div>
         </div>
         <div class="card-3d reveal">
             <i class="fas fa-quote-left" style="font-size: 20px; opacity: 0.5;"></i>
-            <p style="font-style: italic; font-size: 14px; margin: 10px 0;" id="rate-2"></p>
+            <strong style="display:block; margin-top:5px; color:var(--main-blue);">Jane Smith</strong>
+            <p style="font-style: italic; font-size: 14px; margin: 5px 0;" id="rate-2"></p>
             <div style="color: #ffce00;">★★★★★</div>
         </div>
     </div>
@@ -318,7 +321,7 @@
             obj: "OBJECTIVE", ch: "CHALLENGE", sol: "SOLUTION", imp: "IMPACT", tool: "TOOLS",
             rate1: "Exceptional dashboards and attention to detail!",
             rate2: "Highly recommended for strategic data insights.",
-            ratePrompt: "Leave a Review", ratePlace: "Write your feedback...", rateBtn: "Submit"
+            ratePrompt: "Leave a Review", namePlace: "Name / الاسم", ratePlace: "Write your feedback...", rateBtn: "Submit"
         },
         ar: {
             name: "أحمد غريب", welcomeBtn: "استكشاف التفاصيل", job: "محلل بيانات",
@@ -331,7 +334,7 @@
             obj: "الهدف", ch: "التحدي", sol: "الحل", imp: "الأثر", tool: "الأدوات",
             rate1: "لوحات بيانات استثنائية واهتمام دقيق بالتفاصيل!",
             rate2: "أنصح به بشدة لتحويل البيانات لرؤى استراتيجية.",
-            ratePrompt: "أضف تقييمك", ratePlace: "اكتب رأيك هنا...", rateBtn: "إرسال"
+            ratePrompt: "أضف تقييمك", namePlace: "الاسم / Name", ratePlace: "اكتب رأيك هنا...", rateBtn: "إرسال"
         },
         es: {
             name: "Ahmed Gharib", welcomeBtn: "Explorar Detalles", job: "Analista de Datos",
@@ -344,7 +347,7 @@
             obj: "OBJETIVO", ch: "DESAFÍO", sol: "SOLUCIÓN", imp: "IMPACTO", tool: "HERRAMIENTAS",
             rate1: "¡Tableros excepcionales y atención al detalle!",
             rate2: "Muy recomendable para obtener información estratégica.",
-            ratePrompt: "Deja una reseña", ratePlace: "Escribe tu opinión...", rateBtn: "Enviar"
+            ratePrompt: "Deja una reseña", namePlace: "Nombre / الاسم", ratePlace: "Escribe tu opinión...", rateBtn: "Enviar"
         }
     };
 
@@ -422,6 +425,7 @@
         document.getElementById('rate-1').innerText = t.rate1;
         document.getElementById('rate-2').innerText = t.rate2;
         document.getElementById('rate-prompt').innerText = t.ratePrompt;
+        document.getElementById('user-name').placeholder = t.namePlace;
         document.getElementById('user-comment').placeholder = t.ratePlace;
         document.getElementById('submit-rate').innerText = t.rateBtn;
 
@@ -470,21 +474,30 @@
     }
 
     function submitRating() {
+        const name = document.getElementById('user-name').value;
         const comment = document.getElementById('user-comment').value;
-        if (!comment) return alert("Please enter a comment");
+        
+        if (!name || !comment) {
+            alert(currentLang === 'ar' ? "يرجى إدخال الاسم والتعليق" : "Please enter both name and comment");
+            return;
+        }
         
         const container = document.getElementById('ratings-display');
         const newRate = document.createElement('div');
         newRate.className = "card-3d reveal active";
         let starsHtml = '★'.repeat(selectedRating) + '☆'.repeat(5 - selectedRating);
+        
         newRate.innerHTML = `
-            <i class="fas fa-quote-left" style="font-size: 20px; opacity: 0.5;"></i>
-            <p style="font-style: italic; font-size: 14px; margin: 10px 0;">${comment}</p>
+            <i class="fas fa-quote-left" style="font-size: 15px; opacity: 0.5;"></i>
+            <strong style="display:block; margin-top:5px; color:var(--main-blue);">${name}</strong>
+            <p style="font-style: italic; font-size: 14px; margin: 5px 0;">${comment}</p>
             <div style="color: #ffce00;">${starsHtml}</div>
         `;
+        
         container.prepend(newRate);
+        document.getElementById('user-name').value = "";
         document.getElementById('user-comment').value = "";
-        alert("Thank you for your feedback!");
+        alert(currentLang === 'ar' ? "شكراً لتقييمك!" : "Thank you for your feedback!");
     }
 
     function showStudy(id) {
