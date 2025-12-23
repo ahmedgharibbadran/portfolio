@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ahmed Gharib | AGBINSIGHTS</title>
     
-    <link rel="icon" type="image/png" href="agb-logo-png.png">
+    <link rel="icon" type="image/png" href="agb-logo.png.1.jpeg">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
@@ -15,6 +15,7 @@
             --deep-black: #000000;
             --text-gray: #555555; 
             --glow-effect: 0 4px 15px rgba(0, 86, 179, 0.2);
+            --footer-black: #111111; /* الدرجة المطلوبة للخلفية السوداء */
         }
 
        body { background-color: var(--bg-white); color: var(--deep-black); font-family: 'Inter', sans-serif; margin: 0; text-align: center; scroll-behavior: smooth; overflow-x: hidden; }
@@ -197,7 +198,7 @@
 
         footer { 
             padding: 60px 20px; 
-            background: #000000; 
+            background: var(--footer-black); /* تم تعديلها لتطابق الدرجة المطلوبة */
             color: #ffffff; 
             margin-top: 50px; 
             transition: 0.3s;
@@ -222,7 +223,7 @@
 
 <div id="welcome-overlay">
     <div class="welcome-box">
-       <img src="agb-logo-png.png" class="welcome-logo">
+       <img src="agb-logo.png.1.jpeg" class="welcome-logo">
        <h2 id="welcome-name">Ahmed Gharib</h2>
        <p id="welcome-tagline">Turning Complex Data into Strategic Assets</p>
        <button class="start-btn" onclick="startExploring()" id="welcome-btn">Explore Insights</button>
@@ -232,7 +233,7 @@
 <div id="main-site">
     <nav>
         <div class="nav-brand">
-            <img src="agb-logo-png.png" class="nav-logo-img" onclick="location.reload()">
+            <img src="agb-logo.png.1.jpeg" class="nav-logo-img" onclick="location.reload()">
         </div>
         <div class="lang-switch">
             <img src="https://flagcdn.com/w40/gb.png" class="flag-btn" id="lang-en" onclick="setLang('en')" title="English">
