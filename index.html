@@ -27,7 +27,7 @@
             z-index: 10000; transition: 0.8s ease-in-out; 
         }
         .welcome-box { text-align: center; padding: 20px; }
-        .welcome-logo { width: 120px; height: 120px; margin-bottom: 25px; border-radius: 50%; border: 3px solid var(--main-blue); }
+        .welcome-logo { width: 120px; height: 120px; margin-bottom: 25px; border-radius: 50%; border: 3px solid var(--main-blue); transition: 0.3s; }
         .start-btn { 
             background: var(--main-blue); color: white; padding: 15px 40px; 
             border: none; border-radius: 50px; font-weight: 900; cursor: pointer; 
@@ -54,6 +54,13 @@
         .nav-brand { display: flex; align-items: center; gap: 10px; }
         .nav-logo-img { height: 80px; width: auto; transition: 0.4s ease; cursor: pointer; mix-blend-mode: multiply; filter: contrast(1.1); }
         .nav-logo-img:hover { transform: scale(1.1); }
+        
+        /* تعديل اللوجو في الدارك مود */
+        body.dark-theme .nav-logo-img, body.dark-theme .welcome-logo { 
+            filter: brightness(0) invert(1); 
+            mix-blend-mode: normal;
+        }
+
         .lang-switch { display: flex; gap: 12px; align-items: center; }
         .flag-btn { 
             width: 32px !important; 
@@ -170,9 +177,7 @@
         body.rtl .case-header { border-left: none; border-right: 6px solid var(--main-blue); }
         .detail-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 20px; }
 
-        /* Rating Styles */
         .rating-input-section { margin: 40px 10%; padding: 30px; background: #f9f9f9; border-radius: 20px; }
-        body.dark-theme .rating-input-section { background: #1e1e1e; }
         .stars { font-size: 24px; margin-bottom: 10px; cursor: pointer; color: #ccc; }
         .stars .fa-star.active { color: #ffce00; }
         .rating-input { width: 80%; padding: 12px; border: 1px solid #ddd; border-radius: 10px; margin-bottom: 10px; font-family: inherit; }
@@ -183,8 +188,9 @@
         .social-icons a:hover { color: var(--main-blue); }
 
         body.dark-theme { --bg-white: #121212; --deep-black: #ffffff; --text-gray: #bbbbbb; }
-        body.dark-theme .card-3d, body.dark-theme .process-step, body.dark-theme .project-item, body.dark-theme .case-header { background: #1e1e1e; border-color: #333; }
+        body.dark-theme .card-3d, body.dark-theme .process-step, body.dark-theme .project-item, body.dark-theme .case-header, body.dark-theme .rating-input-section { background: #1e1e1e; border-color: #333; }
         body.dark-theme nav { background: #121212; }
+        body.dark-theme .rating-input { background: #252525; color: white; border-color: #444; }
 
         .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
         .reveal.active { opacity: 1; transform: translateY(0); }
@@ -195,9 +201,9 @@
 <div id="welcome-overlay">
     <div class="welcome-box">
        <img src="agb-logo-png.png" class="welcome-logo">
-        <h2 id="welcome-name">Ahmed Gharib</h2>
+       <h2 id="welcome-name">Ahmed Gharib</h2>
        <p id="welcome-tagline">Turning Complex Data into Strategic Assets</p>
-        <button class="start-btn" onclick="startExploring()" id="welcome-btn">Explore Insights</button>
+       <button class="start-btn" onclick="startExploring()" id="welcome-btn">Explore Insights</button>
     </div>
 </div>
 
@@ -321,7 +327,8 @@
             obj: "OBJECTIVE", ch: "CHALLENGE", sol: "SOLUTION", imp: "IMPACT", tool: "TOOLS",
             rate1: "Exceptional dashboards and attention to detail!",
             rate2: "Highly recommended for strategic data insights.",
-            ratePrompt: "Leave a Review", namePlace: "Name / الاسم", ratePlace: "Write your feedback...", rateBtn: "Submit"
+            ratePrompt: "Leave a Review", namePlace: "Name / الاسم", ratePlace: "Write your feedback...", rateBtn: "Submit",
+            alert: "Please enter both name and comment", thanks: "Thank you for your feedback!"
         },
         ar: {
             name: "أحمد غريب", welcomeBtn: "استكشاف التفاصيل", job: "محلل بيانات",
@@ -334,7 +341,8 @@
             obj: "الهدف", ch: "التحدي", sol: "الحل", imp: "الأثر", tool: "الأدوات",
             rate1: "لوحات بيانات استثنائية واهتمام دقيق بالتفاصيل!",
             rate2: "أنصح به بشدة لتحويل البيانات لرؤى استراتيجية.",
-            ratePrompt: "أضف تقييمك", namePlace: "الاسم / Name", ratePlace: "اكتب رأيك هنا...", rateBtn: "إرسال"
+            ratePrompt: "أضف تقييمك", namePlace: "الاسم / Name", ratePlace: "اكتب رأيك هنا...", rateBtn: "إرسال",
+            alert: "يرجى إدخال الاسم والتعليق", thanks: "شكراً لتقييمك!"
         },
         es: {
             name: "Ahmed Gharib", welcomeBtn: "Explorar Detalles", job: "Analista de Datos",
@@ -347,7 +355,8 @@
             obj: "OBJETIVO", ch: "DESAFÍO", sol: "SOLUCIÓN", imp: "IMPACTO", tool: "HERRAMIENTAS",
             rate1: "¡Tableros excepcionales y atención al detalle!",
             rate2: "Muy recomendable para obtener información estratégica.",
-            ratePrompt: "Deja una reseña", namePlace: "Nombre / الاسم", ratePlace: "Escribe tu opinión...", rateBtn: "Enviar"
+            ratePrompt: "Deja una reseña", namePlace: "Nombre / الاسم", ratePlace: "Escribe tu opinión...", rateBtn: "Enviar",
+            alert: "Por favor, introduzca su nombre y comentario", thanks: "¡Gracias por tu comentario!"
         }
     };
 
@@ -459,7 +468,6 @@
         }, 800);
     }
 
-    // Rating Logic
     document.querySelectorAll('#star-rating i').forEach(star => {
         star.addEventListener('click', function() {
             selectedRating = this.getAttribute('data-value');
@@ -476,15 +484,21 @@
     function submitRating() {
         const name = document.getElementById('user-name').value;
         const comment = document.getElementById('user-comment').value;
+        const t = translations[currentLang];
         
         if (!name || !comment) {
-            alert(currentLang === 'ar' ? "يرجى إدخال الاسم والتعليق" : "Please enter both name and comment");
+            alert(t.alert);
             return;
         }
         
         const container = document.getElementById('ratings-display');
         const newRate = document.createElement('div');
         newRate.className = "card-3d reveal active";
+        
+        // دعم اللغات (إسباني/عربي) تلقائياً
+        newRate.setAttribute('dir', 'auto');
+        newRate.style.textAlign = 'start';
+
         let starsHtml = '★'.repeat(selectedRating) + '☆'.repeat(5 - selectedRating);
         
         newRate.innerHTML = `
@@ -497,7 +511,7 @@
         container.prepend(newRate);
         document.getElementById('user-name').value = "";
         document.getElementById('user-comment').value = "";
-        alert(currentLang === 'ar' ? "شكراً لتقييمك!" : "Thank you for your feedback!");
+        alert(t.thanks);
     }
 
     function showStudy(id) {
@@ -558,5 +572,3 @@
 </script>
 </body>
 </html>
-
-
