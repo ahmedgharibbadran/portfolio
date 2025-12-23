@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ahmed Gharib | AGBINSIGHTS</title>
     
-    <link rel="icon" type="image/png" href="agb-logo.png.3.jpg">
+    <link rel="icon" type="image/png" href="agb-logo.png.1.jpeg">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
@@ -196,6 +196,7 @@
         .rating-input { width: 80%; padding: 12px; border: 1px solid #ddd; border-radius: 10px; margin-bottom: 10px; font-family: inherit; }
         .submit-rate-btn { background: var(--main-blue); color: white; border: none; padding: 10px 25px; border-radius: 8px; cursor: pointer; font-weight: bold; }
 
+        /* تعديل الفوتر - إزالة المربع الأسود واستخدام تصميم 3D */
         footer { 
             padding: 40px 10%; 
             background: transparent; 
@@ -236,6 +237,7 @@
             transform: scale(1.1);
         }
 
+        /* تعديلات الوضع الليلي للفوتر الجديد */
         body.dark-theme footer { background: transparent !important; }
         body.dark-theme .footer-card { background: #000000; border-color: #222; color: #fff; }
         body.dark-theme .footer-copy { color: #fff !important; opacity: 0.6; }
@@ -253,7 +255,7 @@
 
 <div id="welcome-overlay">
     <div class="welcome-box">
-       <img src="agb-logo.png.3.jpg" class="welcome-logo" id="welcome-logo-img">
+       <img src="agb-logo-png.png" class="welcome-logo" id="welcome-logo-img">
        <h2 id="welcome-name">Ahmed Gharib</h2>
        <p id="welcome-tagline">Turning Complex Data into Strategic Assets</p>
        <button class="start-btn" onclick="startExploring()" id="welcome-btn">Explore Insights</button>
@@ -263,7 +265,7 @@
 <div id="main-site">
     <nav>
         <div class="nav-brand">
-            <img src="agb-logo.png.3.jpg" class="nav-logo-img" id="nav-logo-img" onclick="location.reload()">
+            <img src="agb-logo-png.png" class="nav-logo-img" id="nav-logo-img" onclick="location.reload()">
         </div>
         <div class="lang-switch">
             <img src="https://flagcdn.com/w40/gb.png" class="flag-btn" id="lang-en" onclick="setLang('en')" title="English">
@@ -465,13 +467,11 @@
         document.body.className = currentLang === 'ar' ? 'rtl' : '';
         if (isDarkMode) {
             document.body.classList.add('dark-theme');
-            // تحديث المسار في الوضع الليلي
-            document.getElementById('nav-logo-img').src = "agb-logo.png.3.jpg";
-            document.getElementById('welcome-logo-img').src = "agb-logo.png.3.jpg";
+            document.getElementById('nav-logo-img').src = "agb-logo.png.1.jpeg";
+            document.getElementById('welcome-logo-img').src = "agb-logo.png.1.jpeg";
         } else {
-            // تحديث المسار في الوضع العادي
-            document.getElementById('nav-logo-img').src = "agb-logo.png.3.jpg";
-            document.getElementById('welcome-logo-img').src = "agb-logo.png.3.jpg";
+            document.getElementById('nav-logo-img').src = "agb-logo-png.png";
+            document.getElementById('welcome-logo-img').src = "agb-logo-png.png";
         }
 
         document.getElementById('welcome-name').innerText = t.name;
@@ -588,7 +588,7 @@
                     <div><b style="color:var(--main-blue)">${t.tool}</b><br>${d.t}</div>
                 </div>
             </div>`;
-        document.getElementById('study-images').innerHTML = projectData[id].imgs.map(img => `<img src="${img}" style="width:100%; margin-bottom:20px; border-radius:15px; box-shadow:0 10px 30px rgba(0,0,0,0.1);">`).join('');
+        document.getElementById('study-images').innerHTML = projectData[id].imgs.map(img => <img src="${img}" style="width:100%; margin-bottom:20px; border-radius:15px; box-shadow:0 10px 30px rgba(0,0,0,0.1);">).join('');
         document.getElementById('main-site').style.display = 'none';
         document.getElementById('case-study-view').style.display = 'block';
         window.scrollTo(0,0);
@@ -605,22 +605,27 @@
         const d = journeyData[id][currentLang];
         document.getElementById('case-header-content').innerHTML = `
             <div class="case-header" style="text-align:center; border:none; background:none;">
-             <h2 style="color:var(--main-blue); font-size:40px; margin-bottom:20px;">${d.title}</h2>
-                <p style="font-size:18px;">${d.desc}</p>
+                <h2 style="color:var(--main-blue); font-size:40px; margin-bottom:20px;">${d.title}</h2>
+                <p style="font-size: 22px; color:var(--text-gray); line-height:1.6; max-width:800px; margin:0 auto;">${d.desc}</p>
             </div>`;
-        document.getElementById('study-images').innerHTML = '';
+        document.getElementById('study-images').innerHTML = ""; 
         document.getElementById('main-site').style.display = 'none';
         document.getElementById('case-study-view').style.display = 'block';
         window.scrollTo(0,0);
     }
 
-    window.addEventListener('scroll', () => {
-        document.querySelectorAll('.reveal').forEach(el => {
-            if (el.getBoundingClientRect().top < window.innerHeight - 50) {
-                el.classList.add('active');
+    window.addEventListener("scroll", reveal);
+    function reveal() {
+        var reveals = document.querySelectorAll(".reveal");
+        for (var i = 0; i < reveals.length; i++) {
+            var windowHeight = window.innerHeight;
+            var elementTop = reveals[i].getBoundingClientRect().top;
+            if (elementTop < windowHeight - 50) {
+                reveals[i].classList.add("active");
             }
-        });
-    });
+        }
+    }
+    updateUI();
 </script>
 
 </body>
