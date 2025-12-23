@@ -195,9 +195,29 @@
         .rating-input { width: 80%; padding: 12px; border: 1px solid #ddd; border-radius: 10px; margin-bottom: 10px; font-family: inherit; }
         .submit-rate-btn { background: var(--main-blue); color: white; border: none; padding: 10px 25px; border-radius: 8px; cursor: pointer; font-weight: bold; }
 
-        footer { padding: 60px 20px; background: var(--deep-black); color: white; margin-top: 50px; }
-        .social-icons a { color: white; font-size: 25px; margin: 0 15px; transition: 0.3s; }
+        /* --- تعديل الفوتر (Default: Light Mode) --- */
+        footer { 
+            padding: 60px 20px; 
+            background: #000000; 
+            color: #ffffff; 
+            margin-top: 50px; 
+            transition: 0.3s;
+        }
+        .social-icons a { color: #ffffff; font-size: 25px; margin: 0 15px; transition: 0.3s; }
         .social-icons a:hover { color: var(--main-blue); }
+
+        /* --- تعديل الفوتر (Dark Mode) --- */
+        body.dark-theme footer { 
+            background: #ffffff !important; 
+            color: #000000 !important; 
+        }
+        body.dark-theme footer .social-icons a { 
+            color: #000000 !important; 
+        }
+        body.dark-theme footer p { 
+            color: #000000 !important; 
+            opacity: 0.8; 
+        }
 
         body.dark-theme { --bg-white: #000000; --deep-black: #ffffff; --text-gray: #bbbbbb; }
         body.dark-theme .card-3d, body.dark-theme .process-step, body.dark-theme .project-item, body.dark-theme .case-header, body.dark-theme .rating-input-section { background: #111111; border-color: #222; }
@@ -451,7 +471,6 @@
         document.getElementById('p2-btn').innerText = t.viewBtn;
         document.getElementById('back-btn').innerText = t.back;
 
-        // --- تحديث قسم التقييمات ---
         document.getElementById('rate-1').innerText = t.rate1;
         document.getElementById('rate-2').innerText = t.rate2;
         document.getElementById('rate-prompt').innerText = t.ratePrompt;
@@ -459,7 +478,6 @@
         document.getElementById('user-comment').placeholder = t.ratePlace;
         document.getElementById('submit-rate').innerText = t.rateBtn;
 
-        // ضبط اتجاه نصوص كروت التقييم بناءً على اللغة
         document.querySelectorAll('#ratings-display .card-3d').forEach(card => {
             card.setAttribute('dir', currentLang === 'ar' ? 'rtl' : 'ltr');
             card.style.textAlign = currentLang === 'ar' ? 'right' : 'left';
@@ -522,7 +540,6 @@
         const newRate = document.createElement('div');
         newRate.className = "card-3d reveal active";
         
-        // ضبط اتجاه التقييم الجديد فور إضافته
         newRate.setAttribute('dir', currentLang === 'ar' ? 'rtl' : 'ltr');
         newRate.style.textAlign = currentLang === 'ar' ? 'right' : 'left';
 
