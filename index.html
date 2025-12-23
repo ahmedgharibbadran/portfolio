@@ -30,9 +30,12 @@
            --border-color: #333;
        }
 
-       /* Logo Fix for Dark Mode */
+       /* إصلاح اللوجو: شلنا الـ mix-blend-mode القديم وضبطناه للوضعين */
+       .nav-logo-img, .welcome-logo { 
+           height: 80px; width: auto; transition: 0.4s ease; 
+       }
        body.dark-theme .nav-logo-img, body.dark-theme .welcome-logo {
-           filter: brightness(0) invert(1);
+           filter: brightness(0) invert(1); /* بيخلي اللوجو أبيض في الدارك مود علشان يبان */
        }
 
         #welcome-overlay { 
@@ -42,7 +45,7 @@
             z-index: 10000; transition: 0.8s ease-in-out; 
         }
         .welcome-box { text-align: center; padding: 20px; }
-        .welcome-logo { width: 120px; height: 120px; margin-bottom: 25px; border-radius: 50%; border: 3px solid var(--main-blue); transition: 0.3s; }
+        .welcome-logo { width: 120px; height: 120px; margin-bottom: 25px; border-radius: 50%; border: 3px solid var(--main-blue); object-fit: contain; }
         .start-btn { 
             background: var(--main-blue); color: white; padding: 15px 40px; 
             border: none; border-radius: 50px; font-weight: 900; cursor: pointer; 
@@ -57,9 +60,8 @@
             position: sticky; top: 0; z-index: 1000; box-sizing: border-box; direction: ltr !important;
         }
 
-        .nav-logo-img { height: 80px; width: auto; transition: 0.4s ease; cursor: pointer; }
         .lang-switch { display: flex; gap: 12px; align-items: center; }
-        .flag-btn { width: 32px; height: 32px; cursor: pointer; border-radius: 50%; opacity: 0.8; transition: 0.3s; border: 2px solid transparent; object-fit: cover; }
+        .flag-btn { width: 32px; height: 32px; cursor: pointer; border-radius: 50%; opacity: 0.8; transition: 0.3s; object-fit: cover; border: 2px solid transparent; }
         .flag-btn.active { opacity: 1; border-color: var(--main-blue); transform: scale(1.15); }
 
         header { padding: 60px 20px; text-align: center; }
@@ -76,21 +78,13 @@
         .grid-container, .process-flow { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; padding: 0 10%; margin-bottom: 40px; }
         .card-3d, .process-step { background: var(--card-bg); border: 1px solid var(--border-color); padding: 25px 15px; flex: 1 1 130px; max-width: 200px; border-radius: 15px; transition: all 0.3s ease; text-align: center; display: flex; flex-direction: column; align-items: center; }
 
-        /* Rating System Styles */
-        .rating-form { background: var(--card-bg); padding: 30px; border-radius: 20px; border: 1px solid var(--border-color); margin: 20px 10%; text-align: left; }
-        body.rtl .rating-form { text-align: right; }
-        .rating-form input, .rating-form textarea, .rating-form select { 
-            width: 100%; padding: 12px; margin: 10px 0; border-radius: 8px; border: 1px solid var(--border-color); 
-            background: var(--bg-white); color: var(--deep-black); box-sizing: border-box; font-family: inherit;
+        /* ستايل التقييمات التفاعلية الجديد */
+        .rating-input-area { background: var(--card-bg); padding: 30px; border-radius: 20px; border: 1px solid var(--border-color); margin: 20px 10%; text-align: center; }
+        .rating-input-area input, .rating-input-area textarea { 
+            width: 100%; padding: 12px; margin: 8px 0; border-radius: 8px; border: 1px solid var(--border-color); 
+            background: var(--bg-white); color: var(--deep-black); font-family: inherit; box-sizing: border-box;
         }
-        .submit-rate-btn { background: var(--main-blue); color: white; border: none; padding: 12px 25px; border-radius: 8px; cursor: pointer; font-weight: bold; transition: 0.3s; }
-        .submit-rate-btn:hover { opacity: 0.9; transform: scale(1.02); }
-
-        #reviews-display { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; padding: 0 10%; margin-top: 20px; }
-        .review-card { background: var(--card-bg); padding: 20px; border-radius: 15px; border: 1px solid var(--border-color); text-align: left; transition: 0.3s; }
-        body.rtl .review-card { text-align: right; }
-        .stars { color: #ffce00; margin-bottom: 10px; font-size: 18px; }
-        .reviewer-name { font-weight: bold; font-size: 14px; color: var(--main-blue); display: block; margin-top: 10px; }
+        .submit-btn { background: var(--main-blue); color: white; border: none; padding: 10px 25px; border-radius: 8px; cursor: pointer; font-weight: bold; margin-top: 10px; }
 
         .projects-wrapper { display: flex; flex-direction: column; gap: 40px; padding: 0 10%; }
         .project-item { display: flex; flex-direction: column; background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 20px; overflow: hidden; width: 100%; }
@@ -108,10 +102,11 @@
         
         #case-study-view { display:none; background: var(--bg-white); padding: 40px 10%; text-align: left; }
         body.rtl #case-study-view { text-align: right; }
-        
+        .case-header { background: var(--card-bg); padding: 30px; border-radius: 20px; border-left: 6px solid var(--main-blue); margin-bottom: 30px; border: 1px solid var(--border-color); }
+        body.rtl .case-header { border-left: none; border-right: 6px solid var(--main-blue); }
+
         footer { padding: 60px 20px; background: var(--deep-black); color: white; margin-top: 50px; }
-        .social-icons a { color: white; font-size: 25px; margin: 0 15px; transition: 0.3s; }
-        .social-icons a:hover { color: var(--main-blue); }
+        .social-icons a { color: white; font-size: 25px; margin: 0 15px; }
 
         .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
         .reveal.active { opacity: 1; transform: translateY(0); }
@@ -122,9 +117,9 @@
 <div id="welcome-overlay">
     <div class="welcome-box">
        <img src="agb-logo-png.png" class="welcome-logo">
-        <h2 id="welcome-name">Ahmed Gharib</h2>
+       <h2 id="welcome-name">Ahmed Gharib</h2>
        <p id="welcome-tagline">Turning Complex Data into Strategic Assets</p>
-        <button class="start-btn" onclick="startExploring()" id="welcome-btn">Explore Insights</button>
+       <button class="start-btn" onclick="startExploring()" id="welcome-btn">Explore Insights</button>
     </div>
 </div>
 
@@ -132,9 +127,9 @@
     <nav>
         <div class="nav-brand"><img src="agb-logo-png.png" class="nav-logo-img"></div>
         <div class="lang-switch">
-            <img src="https://flagcdn.com/w40/gb.png" class="flag-btn" id="lang-en" onclick="setLang('en')" title="English">
-            <img src="https://flagcdn.com/w40/eg.png" class="flag-btn" id="lang-ar" onclick="setLang('ar')" title="العربية">
-            <img src="https://flagcdn.com/w40/es.png" class="flag-btn" id="lang-es" onclick="setLang('es')" title="Español">
+            <img src="https://flagcdn.com/w40/gb.png" class="flag-btn" id="lang-en" onclick="setLang('en')">
+            <img src="https://flagcdn.com/w40/eg.png" class="flag-btn" id="lang-ar" onclick="setLang('ar')">
+            <img src="https://flagcdn.com/w40/es.png" class="flag-btn" id="lang-es" onclick="setLang('es')">
             <i class="fas fa-moon" id="dark-mode-toggle" onclick="toggleDarkMode()" style="cursor:pointer; font-size: 20px; margin-left: 10px; color: var(--main-blue);"></i>
         </div>
     </nav>
@@ -147,11 +142,11 @@
 
     <div class="section-title" id="title-journey"></div>
     <div class="process-flow">
-        <div class="process-step reveal" onclick="showJourney('understand')" style="cursor: pointer;"><i class="far fa-circle-dot"></i><h4 id="step1"></h4></div>
-        <div class="process-step reveal" onclick="showJourney('extract')" style="cursor: pointer;"><i class="far fa-copy"></i><h4 id="step2"></h4></div>
-        <div class="process-step reveal" onclick="showJourney('clean')" style="cursor: pointer;"><i class="fas fa-wand-magic-sparkles"></i><h4 id="step3"></h4></div>
-        <div class="process-step reveal" onclick="showJourney('model')" style="cursor: pointer;"><i class="far fa-square-plus"></i><h4 id="step4"></h4></div>
-        <div class="process-step reveal" onclick="showJourney('insight')" style="cursor: pointer;"><i class="far fa-lightbulb"></i><h4 id="step5"></h4></div>
+        <div class="process-step reveal" onclick="showJourney('understand')" style="cursor:pointer"><i class="far fa-circle-dot"></i><h4 id="step1"></h4></div>
+        <div class="process-step reveal" onclick="showJourney('extract')" style="cursor:pointer"><i class="far fa-copy"></i><h4 id="step2"></h4></div>
+        <div class="process-step reveal" onclick="showJourney('clean')" style="cursor:pointer"><i class="fas fa-wand-magic-sparkles"></i><h4 id="step3"></h4></div>
+        <div class="process-step reveal" onclick="showJourney('model')" style="cursor:pointer"><i class="far fa-square-plus"></i><h4 id="step4"></h4></div>
+        <div class="process-step reveal" onclick="showJourney('insight')" style="cursor:pointer"><i class="far fa-lightbulb"></i><h4 id="step5"></h4></div>
     </div>
 
     <div class="section-title" id="title-expertise"></div>
@@ -177,20 +172,14 @@
     </div>
 
     <div class="section-title" id="title-ratings"></div>
-    
-    <div class="rating-form reveal">
-        <h3 id="rate-form-title">Leave a Review</h3>
+    <div class="rating-input-area reveal">
+        <h3 id="rate-prompt">Leave a Review</h3>
         <input type="text" id="reviewer-name" placeholder="Your Name">
-        <select id="rating-value">
-            <option value="5">★★★★★ (5/5)</option>
-            <option value="4">★★★★☆ (4/5)</option>
-            <option value="3">★★★☆☆ (3/5)</option>
-        </select>
-        <textarea id="reviewer-text" rows="3" placeholder="Write your feedback here..."></textarea>
-        <button class="submit-rate-btn" onclick="addReview()" id="submit-rate-btn">Submit Review</button>
+        <textarea id="reviewer-text" placeholder="Your feedback..."></textarea>
+        <button class="submit-btn" onclick="addReview()" id="submit-rate">Submit</button>
     </div>
-
-    <div id="reviews-display" class="reveal"></div>
+    <div class="grid-container" id="reviews-list">
+        </div>
 
     <footer>
         <div class="social-icons">
@@ -220,8 +209,7 @@
             step1: "Understand", step2: "Extract", step3: "Clean", step4: "Model", step5: "Insight",
             skill3: "Modeling", skill4: "DAX Logic", skill6: "Viz",
             viewBtn: "View Details", back: "← BACK TO HOME",
-            obj: "OBJECTIVE", ch: "CHALLENGE", sol: "SOLUTION", imp: "IMPACT", tool: "TOOLS",
-            rateTitle: "Leave a Review", ratePlaceholder: "Your Name", textPlaceholder: "Write feedback...", submitBtn: "Submit Review"
+            ratePrompt: "Leave a Review", rateName: "Your Name", rateText: "Your feedback...", rateBtn: "Submit"
         },
         ar: {
             name: "أحمد غريب", welcomeBtn: "استكشاف التفاصيل", job: "محلل بيانات",
@@ -231,51 +219,15 @@
             step1: "الفهم", step2: "استخراج", step3: "تنظيف", step4: "نمذجة", step5: "رؤية",
             skill3: "نمذجة", skill4: "منطق DAX", skill6: "تصوير",
             viewBtn: "عرض التفاصيل", back: "← العودة للرئيسية",
-            obj: "الهدف", ch: "التحدي", sol: "الحل", imp: "الأثر", tool: "الأدوات",
-            rateTitle: "أضف تقييمك", ratePlaceholder: "اسمك", textPlaceholder: "اكتب رأيك هنا...", submitBtn: "إرسال التقييم"
-        },
-        es: {
-            name: "Ahmed Gharib", welcomeBtn: "Explorar Detalles", job: "Analista de Datos",
-            tagline: "Convirtiendo Datos Complejos en Perspectivas Accionables",
-            about: "Convierto datos complejos en <b>perspectivas accionables</b> que impulsan el crecimiento. Especialista en Power BI y Excel.",
-            journey: "01. Trayectoria", expertise: "02. Experiencia", projects: "03. Proyectos", ratings: "04. Valoraciones",
-            step1: "Entender", step2: "Extraer", step3: "Limpiar", step4: "Modelar", step5: "Perspectiva",
-            skill3: "Modelado", skill4: "Lógica DAX", skill6: "Viz",
-            viewBtn: "Ver Detalles", back: "← VOLVER AL INICIO",
-            obj: "OBJETIVO", ch: "DESAFÍO", sol: "SOLUCIÓN", imp: "IMPACTO", tool: "HERRAMIENTAS",
-            rateTitle: "Deja un comentario", ratePlaceholder: "Tu Nombre", textPlaceholder: "Escribe tu opinión...", submitBtn: "Enviar"
+            ratePrompt: "أضف تقييمك", rateName: "الاسم", rateText: "رأيك هنا...", rateBtn: "إرسال"
         }
-    };
-
-    const projectData = {
-        hr: { 
-            en: { title: "HR Attrition Analysis", o: "Identify key factors...", c: "High turnover...", s: "Dashboard with DAX...", i: "15% reduction...", t: "Power BI, DAX" },
-            ar: { title: "تحليل استقالات الموظفين", o: "تحديد الأسباب...", c: "دوران عالٍ...", s: "لوحة تحكم DAX...", i: "تقليل 15%...", t: "Power BI, DAX" },
-            es: { title: "Análisis de RRHH", o: "Identificar factores...", c: "Alta rotación...", s: "Dashboard con DAX...", i: "Reducción 15%...", t: "Power BI, DAX" },
-            imgs: ['hr.png.png', 'hr.png2.png', 'hr.png3.png']
-        },
-        sales: {
-            en: { title: "Sales Hub", o: "Centralize data...", c: "Fragmented data...", s: "ETL pipeline...", i: "40% faster...", t: "Excel, Power BI" },
-            ar: { title: "مركز المبيعات", o: "مركزية البيانات...", c: "بيانات مشتتة...", s: "مسار ETL...", i: "سرعة 40%...", t: "Excel, Power BI" },
-            es: { title: "Hub de Ventas", o: "Centralizar datos...", c: "Datos fragmentados...", s: "Pipeline ETL...", i: "40% más rápido...", t: "Excel, Power BI" },
-            imgs: ['sales.png1.png', 'sales.png2.png', 'sales.png3.png']
-        }
-    };
-
-    const journeyData = {
-        understand: { en: { title: "Understand", desc: "Defining goals." }, ar: { title: "الفهم", desc: "تحديد الأهداف." }, es: { title: "Entender", desc: "Definir metas." } },
-        extract: { en: { title: "Extract", desc: "Connecting sources." }, ar: { title: "استخراج", desc: "ربط المصادر." }, es: { title: "Extraer", desc: "Conectar fuentes." } },
-        clean: { en: { title: "Clean", desc: "Data quality." }, ar: { title: "تنظيف", desc: "جودة البيانات." }, es: { title: "Limpiar", desc: "Calidad de datos." } },
-        model: { en: { title: "Model", desc: "Architecture." }, ar: { title: "نمذجة", desc: "بناء الهياكل." }, es: { title: "Modelar", desc: "Arquitectura." } },
-        insight: { en: { title: "Insight", desc: "Strategic value." }, ar: { title: "رؤية", desc: "قيمة استراتيجية." }, es: { title: "Perspectiva", desc: "Valor estratégico." } }
     };
 
     function updateUI() {
-        const t = translations[currentLang];
+        const t = translations[currentLang] || translations.en;
         document.body.className = currentLang === 'ar' ? 'rtl' : '';
         document.getElementById('welcome-name').innerText = t.name;
-        document.getElementById('welcome-tagline').innerText = t.tagline;
-        document.getElementById('welcome-btn').innerText = t.welcomeBtn; 
+        document.getElementById('welcome-btn').innerText = t.welcomeBtn;
         document.getElementById('main-name').innerText = t.name;
         document.getElementById('job-title').innerText = t.job;
         document.getElementById('about-me').innerHTML = t.about;
@@ -291,30 +243,26 @@
         document.getElementById('skill3').innerText = t.skill3;
         document.getElementById('skill4').innerText = t.skill4;
         document.getElementById('skill6').innerText = t.skill6;
-        document.getElementById('p1-title').innerText = projectData.hr[currentLang].title;
-        document.getElementById('p2-title').innerText = projectData.sales[currentLang].title;
         document.getElementById('p1-btn').innerText = t.viewBtn;
         document.getElementById('p2-btn').innerText = t.viewBtn;
         document.getElementById('back-btn').innerText = t.back;
-        document.getElementById('rate-form-title').innerText = t.rateTitle;
-        document.getElementById('reviewer-name').placeholder = t.ratePlaceholder;
-        document.getElementById('reviewer-text').placeholder = t.textPlaceholder;
-        document.getElementById('submit-rate-btn').innerText = t.submitBtn;
-
-        document.querySelectorAll('.flag-btn').forEach(f => f.classList.remove('active'));
-        if(document.getElementById('lang-' + currentLang)) document.getElementById('lang-' + currentLang).classList.add('active');
+        document.getElementById('rate-prompt').innerText = t.ratePrompt;
+        document.getElementById('reviewer-name').placeholder = t.rateName;
+        document.getElementById('reviewer-text').placeholder = t.rateText;
+        document.getElementById('submit-rate').innerText = t.rateBtn;
     }
 
-    function setLang(lang) { currentLang = lang; localStorage.setItem('ahmedLang', lang); updateUI(); loadReviews(); }
+    function setLang(lang) { currentLang = lang; localStorage.setItem('ahmedLang', lang); updateUI(); }
 
     function startExploring() {
         document.getElementById('welcome-overlay').style.opacity = '0';
         setTimeout(() => { 
             document.getElementById('welcome-overlay').style.display = 'none'; 
             document.getElementById('main-site').style.display = 'block'; 
-            setTimeout(() => document.getElementById('main-site').style.opacity = '1', 50); 
-            updateUI(); loadReviews();
+            setTimeout(() => document.getElementById('main-site').style.opacity = '1', 50);
+            loadReviews();
         }, 800);
+        updateUI();
     }
 
     function toggleDarkMode() {
@@ -323,56 +271,38 @@
         icon.classList.toggle('fa-moon'); icon.classList.toggle('fa-sun');
     }
 
-    // Review Logic
+    // منطق التقييمات التفاعلي (بيحفظ في المتصفح)
     function addReview() {
         const name = document.getElementById('reviewer-name').value;
         const text = document.getElementById('reviewer-text').value;
-        const stars = document.getElementById('rating-value').value;
-        if(!name || !text) return alert("Fields cannot be empty!");
-        const review = { name, text, stars: parseInt(stars) };
-        let reviews = JSON.parse(localStorage.getItem('myReviews') || '[]');
-        reviews.unshift(review);
-        localStorage.setItem('myReviews', JSON.stringify(reviews));
+        if(!name || !text) return;
+        const newReview = { name, text };
+        let reviews = JSON.parse(localStorage.getItem('userReviews') || '[]');
+        reviews.unshift(newReview);
+        localStorage.setItem('userReviews', JSON.stringify(reviews));
         document.getElementById('reviewer-name').value = '';
         document.getElementById('reviewer-text').value = '';
         loadReviews();
     }
 
     function loadReviews() {
-        const container = document.getElementById('reviews-display');
-        let reviews = JSON.parse(localStorage.getItem('myReviews') || '[]');
+        const list = document.getElementById('reviews-list');
+        let reviews = JSON.parse(localStorage.getItem('userReviews') || '[]');
+        // تقييمات افتراضية لو مفيش حاجة متسجلة
         if(reviews.length === 0) {
             reviews = [
-                {name: "Strategic Client", text: "Exceptional dashboards and attention to detail!", stars: 5},
-                {name: "Business Manager", text: "Highly recommended for data insights.", stars: 5}
+                {name: "Client A", text: "Exceptional dashboards and attention to detail!"},
+                {name: "Client B", text: "Highly recommended for strategic data insights."}
             ];
         }
-        container.innerHTML = reviews.map(r => `
-            <div class="review-card">
-                <div class="stars">${'★'.repeat(r.stars)}${'☆'.repeat(5-r.stars)}</div>
-                <p>"${r.text}"</p>
-                <span class="reviewer-name">- ${r.name}</span>
+        list.innerHTML = reviews.map(r => `
+            <div class="card-3d reveal active">
+                <i class="fas fa-quote-left" style="font-size: 20px; opacity: 0.5;"></i>
+                <p style="font-style: italic; font-size: 14px; margin: 10px 0;">${r.text}</p>
+                <div style="color: #ffce00;">★★★★★</div>
+                <small><b>- ${r.name}</b></small>
             </div>
         `).join('');
-    }
-
-    function showStudy(id) {
-        lastScrollPos = window.scrollY;
-        const d = projectData[id][currentLang]; const t = translations[currentLang];
-        document.getElementById('case-header-content').innerHTML = `<div class="case-header"><h2>${d.title}</h2><p><b>${t.obj}:</b> ${d.o}</p></div>`;
-        document.getElementById('study-images').innerHTML = projectData[id].imgs.map(img => `<img src="${img}" style="width:100%; margin-bottom:20px; border-radius:15px;">`).join('');
-        document.getElementById('main-site').style.display = 'none'; document.getElementById('case-study-view').style.display = 'block';
-        window.scrollTo(0,0);
-    }
-
-    function hideStudy() { document.getElementById('main-site').style.display = 'block'; document.getElementById('case-study-view').style.display = 'none'; window.scrollTo(0, lastScrollPos); }
-
-    function showJourney(id) {
-        lastScrollPos = window.scrollY; const d = journeyData[id][currentLang];
-        document.getElementById('case-header-content').innerHTML = `<div class="case-header" style="text-align:center;"><h2>${d.title}</h2><p>${d.desc}</p></div>`;
-        document.getElementById('study-images').innerHTML = "";
-        document.getElementById('main-site').style.display = 'none'; document.getElementById('case-study-view').style.display = 'block';
-        window.scrollTo(0,0);
     }
 
     function reveal() {
