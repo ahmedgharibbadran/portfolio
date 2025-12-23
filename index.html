@@ -57,7 +57,7 @@
         .nav-logo-img:hover { transform: scale(1.1); }
         
         body.dark-theme .nav-logo-img, body.dark-theme .welcome-logo { 
-            filter: brightness(0) invert(1); 
+            filter: none; 
             mix-blend-mode: normal; 
         }
 
@@ -417,6 +417,14 @@
 
     function updateUI() {
         const t = translations[currentLang];
+        
+        // تبديل الصور بناءً على الثيم
+        const logoPath = isDarkMode ? 'agb-logo.png.1.jpeg' : 'agb-logo-png.png';
+        const welcomeLogo = document.querySelector('.welcome-logo');
+        const navLogo = document.querySelector('.nav-logo-img');
+        if(welcomeLogo) welcomeLogo.src = logoPath;
+        if(navLogo) navLogo.src = logoPath;
+
         document.body.className = currentLang === 'ar' ? 'rtl' : '';
         if (isDarkMode) document.body.classList.add('dark-theme');
 
