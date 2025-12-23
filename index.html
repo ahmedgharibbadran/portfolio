@@ -15,6 +15,7 @@
             --deep-black: #000000;
             --text-gray: #555555; 
             --glow-effect: 0 4px 15px rgba(0, 86, 179, 0.2);
+            --footer-black: #111111; 
         }
 
        body { background-color: var(--bg-white); color: var(--deep-black); font-family: 'Inter', sans-serif; margin: 0; text-align: center; scroll-behavior: smooth; overflow-x: hidden; }
@@ -54,8 +55,9 @@
 
         .nav-brand { display: flex; align-items: center; gap: 10px; }
         .nav-logo-img { height: 80px; width: auto; transition: 0.4s ease; cursor: pointer; mix-blend-mode: multiply; filter: contrast(1.1); }
+        .nav-logo-img:hover { transform: scale(1.1); }
         
-        /* الحفاظ على اللوجو واضح في الوضعين */
+        /* إعدادات اللوجو في الوضع الداكن */
         body.dark-theme .nav-logo-img, body.dark-theme .welcome-logo { 
             filter: none; 
             mix-blend-mode: normal; 
@@ -63,17 +65,33 @@
 
         .lang-switch { display: flex; gap: 12px; align-items: center; }
         .flag-btn { 
-            width: 32px; height: 32px; cursor: pointer; border-radius: 50%; 
-            opacity: 0.8; transition: 0.3s; object-fit: cover; border: 2px solid transparent;
+            width: 32px !important; 
+            height: 32px !important; 
+            cursor: pointer; 
+            border-radius: 50% !important; 
+            opacity: 0.8; 
+            transition: 0.3s; 
+            object-fit: cover !important; 
+            border: 2px solid transparent !important;
         }
 
         #dark-mode-toggle {
-            cursor: pointer; width: 32px; height: 32px; display: flex;
-            align-items: center; justify-content: center; font-size: 22px; 
+            cursor: pointer;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px; 
             color: var(--main-blue);
+            transition: 0.3s;
         }
 
-        .flag-btn.active { opacity: 1; border: 2px solid var(--main-blue); transform: scale(1.15); }
+        .flag-btn.active { 
+            opacity: 1 !important; 
+            border: 2px solid var(--main-blue) !important; 
+            transform: scale(1.15);
+        }
 
         header { padding: 60px 20px; text-align: center; }
         h1 { font-size: clamp(35px, 8vw, 75px); margin: 0; font-weight: 900; }
@@ -82,56 +100,124 @@
 
         .section-title { 
             text-align: left; margin: 40px 0 20px 10%; color: var(--deep-black); 
-            border-left: 5px solid var(--main-blue); padding-left: 15px; font-weight: bold; font-size: 24px;
+            border-left: 5px solid var(--main-blue); padding-left: 15px; 
+            font-weight: bold; font-size: 24px;
         }
         body.rtl .section-title { text-align: right; border-left: none; border-right: 5px solid var(--main-blue); padding-left: 0; padding-right: 15px; margin: 40px 10% 20px 0; }
 
-        .grid-container, .process-flow { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; padding: 0 10%; margin-bottom: 40px; }
-
-        .card-3d, .process-step { 
-            background: #fff; border: 1px solid #eee; padding: 25px 15px; flex: 1 1 130px; 
-            max-width: 200px; border-radius: 15px; transition: 0.3s; text-align: center;
+        .grid-container, .process-flow { 
+            display: flex; 
+            justify-content: center; 
+            gap: 15px; 
+            flex-wrap: wrap; 
+            padding: 0 10%; 
+            margin-bottom: 40px; 
         }
 
-        .card-3d i, .process-step i { font-size: 32px; color: var(--main-blue); margin-bottom: 15px; opacity: 0.8; }
+        .card-3d, .process-step { 
+            background: #fff; 
+            border: 1px solid #eee; 
+            padding: 25px 15px; 
+            flex: 1 1 130px; 
+            max-width: 200px;
+            border-radius: 15px; 
+            transition: all 0.3s ease; 
+            cursor: default; 
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
-        .projects-wrapper { display: flex; flex-direction: column; gap: 40px; padding: 0 10%; }
-        .project-item { display: flex; flex-direction: column; background: #fff; border: 1px solid #eee; border-radius: 20px; overflow: hidden; }
-        .p-img img { width: 100%; height: auto; display: block; }
-        .p-text { padding: 30px; text-align: center; }
+        @media (max-width: 480px) {
+            .grid-container, .process-flow {
+                padding: 0 15px !important; 
+                gap: 12px !important;
+                display: grid !important;
+                grid-template-columns: repeat(2, 1fr) !important;
+            }
+            .card-3d, .process-step {
+                max-width: 100% !important;
+                padding: 20px 10px !important;
+            }
+        }
+
+        .card-3d i, .process-step i {
+            font-size: 32px; 
+            color: var(--main-blue);
+            opacity: 0.7;
+            transition: all 0.3s ease;
+            margin-bottom: 15px;
+        }
+
+        .card-3d:hover i, .process-step:hover i {
+            opacity: 1;
+            transform: scale(1.1);
+            text-shadow: 0 0 10px rgba(0, 122, 255, 0.4);
+        }
+
+        .projects-wrapper { 
+            display: flex; 
+            flex-direction: column; 
+            gap: 40px; 
+            padding: 0 10%; 
+        }
+        .project-item { 
+            display: flex; 
+            flex-direction: column; 
+            background: #fff; 
+            border: 1px solid #eee; 
+            border-radius: 20px; 
+            overflow: hidden; 
+            width: 100%; 
+        }
+        .p-img { width: 100%; line-height: 0; }
+        .p-img img { width: 100%; height: auto; display: block; object-fit: cover; }
+        .p-text { width: 100%; padding: 30px; box-sizing: border-box; text-align: center; }
 
         @media (min-width: 768px) {
-            .project-item { flex-direction: row; }
-            .p-img { width: 60%; } .p-text { width: 40%; text-align: left; display: flex; flex-direction: column; justify-content: center; }
+            .project-item { flex-direction: row; align-items: stretch; }
+            .p-img { width: 60%; } 
+            .p-text { width: 40%; padding: 40px; display: flex; flex-direction: column; justify-content: center; text-align: left; }
             body.rtl .p-text { text-align: right; }
         }
 
-        .btn-view { border: 2px solid var(--main-blue); color: var(--main-blue); padding: 10px 20px; border-radius: 8px; cursor: pointer; display: inline-block; margin-top: 15px; font-weight: bold; }
+        .btn-view { border: 2px solid var(--main-blue); color: var(--main-blue); padding: 12px 30px; border-radius: 10px; cursor: pointer; display: inline-block; margin-top: 20px; font-weight: 800; transition: 0.3s; }
+        .btn-view:hover { background: var(--main-blue); color: #fff; }
         
-        #case-study-view { display:none; background: white; padding: 40px 10%; text-align: left; }
+        #case-study-view { display:none; background: var(--bg-white); padding: 40px 10%; text-align: left; }
         body.rtl #case-study-view { text-align: right; }
+        .case-header { background: #f9f9f9; padding: 30px; border-radius: 20px; border-left: 6px solid var(--main-blue); margin-bottom: 30px; }
+        body.rtl .case-header { border-left: none; border-right: 6px solid var(--main-blue); }
+        .detail-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 20px; }
 
         .rating-input-section { margin: 40px 10%; padding: 30px; background: #f9f9f9; border-radius: 20px; }
-        .rating-input { width: 80%; padding: 12px; border: 1px solid #ddd; border-radius: 10px; margin-bottom: 10px; }
+        .stars { font-size: 24px; margin-bottom: 10px; cursor: pointer; color: #ccc; }
+        .stars .fa-star.active { color: #ffce00; }
+        .rating-input { width: 80%; padding: 12px; border: 1px solid #ddd; border-radius: 10px; margin-bottom: 10px; font-family: inherit; }
         .submit-rate-btn { background: var(--main-blue); color: white; border: none; padding: 10px 25px; border-radius: 8px; cursor: pointer; font-weight: bold; }
 
-        footer { padding: 40px 10%; margin-top: 50px; }
-        .footer-grid { display: flex; justify-content: center; gap: 20px; }
-        .footer-card { 
-            background: #fff; border: 1px solid #eee; padding: 20px; border-radius: 15px; 
-            text-decoration: none; color: #000; width: 120px; display: flex; flex-direction: column; align-items: center;
+        footer { 
+            padding: 60px 20px; 
+            background: var(--footer-black); 
+            color: #ffffff; 
+            margin-top: 50px; 
+            transition: 0.3s;
         }
+        .social-icons a { color: #ffffff; font-size: 25px; margin: 0 15px; transition: 0.3s; }
+        .social-icons a:hover { color: var(--main-blue); }
 
-        /* تعديلات الوضع الليلي (بدون تغيير الخلفية) */
-        body.dark-theme .card-3d, 
-        body.dark-theme .process-step, 
-        body.dark-theme .project-item, 
-        body.dark-theme .footer-card { 
-            border-color: var(--main-blue);
-            box-shadow: var(--glow-effect);
-        }
+        body.dark-theme footer { background: #ffffff !important; color: #000000 !important; }
+        body.dark-theme footer .social-icons a { color: #000000 !important; }
+        body.dark-theme footer p { color: #000000 !important; opacity: 0.8; }
 
-        .reveal { opacity: 0; transform: translateY(20px); transition: 0.6s; }
+        /* تعديل الخلفية للوضع الداكن لتطابق طلبك */
+        body.dark-theme { --bg-white: #111111; --deep-black: #ffffff; --text-gray: #bbbbbb; }
+        body.dark-theme .card-3d, body.dark-theme .process-step, body.dark-theme .project-item, body.dark-theme .case-header, body.dark-theme .rating-input-section { background: #000000; border-color: #222; }
+        body.dark-theme nav { background: #111111; }
+        body.dark-theme .rating-input { background: #252525; color: white; border-color: #444; }
+
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
         .reveal.active { opacity: 1; transform: translateY(0); }
     </style>
 </head>
@@ -152,8 +238,9 @@
             <img src="agb-logo-png.png" class="nav-logo-img" id="nav-logo-img" onclick="location.reload()">
         </div>
         <div class="lang-switch">
-            <img src="https://flagcdn.com/w40/gb.png" class="flag-btn" id="lang-en" onclick="setLang('en')">
-            <img src="https://flagcdn.com/w40/eg.png" class="flag-btn" id="lang-ar" onclick="setLang('ar')">
+            <img src="https://flagcdn.com/w40/gb.png" class="flag-btn" id="lang-en" onclick="setLang('en')" title="English">
+            <img src="https://flagcdn.com/w40/eg.png" class="flag-btn" id="lang-ar" onclick="setLang('ar')" title="العربية">
+            <img src="https://flagcdn.com/w40/es.png" class="flag-btn" id="lang-es" onclick="setLang('es')" title="Español">
             <div id="dark-mode-toggle" onclick="toggleDarkMode()"><i class="fas fa-moon"></i></div>
         </div>
     </nav>
@@ -166,19 +253,21 @@
 
     <div class="section-title" id="title-journey"></div>
     <div class="process-flow">
-        <div class="process-step reveal"><i class="far fa-circle-dot"></i><h4 id="step1"></h4></div>
-        <div class="process-step reveal"><i class="far fa-copy"></i><h4 id="step2"></h4></div>
-        <div class="process-step reveal"><i class="fas fa-wand-magic-sparkles"></i><h4 id="step3"></h4></div>
-        <div class="process-step reveal"><i class="far fa-square-plus"></i><h4 id="step4"></h4></div>
-        <div class="process-step reveal"><i class="far fa-lightbulb"></i><h4 id="step5"></h4></div>
+        <div class="process-step reveal" onclick="showJourney('understand')" style="cursor: pointer;"><i class="far fa-circle-dot"></i><h4 id="step1"></h4></div>
+        <div class="process-step reveal" onclick="showJourney('extract')" style="cursor: pointer;"><i class="far fa-copy"></i><h4 id="step2"></h4></div>
+        <div class="process-step reveal" onclick="showJourney('clean')" style="cursor: pointer;"><i class="fas fa-wand-magic-sparkles"></i><h4 id="step3"></h4></div>
+        <div class="process-step reveal" onclick="showJourney('model')" style="cursor: pointer;"><i class="far fa-square-plus"></i><h4 id="step4"></h4></div>
+        <div class="process-step reveal" onclick="showJourney('insight')" style="cursor: pointer;"><i class="far fa-lightbulb"></i><h4 id="step5"></h4></div>
     </div>
 
     <div class="section-title" id="title-expertise"></div>
     <div class="grid-container"> 
         <div class="card-3d reveal"><i class="fas fa-chart-bar"></i><span>Power BI</span></div>
         <div class="card-3d reveal"><i class="fas fa-file-excel"></i><span>Excel</span></div>
-        <div class="card-3d reveal"><i class="fas fa-project-diagram"></i><span id="skill3">Modeling</span></div>
-        <div class="card-3d reveal"><i class="fas fa-calculator"></i><span id="skill4">DAX</span></div>
+        <div class="card-3d reveal"><i class="fas fa-project-diagram"></i><span id="skill3"></span></div>
+        <div class="card-3d reveal"><i class="fas fa-calculator"></i><span id="skill4"></span></div>
+        <div class="card-3d reveal"><i class="fas fa-server"></i><span>ETL</span></div>
+        <div class="card-3d reveal"><i class="fas fa-eye"></i><span id="skill6"></span></div>
     </div>
 
     <div class="section-title" id="title-projects"></div>
@@ -186,79 +275,202 @@
         <div class="project-item reveal"> 
             <div class="p-img"><img src="hr.png.png"></div>
             <div class="p-text">
-                <h3 id="p1-title">HR Analysis</h3>
-                <div class="btn-view" id="p1-btn">View Details</div>
+                <h3 id="p1-title"></h3>
+                <div class="btn-view" onclick="showStudy('hr')" id="p1-btn" style="cursor: pointer;"></div>
+            </div>
+        </div>
+
+        <div class="project-item reveal">
+            <div class="p-img"><img src="sales.png1.png"></div>
+            <div class="p-text">
+                <h3 id="p2-title"></h3>
+                <div class="btn-view" onclick="showStudy('sales')" id="p2-btn" style="cursor: pointer;"></div>
             </div>
         </div>
     </div>
 
-    <footer>
-        <div class="footer-grid">
-            <a href="#" class="footer-card"><i class="fab fa-linkedin"></i><span>LinkedIn</span></a>
-            <a href="#" class="footer-card"><i class="fas fa-envelope"></i><span>Email</span></a>
+    <div class="section-title" id="title-ratings"></div>
+    <div class="rating-input-section">
+        <h4 id="rate-prompt">Leave a Review</h4>
+        <div class="stars" id="star-rating">
+            <i class="fas fa-star" data-value="1"></i>
+            <i class="fas fa-star" data-value="2"></i>
+            <i class="fas fa-star" data-value="3"></i>
+            <i class="fas fa-star" data-value="4"></i>
+            <i class="fas fa-star" data-value="5"></i>
         </div>
-        <p style="margin-top: 20px; font-weight: bold;">© AHMED GHARIB | AGBINSIGHTS</p>
+        <input type="text" id="user-name" class="rating-input" placeholder="Name"><br>
+        <textarea id="user-comment" class="rating-input" rows="2" placeholder="Write your feedback..."></textarea><br>
+        <button class="submit-rate-btn" onclick="submitRating()" id="submit-rate">Submit</button>
+    </div>
+
+    <div class="grid-container" id="ratings-display">
+        <div class="card-3d reveal active" dir="ltr" style="text-align: left;">
+            <i class="fas fa-quote-left" style="font-size: 20px; opacity: 0.5;"></i>
+            <strong style="display:block; margin-top:5px; color:var(--main-blue);">hamo eslam</strong>
+            <p style="font-style: italic; font-size: 14px; margin: 5px 0;">Exceptional dashboards and attention to detail!</p>
+            <div style="color: #ffce00;">★★★★★</div>
+        </div>
+        <div class="card-3d reveal active" dir="ltr" style="text-align: left;">
+            <i class="fas fa-quote-left" style="font-size: 20px; opacity: 0.5;"></i>
+            <strong style="display:block; margin-top:5px; color:var(--main-blue);">Reda</strong>
+            <p style="font-style: italic; font-size: 14px; margin: 5px 0;">Highly recommended for strategic data insights.</p>
+            <div style="color: #ffce00;">★★★★★</div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="social-icons">
+            <a href="https://www.linkedin.com/in/ahmed-gharib-20989a272/" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="mailto:info@agbinsights.com"><i class="fas fa-envelope"></i></a>
+        </div>
+        <p style="margin-top: 20px; opacity: 0.6; font-size: 12px;">© AHMED GHARIB | AGBINSIGHTS</p>
     </footer>
+</div>
+
+<div id="case-study-view">
+    <div onclick="hideStudy()" id="back-btn" style="color:var(--main-blue); cursor:pointer; margin-bottom:30px; font-weight:bold;"></div>
+    <div id="case-header-content"></div>
+    <div id="study-images"></div>
 </div>
 
 <script>
     let currentLang = localStorage.getItem('ahmedLang') || 'en';
     let isDarkMode = localStorage.getItem('ahmedDarkMode') === 'true';
-
+    let lastScrollPos = 0; 
+    let selectedRating = 5;
+    
     const translations = {
         en: {
             name: "Ahmed Gharib", welcomeBtn: "Explore Insights", job: "Data Analyst",
             tagline: "Turning Complex Data into Actionable Insights",
-            about: "I transform complex data into <b>actionable insights</b>.",
-            journey: "01. Journey", expertise: "02. Expertise", projects: "03. Projects",
+            about: "I transform complex data into <b>actionable insights</b> that drive business growth. Specialized in Power BI & Excel.",
+            journey: "01. Journey", expertise: "02. Expertise", projects: "03. Projects", ratings: "04. Ratings",
             step1: "Understand", step2: "Extract", step3: "Clean", step4: "Model", step5: "Insight",
-            viewBtn: "View Details"
+            skill3: "Modeling", skill4: "DAX Logic", skill6: "Viz",
+            viewBtn: "View Details", back: "← BACK TO HOME",
+            obj: "OBJECTIVE", ch: "CHALLENGE", sol: "SOLUTION", imp: "IMPACT", tool: "TOOLS",
+            ratePrompt: "Leave a Review", namePlace: "Name", ratePlace: "Write your feedback...", rateBtn: "Submit",
+            alert: "Please enter both name and comment", thanks: "Thank you for your feedback!"
         },
         ar: {
             name: "أحمد غريب", welcomeBtn: "استكشاف التفاصيل", job: "محلل بيانات",
             tagline: "تحويل البيانات المعقدة إلى رؤى استراتيجية",
-            about: "أقوم بتحويل البيانات المعقدة إلى <b>رؤى قابلة للتنفيذ</b>.",
-            journey: "01. الرحلة", expertise: "02. الخبرات", projects: "03. المشاريع",
-            step1: "الفهم", step2: "الاستخراج", step3: "التنظيف", step4: "النمذجة", step5: "الرؤية",
-            viewBtn: "عرض التفاصيل"
+            about: "أقوم بتحويل البيانات المعقدة إلى <b>رؤى قابلة للتنفيذ</b> تدفع نمو الأعمال. متخصص في Power BI و Excel.",
+            journey: "01. الرحلة", expertise: "02. الخبرات", projects: "03. المشاريع", ratings: "04. التقييمات",
+            step1: "الفهم", step2: "استخراج", step3: "تنظيف", step4: "نمذجة", step5: "رؤية",
+            skill3: "نمذجة", skill4: "منطق DAX", skill6: "تصوير",
+            viewBtn: "عرض التفاصيل", back: "← العودة للرئيسية",
+            obj: "الهدف", ch: "التحدي", sol: "الحل", imp: "الأثر", tool: "الأدوات",
+            ratePrompt: "أضف تقييمك", namePlace: "الاسم", ratePlace: "اكتب رأيك هنا...", rateBtn: "إرسال",
+            alert: "يرجى إدخال الاسم والتعليق", thanks: "شكراً لتقييمك!"
+        },
+        es: {
+            name: "Ahmed Gharib", welcomeBtn: "Explorar Detalles", job: "Analista de Datos",
+            tagline: "Convirtiendo Datos Complejos en Perspectivas Accionables",
+            about: "Convierto datos complejos en <b>perspectivas accionables</b> que impulsan el crecimiento. Especialista en Power BI y Excel.",
+            journey: "01. Trayectoria", expertise: "02. Experiencia", projects: "03. Proyectos", ratings: "04. Valoraciones",
+            step1: "Entender", step2: "Extraer", step3: "Limpiar", step4: "Modelar", step5: "Perspectiva",
+            skill3: "Modelado", skill4: "Lógica DAX", skill6: "Viz",
+            viewBtn: "Ver Detalles", back: "← VOLVER AL INICIO",
+            obj: "OBJETIVO", ch: "DESAFÍO", sol: "SOLUCIÓN", imp: "IMPACTO", tool: "HERRAMIENTAS",
+            ratePrompt: "Deja una reseña", namePlace: "Nombre", ratePlace: "Escribe tu opinión...", rateBtn: "Enviar",
+            alert: "Por favor, introduzca su nombre y comentario", thanks: "¡Gracias por tu comentario!"
+        }
+    };
+
+    const projectData = {
+        hr: { 
+            en: { title: "HR Attrition Analysis", o: "Identify key factors behind employee turnover and improve retention.", c: "The company faced high turnover rates in specific departments with no clear reason.", s: "Developed an interactive Power BI dashboard with advanced DAX to track attrition by age, department, and salary.", i: "Identified a 15% turnover reduction opportunity by addressing salary bands.", t: "Power BI, Power Query, DAX" },
+            ar: { title: "تحليل استقالات الموظفين", o: "تحديد الأسباب الرئيسية لترك الموظفين للعمل وتحسين معدلات الاستبقاء.", c: "واجهت الشركة معدلات دوران وظيفي عالية في أقسام معينة دون معرفة الأسباب الحقيقية.", s: "تطوير لوحة بيانات تفاعلية باستخدام Power BI وDAX لتتبع الاستقالات حسب العمر والقسم والراتب.", i: "تحديد فرصة لتقليل الدوران الوظيفي بنسبة 15% من خلال معالجة هيكل الرواتب.", t: "Power BI, Power Query, DAX" },
+            es: { title: "Análisis de Rotación de RRHH", o: "Identificar factores clave detrás de la rotación de empleados.", c: "La empresa enfrentaba altas tasas de rotación en departamentos específicos sin razón clara.", s: "Dashboard interactivo en Power BI con DAX avanzado para rastrear la rotación por edad, departamento y salario.", i: "Se identificó una oportunidad de reducción del 15% al abordar los rangos salariales.", t: "Power BI, Power Query, DAX" },
+            imgs: ['hr.png.png', 'hr.png2.png', 'hr.png3.png']
+        },
+        sales: {
+            en: { title: "Sales Performance Hub", o: "Centralize sales data from multiple sources to track global growth.", c: "Fragmented data across different regions made it hard to track real-time profit.", s: "Built a unified ETL pipeline to clean and merge data, featuring year-over-year growth metrics.", i: "Improved reporting speed by 40% and identified top-performing stock items.", t: "Excel, Power BI, ETL Processes" },
+            ar: { title: "مركز أداء المبيعات", o: "مركزية بيانات المبيعات من مصادر متعددة لتتبع النمو العالمي.", c: "بيانات مشتتة عبر مناطق مختلفة جعلت من الصعب تتبع الأرباح بشكل لحظي.", s: "بناء مسار ETL موحد لتنظيف ودمج البيانات، مع عرض مقاييس النمو السنوي.", i: "تحسين سرعة التقارير بنسبة 40% وتحديد السلع الأكثر ربحية.", t: "Excel, Power BI, ETL Processes" },
+            es: { title: "Hub de Rendimiento de Ventas", o: "Centralizar datos de ventas de múltiples fuentes.", c: "Datos fragmentados en differentes regiones dificultaban el seguimiento de ganancias en tiempo real.", s: "Pipeline de ETL unificado para limpiar y fusionar datos, con métricas de crecimiento anual.", i: "Mejora del 40% en velocidad de informes e identificación de artículos más rentables.", t: "Excel, Power BI, Procesos ETL" },
+            imgs: ['sales.png1.png', 'sales.png2.png', 'sales.png3.png']
+        }
+    };
+
+    const journeyData = {
+        understand: {
+            en: { title: "Understand", desc: "Defining business goals, decisions, and KPIs to ensure data alignment." },
+            ar: { title: "مرحلة الفهم", desc: "تحديد أهداف العمل والقرارات ومؤشرات الأداء لضمان توافق البيانات مع الرؤية المطلوبة." },
+            es: { title: "Entender", desc: "Definición de objetivos comerciales y KPIs." }
+        },
+        extract: {
+            en: { title: "Extract", desc: "Connecting to relevant and reliable data sources for analysis." },
+            ar: { title: "مرحلة الاستخراج", desc: "الاتصال بمصادر البيانات ذات الصلة والموثوقة لبدء عملية التحليل." },
+            es: { title: "Extraer", desc: "Conexión a fuentes de datos confiables." }
+        },
+        clean: {
+            en: { title: "Clean", desc: "Ensuring accuracy, consistency, and overall data quality." },
+            ar: { title: "مرحلة التنظيف", desc: "ضمان دقة البيانات واتساقها وتنقيتها من الأخطاء لضمان جودة النتائج." },
+            es: { title: "Limpiar", desc: "Asegurar la calidad y consistencia de los datos." }
+        },
+        model: {
+            en: { title: "Model", desc: "Building data modeling architectures and complex analytical logic." },
+            ar: { title: "مرحلة النمذجة", desc: "بناء هياكل نمذجة البيانات والمنطق التحليلي المعقد باستخدام DAX." },
+            es: { title: "Modelar", desc: "Construcción de arquitecturas de datos." }
+        },
+        insight: {
+            en: { title: "Insight", desc: "Providing actionable insights and strategic recommendations." },
+            ar: { title: "مرحلة الرؤية", desc: "تحويل البيانات إلى توصيات استراتيجية ورؤى قابلة للتنفيذ مباشرة." },
+            es: { title: "Perspectiva", desc: "Proporcionar рекомендации estratégicas." }
         }
     };
 
     function updateUI() {
         const t = translations[currentLang];
-        document.body.className = currentLang === 'ar' ? 'rtl' : '';
         
+        document.body.className = currentLang === 'ar' ? 'rtl' : '';
         if (isDarkMode) {
             document.body.classList.add('dark-theme');
+            // تغيير اللوجو للوضع الداكن
             document.getElementById('nav-logo-img').src = "agb-logo.png.1.jpeg";
             document.getElementById('welcome-logo-img').src = "agb-logo.png.1.jpeg";
-            document.getElementById('dark-mode-toggle').innerHTML = '<i class="fas fa-sun"></i>';
         } else {
-            document.body.classList.remove('dark-theme');
+            // تغيير اللوجو للوضع الفاتح
             document.getElementById('nav-logo-img').src = "agb-logo-png.png";
             document.getElementById('welcome-logo-img').src = "agb-logo-png.png";
-            document.getElementById('dark-mode-toggle').innerHTML = '<i class="fas fa-moon"></i>';
         }
 
         document.getElementById('welcome-name').innerText = t.name;
+        document.getElementById('welcome-tagline').innerText = t.tagline;
+        document.getElementById('welcome-btn').innerText = t.welcomeBtn; 
         document.getElementById('main-name').innerText = t.name;
         document.getElementById('job-title').innerText = t.job;
         document.getElementById('about-me').innerHTML = t.about;
         document.getElementById('title-journey').innerText = t.journey;
         document.getElementById('title-expertise').innerText = t.expertise;
         document.getElementById('title-projects').innerText = t.projects;
+        document.getElementById('title-ratings').innerText = t.ratings;
         document.getElementById('step1').innerText = t.step1;
         document.getElementById('step2').innerText = t.step2;
         document.getElementById('step3').innerText = t.step3;
         document.getElementById('step4').innerText = t.step4;
         document.getElementById('step5').innerText = t.step5;
-        document.getElementById('welcome-btn').innerText = t.welcomeBtn;
-    }
+        document.getElementById('skill3').innerText = t.skill3;
+        document.getElementById('skill4').innerText = t.skill4;
+        document.getElementById('skill6').innerText = t.skill6;
+        document.getElementById('p1-title').innerText = projectData.hr[currentLang].title;
+        document.getElementById('p2-title').innerText = projectData.sales[currentLang].title;
+        document.getElementById('p1-btn').innerText = t.viewBtn;
+        document.getElementById('p2-btn').innerText = t.viewBtn;
+        document.getElementById('back-btn').innerText = t.back;
 
-    function toggleDarkMode() {
-        isDarkMode = !isDarkMode;
-        localStorage.setItem('ahmedDarkMode', isDarkMode);
-        updateUI();
+        document.getElementById('rate-prompt').innerText = t.ratePrompt;
+        document.getElementById('user-name').placeholder = t.namePlace;
+        document.getElementById('user-comment').placeholder = t.ratePlace;
+        document.getElementById('submit-rate').innerText = t.rateBtn;
+
+        document.querySelectorAll('.flag-btn').forEach(f => f.classList.remove('active'));
+        if(document.getElementById('lang-' + currentLang)) document.getElementById('lang-' + currentLang).classList.add('active');
+        
+        const iconContainer = document.getElementById('dark-mode-toggle');
+        iconContainer.innerHTML = isDarkMode ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
     }
 
     function setLang(lang) {
@@ -267,22 +479,124 @@
         updateUI();
     }
 
+    function toggleDarkMode() {
+        isDarkMode = !isDarkMode;
+        localStorage.setItem('ahmedDarkMode', isDarkMode);
+        updateUI();
+    }
+
     function startExploring() {
         document.getElementById('welcome-overlay').style.opacity = '0';
-        setTimeout(() => {
-            document.getElementById('welcome-overlay').style.display = 'none';
-            document.getElementById('main-site').style.display = 'block';
-            setTimeout(() => document.getElementById('main-site').style.opacity = '1', 50);
+        setTimeout(() => { 
+            document.getElementById('welcome-overlay').style.display = 'none'; 
+            const main = document.getElementById('main-site'); 
+            main.style.display = 'block'; 
+            setTimeout(() => main.style.opacity = '1', 50); 
+            updateUI();
         }, 800);
     }
 
-    window.addEventListener('scroll', () => {
-        document.querySelectorAll('.reveal').forEach(el => {
-            if (el.getBoundingClientRect().top < window.innerHeight - 50) el.classList.add('active');
+    document.querySelectorAll('#star-rating i').forEach(star => {
+        star.addEventListener('click', function() {
+            selectedRating = this.getAttribute('data-value');
+            updateStars();
         });
     });
 
-    window.onload = updateUI;
+    function updateStars() {
+        document.querySelectorAll('#star-rating i').forEach(star => {
+            star.classList.toggle('active', star.getAttribute('data-value') <= selectedRating);
+        });
+    }
+
+    function submitRating() {
+        const name = document.getElementById('user-name').value;
+        const comment = document.getElementById('user-comment').value;
+        const t = translations[currentLang];
+        
+        if (!name || !comment) {
+            alert(t.alert);
+            return;
+        }
+        
+        const container = document.getElementById('ratings-display');
+        const newRate = document.createElement('div');
+        newRate.className = "card-3d reveal active";
+        
+        const isArabic = /[\u0600-\u06FF]/.test(comment);
+        newRate.setAttribute('dir', isArabic ? 'rtl' : 'ltr');
+        newRate.style.textAlign = isArabic ? 'right' : 'left';
+
+        let starsHtml = '★'.repeat(selectedRating) + '☆'.repeat(5 - selectedRating);
+        
+        newRate.innerHTML = `
+            <i class="fas fa-quote-left" style="font-size: 15px; opacity: 0.5;"></i>
+            <strong style="display:block; margin-top:5px; color:var(--main-blue);">${name}</strong>
+            <p style="font-style: italic; font-size: 14px; margin: 5px 0;">${comment}</p>
+            <div style="color: #ffce00;">${starsHtml}</div>
+        `;
+        
+        container.prepend(newRate);
+        document.getElementById('user-name').value = "";
+        document.getElementById('user-comment').value = "";
+        alert(t.thanks);
+    }
+
+    function showStudy(id) {
+        lastScrollPos = window.scrollY; 
+        const d = projectData[id][currentLang];
+        const t = translations[currentLang];
+        document.getElementById('case-header-content').innerHTML = `
+            <div class="case-header">
+                <h2>${d.title}</h2>
+                <p><b>${t.obj}:</b> ${d.o}</p>
+                <div class="detail-grid">
+                    <div><b style="color:var(--main-blue)">${t.ch}</b><br>${d.c}</div>
+                    <div><b style="color:var(--main-blue)">${t.sol}</b><br>${d.s}</div>
+                    <div><b style="color:var(--main-blue)">${t.imp}</b><br>${d.i}</div>
+                    <div><b style="color:var(--main-blue)">${t.tool}</b><br>${d.t}</div>
+                </div>
+            </div>`;
+        document.getElementById('study-images').innerHTML = projectData[id].imgs.map(img => <img src="${img}" style="width:100%; margin-bottom:20px; border-radius:15px; box-shadow:0 10px 30px rgba(0,0,0,0.1);">).join('');
+        document.getElementById('main-site').style.display = 'none';
+        document.getElementById('case-study-view').style.display = 'block';
+        window.scrollTo(0,0);
+    }
+
+    function hideStudy() { 
+        document.getElementById('main-site').style.display = 'block'; 
+        document.getElementById('case-study-view').style.display = 'none'; 
+        window.scrollTo({ top: lastScrollPos, behavior: 'instant' });
+    }
+
+    function showJourney(id) {
+        lastScrollPos = window.scrollY;
+        const d = journeyData[id][currentLang];
+        document.getElementById('case-header-content').innerHTML = `
+            <div class="case-header" style="text-align:center; border:none; background:none;">
+                <h2 style="color:var(--main-blue); font-size:40px; margin-bottom:20px;">${d.title}</h2>
+                <p style="font-size: 22px; color:var(--text-gray); line-height:1.6; max-width:800px; margin:0 auto;">${d.desc}</p>
+            </div>`;
+        document.getElementById('study-images').innerHTML = ""; 
+        document.getElementById('main-site').style.display = 'none';
+        document.getElementById('case-study-view').style.display = 'block';
+        window.scrollTo(0,0);
+    }
+
+    window.addEventListener("scroll", reveal);
+    function reveal() {
+        var reveals = document.querySelectorAll(".reveal");
+        for (var i = 0; i < reveals.length; i++) {
+            var windowHeight = window.innerHeight;
+            var elementTop = reveals[i].getBoundingClientRect().top;
+            if (elementTop < windowHeight - 50) {
+                reveals[i].classList.add("active");
+            }
+        }
+    }
+    // تنفيذ التحديث الأولي عند التحميل
+    updateUI();
 </script>
+
 </body>
 </html>
