@@ -195,7 +195,7 @@
         .rating-input { width: 80%; padding: 12px; border: 1px solid #ddd; border-radius: 10px; margin-bottom: 10px; font-family: inherit; }
         .submit-rate-btn { background: var(--main-blue); color: white; border: none; padding: 10px 25px; border-radius: 8px; cursor: pointer; font-weight: bold; }
 
-        /* --- تعديل الفوتر (Default: Light Mode) --- */
+        /* --- الفوتر --- */
         footer { 
             padding: 60px 20px; 
             background: #000000; 
@@ -206,18 +206,9 @@
         .social-icons a { color: #ffffff; font-size: 25px; margin: 0 15px; transition: 0.3s; }
         .social-icons a:hover { color: var(--main-blue); }
 
-        /* --- تعديل الفوتر (Dark Mode) --- */
-        body.dark-theme footer { 
-            background: #ffffff !important; 
-            color: #000000 !important; 
-        }
-        body.dark-theme footer .social-icons a { 
-            color: #000000 !important; 
-        }
-        body.dark-theme footer p { 
-            color: #000000 !important; 
-            opacity: 0.8; 
-        }
+        body.dark-theme footer { background: #ffffff !important; color: #000000 !important; }
+        body.dark-theme footer .social-icons a { color: #000000 !important; }
+        body.dark-theme footer p { color: #000000 !important; opacity: 0.8; }
 
         body.dark-theme { --bg-white: #000000; --deep-black: #ffffff; --text-gray: #bbbbbb; }
         body.dark-theme .card-3d, body.dark-theme .process-step, body.dark-theme .project-item, body.dark-theme .case-header, body.dark-theme .rating-input-section { background: #111111; border-color: #222; }
@@ -312,16 +303,16 @@
     </div>
 
     <div class="grid-container" id="ratings-display">
-        <div class="card-3d reveal">
+        <div class="card-3d reveal active" dir="ltr" style="text-align: left;">
             <i class="fas fa-quote-left" style="font-size: 20px; opacity: 0.5;"></i>
             <strong style="display:block; margin-top:5px; color:var(--main-blue);">hamo eslam</strong>
-            <p style="font-style: italic; font-size: 14px; margin: 5px 0;" id="rate-1"></p>
+            <p style="font-style: italic; font-size: 14px; margin: 5px 0;">Exceptional dashboards and attention to detail!</p>
             <div style="color: #ffce00;">★★★★★</div>
         </div>
-        <div class="card-3d reveal">
+        <div class="card-3d reveal active" dir="ltr" style="text-align: left;">
             <i class="fas fa-quote-left" style="font-size: 20px; opacity: 0.5;"></i>
             <strong style="display:block; margin-top:5px; color:var(--main-blue);">Reda</strong>
-            <p style="font-style: italic; font-size: 14px; margin: 5px 0;" id="rate-2"></p>
+            <p style="font-style: italic; font-size: 14px; margin: 5px 0;">Highly recommended for strategic data insights.</p>
             <div style="color: #ffce00;">★★★★★</div>
         </div>
     </div>
@@ -357,9 +348,7 @@
             skill3: "Modeling", skill4: "DAX Logic", skill6: "Viz",
             viewBtn: "View Details", back: "← BACK TO HOME",
             obj: "OBJECTIVE", ch: "CHALLENGE", sol: "SOLUTION", imp: "IMPACT", tool: "TOOLS",
-            rate1: "Exceptional dashboards and attention to detail!",
-            rate2: "Highly recommended for strategic data insights.",
-            ratePrompt: "Leave a Review", namePlace: "Name / الاسم", ratePlace: "Write your feedback...", rateBtn: "Submit",
+            ratePrompt: "Leave a Review", namePlace: "Name", ratePlace: "Write your feedback...", rateBtn: "Submit",
             alert: "Please enter both name and comment", thanks: "Thank you for your feedback!"
         },
         ar: {
@@ -371,9 +360,7 @@
             skill3: "نمذجة", skill4: "منطق DAX", skill6: "تصوير",
             viewBtn: "عرض التفاصيل", back: "← العودة للرئيسية",
             obj: "الهدف", ch: "التحدي", sol: "الحل", imp: "الأثر", tool: "الأدوات",
-            rate1: "لوحات بيانات استثنائية واهتمام دقيق بالتفاصيل!",
-            rate2: "أنصح به بشدة لتحويل البيانات لرؤى استراتيجية.",
-            ratePrompt: "أضف تقييمك", namePlace: "الاسم / Name", ratePlace: "اكتب رأيك هنا...", rateBtn: "إرسال",
+            ratePrompt: "أضف تقييمك", namePlace: "الاسم", ratePlace: "اكتب رأيك هنا...", rateBtn: "إرسال",
             alert: "يرجى إدخال الاسم والتعليق", thanks: "شكراً لتقييمك!"
         },
         es: {
@@ -385,9 +372,7 @@
             skill3: "Modelado", skill4: "Lógica DAX", skill6: "Viz",
             viewBtn: "Ver Detalles", back: "← VOLVER AL INICIO",
             obj: "OBJETIVO", ch: "DESAFÍO", sol: "SOLUCIÓN", imp: "IMPACTO", tool: "HERRAMIENTAS",
-            rate1: "¡Tableros excepcionales y atención al detalle!",
-            rate2: "Muy recomendable para obtener información estratégica.",
-            ratePrompt: "Deja una reseña", namePlace: "Nombre / الاسم", ratePlace: "Escribe tu opinión...", rateBtn: "Enviar",
+            ratePrompt: "Deja una reseña", namePlace: "Nombre", ratePlace: "Escribe tu opinión...", rateBtn: "Enviar",
             alert: "Por favor, introduzca su nombre y comentario", thanks: "¡Gracias por tu comentario!"
         }
     };
@@ -437,13 +422,8 @@
 
     function updateUI() {
         const t = translations[currentLang];
-        
         const logoPath = isDarkMode ? 'agb-logo.png.1.jpeg' : 'agb-logo-png.png';
-        const welcomeLogo = document.querySelector('.welcome-logo');
-        const navLogo = document.querySelector('.nav-logo-img');
-        if(welcomeLogo) welcomeLogo.src = logoPath;
-        if(navLogo) navLogo.src = logoPath;
-
+        
         document.body.className = currentLang === 'ar' ? 'rtl' : '';
         if (isDarkMode) document.body.classList.add('dark-theme');
 
@@ -471,17 +451,10 @@
         document.getElementById('p2-btn').innerText = t.viewBtn;
         document.getElementById('back-btn').innerText = t.back;
 
-        document.getElementById('rate-1').innerText = t.rate1;
-        document.getElementById('rate-2').innerText = t.rate2;
         document.getElementById('rate-prompt').innerText = t.ratePrompt;
         document.getElementById('user-name').placeholder = t.namePlace;
         document.getElementById('user-comment').placeholder = t.ratePlace;
         document.getElementById('submit-rate').innerText = t.rateBtn;
-
-        document.querySelectorAll('#ratings-display .card-3d').forEach(card => {
-            card.setAttribute('dir', currentLang === 'ar' ? 'rtl' : 'ltr');
-            card.style.textAlign = currentLang === 'ar' ? 'right' : 'left';
-        });
 
         document.querySelectorAll('.flag-btn').forEach(f => f.classList.remove('active'));
         if(document.getElementById('lang-' + currentLang)) document.getElementById('lang-' + currentLang).classList.add('active');
@@ -513,6 +486,7 @@
         }, 800);
     }
 
+    // Star Logic
     document.querySelectorAll('#star-rating i').forEach(star => {
         star.addEventListener('click', function() {
             selectedRating = this.getAttribute('data-value');
@@ -540,8 +514,10 @@
         const newRate = document.createElement('div');
         newRate.className = "card-3d reveal active";
         
-        newRate.setAttribute('dir', currentLang === 'ar' ? 'rtl' : 'ltr');
-        newRate.style.textAlign = currentLang === 'ar' ? 'right' : 'left';
+        // كشف اللغة المكتوبة لتحديد اتجاه التقييم الجديد
+        const isArabic = /[\u0600-\u06FF]/.test(comment);
+        newRate.setAttribute('dir', isArabic ? 'rtl' : 'ltr');
+        newRate.style.textAlign = isArabic ? 'right' : 'left';
 
         let starsHtml = '★'.repeat(selectedRating) + '☆'.repeat(5 - selectedRating);
         
@@ -599,20 +575,18 @@
         window.scrollTo(0,0);
     }
 
+    window.addEventListener("scroll", reveal);
     function reveal() {
         var reveals = document.querySelectorAll(".reveal");
         for (var i = 0; i < reveals.length; i++) {
             var windowHeight = window.innerHeight;
             var elementTop = reveals[i].getBoundingClientRect().top;
-            if (elementTop < windowHeight - 100) {
+            if (elementTop < windowHeight - 50) {
                 reveals[i].classList.add("active");
             }
         }
     }
-
-    window.addEventListener("scroll", reveal);
-    window.addEventListener("load", () => { updateStars(); reveal(); });
-    updateUI();
 </script>
+
 </body>
 </html>
