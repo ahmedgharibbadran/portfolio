@@ -206,7 +206,9 @@
         .social-icons a { color: var(--deep-black); font-size: 30px; margin: 0 15px; transition: 0.3s; text-decoration: none; }
         .social-icons a:hover { color: var(--main-blue); transform: translateY(-3px); }
 
+        /* تعديلات الوضع الليلي */
         body.dark-theme { --bg-white: #111111; --deep-black: #ffffff; --text-gray: #bbbbbb; }
+        body.dark-theme nav { background: #000000; } /* الهيدر أسود صريح في الوضع الليلي */
         body.dark-theme .card-3d, body.dark-theme .process-step, body.dark-theme .project-item, body.dark-theme .case-header, body.dark-theme .rating-input-section { background: #000000; border-color: #222; }
         body.dark-theme .rating-input { background: #252525; color: white; border-color: #444; }
 
@@ -422,6 +424,7 @@
             document.getElementById('nav-logo-img').src = "agb-logo.png.1.jpeg";
             document.getElementById('welcome-logo-img').src = "agb-logo.png.1.jpeg";
         } else {
+            document.body.classList.remove('dark-theme');
             document.getElementById('nav-logo-img').src = "agb-logo-png.png";
             document.getElementById('welcome-logo-img').src = "agb-logo-png.png";
         }
