@@ -15,7 +15,7 @@
             --deep-black: #000000;
             --text-gray: #555555; 
             --glow-effect: 0 4px 15px rgba(0, 86, 179, 0.2);
-            --footer-black: #111111; 
+            --footer-black: transparent; 
         }
 
        body { background-color: var(--bg-white); color: var(--deep-black); font-family: 'Inter', sans-serif; margin: 0; text-align: center; scroll-behavior: smooth; overflow-x: hidden; }
@@ -45,7 +45,7 @@
             justify-content: space-between; 
             align-items: center; 
             box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            background: white;
+            background: var(--bg-white);
             position: sticky; 
             top: 0; 
             z-index: 1000;
@@ -114,7 +114,7 @@
         }
 
         .card-3d, .process-step { 
-            background: #fff; 
+            background: var(--bg-white); 
             border: 1px solid #eee; 
             padding: 25px 15px; 
             flex: 1 1 130px; 
@@ -164,7 +164,7 @@
         .project-item { 
             display: flex; 
             flex-direction: column; 
-            background: #fff; 
+            background: var(--bg-white); 
             border: 1px solid #eee; 
             border-radius: 20px; 
             overflow: hidden; 
@@ -196,52 +196,18 @@
         .rating-input { width: 80%; padding: 12px; border: 1px solid #ddd; border-radius: 10px; margin-bottom: 10px; font-family: inherit; }
         .submit-rate-btn { background: var(--main-blue); color: white; border: none; padding: 10px 25px; border-radius: 8px; cursor: pointer; font-weight: bold; }
 
-        /* تعديلات الـ Footer المطلوبة */
         footer { 
             padding: 60px 20px; 
-            background: var(--footer-black); 
-            color: #ffffff; 
+            background: transparent; 
+            color: var(--deep-black); 
             margin-top: 50px; 
             transition: 0.3s;
         }
-        .social-icons {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-        }
-        .social-icons a { 
-            text-decoration: none;
-            background: rgba(255, 255, 255, 0.1);
-            width: 50px;
-            height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            color: #ffffff; 
-            font-size: 22px; 
-            transition: 0.3s; 
-        }
-        .social-icons a:hover { 
-            background: var(--main-blue);
-            color: #ffffff !important;
-            transform: translateY(-5px);
-        }
-
-        body.dark-theme footer { background: #ffffff !important; color: #000000 !important; }
-        body.dark-theme footer .social-icons a { 
-            background: rgba(0, 0, 0, 0.05);
-            color: #000000 !important; 
-        }
-        body.dark-theme footer .social-icons a:hover {
-            background: var(--main-blue);
-            color: #ffffff !important;
-        }
-        body.dark-theme footer p { color: #000000 !important; opacity: 0.8; }
+        .social-icons a { color: var(--deep-black); font-size: 30px; margin: 0 15px; transition: 0.3s; text-decoration: none; }
+        .social-icons a:hover { color: var(--main-blue); transform: translateY(-3px); }
 
         body.dark-theme { --bg-white: #111111; --deep-black: #ffffff; --text-gray: #bbbbbb; }
         body.dark-theme .card-3d, body.dark-theme .process-step, body.dark-theme .project-item, body.dark-theme .case-header, body.dark-theme .rating-input-section { background: #000000; border-color: #222; }
-        body.dark-theme nav { background: #111111; }
         body.dark-theme .rating-input { background: #252525; color: white; border-color: #444; }
 
         .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
@@ -306,19 +272,11 @@
                 <div class="btn-view" onclick="showStudy('hr')" id="p1-btn" style="cursor: pointer;"></div>
             </div>
         </div>
-
         <div class="project-item reveal">
             <div class="p-img"><img src="sales.png1.png"></div>
             <div class="p-text">
                 <h3 id="p2-title"></h3>
                 <div class="btn-view" onclick="showStudy('sales')" id="p2-btn" style="cursor: pointer;"></div>
-            </div>
-        </div>
-
-        <div class="project-item reveal">
-            <div class="p-img"><img src="finance.png"></div> <div class="p-text">
-                <h3 id="p3-title"></h3>
-                <div class="btn-view" onclick="showStudy('finance')" id="p3-btn" style="cursor: pointer;"></div>
             </div>
         </div>
     </div>
@@ -355,8 +313,8 @@
 
     <footer>
         <div class="social-icons">
-            <a href="https://www.linkedin.com/in/ahmed-gharib-20989a272/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-            <a href="mailto:info@agbinsights.com?subject=Review/Feedback" title="Email"><i class="fas fa-envelope"></i></a>
+            <a href="https://www.linkedin.com/in/ahmed-gharib-20989a272/" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="mailto:info@agbinsights.com"><i class="fas fa-envelope"></i></a>
         </div>
         <p style="margin-top: 20px; opacity: 0.6; font-size: 12px;">© AHMED GHARIB | AGBINSIGHTS</p>
     </footer>
@@ -423,21 +381,42 @@
         sales: {
             en: { title: "Sales Performance Hub", o: "Centralize sales data from multiple sources to track global growth.", c: "Fragmented data across different regions made it hard to track real-time profit.", s: "Built a unified ETL pipeline to clean and merge data, featuring year-over-year growth metrics.", i: "Improved reporting speed by 40% and identified top-performing stock items.", t: "Excel, Power BI, ETL Processes" },
             ar: { title: "مركز أداء المبيعات", o: "مركزية بيانات المبيعات من مصادر متعددة لتتبع النمو العالمي.", c: "بيانات مشتتة عبر مناطق مختلفة جعلت من الصعب تتبع الأرباح بشكل لحظي.", s: "بناء مسار ETL موحد لتنظيف ودمج البيانات، مع عرض مقاييس النمو السنوي.", i: "تحسين سرعة التقارير بنسبة 40% وتحديد السلع الأكثر ربحية.", t: "Excel, Power BI, ETL Processes" },
-            es: { title: "Hub de Rendimiento de Ventas", o: "Centralizar datos de ventas de múltiples fuentes.", c: "Datos fragmentados en differentes regiones dificultaban el seguimiento de ganancias en tiempo real.", s: "Pipeline de ETL unificado para limpiar y fusionar datos, con métricas de crecimiento anual.", i: "Meجora del 40% en velocidad de informes e identificación de artículos más rentables.", t: "Excel, Power BI, Procesos ETL" },
+            es: { title: "Hub de Rendimiento de Ventas", o: "Centralizar datos de ventas de múltiples fuentes.", c: "Datos fragmentados en differentes regiones dificultaban el seguimiento de ganancias en tiempo real.", s: "Pipeline de ETL unificado para limpiar y fusionar datos, con métricas de crecimiento anual.", i: "Mejora del 40% en velocidad de informes e identificación de artículos más rentables.", t: "Excel, Power BI, Procesos ETL" },
             imgs: ['sales.png1.png', 'sales.png2.png', 'sales.png3.png']
+        }
+    };
+
+    const journeyData = {
+        understand: {
+            en: { title: "Understand", desc: "Defining business goals, decisions, and KPIs to ensure data alignment." },
+            ar: { title: "مرحلة الفهم", desc: "تحديد أهداف العمل والقرارات ومؤشرات الأداء لضمان توافق البيانات مع الرؤية المطلوبة." },
+            es: { title: "Entender", desc: "Definición de objetivos comerciales y KPIs." }
         },
-        finance: {
-            en: { title: "Financial Insight Dashboard", o: "Visualize cash flow and budget variances to optimize spending.", c: "Manual financial tracking was prone to errors and slow decision-making.", s: "Created a dynamic financial model using Power BI to automate balance sheets and P&L reports.", i: "Reduced financial closing time by 20% and improved budget accuracy.", t: "Power BI, Excel, Advanced DAX" },
-            ar: { title: "لوحة مؤشرات الأداء المالي", o: "تصوير التدفقات النقدية وفروق الميزانية لتحسين الإنفاق.", c: "كان التتبع المالي اليدوي عرضة للأخطاء وبطء اتخاذ القرار.", s: "إنشاء نموذج مالي ديناميكي باستخدام Power BI لأتمتة الميزانيات العمومية وتقارير الأرباح والخسائر.", i: "تقليل وقت الإغلاق المالي بنسبة 20% وتحسين دقة الميزانية.", t: "Power BI, Excel, Advanced DAX" },
-            es: { title: "Dashboard de Perspectiva Financiera", o: "Visualizar flujos de caja y variaciones presupuestarias.", c: "El seguimiento financiero manual era propenso a errores.", s: "Creación de un modelo financiero dinámico en Power BI para automatizar informes de P&L.", i: "Reducción del 20% en el tiempo de cierre financiero.", t: "Power BI, Excel, Advanced DAX" },
-            imgs: ['finance.png', 'finance2.png', 'finance3.png']
+        extract: {
+            en: { title: "Extract", desc: "Connecting to relevant and reliable data sources for analysis." },
+            ar: { title: "مرحلة الاستخراج", desc: "الاتصال بمصادر البيانات ذات الصلة والموثوقة لبدء عملية التحليل." },
+            es: { title: "Extraer", desc: "Conexión a fuentes de datos confiables." }
+        },
+        clean: {
+            en: { title: "Clean", desc: "Ensuring accuracy, consistency, and overall data quality." },
+            ar: { title: "مرحلة التنظيف", desc: "ضمان دقة البيانات واتساقها وتنقيتها من الأخطاء لضمان جودة النتائج." },
+            es: { title: "Limpiar", desc: "Asegurar la calidad y consistencia de los datos." }
+        },
+        model: {
+            en: { title: "Model", desc: "Building data modeling architectures and complex analytical logic." },
+            ar: { title: "مرحلة النمذجة", desc: "بناء هياكل نمذجة البيانات والمنطق التحليلي المعقد باستخدام DAX." },
+            es: { title: "Modelar", desc: "Construcción de arquitecturas de datos." }
+        },
+        insight: {
+            en: { title: "Insight", desc: "Providing actionable insights and strategic recommendations." },
+            ar: { title: "مرحلة الرؤية", desc: "تحويل البيانات إلى توصيات استراتيجية ورؤى قابلة للتنفيذ مباشرة." },
+            es: { title: "Perspectiva", desc: "Proporcionar recomendaciones estratégicas." }
         }
     };
 
     function updateUI() {
         const t = translations[currentLang];
         document.body.className = currentLang === 'ar' ? 'rtl' : '';
-        
         if (isDarkMode) {
             document.body.classList.add('dark-theme');
             document.getElementById('nav-logo-img').src = "agb-logo.png.1.jpeg";
@@ -467,10 +446,8 @@
         document.getElementById('skill6').innerText = t.skill6;
         document.getElementById('p1-title').innerText = projectData.hr[currentLang].title;
         document.getElementById('p2-title').innerText = projectData.sales[currentLang].title;
-        document.getElementById('p3-title').innerText = projectData.finance[currentLang].title;
         document.getElementById('p1-btn').innerText = t.viewBtn;
         document.getElementById('p2-btn').innerText = t.viewBtn;
-        document.getElementById('p3-btn').innerText = t.viewBtn;
         document.getElementById('back-btn').innerText = t.back;
         document.getElementById('rate-prompt').innerText = t.ratePrompt;
         document.getElementById('user-name').placeholder = t.namePlace;
@@ -525,7 +502,6 @@
         const comment = document.getElementById('user-comment').value;
         const t = translations[currentLang];
         if (!name || !comment) { alert(t.alert); return; }
-        
         const container = document.getElementById('ratings-display');
         const newRate = document.createElement('div');
         newRate.className = "card-3d reveal active";
@@ -533,13 +509,7 @@
         newRate.setAttribute('dir', isArabic ? 'rtl' : 'ltr');
         newRate.style.textAlign = isArabic ? 'right' : 'left';
         let starsHtml = '★'.repeat(selectedRating) + '☆'.repeat(5 - selectedRating);
-        
-        newRate.innerHTML = `
-            <i class="fas fa-quote-left" style="font-size: 15px; opacity: 0.5;"></i>
-            <strong style="display:block; margin-top:5px; color:var(--main-blue);">${name}</strong>
-            <p style="font-style: italic; font-size: 14px; margin: 5px 0;">${comment}</p>
-            <div style="color: #ffce00;">${starsHtml}</div>
-        `;
+        newRate.innerHTML = `<i class="fas fa-quote-left" style="font-size: 15px; opacity: 0.5;"></i><strong style="display:block; margin-top:5px; color:var(--main-blue);">${name}</strong><p style="font-style: italic; font-size: 14px; margin: 5px 0;">${comment}</p><div style="color: #ffce00;">${starsHtml}</div>`;
         container.prepend(newRate);
         document.getElementById('user-name').value = "";
         document.getElementById('user-comment').value = "";
@@ -567,17 +537,36 @@
         window.scrollTo(0,0);
     }
 
-    function hideStudy() {
-        document.getElementById('case-study-view').style.display = 'none';
-        document.getElementById('main-site').style.display = 'block';
-        window.scrollTo(0, lastScrollPos);
+    function hideStudy() { 
+        document.getElementById('main-site').style.display = 'block'; 
+        document.getElementById('case-study-view').style.display = 'none'; 
+        window.scrollTo({ top: lastScrollPos, behavior: 'instant' });
     }
 
-    window.addEventListener('scroll', () => {
-        document.querySelectorAll('.reveal').forEach(el => {
-            if (el.getBoundingClientRect().top < window.innerHeight - 50) el.classList.add('active');
-        });
-    });
+    function showJourney(id) {
+        lastScrollPos = window.scrollY;
+        const d = journeyData[id][currentLang];
+        document.getElementById('case-header-content').innerHTML = `
+            <div class="case-header" style="text-align:center; border:none; background:none;">
+                <h2 style="color:var(--main-blue); font-size:40px; margin-bottom:20px;">${d.title}</h2>
+                <p style="font-size: 22px; color:var(--text-gray); line-height:1.6; max-width:800px; margin:0 auto;">${d.desc}</p>
+            </div>`;
+        document.getElementById('study-images').innerHTML = ""; 
+        document.getElementById('main-site').style.display = 'none';
+        document.getElementById('case-study-view').style.display = 'block';
+        window.scrollTo(0,0);
+    }
+
+    window.addEventListener("scroll", reveal);
+    function reveal() {
+        var reveals = document.querySelectorAll(".reveal");
+        for (var i = 0; i < reveals.length; i++) {
+            var windowHeight = window.innerHeight;
+            var elementTop = reveals[i].getBoundingClientRect().top;
+            if (elementTop < windowHeight - 50) { reveals[i].classList.add("active"); }
+        }
+    }
+    updateUI();
 </script>
 
 </body>
