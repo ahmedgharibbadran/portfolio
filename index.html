@@ -469,7 +469,7 @@
         const t = translations[currentLang];
         
         const ratingsHtml = `
-            <div class="rating-input-section">
+          <div class="rating-input-section" style="text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%;">
                 <h4>${t.ratePrompt}</h4>
                 <div class="stars" id="star-rating">
                     <i class="fas fa-star active" data-value="1" onclick="setRating(1)"></i>
@@ -604,4 +604,5 @@
 </script>
 </body>
 </html>
+
 
