@@ -216,13 +216,18 @@
             transform: scale(1.1) rotate(15deg);
         }
 
+        #rating-section-container { 
+            display: none; 
+            margin: 20px 0;
+            animation: slideDown 0.4s ease-out;
+        }
+
         #rating-input-section { 
-            display: none; /* مخفي افتراضياً */
             margin: 20px 10%; 
             padding: 30px; 
             background: #f9f9f9; 
             border-radius: 20px; 
-            animation: slideDown 0.4s ease-out;
+            margin-bottom: 30px;
         }
 
         @keyframes slideDown {
@@ -327,36 +332,39 @@
         </div>
     </div>
 
-    <div id="rating-input-section">
-        <h4 id="rate-prompt">Leave a Review</h4>
-        <div class="stars" id="star-rating">
-            <i class="fas fa-star" data-value="1"></i>
-            <i class="fas fa-star" data-value="2"></i>
-            <i class="fas fa-star" data-value="3"></i>
-            <i class="fas fa-star" data-value="4"></i>
-            <i class="fas fa-star" data-value="5"></i>
+    <div id="rating-section-container">
+        <div class="section-title" id="title-ratings"></div>
+        
+        <div id="rating-input-section">
+            <h4 id="rate-prompt">Leave a Review</h4>
+            <div class="stars" id="star-rating">
+                <i class="fas fa-star" data-value="1"></i>
+                <i class="fas fa-star" data-value="2"></i>
+                <i class="fas fa-star" data-value="3"></i>
+                <i class="fas fa-star" data-value="4"></i>
+                <i class="fas fa-star" data-value="5"></i>
+            </div>
+            <form id="rating-form" action="https://formspree.io/f/xwveyrqo" method="POST">
+                <input type="hidden" name="Rating" id="hidden-rating-input" value="5">
+                <input type="text" name="Name" id="user-name" class="rating-input" placeholder="Name" required><br>
+                <textarea name="Feedback" id="user-comment" class="rating-input" rows="2" placeholder="Write your feedback..." required></textarea><br>
+                <button type="button" class="submit-rate-btn" onclick="submitRating()" id="submit-rate">Submit</button>
+            </form>
         </div>
-        <form id="rating-form" action="https://formspree.io/f/xwveyrqo" method="POST">
-            <input type="hidden" name="Rating" id="hidden-rating-input" value="5">
-            <input type="text" name="Name" id="user-name" class="rating-input" placeholder="Name" required><br>
-            <textarea name="Feedback" id="user-comment" class="rating-input" rows="2" placeholder="Write your feedback..." required></textarea><br>
-            <button type="button" class="submit-rate-btn" onclick="submitRating()" id="submit-rate">Submit</button>
-        </form>
-    </div>
 
-    <div class="section-title" id="title-ratings"></div>
-    <div class="grid-container" id="ratings-display">
-        <div class="card-3d reveal active" dir="ltr" style="text-align: left;">
-            <i class="fas fa-quote-left" style="font-size: 20px; opacity: 0.5;"></i>
-            <strong style="display:block; margin-top:5px; color:var(--main-blue);">hamo eslam</strong>
-            <p style="font-style: italic; font-size: 14px; margin: 5px 0;">Exceptional dashboards and attention to detail!</p>
-            <div style="color: #ffce00;">★★★★★</div>
-        </div>
-        <div class="card-3d reveal active" dir="ltr" style="text-align: left;">
-            <i class="fas fa-quote-left" style="font-size: 20px; opacity: 0.5;"></i>
-            <strong style="display:block; margin-top:5px; color:var(--main-blue);">Reda</strong>
-            <p style="font-style: italic; font-size: 14px; margin: 5px 0;">Highly recommended for strategic data insights.</p>
-            <div style="color: #ffce00;">★★★★★</div>
+        <div class="grid-container" id="ratings-display">
+            <div class="card-3d reveal active" dir="ltr" style="text-align: left;">
+                <i class="fas fa-quote-left" style="font-size: 20px; opacity: 0.5;"></i>
+                <strong style="display:block; margin-top:5px; color:var(--main-blue);">hamo eslam</strong>
+                <p style="font-style: italic; font-size: 14px; margin: 5px 0;">Exceptional dashboards and attention to detail!</p>
+                <div style="color: #ffce00;">★★★★★</div>
+            </div>
+            <div class="card-3d reveal active" dir="ltr" style="text-align: left;">
+                <i class="fas fa-quote-left" style="font-size: 20px; opacity: 0.5;"></i>
+                <strong style="display:block; margin-top:5px; color:var(--main-blue);">Reda</strong>
+                <p style="font-style: italic; font-size: 14px; margin: 5px 0;">Highly recommended for strategic data insights.</p>
+                <div style="color: #ffce00;">★★★★★</div>
+            </div>
         </div>
     </div>
 
@@ -534,14 +542,14 @@
         }, 800);
     }
 
-    // وظيفة إظهار/إخفاء قسم التقييم
+    // وظيفة إظهار/إخفاء الحاوية الكاملة للتقييمات
     function toggleRatingSection() {
-        const section = document.getElementById('rating-input-section');
-        if (section.style.display === 'block') {
-            section.style.display = 'none';
+        const container = document.getElementById('rating-section-container');
+        if (container.style.display === 'block') {
+            container.style.display = 'none';
         } else {
-            section.style.display = 'block';
-            section.scrollIntoView({ behavior: 'smooth' });
+            container.style.display = 'block';
+            container.scrollIntoView({ behavior: 'smooth' });
         }
     }
 
@@ -583,7 +591,6 @@
                 container.prepend(newRate);
                 document.getElementById('user-name').value = "";
                 document.getElementById('user-comment').value = "";
-                document.getElementById('rating-input-section').style.display = 'none';
                 alert(t.thanks);
             } else {
                 alert("Oops! There was a problem submitting your feedback.");
@@ -608,30 +615,27 @@
                     <div><b style="color:var(--main-blue)">${t.tool}</b><br>${d.t}</div>
                 </div>
             </div>`;
-        document.getElementById('study-images').innerHTML = projectData[id].imgs.map(img => `<img src="${img}" style="width:100%; margin-bottom:20px; border-radius:15px; box-shadow:0 10px 30px rgba(0,0,0,0.1);">`).join('');
+        
+        let imgHtml = '';
+        projectData[id].imgs.forEach(img => {
+            imgHtml += `<img src="${img}" style="width:100%; border-radius:15px; margin-bottom:20px; box-shadow:0 10px 30px rgba(0,0,0,0.1)">`;
+        });
+        document.getElementById('study-images').innerHTML = imgHtml;
+
         document.getElementById('main-site').style.display = 'none';
         document.getElementById('case-study-view').style.display = 'block';
-        window.scrollTo(0,0);
+        window.scrollTo(0, 0);
+    }
+
+    function hideStudy() {
+        document.getElementById('case-study-view').style.display = 'none';
+        document.getElementById('main-site').style.display = 'block';
+        window.scrollTo(0, lastScrollPos);
     }
 
     function showJourney(id) {
-        lastScrollPos = window.scrollY;
         const d = journeyData[id][currentLang];
-        document.getElementById('case-header-content').innerHTML = `
-            <div class="case-header" style="text-align:center; border:none; background:none;">
-                <h2 style="color:var(--main-blue); font-size:40px; margin-bottom:20px;">${d.title}</h2>
-                <p style="font-size: 22px; color:var(--text-gray); line-height:1.6; max-width:800px; margin:0 auto;">${d.desc}</p>
-            </div>`;
-        document.getElementById('study-images').innerHTML = ""; 
-        document.getElementById('main-site').style.display = 'none';
-        document.getElementById('case-study-view').style.display = 'block';
-        window.scrollTo(0,0);
-    }
-
-    function hideStudy() { 
-        document.getElementById('main-site').style.display = 'block'; 
-        document.getElementById('case-study-view').style.display = 'none'; 
-        window.scrollTo({ top: lastScrollPos, behavior: 'instant' });
+        alert(`${d.title}\n\n${d.desc}`);
     }
 
     window.addEventListener('scroll', () => {
