@@ -368,6 +368,34 @@
         }
     };
 
+    const journeyData = {
+        understand: {
+            en: { title: "Understand", desc: "Defining business goals, decisions, and KPIs to ensure data alignment." },
+            ar: { title: "مرحلة الفهم", desc: "تحديد أهداف العمل والقرارات ومؤشرات الأداء لضمان توافق البيانات مع الرؤية المطلوبة." },
+            es: { title: "Entender", desc: "Definición de objetivos comerciales y KPIs." }
+        },
+        extract: {
+            en: { title: "Extract", desc: "Connecting to relevant and reliable data sources for analysis." },
+            ar: { title: "مرحلة الاستخراج", desc: "الاتصال بمصادر البيانات ذات الصلة والموثوقة لبدء عملية التحليل." },
+            es: { title: "Extraer", desc: "Conexión a fuentes de datos confiables." }
+        },
+        clean: {
+            en: { title: "Clean", desc: "Ensuring accuracy, consistency, and overall data quality." },
+            ar: { title: "مرحلة التنظيف", desc: "ضمان دقة البيانات واتساقها وتنقيتها من الأخطاء لضمان جودة النتائج." },
+            es: { title: "Limpiar", desc: "Asegurar la calidad y consistencia de los datos." }
+        },
+        model: {
+            en: { title: "Model", desc: "Building data modeling architectures and complex analytical logic." },
+            ar: { title: "مرحلة النمذجة", desc: "بناء هياكل نمذجة البيانات والمنطق التحليلي المعقد باستخدام DAX." },
+            es: { title: "Modelar", desc: "Construcción de arquitecturas de datos." }
+        },
+        insight: {
+            en: { title: "Insight", desc: "Providing actionable insights and strategic recommendations." },
+            ar: { title: "مرحلة الرؤية", desc: "تحويل البيانات إلى توصيات استراتيجية ورؤى قابلة للتنفيذ مباشرة." },
+            es: { title: "Perspectiva", desc: "Proporcionar recomendaciones estratégicas." }
+        }
+    };
+
     function updateUI() {
         const t = translations[currentLang];
         document.body.className = currentLang === 'ar' ? 'rtl' : '';
@@ -410,7 +438,7 @@
         if(document.getElementById('lang-' + currentLang)) document.getElementById('lang-' + currentLang).classList.add('active');
         
         const iconContainer = document.getElementById('dark-mode-toggle');
-        iconContainer.innerHTML = isDarkMode ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+        if(iconContainer) iconContainer.innerHTML = isDarkMode ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
     }
 
     function setLang(lang) {
@@ -464,6 +492,18 @@
                     <p style="font-style: italic; font-size: 14px; margin: 5px 0;">Exceptional dashboards and attention to detail!</p>
                     <div style="color: #ffce00;">★★★★★</div>
                 </div>
+                <div class="card-3d reveal active" dir="ltr" style="text-align: left; max-width:100%; flex:1 1 300px;">
+                    <i class="fas fa-quote-left" style="font-size: 20px; opacity: 0.5;"></i>
+                    <strong style="display:block; margin-top:5px; color:var(--main-blue);">john</strong>
+                    <p style="font-style: italic; font-size: 14px; margin: 5px 0;">Highly recommended for strategic data insights.</p>
+                    <div style="color: #ffce00;">★★★★★</div>
+                </div>
+                <div class="card-3d reveal active" dir="ltr" style="text-align: left; max-width:100%; flex:1 1 300px;">
+                    <i class="fas fa-quote-left" style="font-size: 20px; opacity: 0.5;"></i>
+                    <strong style="display:block; margin-top:5px; color:var(--main-blue);">Youssef Saad</strong>
+                    <p style="font-style: italic; font-size: 14px; margin: 5px 0;">Excellent experience The data analyst was professional responsive and delivered accurate results quickly</p>
+                    <div style="color: #ffc107;">★★★★★</div>
+                </div>
             </div>`;
         
         document.getElementById('case-header-content').innerHTML = ratingsHtml;
@@ -495,8 +535,20 @@
             headers: { 'Accept': 'application/json' }
         }).then(response => {
             if (response.ok) {
+                const container = document.getElementById('ratings-display-inner');
+                const newRate = document.createElement('div');
+                newRate.className = "card-3d reveal active";
+                newRate.style.maxWidth = "100%";
+                newRate.style.flex = "1 1 300px";
+                const isArabic = /[\u0600-\u06FF]/.test(comment);
+                newRate.setAttribute('dir', isArabic ? 'rtl' : 'ltr');
+                newRate.style.textAlign = isArabic ? 'right' : 'left';
+                let starsHtml = '★'.repeat(selectedRating) + '☆'.repeat(5 - selectedRating);
+                newRate.innerHTML = `<i class="fas fa-quote-left" style="font-size: 15px; opacity: 0.5;"></i><strong style="display:block; margin-top:5px; color:var(--main-blue);">${name}</strong><p style="font-style: italic; font-size: 14px; margin: 5px 0;">${comment}</p><div style="color: #ffce00;">${starsHtml}</div>`;
+                container.prepend(newRate);
+                document.getElementById('user-name').value = "";
+                document.getElementById('user-comment').value = "";
                 alert(t.thanks);
-                hideStudy();
             }
         });
     }
@@ -519,7 +571,9 @@
         
         let imgHtml = "";
         projectData[id].imgs.forEach(img => {
-            imgHtml += `<div class="reveal active" style="margin-bottom:20px;"><img src="${img}" style="width:100%; border-radius:15px; box-shadow:0 5px 15px rgba(0,0,0,0.1)"></div>`;
+            imgHtml += `<div class="p-img" style="margin-bottom:20px; border-radius:15px; overflow:hidden; border:1px solid #eee;">
+                            <img src="${img}" style="width:100%; height:auto;">
+                         </div>`;
         });
         document.getElementById('study-images').innerHTML = imgHtml;
         document.getElementById('main-site').style.display = 'none';
@@ -533,17 +587,23 @@
         window.scrollTo(0, lastScrollPos);
     }
 
-    // Reveal animation logic
+    function showJourney(stepId) {
+        const step = journeyData[stepId][currentLang];
+        alert(`${step.title}\n\n${step.desc}`);
+    }
+
     window.addEventListener('scroll', () => {
-        document.querySelectorAll('.reveal').forEach(el => {
-            if (el.getBoundingClientRect().top < window.innerHeight - 50) {
-                el.classList.add('active');
+        const reveals = document.querySelectorAll('.reveal');
+        reveals.forEach(reveal => {
+            const windowHeight = window.innerHeight;
+            const revealTop = reveal.getBoundingClientRect().top;
+            if (revealTop < windowHeight - 50) {
+                reveal.classList.add('active');
             }
         });
     });
 
     window.onload = updateUI;
 </script>
-
 </body>
 </html>
