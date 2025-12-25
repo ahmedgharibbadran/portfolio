@@ -310,6 +310,7 @@
 <script>
     let currentLang = localStorage.getItem('ahmedLang') || 'en';
     let isDarkMode = localStorage.getItem('ahmedDarkMode') === 'true';
+    let lastScrollPos = 0;
     let selectedRating = 5;
     const SHEETDB_URL = 'https://sheetdb.io/api/v1/jv44e0ygedwit';
 
@@ -352,6 +353,34 @@
             ratePrompt: "Deja una reseña", namePlace: "Nombre", ratePlace: "Escribe tu opinión...", rateBtn: "Enviar",
             alert: "Por favor, introduzca su nombre y comentario", thanks: "¡Gracias por tu comentario!",
             viewRatings: "Ver y añadir reseñas", loading: "Cargando reseñas..."
+        }
+    };
+
+    const journeyData = {
+        understand: {
+            en: { title: "Understand Business Needs", desc: "Defining clear objectives and understanding the key performance indicators (KPIs) critical to the business success." },
+            ar: { title: "فهم احتياجات العمل", desc: "تحديد أهداف واضحة وفهم مؤشرات الأداء الرئيسية (KPIs) الضرورية لنجاح الأعمال." },
+            es: { title: "Entender el Negocio", desc: "Definición de objetivos claros y comprensión de los indicadores clave de rendimiento (KPI) críticos." }
+        },
+        extract: {
+            en: { title: "Data Extraction", desc: "Connecting to various data sources (SQL, Excel, CSV, Web) to gather the raw information needed for analysis." },
+            ar: { title: "استخراج البيانات", desc: "الاتصال بمصادر البيانات المختلفة (إكسيل، ملفات نصية، ويب) لجمع المعلومات الخام المطلوبة للتحليل." },
+            es: { title: "Extracción de Datos", desc: "Conexión a diversas fuentes de datos para recopilar la información necesaria para el análisis." }
+        },
+        clean: {
+            en: { title: "Data Cleaning & Transformation", desc: "Using Power Query to remove duplicates, fix errors, and transform data into a usable, structured format." },
+            ar: { title: "تنظيف وتحويل البيانات", desc: "استخدام Power Query لإزالة التكرارات، وإصلاح الأخطاء، وتحويل البيانات إلى تنسيق هيكلي قابل للاستخدام." },
+            es: { title: "Limpieza de Datos", desc: "Uso de Power Query para eliminar duplicados, corregir errores y transformar los datos." }
+        },
+        model: {
+            en: { title: "Data Modeling & DAX", desc: "Creating relationships between tables and writing DAX formulas to calculate complex business metrics." },
+            ar: { title: "نمذجة البيانات و DAX", desc: "إنشاء العلاقات بين الجداول وكتابة صيغ DAX لحساب مقاييس الأعمال المعقدة." },
+            es: { title: "Modelado y DAX", desc: "Creación de relaciones entre tablas y escritura de fórmulas DAX para métricas complejas." }
+        },
+        insight: {
+            en: { title: "Insights & Visualization", desc: "Designing intuitive dashboards that tell a story and help decision-makers take confident actions." },
+            ar: { title: "الرؤى والتمثيل المرئي", desc: "تصميم لوحات بيانات بديهية تحكي قصة البيانات وتساعد صناع القرار على اتخاذ إجراءات واثقة." },
+            es: { title: "Perspectivas y Visualización", desc: "Diseño de cuadros de mando intuitivos que cuentan una historia y ayudan a los tomadores de decisiones." }
         }
     };
 
@@ -438,7 +467,22 @@
         }, 800);
     }
 
+    function showJourney(id) {
+        lastScrollPos = window.scrollY;
+        const d = journeyData[id][currentLang];
+        document.getElementById('case-header-content').innerHTML = `
+            <div class="case-header">
+                <h2>${d.title}</h2>
+                <p style="font-size:18px; line-height:1.8; color:var(--text-gray);">${d.desc}</p>
+            </div>`;
+        document.getElementById('study-images').innerHTML = "";
+        document.getElementById('main-site').style.display = 'none';
+        document.getElementById('case-study-view').style.display = 'block';
+        window.scrollTo(0,0);
+    }
+
     function openRatingsPage() {
+        lastScrollPos = window.scrollY;
         const t = translations[currentLang];
         const ratingsHtml = `
             <div class="rating-input-section">
@@ -528,6 +572,7 @@
     }
 
     function showStudy(id) {
+        lastScrollPos = window.scrollY;
         const d = projectData[id][currentLang];
         const t = translations[currentLang];
         const imgs = projectData[id].imgs.map(src => `<img src="${src}" style="width:100%; margin-bottom:20px; border-radius:15px;">`).join('');
@@ -551,9 +596,9 @@
     function hideStudy() {
         document.getElementById('case-study-view').style.display = 'none';
         document.getElementById('main-site').style.display = 'block';
+        window.scrollTo(0, lastScrollPos);
     }
 
-    // Scroll reveal animation
     window.addEventListener('scroll', () => {
         document.querySelectorAll('.reveal').forEach(el => {
             if (el.getBoundingClientRect().top < window.innerHeight - 50) el.classList.add('active');
