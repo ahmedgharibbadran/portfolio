@@ -18,9 +18,9 @@
             --footer-black: transparent; 
         }
 
-       body { background-color: var(--bg-white); color: var(--deep-black); font-family: 'Inter', sans-serif; margin: 0; text-align: center; scroll-behavior: smooth; overflow-x: hidden; }
-       body.rtl { direction: rtl; font-family: 'Cairo', sans-serif; }
-       
+        body { background-color: var(--bg-white); color: var(--deep-black); font-family: 'Inter', sans-serif; margin: 0; text-align: center; scroll-behavior: smooth; overflow-x: hidden; }
+        body.rtl { direction: rtl; font-family: 'Cairo', sans-serif; }
+        
         #welcome-overlay { 
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
             background: var(--bg-white);
@@ -469,7 +469,7 @@
         const t = translations[currentLang];
         
         const ratingsHtml = `
-          <div class="rating-input-section" style="text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%;">
+            <div class="rating-input-section" style="text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%;">
                 <h4>${t.ratePrompt}</h4>
                 <div class="stars" id="star-rating">
                     <i class="fas fa-star active" data-value="1" onclick="setRating(1)"></i>
@@ -570,10 +570,10 @@
             </div>`;
         
         let imgHtml = "";
-        projectData[id].imgs.forEach(img => {
+        projectData[id].imgs.forEach(src => {
             imgHtml += `<div class="p-img" style="margin-bottom:20px; border-radius:15px; overflow:hidden; border:1px solid #eee;">
-                            <img src="${img}" style="width:100%; height:auto;">
-                         </div>`;
+                           <img src="${src}" style="width:100%; height:auto; display:block;">
+                        </div>`;
         });
         document.getElementById('study-images').innerHTML = imgHtml;
         document.getElementById('main-site').style.display = 'none';
@@ -588,22 +588,18 @@
     }
 
     function showJourney(stepId) {
-        const step = journeyData[stepId][currentLang];
-        alert(`${step.title}\n\n${step.desc}`);
+        const data = journeyData[stepId][currentLang];
+        alert(`${data.title}\n\n${data.desc}`);
     }
 
     window.addEventListener('scroll', () => {
-        const reveals = document.querySelectorAll('.reveal');
-        reveals.forEach(reveal => {
-            const windowHeight = window.innerHeight;
-            const revealTop = reveal.getBoundingClientRect().top;
-            if (revealTop < windowHeight - 50) {
-                reveal.classList.add('active');
-            }
+        document.querySelectorAll('.reveal').forEach(el => {
+            if (el.getBoundingClientRect().top < window.innerHeight - 50) el.classList.add('active');
         });
     });
 
-    window.onload = updateUI;
+    document.addEventListener('DOMContentLoaded', updateUI);
 </script>
+
 </body>
 </html>
