@@ -155,6 +155,22 @@
             text-shadow: 0 0 10px rgba(0, 122, 255, 0.4);
         }
 
+        /* --- New Services Section Styling --- */
+        .service-card {
+            background: var(--bg-white);
+            border: 1px solid #eee;
+            padding: 30px;
+            border-radius: 20px;
+            flex: 1 1 300px;
+            max-width: 350px;
+            text-align: center;
+            transition: 0.3s;
+        }
+        .service-card i { font-size: 40px; color: var(--main-blue); margin-bottom: 20px; }
+        .service-card h3 { margin-bottom: 15px; }
+        .service-card p { font-size: 15px; color: var(--text-gray); }
+        /* ------------------------------------ */
+
         .projects-wrapper { 
             display: flex; 
             flex-direction: column; 
@@ -208,7 +224,7 @@
 
         body.dark-theme { --bg-white: #111111; --deep-black: #ffffff; --text-gray: #bbbbbb; }
         body.dark-theme nav { background: #000000; } 
-        body.dark-theme .card-3d, body.dark-theme .process-step, body.dark-theme .project-item, body.dark-theme .case-header, body.dark-theme .rating-input-section { background: #000000; border-color: #222; }
+        body.dark-theme .card-3d, body.dark-theme .process-step, body.dark-theme .project-item, body.dark-theme .case-header, body.dark-theme .rating-input-section, body.dark-theme .service-card { background: #000000; border-color: #222; }
         body.dark-theme .rating-input { background: #252525; color: white; border-color: #444; }
 
         .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
@@ -269,6 +285,25 @@
         <div class="process-step reveal" onclick="showJourney('clean')" style="cursor: pointer;"><i class="fas fa-wand-magic-sparkles"></i><h4 id="step3"></h4></div>
         <div class="process-step reveal" onclick="showJourney('model')" style="cursor: pointer;"><i class="far fa-square-plus"></i><h4 id="step4"></h4></div>
         <div class="process-step reveal" onclick="showJourney('insight')" style="cursor: pointer;"><i class="far fa-lightbulb"></i><h4 id="step5"></h4></div>
+    </div>
+
+    <div class="section-title" id="title-services"></div>
+    <div class="grid-container">
+        <div class="service-card reveal">
+            <i class="fas fa-chart-line"></i>
+            <h3 id="serv1-title"></h3>
+            <p id="serv1-desc"></p>
+        </div>
+        <div class="service-card reveal">
+            <i class="fas fa-database"></i>
+            <h3 id="serv2-title"></h3>
+            <p id="serv2-desc"></p>
+        </div>
+        <div class="service-card reveal">
+            <i class="fas fa-laptop-code"></i>
+            <h3 id="serv3-title"></h3>
+            <p id="serv3-desc"></p>
+        </div>
     </div>
 
     <div class="section-title" id="title-expertise"></div>
@@ -337,42 +372,55 @@
             tagline: "Turning Complex Data into Actionable Insights",
             about: "I transform complex data into <b>actionable insights</b> that drive business growth. Specialized in Power BI & Excel.",
             journey: "01. Journey", expertise: "02. Expertise", projects: "03. Projects", ratings: "04. Ratings",
+            services: "Services I Offer",
             step1: "Understand", step2: "Extract", step3: "Clean", step4: "Model", step5: "Insight",
             skill3: "Modeling", skill4: "DAX Logic", skill6: "Viz",
             viewBtn: "View Project", back: "BACK TO HOME",
             obj: "OBJECTIVE", ch: "CHALLENGE", sol: "SOLUTION", imp: "IMPACT", tool: "TOOLS",
             ratePrompt: "Leave a Review", namePlace: "Name", ratePlace: "Write your feedback...", rateBtn: "Submit",
             alert: "Please enter both name and comment", thanks: "Thank you for your feedback!",
-            viewRatings: "View & Add Reviews", loading: "Loading reviews..."
+            viewRatings: "View & Add Reviews", loading: "Loading reviews...",
+            serv1Title: "Interactive Dashboards", serv1Desc: "Building custom Power BI solutions to monitor your business KPIs in real-time.",
+            serv2Title: "Data Architecture", serv2Desc: "Organizing messy data into structured models for easy and accurate analysis.",
+            serv3Title: "Business Insights", serv3Desc: "Providing detailed reports that highlight trends and growth opportunities."
         },
         ar: {
             name: "أحمد غريب", welcomeBtn: "استكشاف التفاصيل", job: "محلل بيانات",
             tagline: "تحويل البيانات المعقدة إلى رؤى استراتيجية",
             about: "أقوم بتحويل البيانات المعقدة إلى <b>رؤى قابلة للتنفيذ</b> تدفع نمو الأعمال. متخصص في Power BI و Excel.",
             journey: "01. الرحلة", expertise: "02. الخبرات", projects: "03. المشاريع", ratings: "04. التقييمات",
+            services: "الخدمات التي أقدمها",
             step1: "الفهم", step2: "استخراج", step3: "تنظيف", step4: "نمذجة", step5: "رؤية",
             skill3: "نمذجة", skill4: "منطق DAX", skill6: "تصوير",
             viewBtn: "عرض المشروع", back: "العودة للرئيسية",
             obj: "الهدف الاستراتيجي", ch: "التحدي القائم", sol: "الحل التقني", imp: "الأثر الملموس", tool: "الأدوات المستخدمة",
             ratePrompt: "أضف تقييمك", namePlace: "الاسم", ratePlace: "اكتب رأيك هنا...", rateBtn: "إرسال",
             alert: "يرجى إدخال الاسم والتعليق", thanks: "شكراً لتقييمك!",
-            viewRatings: "عرض وإضافة التقييمات", loading: "جاري تحميل التقييمات..."
+            viewRatings: "عرض وإضافة التقييمات", loading: "جاري تحميل التقييمات...",
+            serv1Title: "لوحات بيانات تفاعلية", serv1Desc: "بناء حلول Power BI مخصصة لمراقبة مؤشرات الأداء الرئيسية لعملك في الوقت الفعلي.",
+            serv2Title: "هيكلة البيانات", serv2Desc: "تنظيم البيانات غير المنظمة في نماذج هيكلية لتحليل سهل ودقيق.",
+            serv3Title: "رؤى الأعمال", serv3Desc: "تقديم تقارير مفصلة تسلط الضوء على الاتجاهات وفرص النمو المتاحة."
         },
         es: {
             name: "Ahmed Gharib", welcomeBtn: "Explorar Detalles", job: "Analista de Datos",
             tagline: "Convirtiendo Datos Complejos en Perspectivas Accionables",
             about: "Convierto datos complejos en <b>perspectivas accionables</b> que impulsan el crecimiento. Especialista en Power BI y Excel.",
             journey: "01. Trayectoria", expertise: "02. Experiencia", projects: "03. Proyectos", ratings: "04. Valoraciones",
+            services: "Servicios que ofrezco",
             step1: "Entender", step2: "Extraer", step3: "Limpiar", step4: "Modelar", step5: "Perspectiva",
             skill3: "Modelado", skill4: "Lógica DAX", skill6: "Viz",
             viewBtn: "Ver Proyecto", back: "VOLVER AL INICIO",
             obj: "OBJETIVO", ch: "DESAFÍO", sol: "SOLUCIÓN", imp: "IMPACTO", tool: "HERRAMIENTAS",
             ratePrompt: "Deja una reseña", namePlace: "Nombre", ratePlace: "Escribe tu opinión...", rateBtn: "Enviar",
             alert: "Por favor, introduzca su nombre y comentario", thanks: "¡Gracias por tu comentario!",
-            viewRatings: "Ver y añadir reseñas", loading: "Cargando reseñas..."
+            viewRatings: "Ver y añadir reseñas", loading: "Cargando reseñas...",
+            serv1Title: "Dashboards Interactivos", serv1Desc: "Soluciones Power BI para monitorear KPIs de su negocio en tiempo real.",
+            serv2Title: "Arquitectura de Datos", serv2Desc: "Organización de datos desordenados en modelos estructurados.",
+            serv3Title: "Perspectivas de Negocio", serv3Desc: "Informes detallados que destacan tendencias y oportunidades de crecimiento."
         }
     };
 
+    // Keep all other data objects (projectData, journeyData) exactly as they were...
     const projectData = {
         hr: { 
             en: { 
@@ -465,6 +513,8 @@
         document.getElementById('title-expertise').innerText = t.expertise;
         document.getElementById('title-projects').innerText = t.projects;
         document.getElementById('title-ratings').innerText = t.ratings;
+        document.getElementById('title-services').innerText = t.services;
+
         document.getElementById('step1').innerText = t.step1;
         document.getElementById('step2').innerText = t.step2;
         document.getElementById('step3').innerText = t.step3;
@@ -473,6 +523,14 @@
         document.getElementById('skill3').innerText = t.skill3;
         document.getElementById('skill4').innerText = t.skill4;
         document.getElementById('skill6').innerText = t.skill6;
+
+        document.getElementById('serv1-title').innerText = t.serv1Title;
+        document.getElementById('serv1-desc').innerText = t.serv1Desc;
+        document.getElementById('serv2-title').innerText = t.serv2Title;
+        document.getElementById('serv2-desc').innerText = t.serv2Desc;
+        document.getElementById('serv3-title').innerText = t.serv3Title;
+        document.getElementById('serv3-desc').innerText = t.serv3Desc;
+
         document.getElementById('p1-title').innerText = (projectData.hr[currentLang] || projectData.hr['en']).title;
         document.getElementById('p2-title').innerText = (projectData.sales[currentLang] || projectData.sales['en']).title;
         document.getElementById('p1-btn').innerText = t.viewBtn;
@@ -480,7 +538,6 @@
         document.getElementById('view-ratings-text').innerText = t.viewRatings;
         document.getElementById('back-btn-text').innerText = t.back;
         
-        // تعديل اتجاه السهم
         document.getElementById('back-icon').className = currentLang === 'ar' ? 'fas fa-arrow-right' : 'fas fa-arrow-left';
 
         document.querySelectorAll('.flag-btn').forEach(f => f.classList.remove('active'));
@@ -513,6 +570,20 @@
         }, 800);
     }
 
+    // Scroll reveal function
+    function reveal() {
+        var reveals = document.querySelectorAll(".reveal");
+        for (var i = 0; i < reveals.length; i++) {
+            var windowHeight = window.innerHeight;
+            var elementTop = reveals[i].getBoundingClientRect().top;
+            var elementVisible = 150;
+            if (elementTop < windowHeight - elementVisible) {
+                reveals[i].classList.add("active");
+            }
+        }
+    }
+    window.addEventListener("scroll", reveal);
+
     function showJourney(id) {
         lastScrollPos = window.scrollY;
         const d = journeyData[id][currentLang];
@@ -525,6 +596,42 @@
         document.getElementById('main-site').style.display = 'none';
         document.getElementById('case-study-view').style.display = 'block';
         window.scrollTo(0,0);
+    }
+
+    function showStudy(id) {
+        lastScrollPos = window.scrollY;
+        const d = projectData[id][currentLang] || projectData[id]['en'];
+        const t = translations[currentLang];
+        
+        let html = `
+            <div class="case-header">
+                <h2>${d.title}</h2>
+                <div class="detail-grid">
+                    <div><strong>${t.obj}</strong><p>${d.o}</p></div>
+                    <div><strong>${t.ch}</strong><p>${d.c}</p></div>
+                    <div><strong>${t.sol}</strong><p>${d.s}</p></div>
+                    <div><strong>${t.imp}</strong><p>${d.i}</p></div>
+                </div>
+                <p style="margin-top:20px;"><strong>${t.tool}:</strong> ${d.t}</p>
+            </div>`;
+        
+        document.getElementById('case-header-content').innerHTML = html;
+        
+        let imgHtml = "";
+        projectData[id].imgs.forEach(img => {
+            imgHtml += `<div class="project-item" style="margin-bottom:20px;"><div class="p-img"><img src="${img}"></div></div>`;
+        });
+        document.getElementById('study-images').innerHTML = imgHtml;
+        
+        document.getElementById('main-site').style.display = 'none';
+        document.getElementById('case-study-view').style.display = 'block';
+        window.scrollTo(0,0);
+    }
+
+    function hideStudy() {
+        document.getElementById('case-study-view').style.display = 'none';
+        document.getElementById('main-site').style.display = 'block';
+        window.scrollTo(0, lastScrollPos);
     }
 
     function openRatingsPage() {
@@ -613,46 +720,9 @@
         .then(res => res.json())
         .then(() => {
             alert(t.thanks);
-            openRatingsPage();
+            openRatingsPage(); // Refresh list
         });
     }
-
-    function showStudy(id) {
-        lastScrollPos = window.scrollY;
-        const d = projectData[id][currentLang] || projectData[id]['en'];
-        const t = translations[currentLang];
-        const imgs = projectData[id].imgs.map(src => `<img src="${src}" style="width:100%; margin-bottom:20px; border-radius:15px;">`).join('');
-        document.getElementById('case-header-content').innerHTML = `
-            <div class="case-header">
-                <h2>${d.title}</h2>
-                <p><b>${t.obj}:</b> ${d.o}</p>
-                <div class="detail-grid">
-                    <div><b style="color:var(--main-blue)">${t.ch}</b><br>${d.c}</div>
-                    <div><b style="color:var(--main-blue)">${t.sol}</b><br>${d.s}</div>
-                    <div><b style="color:var(--main-blue)">${t.imp}</b><br>${d.i}</div>
-                    <div><b style="color:var(--main-blue)">${t.tool}</b><br>${d.t}</div>
-                </div>
-            </div>`;
-        document.getElementById('study-images').innerHTML = imgs;
-        document.getElementById('main-site').style.display = 'none';
-        document.getElementById('case-study-view').style.display = 'block';
-        window.scrollTo(0,0);
-    }
-
-    function hideStudy() {
-        document.getElementById('case-study-view').style.display = 'none';
-        document.getElementById('main-site').style.display = 'block';
-        window.scrollTo(0, lastScrollPos);
-    }
-
-    window.addEventListener('scroll', () => {
-        document.querySelectorAll('.reveal').forEach(el => {
-            if (el.getBoundingClientRect().top < window.innerHeight - 50) el.classList.add('active');
-        });
-    });
-
-    window.onload = updateUI;
 </script>
-
 </body>
 </html>
