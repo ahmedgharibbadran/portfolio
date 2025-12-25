@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ahmed Gharib | AGBINSIGHTS</title>
     
-    <link rel="icon" type="image/png" href="agb-logo-png.png">
+    <link rel="icon" type="image/png" href="agb-logo.png.1.jpeg">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
@@ -121,7 +121,7 @@
             max-width: 200px;
             border-radius: 15px; 
             transition: all 0.3s ease; 
-            cursor: pointer; 
+            cursor: default; 
             text-align: center;
             display: flex;
             flex-direction: column;
@@ -213,6 +213,8 @@
 
         .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
         .reveal.active { opacity: 1; transform: translateY(0); }
+        
+        .loading-text { font-style: italic; color: var(--text-gray); }
     </style>
 </head>
 <body>
@@ -247,11 +249,11 @@
 
     <div class="section-title" id="title-journey"></div>
     <div class="process-flow">
-        <div class="process-step reveal" onclick="showJourney('understand')"><i class="far fa-circle-dot"></i><h4 id="step1"></h4></div>
-        <div class="process-step reveal" onclick="showJourney('extract')"><i class="far fa-copy"></i><h4 id="step2"></h4></div>
-        <div class="process-step reveal" onclick="showJourney('clean')"><i class="fas fa-wand-magic-sparkles"></i><h4 id="step3"></h4></div>
-        <div class="process-step reveal" onclick="showJourney('model')"><i class="far fa-square-plus"></i><h4 id="step4"></h4></div>
-        <div class="process-step reveal" onclick="showJourney('insight')"><i class="far fa-lightbulb"></i><h4 id="step5"></h4></div>
+        <div class="process-step reveal" onclick="showJourney('understand')" style="cursor: pointer;"><i class="far fa-circle-dot"></i><h4 id="step1"></h4></div>
+        <div class="process-step reveal" onclick="showJourney('extract')" style="cursor: pointer;"><i class="far fa-copy"></i><h4 id="step2"></h4></div>
+        <div class="process-step reveal" onclick="showJourney('clean')" style="cursor: pointer;"><i class="fas fa-wand-magic-sparkles"></i><h4 id="step3"></h4></div>
+        <div class="process-step reveal" onclick="showJourney('model')" style="cursor: pointer;"><i class="far fa-square-plus"></i><h4 id="step4"></h4></div>
+        <div class="process-step reveal" onclick="showJourney('insight')" style="cursor: pointer;"><i class="far fa-lightbulb"></i><h4 id="step5"></h4></div>
     </div>
 
     <div class="section-title" id="title-expertise"></div>
@@ -270,23 +272,23 @@
             <div class="p-img"><img src="hr.png.png"></div>
             <div class="p-text">
                 <h3 id="p1-title"></h3>
-                <div class="btn-view" onclick="showStudy('hr')" id="p1-btn"></div>
+                <div class="btn-view" onclick="showStudy('hr')" id="p1-btn" style="cursor: pointer;"></div>
             </div>
         </div>
         <div class="project-item reveal">
             <div class="p-img"><img src="sales.png1.png"></div>
             <div class="p-text">
                 <h3 id="p2-title"></h3>
-                <div class="btn-view" onclick="showStudy('sales')" id="p2-btn"></div>
+                <div class="btn-view" onclick="showStudy('sales')" id="p2-btn" style="cursor: pointer;"></div>
             </div>
         </div>
     </div>
 
     <div class="section-title" id="title-ratings"></div>
     <div class="grid-container">
-        <div class="card-3d reveal" onclick="openRatingsPage()" style="max-width: 250px;">
+        <div class="card-3d reveal" onclick="openRatingsPage()" style="cursor: pointer; max-width: 250px;">
             <i class="fas fa-star" style="color: #ffce00; opacity: 1;"></i>
-            <h4 id="view-ratings-text"></h4>
+            <h4 id="view-ratings-text">View & Add Reviews</h4>
         </div>
     </div>
 
@@ -308,10 +310,9 @@
 <script>
     let currentLang = localStorage.getItem('ahmedLang') || 'en';
     let isDarkMode = localStorage.getItem('ahmedDarkMode') === 'true';
-    let lastScrollPos = 0; 
     let selectedRating = 5;
-    const sheetdbUrl = "https://sheetdb.io/api/v1/jv44e0ygedwit"; // رابطك الخاص
-    
+    const SHEETDB_URL = 'https://sheetdb.io/api/v1/jv44e0ygedwit';
+
     const translations = {
         en: {
             name: "Ahmed Gharib", welcomeBtn: "Explore Insights", job: "Data Analyst",
@@ -324,7 +325,7 @@
             obj: "OBJECTIVE", ch: "CHALLENGE", sol: "SOLUTION", imp: "IMPACT", tool: "TOOLS",
             ratePrompt: "Leave a Review", namePlace: "Name", ratePlace: "Write your feedback...", rateBtn: "Submit",
             alert: "Please enter both name and comment", thanks: "Thank you for your feedback!",
-            viewRatings: "View & Add Reviews"
+            viewRatings: "View & Add Reviews", loading: "Loading reviews..."
         },
         ar: {
             name: "أحمد غريب", welcomeBtn: "استكشاف التفاصيل", job: "محلل بيانات",
@@ -337,7 +338,7 @@
             obj: "الهدف", ch: "التحدي", sol: "الحل", imp: "الأثر", tool: "الأدوات",
             ratePrompt: "أضف تقييمك", namePlace: "الاسم", ratePlace: "اكتب رأيك هنا...", rateBtn: "إرسال",
             alert: "يرجى إدخال الاسم والتعليق", thanks: "شكراً لتقييمك!",
-            viewRatings: "عرض وإضافة التقييمات"
+            viewRatings: "عرض وإضافة التقييمات", loading: "جاري تحميل التقييمات..."
         },
         es: {
             name: "Ahmed Gharib", welcomeBtn: "Explorar Detalles", job: "Analista de Datos",
@@ -350,47 +351,21 @@
             obj: "OBJETIVO", ch: "DESAFÍO", sol: "SOLUCIÓN", imp: "IMPACTO", tool: "HERRAMIENTAS",
             ratePrompt: "Deja una reseña", namePlace: "Nombre", ratePlace: "Escribe tu opinión...", rateBtn: "Enviar",
             alert: "Por favor, introduzca su nombre y comentario", thanks: "¡Gracias por tu comentario!",
-            viewRatings: "Ver y añadir reseñas"
-        }
-    };
-
-    const journeyData = {
-        understand: {
-            en: { title: "Understand", desc: "Defining business goals, decisions, and KPIs to ensure data alignment." },
-            ar: { title: "مرحلة الفهم", desc: "تحديد أهداف العمل والقرارات ومؤشرات الأداء لضمان توافق البيانات مع الرؤية المطلوبة." },
-            es: { title: "Entender", desc: "Definición de objetivos comerciales y KPIs." }
-        },
-        extract: {
-            en: { title: "Extract", desc: "Connecting to relevant and reliable data sources for analysis." },
-            ar: { title: "مرحلة الاستخراج", desc: "الاتصال بمصادر البيانات ذات الصلة والموثوقة لبدء عملية التحليل." },
-            es: { title: "Extraer", desc: "Conexión a fuentes de datos confiables." }
-        },
-        clean: {
-            en: { title: "Clean", desc: "Ensuring accuracy, consistency, and overall data quality." },
-            ar: { title: "مرحلة التنظيف", desc: "ضمان دقة البيانات واتساقها وتنقيتها من الأخطاء لضمان جودة النتائج." },
-            es: { title: "Limpiar", desc: "Asegurar la calidad y consistencia de los datos." }
-        },
-        model: {
-            en: { title: "Model", desc: "Building data modeling architectures and complex analytical logic using DAX." },
-            ar: { title: "مرحلة النمذجة", desc: "بناء هياكل نمذجة البيانات والمنطق التحليلي المعقد باستخدام DAX." },
-            es: { title: "Modelar", desc: "Construcción de arquitecturas de datos." }
-        },
-        insight: {
-            en: { title: "Insight", desc: "Providing actionable insights and strategic recommendations." },
-            ar: { title: "مرحلة الرؤية", desc: "تحويل البيانات إلى توصيات استراتيجية ورؤى قابلة للتنفيذ مباشرة." },
-            es: { title: "Perspectiva", desc: "Proporcionar recomendaciones estratégicas." }
+            viewRatings: "Ver y añadir reseñas", loading: "Cargando reseñas..."
         }
     };
 
     const projectData = {
         hr: { 
-            en: { title: "HR Attrition Analysis", o: "Identify key factors behind employee turnover.", c: "High turnover in specific departments.", s: "Dashboard with advanced DAX.", i: "15% turnover reduction opportunity.", t: "Power BI, DAX" },
-            ar: { title: "تحليل استقالات الموظفين", o: "تحديد الأسباب الرئيسية لترك الموظفين للعمل.", c: "دوران وظيفي عالٍ في أقسام معينة.", s: "لوحة بيانات متطورة باستخدام DAX.", i: "تقليل الدوران بنسبة 15%.", t: "Power BI, DAX" },
+            en: { title: "HR Attrition Analysis", o: "Identify factors behind turnover.", c: "High turnover rates.", s: "Power BI dashboard with DAX.", i: "15% reduction opportunity.", t: "Power BI, DAX" },
+            ar: { title: "تحليل استقالات الموظفين", o: "تحديد أسباب ترك العمل.", c: "معدلات دوران عالية.", s: "لوحة بيانات Power BI.", i: "فرصة تقليل 15%.", t: "Power BI, DAX" },
+            es: { title: "Análisis de Rotación", o: "Identificar factores.", c: "Alta rotación.", s: "Dashboard Power BI.", i: "Mejora del 15%.", t: "Power BI, DAX" },
             imgs: ['hr.png.png', 'hr.png2.png', 'hr.png3.png']
         },
         sales: {
-            en: { title: "Sales Performance Hub", o: "Centralize sales data.", c: "Fragmented data across regions.", s: "Unified ETL pipeline.", i: "40% faster reporting speed.", t: "Excel, Power BI, ETL" },
-            ar: { title: "مركز أداء المبيعات", o: "مركزية بيانات المبيعات العالمية.", c: "بيانات مشتتة عبر المناطق.", s: "بناء مسار ETL موحد.", i: "تحسين سرعة التقارير بنسبة 40%.", t: "Excel, Power BI, ETL" },
+            en: { title: "Sales Performance Hub", o: "Centralize sales data.", c: "Fragmented data.", s: "Unified ETL pipeline.", i: "40% faster reporting.", t: "Excel, Power BI" },
+            ar: { title: "مركز أداء المبيعات", o: "مركزية البيانات.", c: "بيانات مشتتة.", s: "مسار ETL موحد.", i: "سرعة تقارير 40%.", t: "Excel, Power BI" },
+            es: { title: "Hub de Ventas", o: "Centralizar datos.", c: "Datos fragmentados.", s: "Pipeline ETL.", i: "40% más rápido.", t: "Excel, Power BI" },
             imgs: ['sales.png1.png', 'sales.png2.png', 'sales.png3.png']
         }
     };
@@ -400,13 +375,14 @@
         document.body.className = currentLang === 'ar' ? 'rtl' : '';
         if (isDarkMode) {
             document.body.classList.add('dark-theme');
-            document.getElementById('nav-logo-img').src = "agb-logo-png.png";
-            document.getElementById('welcome-logo-img').src = "agb-logo-png.png";
+            document.getElementById('nav-logo-img').src = "agb-logo.png.1.jpeg";
+            document.getElementById('welcome-logo-img').src = "agb-logo.png.1.jpeg";
         } else {
             document.body.classList.remove('dark-theme');
             document.getElementById('nav-logo-img').src = "agb-logo-png.png";
             document.getElementById('welcome-logo-img').src = "agb-logo-png.png";
         }
+
         document.getElementById('welcome-name').innerText = t.name;
         document.getElementById('welcome-tagline').innerText = t.tagline;
         document.getElementById('welcome-btn').innerText = t.welcomeBtn; 
@@ -431,109 +407,130 @@
         document.getElementById('p2-btn').innerText = t.viewBtn;
         document.getElementById('back-btn').innerText = t.back;
         document.getElementById('view-ratings-text').innerText = t.viewRatings;
+
         document.querySelectorAll('.flag-btn').forEach(f => f.classList.remove('active'));
         if(document.getElementById('lang-' + currentLang)) document.getElementById('lang-' + currentLang).classList.add('active');
-        document.getElementById('dark-mode-toggle').innerHTML = isDarkMode ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+        
+        const iconContainer = document.getElementById('dark-mode-toggle');
+        iconContainer.innerHTML = isDarkMode ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
     }
 
-    function setLang(lang) { currentLang = lang; localStorage.setItem('ahmedLang', lang); updateUI(); }
-    function toggleDarkMode() { isDarkMode = !isDarkMode; localStorage.setItem('ahmedDarkMode', isDarkMode); updateUI(); }
+    function setLang(lang) {
+        currentLang = lang;
+        localStorage.setItem('ahmedLang', lang);
+        updateUI();
+    }
+
+    function toggleDarkMode() {
+        isDarkMode = !isDarkMode;
+        localStorage.setItem('ahmedDarkMode', isDarkMode);
+        updateUI();
+    }
+
     function startExploring() {
         document.getElementById('welcome-overlay').style.opacity = '0';
         setTimeout(() => { 
             document.getElementById('welcome-overlay').style.display = 'none'; 
-            document.getElementById('main-site').style.display = 'block'; 
-            setTimeout(() => document.getElementById('main-site').style.opacity = '1', 50); 
+            const main = document.getElementById('main-site'); 
+            main.style.display = 'block'; 
+            setTimeout(() => main.style.opacity = '1', 50); 
             updateUI();
         }, 800);
     }
 
-    function showJourney(step) {
-        const d = journeyData[step][currentLang];
-        const t = translations[currentLang];
-        lastScrollPos = window.scrollY;
-        document.getElementById('case-header-content').innerHTML = `
-            <div class="case-header">
-                <h2 style="color:var(--main-blue)">${d.title}</h2>
-                <p style="font-size:18px; line-height:1.6;">${d.desc}</p>
-            </div>
-        `;
-        document.getElementById('study-images').innerHTML = "";
-        document.getElementById('main-site').style.display = 'none';
-        document.getElementById('case-study-view').style.display = 'block';
-        window.scrollTo(0,0);
-    }
-
     function openRatingsPage() {
         const t = translations[currentLang];
-        lastScrollPos = window.scrollY;
-        document.getElementById('case-header-content').innerHTML = `
+        const ratingsHtml = `
             <div class="rating-input-section">
                 <h4>${t.ratePrompt}</h4>
                 <div class="stars" id="star-rating">
-                    <i class="fas fa-star active" onclick="setRating(1)" data-value="1"></i>
-                    <i class="fas fa-star active" onclick="setRating(2)" data-value="2"></i>
-                    <i class="fas fa-star active" onclick="setRating(3)" data-value="3"></i>
-                    <i class="fas fa-star active" onclick="setRating(4)" data-value="4"></i>
-                    <i class="fas fa-star active" onclick="setRating(5)" data-value="5"></i>
+                    <i class="fas fa-star active" data-value="1" onclick="setRating(1)"></i>
+                    <i class="fas fa-star active" data-value="2" onclick="setRating(2)"></i>
+                    <i class="fas fa-star active" data-value="3" onclick="setRating(3)"></i>
+                    <i class="fas fa-star active" data-value="4" onclick="setRating(4)"></i>
+                    <i class="fas fa-star active" data-value="5" onclick="setRating(5)"></i>
                 </div>
-                <input type="text" id="user-name" class="rating-input" placeholder="${t.namePlace}">
-                <textarea id="user-comment" class="rating-input" rows="3" placeholder="${t.ratePlace}"></textarea>
-                <button class="submit-rate-btn" onclick="submitRating()">${t.rateBtn}</button>
+                <div id="rating-form">
+                    <input type="text" id="user-name" class="rating-input" placeholder="${t.namePlace}"><br>
+                    <textarea id="user-comment" class="rating-input" rows="3" placeholder="${t.ratePlace}"></textarea><br>
+                    <button class="submit-rate-btn" onclick="submitRating()">${t.rateBtn}</button>
+                </div>
             </div>
-            <div class="grid-container" id="ratings-display-inner">Loading reviews...</div>
-        `;
+            <div class="grid-container" id="ratings-display-inner">
+                <p class="loading-text">${t.loading}</p>
+            </div>`;
+        
+        document.getElementById('case-header-content').innerHTML = ratingsHtml;
         document.getElementById('study-images').innerHTML = "";
         document.getElementById('main-site').style.display = 'none';
         document.getElementById('case-study-view').style.display = 'block';
-        loadReviews();
         window.scrollTo(0,0);
+        fetchReviews();
     }
 
     function setRating(val) {
         selectedRating = val;
-        document.querySelectorAll('#star-rating i').forEach(s => s.classList.toggle('active', s.dataset.value <= val));
+        document.querySelectorAll('#star-rating i').forEach(star => {
+            star.classList.toggle('active', star.getAttribute('data-value') <= val);
+        });
     }
 
-    async function submitRating() {
+    function fetchReviews() {
+        fetch(SHEETDB_URL)
+        .then(res => res.json())
+        .then(data => {
+            const container = document.getElementById('ratings-display-inner');
+            container.innerHTML = "";
+            data.reverse().forEach(rev => {
+                const card = document.createElement('div');
+                card.className = "card-3d reveal active";
+                card.style.maxWidth = "100%";
+                card.style.flex = "1 1 300px";
+                const isAr = /[\u0600-\u06FF]/.test(rev.Feedback);
+                card.setAttribute('dir', isAr ? 'rtl' : 'ltr');
+                card.style.textAlign = isAr ? 'right' : 'left';
+                let stars = '★'.repeat(rev.Rating || 5) + '☆'.repeat(5 - (rev.Rating || 5));
+                card.innerHTML = `
+                    <i class="fas fa-quote-left" style="font-size: 15px; opacity: 0.5;"></i>
+                    <strong style="display:block; margin-top:5px; color:var(--main-blue);">${rev.Name}</strong>
+                    <p style="font-style: italic; font-size: 14px; margin: 5px 0;">${rev.Feedback}</p>
+                    <div style="color: #ffce00;">${stars}</div>`;
+                container.appendChild(card);
+            });
+        }).catch(() => {
+            document.getElementById('ratings-display-inner').innerHTML = "No reviews found.";
+        });
+    }
+
+    function submitRating() {
         const name = document.getElementById('user-name').value;
         const comment = document.getElementById('user-comment').value;
         const t = translations[currentLang];
         if (!name || !comment) { alert(t.alert); return; }
-        
-        const data = { data: [{ Name: name, Feedback: comment, Rating: selectedRating, Date: new Date().toLocaleDateString('en-GB') }] };
-        try {
-            const res = await fetch(sheetdbUrl, { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(data) });
-            if (res.ok) { alert(t.thanks); openRatingsPage(); }
-        } catch(e) { console.error(e); }
-    }
 
-    async function loadReviews() {
-        try {
-            const res = await fetch(sheetdbUrl);
-            const data = await res.json();
-            const container = document.getElementById('ratings-display-inner');
-            if (data.length > 0) {
-                container.innerHTML = "";
-                data.reverse().forEach(item => {
-                    const stars = '★'.repeat(item.Rating) + '☆'.repeat(5 - item.Rating);
-                    container.innerHTML += `
-                        <div class="card-3d reveal active" style="flex:1 1 300px; max-width:100%; text-align:inherit;">
-                            <strong>${item.Name}</strong>
-                            <p>${item.Feedback}</p>
-                            <div style="color:#ffce00">${stars}</div>
-                            <small>${item.Date}</small>
-                        </div>
-                    `;
-                });
-            }
-        } catch(e) { document.getElementById('ratings-display-inner').innerText = "No reviews yet."; }
+        const data = {
+            Name: name,
+            Feedback: comment,
+            Rating: selectedRating,
+            Date: new Date().toLocaleDateString()
+        };
+
+        fetch(SHEETDB_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ data: [data] })
+        })
+        .then(res => res.json())
+        .then(() => {
+            alert(t.thanks);
+            openRatingsPage();
+        });
     }
 
     function showStudy(id) {
-        lastScrollPos = window.scrollY; 
         const d = projectData[id][currentLang];
         const t = translations[currentLang];
+        const imgs = projectData[id].imgs.map(src => `<img src="${src}" style="width:100%; margin-bottom:20px; border-radius:15px;">`).join('');
         document.getElementById('case-header-content').innerHTML = `
             <div class="case-header">
                 <h2>${d.title}</h2>
@@ -545,7 +542,7 @@
                     <div><b style="color:var(--main-blue)">${t.tool}</b><br>${d.t}</div>
                 </div>
             </div>`;
-        document.getElementById('study-images').innerHTML = projectData[id].imgs.map(src => `<img src="${src}" style="width:100%; border-radius:15px; margin-bottom:20px; box-shadow:0 5px 15px rgba(0,0,0,0.1)">`).join('');
+        document.getElementById('study-images').innerHTML = imgs;
         document.getElementById('main-site').style.display = 'none';
         document.getElementById('case-study-view').style.display = 'block';
         window.scrollTo(0,0);
@@ -554,16 +551,17 @@
     function hideStudy() {
         document.getElementById('case-study-view').style.display = 'none';
         document.getElementById('main-site').style.display = 'block';
-        window.scrollTo(0, lastScrollPos);
     }
 
+    // Scroll reveal animation
     window.addEventListener('scroll', () => {
         document.querySelectorAll('.reveal').forEach(el => {
             if (el.getBoundingClientRect().top < window.innerHeight - 50) el.classList.add('active');
         });
     });
 
-    updateUI();
+    window.onload = updateUI;
 </script>
+
 </body>
 </html>
