@@ -92,50 +92,10 @@
             transform: scale(1.15);
         }
 
-        header { padding: 80px 20px; text-align: center; }
+        header { padding: 60px 20px; text-align: center; }
         h1 { font-size: clamp(35px, 8vw, 75px); margin: 0; font-weight: 900; }
         .job-tag { color: var(--main-blue); font-size: 14px; letter-spacing: 3px; font-weight: 600; text-transform: uppercase; display: block; margin-top: 10px; }
-
-        /* --- Updated About Container --- */
-        .about-container {
-            max-width: 900px;
-            margin: 40px auto;
-            padding: 0 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            align-items: center;
-        }
-        .about-text { 
-            color: var(--text-gray); 
-            font-size: 19px; 
-            line-height: 1.8; 
-            margin: 0;
-        }
-        .about-stats {
-            display: flex;
-            gap: 30px;
-            margin-top: 20px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-        .stat-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .stat-number {
-            font-size: 28px;
-            font-weight: 900;
-            color: var(--main-blue);
-        }
-        .stat-label {
-            font-size: 12px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--text-gray);
-        }
-        /* ------------------------------- */
+        .about-text { max-width: 800px; margin: 25px auto; color: var(--text-gray); font-size: 17px; line-height: 1.6; }
 
         .section-title { 
             text-align: left; margin: 40px 0 20px 10%; color: var(--deep-black); 
@@ -255,20 +215,6 @@
         .reveal.active { opacity: 1; transform: translateY(0); }
         
         .loading-text { font-style: italic; color: var(--text-gray); }
-
-        .back-nav {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            color: var(--main-blue);
-            cursor: pointer;
-            font-weight: 800;
-            margin-bottom: 30px;
-            font-size: 18px;
-            transition: 0.3s;
-        }
-        .back-nav:hover { transform: translateX(-5px); }
-        body.rtl .back-nav:hover { transform: translateX(5px); }
     </style>
 </head>
 <body>
@@ -298,24 +244,7 @@
     <header>
         <h1 id="main-name">Ahmed Gharib</h1>
         <span class="job-tag" id="job-title">Data Analyst</span>
-        
-        <div class="about-container reveal">
-            <p class="about-text" id="about-me"></p>
-            <div class="about-stats">
-                <div class="stat-item">
-                    <span class="stat-number">10+</span>
-                    <span class="stat-label" id="stat-projects">Projects</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number">100%</span>
-                    <span class="stat-label" id="stat-accuracy">Accuracy</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number">24/7</span>
-                    <span class="stat-label" id="stat-support">Insights</span>
-                </div>
-            </div>
-        </div>
+        <p class="about-text" id="about-me"></p>
     </header>
 
     <div class="section-title" id="title-journey"></div>
@@ -343,14 +272,14 @@
             <div class="p-img"><img src="hr.png.png"></div>
             <div class="p-text">
                 <h3 id="p1-title"></h3>
-                <div class="btn-view" onclick="showStudy('hr')" id="p1-btn"></div>
+                <div class="btn-view" onclick="showStudy('hr')" id="p1-btn" style="cursor: pointer;"></div>
             </div>
         </div>
         <div class="project-item reveal">
             <div class="p-img"><img src="sales.png1.png"></div>
             <div class="p-text">
                 <h3 id="p2-title"></h3>
-                <div class="btn-view" onclick="showStudy('sales')" id="p2-btn"></div>
+                <div class="btn-view" onclick="showStudy('sales')" id="p2-btn" style="cursor: pointer;"></div>
             </div>
         </div>
     </div>
@@ -359,7 +288,7 @@
     <div class="grid-container">
         <div class="card-3d reveal" onclick="openRatingsPage()" style="cursor: pointer; max-width: 250px;">
             <i class="fas fa-star" style="color: #ffce00; opacity: 1;"></i>
-            <h4 id="view-ratings-text"></h4>
+            <h4 id="view-ratings-text">View & Add Reviews</h4>
         </div>
     </div>
 
@@ -368,14 +297,12 @@
             <a href="https://www.linkedin.com/in/ahmed-gharib-20989a272/" target="_blank"><i class="fab fa-linkedin"></i></a>
             <a href="mailto:info@agbinsights.com"><i class="fas fa-envelope"></i></a>
         </div>
-        <p style="margin-top: 20px; opacity: 0.6; font-size: 12px;">© AHMED GHARIB | AGBINSIGHTS</p>
+        <p style="margin-top: 20px; opacity: 0.6; font-size: 12px;">©️ AHMED GHARIB | AGBINSIGHTS</p>
     </footer>
 </div>
 
 <div id="case-study-view">
-    <div onclick="hideStudy()" class="back-nav" id="back-nav-container">
-        <i class="fas fa-arrow-left" id="back-icon"></i> <span id="back-btn-text"></span>
-    </div>
+    <div onclick="hideStudy()" id="back-btn" style="color:var(--main-blue); cursor:pointer; margin-bottom:30px; font-weight:bold;"></div>
     <div id="case-header-content"></div>
     <div id="study-images"></div>
 </div>
@@ -391,85 +318,41 @@
         en: {
             name: "Ahmed Gharib", welcomeBtn: "Explore Insights", job: "Data Analyst",
             tagline: "Turning Complex Data into Actionable Insights",
-            about: "Passionate about decoding data patterns to fuel business intelligence. I specialize in crafting <b>dynamic dashboards</b> and optimizing data pipelines that bridge the gap between raw numbers and strategic growth.",
+            about: "I transform complex data into <b>actionable insights</b> that drive business growth. Specialized in Power BI & Excel.",
             journey: "01. Journey", expertise: "02. Expertise", projects: "03. Projects", ratings: "04. Ratings",
             step1: "Understand", step2: "Extract", step3: "Clean", step4: "Model", step5: "Insight",
             skill3: "Modeling", skill4: "DAX Logic", skill6: "Viz",
-            viewBtn: "View Project", back: "BACK TO HOME",
+            viewBtn: "View Details", back: "← BACK TO HOME",
             obj: "OBJECTIVE", ch: "CHALLENGE", sol: "SOLUTION", imp: "IMPACT", tool: "TOOLS",
             ratePrompt: "Leave a Review", namePlace: "Name", ratePlace: "Write your feedback...", rateBtn: "Submit",
             alert: "Please enter both name and comment", thanks: "Thank you for your feedback!",
-            viewRatings: "View & Add Reviews", loading: "Loading reviews...",
-            sProj: "Projects", sAcc: "Accuracy", sIns: "Insights"
+            viewRatings: "View & Add Reviews", loading: "Loading reviews..."
         },
         ar: {
             name: "أحمد غريب", welcomeBtn: "استكشاف التفاصيل", job: "محلل بيانات",
             tagline: "تحويل البيانات المعقدة إلى رؤى استراتيجية",
-            about: "شغوف بفك رموز أنماط البيانات لتعزيز ذكاء الأعمال. متخصص في صياغة <b>لوحات بيانات ديناميكية</b> وتحسين مسارات البيانات التي تسد الفجوة بين الأرقام الخام والنمو الاستراتيجي.",
+            about: "أقوم بتحويل البيانات المعقدة إلى <b>رؤى قابلة للتنفيذ</b> تدفع نمو الأعمال. متخصص في Power BI و Excel.",
             journey: "01. الرحلة", expertise: "02. الخبرات", projects: "03. المشاريع", ratings: "04. التقييمات",
             step1: "الفهم", step2: "استخراج", step3: "تنظيف", step4: "نمذجة", step5: "رؤية",
             skill3: "نمذجة", skill4: "منطق DAX", skill6: "تصوير",
-            viewBtn: "عرض المشروع", back: "العودة للرئيسية",
-            obj: "الهدف الاستراتيجي", ch: "التحدي القائم", sol: "الحل التقني", imp: "الأثر الملموس", tool: "الأدوات المستخدمة",
+            viewBtn: "عرض التفاصيل", back: "← العودة للرئيسية",
+            obj: "الهدف", ch: "التحدي", sol: "الحل", imp: "الأثر", tool: "الأدوات",
             ratePrompt: "أضف تقييمك", namePlace: "الاسم", ratePlace: "اكتب رأيك هنا...", rateBtn: "إرسال",
             alert: "يرجى إدخال الاسم والتعليق", thanks: "شكراً لتقييمك!",
-            viewRatings: "عرض وإضافة التقييمات", loading: "جاري تحميل التقييمات...",
-            sProj: "مشروعاً", sAcc: "دقة", sIns: "تحليلاً"
+            viewRatings: "عرض وإضافة التقييمات", loading: "جاري تحميل التقييمات..."
         },
         es: {
             name: "Ahmed Gharib", welcomeBtn: "Explorar Detalles", job: "Analista de Datos",
             tagline: "Convirtiendo Datos Complejos en Perspectivas Accionables",
-            about: "Apasionado por decodificar patrones de datos para impulsar la inteligencia empresarial. Me especializo en crear <b>dashboards dinámicos</b> y optimizar procesos de datos.",
+            about: "Convierto datos complejos en <b>perspectivas accionables</b> que impulsan el crecimiento. Especialista en Power BI y Excel.",
             journey: "01. Trayectoria", expertise: "02. Experiencia", projects: "03. Proyectos", ratings: "04. Valoraciones",
             step1: "Entender", step2: "Extraer", step3: "Limpiar", step4: "Modelar", step5: "Perspectiva",
             skill3: "Modelado", skill4: "Lógica DAX", skill6: "Viz",
-            viewBtn: "Ver Proyecto", back: "VOLVER AL INICIO",
+            viewBtn: "Ver Detalles", back: "← VOLVER AL INICIO",
             obj: "OBJETIVO", ch: "DESAFÍO", sol: "SOLUCIÓN", imp: "IMPACTO", tool: "HERRAMIENTAS",
             ratePrompt: "Deja una reseña", namePlace: "Nombre", ratePlace: "Escribe tu opinión...", rateBtn: "Enviar",
             alert: "Por favor, introduzca su nombre y comentario", thanks: "¡Gracias por tu comentario!",
-            viewRatings: "Ver y añadir reseñas", loading: "Cargando reseñas...",
-            sProj: "Proyectos", sAcc: "Precisión", sIns: "Perspectivas"
-        }
-    };
-
-    const projectData = {
-        hr: { 
-            en: { 
-                title: "HR Attrition Strategic Hub", 
-                o: "Comprehensive analysis of employee turnover to identify high-risk segments and improve retention strategies across the organization.", 
-                c: "The company suffered from a 16% attrition rate with no clear understanding of whether it was driven by salary, age, or distance from home.", 
-                s: "Built a multi-page Power BI dashboard utilizing advanced DAX to calculate real-time attrition rates and department-wise performance.", 
-                i: "Identified that employees aged 25-35 living far from the office had the highest turnover, leading to a new remote work policy recommendation.", 
-                t: "Power BI, DAX, Power Query, Excel" 
-            },
-            ar: { 
-                title: "مركز تحليل استقالات الموظفين", 
-                o: "تحليل شامل لدوران الموظفين لتحديد الفئات الأكثر عرضة لترك العمل وتحسين استراتيجيات الاحتفاظ بهم.", 
-                c: "عانت الشركة من معدل استقالات بنسبة 16٪ دون فهم واضح لما إذا كان السبب هو الراتب أو العمر أو المسافة.", 
-                s: "تم بناء لوحة بيانات Power BI متقدمة تستخدم معادلات DAX لحساب معدلات الاستقالة اللحظية وأداء الأقسام.", 
-                i: "تم اكتشاف أن الموظفين في سن 25-35 والذين يسكنون بعيداً هم الأكثر استقالة، مما أدى لتوصية بسياسة عمل عن بعد.", 
-                t: "Power BI, DAX, Power Query" 
-            },
-            imgs: ['hr.png.png', 'hr.png2.png', 'hr.png3.png']
-        },
-        sales: {
-            en: { 
-                title: "Global Sales Performance Engine", 
-                o: "Consolidating fragmented sales data from multiple regions into a single source of truth for executive decision-making.", 
-                c: "Data was scattered across different Excel sheets and systems, making it impossible to track month-over-month growth accurately.", 
-                s: "Developed an automated ETL pipeline to clean and merge data, then visualized it through an interactive dashboard with drill-down capabilities.", 
-                i: "Reduced reporting time by 40% and identified a 12% revenue leakage in the European market due to pricing inconsistencies.", 
-                t: "Excel, Power BI, ETL, Data Modeling" 
-            },
-            ar: { 
-                title: "محرك أداء المبيعات العالمي", 
-                o: "توحيد بيانات المبيعات المشتتة من مناطق متعددة في مصدر واحد لاتخاذ قرارات تنفيذية دقيقة.", 
-                c: "كانت البيانات مبعثرة في ملفات إكسيل وأنظمة مختلفة، مما جعل تتبع النمو الشهري بدقة أمراً مستحيلاً.", 
-                s: "تطوير مسار ETL تلقائي لتنظيف ودمج البيانات، وتمثيلها عبر لوحة بيانات تفاعلية مع ميزات التعمق في التفاصيل.", 
-                i: "تقليل وقت إعداد التقارير بنسبة 40٪ واكتشاف هدر في الإيرادات بنسبة 12٪ في السوق الأوروبي.", 
-                t: "Excel, Power BI, ETL" 
-            },
-            imgs: ['sales.png1.png', 'sales.png2.png', 'sales.png3.png']
+            viewRatings: "Ver y añadir reseñas", loading: "Cargando reseñas..."
         }
     };
 
@@ -480,7 +363,7 @@
             es: { title: "Entender el Negocio", desc: "Definición de objetivos claros y comprensión de los indicadores clave de rendimiento (KPI) críticos." }
         },
         extract: {
-            en: { title: "Data Extraction", desc: "Connecting to various data sources (Excel, CSV, Web) to gather the raw information needed for analysis." },
+            en: { title: "Data Extraction", desc: "Connecting to various data sources (SQL, Excel, CSV, Web) to gather the raw information needed for analysis." },
             ar: { title: "استخراج البيانات", desc: "الاتصال بمصادر البيانات المختلفة (إكسيل، ملفات نصية، ويب) لجمع المعلومات الخام المطلوبة للتحليل." },
             es: { title: "Extracción de Datos", desc: "Conexión a diversas fuentes de datos para recopilar la información necesaria para el análisis." }
         },
@@ -498,6 +381,21 @@
             en: { title: "Insights & Visualization", desc: "Designing intuitive dashboards that tell a story and help decision-makers take confident actions." },
             ar: { title: "الرؤى والتمثيل المرئي", desc: "تصميم لوحات بيانات بديهية تحكي قصة البيانات وتساعد صناع القرار على اتخاذ إجراءات واثقة." },
             es: { title: "Perspectivas y Visualización", desc: "Diseño de cuadros de mando intuitivos que cuentan una historia y ayudan a los tomadores de decisiones." }
+        }
+    };
+
+    const projectData = {
+        hr: { 
+            en: { title: "HR Attrition Analysis", o: "Identify factors behind turnover.", c: "High turnover rates.", s: "Power BI dashboard with DAX.", i: "15% reduction opportunity.", t: "Power BI, DAX" },
+            ar: { title: "تحليل استقالات الموظفين", o: "تحديد أسباب ترك العمل.", c: "معدلات دوران عالية.", s: "لوحة بيانات Power BI.", i: "فرصة تقليل 15%.", t: "Power BI, DAX" },
+            es: { title: "Análisis de Rotación", o: "Identificar factores.", c: "Alta rotación.", s: "Dashboard Power BI.", i: "Mejora del 15%.", t: "Power BI, DAX" },
+            imgs: ['hr.png.png', 'hr.png2.png', 'hr.png3.png']
+        },
+        sales: {
+            en: { title: "Sales Performance Hub", o: "Centralize sales data.", c: "Fragmented data.", s: "Unified ETL pipeline.", i: "40% faster reporting.", t: "Excel, Power BI" },
+            ar: { title: "مركز أداء المبيعات", o: "مركزية البيانات.", c: "بيانات مشتتة.", s: "مسار ETL موحد.", i: "سرعة تقارير 40%.", t: "Excel, Power BI" },
+            es: { title: "Hub de Ventas", o: "Centralizar datos.", c: "Datos fragmentados.", s: "Pipeline ETL.", i: "40% más rápido.", t: "Excel, Power BI" },
+            imgs: ['sales.png1.png', 'sales.png2.png', 'sales.png3.png']
         }
     };
 
@@ -532,41 +430,19 @@
         document.getElementById('skill3').innerText = t.skill3;
         document.getElementById('skill4').innerText = t.skill4;
         document.getElementById('skill6').innerText = t.skill6;
-
-        document.getElementById('stat-projects').innerText = t.sProj;
-        document.getElementById('stat-accuracy').innerText = t.sAcc;
-        document.getElementById('stat-support').innerText = t.sIns;
-
-        document.getElementById('p1-title').innerText = (projectData.hr[currentLang] || projectData.hr['en']).title;
-        document.getElementById('p2-title').innerText = (projectData.sales[currentLang] || projectData.sales['en']).title;
+        document.getElementById('p1-title').innerText = projectData.hr[currentLang].title;
+        document.getElementById('p2-title').innerText = projectData.sales[currentLang].title;
         document.getElementById('p1-btn').innerText = t.viewBtn;
         document.getElementById('p2-btn').innerText = t.viewBtn;
+        document.getElementById('back-btn').innerText = t.back;
         document.getElementById('view-ratings-text').innerText = t.viewRatings;
-        document.getElementById('back-btn-text').innerText = t.back;
-        
-        document.getElementById('back-icon').className = currentLang === 'ar' ? 'fas fa-arrow-right' : 'fas fa-arrow-left';
 
         document.querySelectorAll('.flag-btn').forEach(f => f.classList.remove('active'));
         if(document.getElementById('lang-' + currentLang)) document.getElementById('lang-' + currentLang).classList.add('active');
         
         const iconContainer = document.getElementById('dark-mode-toggle');
         iconContainer.innerHTML = isDarkMode ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
-
-        reveal();
     }
-
-    function reveal() {
-        var reveals = document.querySelectorAll(".reveal");
-        for (var i = 0; i < reveals.length; i++) {
-            var windowHeight = window.innerHeight;
-            var elementTop = reveals[i].getBoundingClientRect().top;
-            var elementVisible = 100;
-            if (elementTop < windowHeight - elementVisible) {
-                reveals[i].classList.add("active");
-            }
-        }
-    }
-    window.addEventListener("scroll", reveal);
 
     function setLang(lang) {
         currentLang = lang;
@@ -586,10 +462,8 @@
             document.getElementById('welcome-overlay').style.display = 'none'; 
             const main = document.getElementById('main-site'); 
             main.style.display = 'block'; 
-            setTimeout(() => {
-                main.style.opacity = '1';
-                updateUI();
-            }, 50); 
+            setTimeout(() => main.style.opacity = '1', 50); 
+            updateUI();
         }, 800);
     }
 
@@ -605,42 +479,6 @@
         document.getElementById('main-site').style.display = 'none';
         document.getElementById('case-study-view').style.display = 'block';
         window.scrollTo(0,0);
-    }
-
-    function showStudy(id) {
-        lastScrollPos = window.scrollY;
-        const d = projectData[id][currentLang] || projectData[id]['en'];
-        const t = translations[currentLang];
-        
-        let html = `
-            <div class="case-header">
-                <h2>${d.title}</h2>
-                <div class="detail-grid">
-                    <div><strong>${t.obj}</strong><p>${d.o}</p></div>
-                    <div><strong>${t.ch}</strong><p>${d.c}</p></div>
-                    <div><strong>${t.sol}</strong><p>${d.s}</p></div>
-                    <div><strong>${t.imp}</strong><p>${d.i}</p></div>
-                </div>
-                <p style="margin-top:20px;"><strong>${t.tool}:</strong> ${d.t}</p>
-            </div>`;
-        
-        document.getElementById('case-header-content').innerHTML = html;
-        
-        let imgHtml = "";
-        projectData[id].imgs.forEach(img => {
-            imgHtml += `<div class="project-item" style="margin-bottom:20px;"><div class="p-img"><img src="${img}"></div></div>`;
-        });
-        document.getElementById('study-images').innerHTML = imgHtml;
-        
-        document.getElementById('main-site').style.display = 'none';
-        document.getElementById('case-study-view').style.display = 'block';
-        window.scrollTo(0,0);
-    }
-
-    function hideStudy() {
-        document.getElementById('case-study-view').style.display = 'none';
-        document.getElementById('main-site').style.display = 'block';
-        window.scrollTo(0, lastScrollPos);
     }
 
     function openRatingsPage() {
@@ -732,6 +570,43 @@
             openRatingsPage();
         });
     }
+
+    function showStudy(id) {
+        lastScrollPos = window.scrollY;
+        const d = projectData[id][currentLang];
+        const t = translations[currentLang];
+        const imgs = projectData[id].imgs.map(src => `<img src="${src}" style="width:100%; margin-bottom:20px; border-radius:15px;">`).join('');
+        document.getElementById('case-header-content').innerHTML = `
+            <div class="case-header">
+                <h2>${d.title}</h2>
+                <p><b>${t.obj}:</b> ${d.o}</p>
+                <div class="detail-grid">
+                    <div><b style="color:var(--main-blue)">${t.ch}</b><br>${d.c}</div>
+                    <div><b style="color:var(--main-blue)">${t.sol}</b><br>${d.s}</div>
+                    <div><b style="color:var(--main-blue)">${t.imp}</b><br>${d.i}</div>
+                    <div><b style="color:var(--main-blue)">${t.tool}</b><br>${d.t}</div>
+                </div>
+            </div>`;
+        document.getElementById('study-images').innerHTML = imgs;
+        document.getElementById('main-site').style.display = 'none';
+        document.getElementById('case-study-view').style.display = 'block';
+        window.scrollTo(0,0);
+    }
+
+    function hideStudy() {
+        document.getElementById('case-study-view').style.display = 'none';
+        document.getElementById('main-site').style.display = 'block';
+        window.scrollTo(0, lastScrollPos);
+    }
+
+    window.addEventListener('scroll', () => {
+        document.querySelectorAll('.reveal').forEach(el => {
+            if (el.getBoundingClientRect().top < window.innerHeight - 50) el.classList.add('active');
+        });
+    });
+
+    window.onload = updateUI;
 </script>
+
 </body>
 </html>
