@@ -326,6 +326,13 @@
                 <div class="btn-view" onclick="showStudy('sales')" id="p2-btn" style="cursor: pointer;"></div>
             </div>
         </div>
+        <div class="project-item reveal"> 
+            <div class="p-img"><img src="Overviewpng1.png"></div>
+            <div class="p-text">
+                <h3 id="p3-title"></h3>
+                <div class="btn-view" onclick="showStudy('furniture')" id="p3-btn" style="cursor: pointer;"></div>
+            </div>
+        </div>
     </div>
 
     <div class="section-title" id="title-ratings"></div>
@@ -495,6 +502,12 @@
             ar: { title: "مركز أداء المبيعات", o: "مركزية البيانات.", c: "بيانات مشتتة.", s: "مسار ETL موحد.", i: "سرعة تقارير 40%.", t: "Excel, Power BI" },
             es: { title: "Hub de Ventas", o: "Centralizar datos.", c: "Datos fragmentados.", s: "Pipeline ETL.", i: "40% más rápido.", t: "Excel, Power BI" },
             imgs: ['sales.png1.png', 'sales.png2.png', 'sales.png3.png']
+        },
+        furniture: { 
+            en: { title: "Furniture Loss Analysis", o: "Analyze loss patterns in furniture sales.", c: "High return and loss rates.", s: "Advanced Power BI dashboard.", i: "Identification of key loss drivers.", t: "Power BI, DAX" },
+            ar: { title: "تحليل خسائر الأثاث", o: "تحليل أنماط الخسارة في مبيعات الأثاث.", c: "معدلات مرتفعة من المرتجعات والخسائر.", s: "لوحة بيانات Power BI متطورة.", i: "تحديد الدوافع الرئيسية للخسارة.", t: "Power BI, DAX" },
+            es: { title: "Análisis de Pérdida de Muebles", o: "Analizar patrones de pérdida.", c: "Altas tasas de devolución.", s: "Dashboard avanzado de Power BI.", i: "Identificación de factores de pérdida.", t: "Power BI, DAX" },
+            imgs: ['Overviewpng1.png', 'Furniture Loss Analysispng2.png', 'Stakeholders Analysispng3.png']
         }
     };
 
@@ -530,8 +543,10 @@
         document.getElementById('skill6').innerText = t.skill6;
         document.getElementById('p1-title').innerText = projectData.hr[currentLang].title;
         document.getElementById('p2-title').innerText = projectData.sales[currentLang].title;
+        document.getElementById('p3-title').innerText = projectData.furniture[currentLang].title;
         document.getElementById('p1-btn').innerText = t.viewBtn;
         document.getElementById('p2-btn').innerText = t.viewBtn;
+        document.getElementById('p3-btn').innerText = t.viewBtn;
         document.getElementById('back-btn').innerText = t.back;
         document.getElementById('view-ratings-text').innerText = t.viewRatings;
 
