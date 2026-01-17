@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ahmed Gharib | AGBINSIGHTS</title>
     
-    <link rel="icon" type="image/png" href="agb-logo-png.png">
+    <link rel="icon" type="image/png" href="agb-logo.png.1.jpeg">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
         :root { 
@@ -58,12 +58,12 @@
         }
 
         .nav-brand { display: flex; align-items: center; gap: 10px; }
-        /* السطر 53: دمج خلفية اللوجو احترافياً */
+        /* تعديل دمج اللوجو */
         .nav-logo-img { height: 80px; width: auto; transition: 0.4s ease; cursor: pointer; mix-blend-mode: darken; }
         .nav-logo-img:hover { transform: scale(1.1); }
         
         body.dark-theme .nav-logo-img, body.dark-theme .welcome-logo { 
-            mix-blend-mode: screen; filter: brightness(1.2); 
+            mix-blend-mode: normal; filter: none; 
         }
 
         .lang-switch { display: flex; gap: 12px; align-items: center; }
@@ -363,7 +363,6 @@
 </div>
 
 <script>
-    /* خط 601: الحفاظ على ثبات السطور */
     let currentLang = localStorage.getItem('ahmedLang') || 'en';
     let isDarkMode = localStorage.getItem('ahmedDarkMode') === 'true';
     let lastScrollPos = 0;
@@ -495,7 +494,7 @@
         hr: { 
             en: { title: "HR Attrition Analysis", o: "Identify factors behind turnover.", c: "High turnover rates.", s: "Power BI dashboard with DAX.", i: "15% reduction opportunity.", t: "Power BI, DAX" },
             ar: { title: "تحليل استقالات الموظفين", o: "تحديد أسباب ترك العمل.", c: "معدلات دوران عالية.", s: "لوحة بيانات Power BI.", i: "فرصة تقليل 15%.", t: "Power BI, DAX" },
-            es: { title: "Análisis de Rotación", o: "Identificar factores.", c: "Alta rotación.", s: "Dashboard Power BI.", i: "Meجora del 15%.", t: "Power BI, DAX" },
+            es: { title: "Análisis de Rotación", o: "Identificar factores.", c: "Alta rotación.", s: "Dashboard Power BI.", i: "Mejora del 15%.", t: "Power BI, DAX" },
             imgs: ['hr.png.png', 'hr.png2.png', 'hr.png3.png']
         },
         sales: {
@@ -517,12 +516,14 @@
         document.body.className = currentLang === 'ar' ? 'rtl' : '';
         if (isDarkMode) {
             document.body.classList.add('dark-theme');
+            document.getElementById('nav-logo-img').src = "agb-logo.png.1.jpeg";
+            document.getElementById('welcome-logo-img').src = "agb-logo.png.1.jpeg";
         } else {
             document.body.classList.remove('dark-theme');
+            document.getElementById('nav-logo-img').src = "agb-logo-png.png";
+            document.getElementById('welcome-logo-img').src = "agb-logo-png.png";
         }
 
-        document.getElementById('welcome-logo-img').src = "agb-logo-png.png";
-        document.getElementById('nav-logo-img').src = "agb-logo-png.png";
         document.getElementById('welcome-name').innerText = t.name;
         document.getElementById('welcome-tagline').innerText = t.tagline;
         document.getElementById('welcome-btn').innerText = t.welcomeBtn; 
@@ -726,7 +727,6 @@
     });
 
     window.onload = updateUI;
-    /* خط 733: إغلاق الكود بالعدد المطلوب */
 </script>
 
 </body>
