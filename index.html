@@ -58,13 +58,12 @@
         }
 
         .nav-brand { display: flex; align-items: center; gap: 10px; }
-        /* سطر 53: تم التعديل لدمج اللوجو وإزالة فرق البياض تماماً */
-        .nav-logo-img { height: 80px; width: auto; transition: 0.4s ease; cursor: pointer; mix-blend-mode: darken; filter: contrast(1.1) brightness(1.05); }
+        /* السطر 53: دمج خلفية اللوجو احترافياً */
+        .nav-logo-img { height: 80px; width: auto; transition: 0.4s ease; cursor: pointer; mix-blend-mode: darken; }
         .nav-logo-img:hover { transform: scale(1.1); }
         
         body.dark-theme .nav-logo-img, body.dark-theme .welcome-logo { 
-            filter: none; 
-            mix-blend-mode: normal; 
+            mix-blend-mode: screen; filter: brightness(1.2); 
         }
 
         .lang-switch { display: flex; gap: 12px; align-items: center; }
@@ -364,6 +363,7 @@
 </div>
 
 <script>
+    /* خط 601: الحفاظ على ثبات السطور */
     let currentLang = localStorage.getItem('ahmedLang') || 'en';
     let isDarkMode = localStorage.getItem('ahmedDarkMode') === 'true';
     let lastScrollPos = 0;
@@ -477,7 +477,7 @@
         clean: {
             en: { title: "Data Cleaning & Transformation", desc: "Using Power Query to remove duplicates, fix errors, and transform data into a usable, structured format." },
             ar: { title: "تنظيف وتحويل البيانات", desc: "استخدام Power Query لإزالة التكرارات، وإصلاح الأخطاء، وتحويل البيانات إلى تنسيق هيكلي قابل للاستخدام." },
-            es: { title: "Limpieza de Datos", desc: "Uso de Power Query para eliminar duplicados, corregير errores y transformar los datos." }
+            es: { title: "Limpieza de Datos", desc: "Uso de Power Query para eliminar duplicados, corregir errores y transformar los datos." }
         },
         model: {
             en: { title: "Data Modeling & DAX", desc: "Creating relationships between tables and writing DAX formulas to calculate complex business metrics." },
@@ -495,7 +495,7 @@
         hr: { 
             en: { title: "HR Attrition Analysis", o: "Identify factors behind turnover.", c: "High turnover rates.", s: "Power BI dashboard with DAX.", i: "15% reduction opportunity.", t: "Power BI, DAX" },
             ar: { title: "تحليل استقالات الموظفين", o: "تحديد أسباب ترك العمل.", c: "معدلات دوران عالية.", s: "لوحة بيانات Power BI.", i: "فرصة تقليل 15%.", t: "Power BI, DAX" },
-            es: { title: "Análisis de Rotación", o: "Identificar factores.", c: "Alta rotación.", s: "Dashboard Power BI.", i: "Mejora del 15%.", t: "Power BI, DAX" },
+            es: { title: "Análisis de Rotación", o: "Identificar factores.", c: "Alta rotación.", s: "Dashboard Power BI.", i: "Meجora del 15%.", t: "Power BI, DAX" },
             imgs: ['hr.png.png', 'hr.png2.png', 'hr.png3.png']
         },
         sales: {
@@ -507,7 +507,7 @@
         furniture: { 
             en: { title: "Furniture Loss Analysis", o: "Analyze loss patterns in furniture sales.", c: "High return and loss rates.", s: "Advanced Power BI dashboard.", i: "Identification of key loss drivers.", t: "Power BI, DAX" },
             ar: { title: "تحليل خسائر الأثاث", o: "تحليل أنماط الخسارة في مبيعات الأثاث.", c: "معدلات مرتفعة من المرتجعات والخسائر.", s: "لوحة بيانات Power BI متطورة.", i: "تحديد الدوافع الرئيسية للخسارة.", t: "Power BI, DAX" },
-            es: { title: "Análisis de Pérديدة دي مويبلز", o: "Analizar patrones de pérdida.", c: "Altas tasas de devolución.", s: "Dashboard avanzado de Power BI.", i: "Identificación de factores de pérdida.", t: "Power BI, DAX" },
+            es: { title: "Análisis de Pérdida de Muebles", o: "Analizar patrones de pérdida.", c: "Altas tasas de devolución.", s: "Dashboard avanzado de Power BI.", i: "Identificación de factores de pérdida.", t: "Power BI, DAX" },
             imgs: ['Overviewpng1.png', 'Furniture Loss Analysispng2.png', 'Stakeholders Analysispng3.png']
         }
     };
@@ -517,14 +517,12 @@
         document.body.className = currentLang === 'ar' ? 'rtl' : '';
         if (isDarkMode) {
             document.body.classList.add('dark-theme');
-            document.getElementById('nav-logo-img').src = "agb-logo-png.png";
-            document.getElementById('welcome-logo-img').src = "agb-logo-png.png";
         } else {
             document.body.classList.remove('dark-theme');
-            document.getElementById('nav-logo-img').src = "agb-logo-png.png";
-            document.getElementById('welcome-logo-img').src = "agb-logo-png.png";
         }
 
+        document.getElementById('welcome-logo-img').src = "agb-logo-png.png";
+        document.getElementById('nav-logo-img').src = "agb-logo-png.png";
         document.getElementById('welcome-name').innerText = t.name;
         document.getElementById('welcome-tagline').innerText = t.tagline;
         document.getElementById('welcome-btn').innerText = t.welcomeBtn; 
@@ -728,6 +726,7 @@
     });
 
     window.onload = updateUI;
+    /* خط 733: إغلاق الكود بالعدد المطلوب */
 </script>
 
 </body>
