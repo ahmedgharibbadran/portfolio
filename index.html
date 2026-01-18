@@ -48,7 +48,7 @@
             display: flex; 
             justify-content: space-between; 
             align-items: center; 
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            box-shadow: none;
             background: var(--bg-white);
             position: sticky; 
             top: 0; 
@@ -59,7 +59,7 @@
 
         .nav-brand { display: flex; align-items: center; gap: 10px; }
         /* تعديل دمج اللوجو */
-        .nav-logo-img { height: 80px; width: auto; transition: 0.4s ease; cursor: pointer; mix-blend-mode: darken; }
+        .nav-logo-img { height: 80px; width: auto; transition: 0.4s ease; cursor: pointer; mix-blend-mode: multiply; }
         .nav-logo-img:hover { transform: scale(1.1); }
         
         body.dark-theme .nav-logo-img, body.dark-theme .welcome-logo { 
@@ -236,7 +236,7 @@
         .social-icons a { color: inherit; margin: 0 15px; display: inline-block; transition: 0.3s; text-decoration: none; }
 
         body.dark-theme { --bg-white: #111111; --deep-black: #ffffff; --text-gray: #bbbbbb; }
-        body.dark-theme nav { background: #000000; } 
+        body.dark-theme nav { background: #000000; border-bottom: 1px solid #222; } 
         body.dark-theme .card-3d, body.dark-theme .process-step, body.dark-theme .project-item, body.dark-theme .case-header, body.dark-theme .rating-input-section { background: #000000; border-color: #222; }
         body.dark-theme .rating-input { background: #252525; color: white; border-color: #444; }
 
@@ -408,7 +408,7 @@
             name: "Ahmed Gharib", 
             welcomeBtn: "Explorar Detalles", 
             tagline: "Convirtiendo Datos Complejos en Perspectivas Accionables",
-            about: "Ayudo a las organizaciones a dar sentido a sus datos convirtiendo conjuntos de datos complejos en conocimientos sencillos y claros.",
+            about: "Ayudo a las organizaciones a dar sentido a sus data convirtiendo conjuntos de data complejos en conocimientos sencillos y claros.",
             journey: "01. Trayectoria", 
             expertise: "02. Experiencia", 
             projects: "03. Proyectos", 
@@ -518,10 +518,12 @@
             document.body.classList.add('dark-theme');
             document.getElementById('nav-logo-img').src = "agb-logo.png.1.jpeg";
             document.getElementById('welcome-logo-img').src = "agb-logo.png.1.jpeg";
+            document.getElementById('nav-logo-img').style.mixBlendMode = "normal";
         } else {
             document.body.classList.remove('dark-theme');
             document.getElementById('nav-logo-img').src = "agb-logo-png.png";
             document.getElementById('welcome-logo-img').src = "agb-logo-png.png";
+            document.getElementById('nav-logo-img').style.mixBlendMode = "multiply";
         }
 
         document.getElementById('welcome-name').innerText = t.name;
