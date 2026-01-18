@@ -8,14 +8,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
         :root { 
-        --main-blue: #0056b3; 
-        --bg-white: #ffffff; 
-        --nav-bg: #f9f9f9;  /* دي الدرجة المطابقة تماماً لخلفية اللوجو بتاعك */
-        --deep-black: #000000;
-        --text-gray: #555555; 
-        --glow-effect: 0 4px 15px rgba(0, 86, 179, 0.2);
-        --footer-black: transparent; 
-    }
+    --main-blue: #0056b3; 
+    --bg-white: #f9f9f9;  /* غيرنا دي من ffffff لـ f9f9f9 عشان تطابق اللوجو */
+    --nav-bg: #f9f9f9;    /* الهيدر والموقع بقوا لون واحد */
+    --deep-black: #000000;
+    --text-gray: #555555; 
+    --glow-effect: 0 4px 15px rgba(0, 86, 179, 0.2);
+    --footer-black: transparent; 
+}
        body { background-color: var(--bg-white); color: var(--deep-black); font-family: 'Inter', sans-serif; margin: 0; text-align: center; scroll-behavior: smooth; overflow-x: hidden; }
        body.rtl { direction: rtl; font-family: 'Cairo', sans-serif; }
         #welcome-overlay { 
@@ -42,7 +42,7 @@
             display: flex; 
             justify-content: space-between; 
             align-items: center; 
-            box-shadow: 0 2px 5px rgba(0,0,0,0.02); /* خففنا الظل شوية عشان يبقى أنعم */
+            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
             background: var(--nav-bg); 
             position: sticky; 
             top: 0; 
@@ -50,16 +50,15 @@
             box-sizing: border-box;
             direction: ltr !important;
         }
-
         .nav-brand { display: flex; align-items: center; gap: 10px; }
         
-        .nav-logo-img { 
-            height: 80px; 
-            width: auto; 
-            transition: 0.4s ease; 
-            cursor: pointer; 
-            mix-blend-mode: multiply; /* التعديل الأهم: ده اللي بيدمج اللوجو */
-        }
+       .nav-logo-img { 
+    height: 80px; 
+    width: auto; 
+    transition: 0.4s ease; 
+    cursor: pointer; 
+    mix-blend-mode: normal;
+}
         
         .nav-logo-img:hover { transform: scale(1.1); }
         
@@ -106,7 +105,7 @@
             border: 2px solid var(--main-blue) !important; 
             transform: scale(1.15);
         }
-        header { padding: 60px 20px; text-align: center; }
+      header { padding: 100px 20px 60px 20px; text-align: center; }
         h1 { font-size: clamp(35px, 8vw, 75px); margin: 0; font-weight: 900; }
         .job-tag { 
             color: var(--main-blue); 
