@@ -50,24 +50,38 @@
             box-sizing: border-box;
             direction: ltr !important;
         }
-        .nav-brand { display: flex; align-items: center; gap: 10px; }
-        
-       .nav-logo-img { 
-    height: 80px; 
-    width: auto; 
-    transition: 0.4s ease; 
-    cursor: pointer; 
-    mix-blend-mode: normal;
+        .nav-brand { 
+    display: flex; 
+    align-items: center; 
+    gap: 10px; 
 }
-        
-        .nav-logo-img:hover { transform: scale(1.1); }
-        
-        /* في الدارك ثيم بنلغي الـ multiply عشان اللوجو الأسود يظهر صح */
-        body.dark-theme .nav-logo-img, 
-        body.dark-theme .welcome-logo { 
-            mix-blend-mode: normal; 
-            filter: none; 
-        }
+
+/* تنسيق حروف اللوجو الجديد في الهيدر */
+.agb-header-txt {
+    fill: var(--deep-black); /* لونه أسود في النهار */
+    transition: fill 0.3s ease;
+}
+
+/* لما الموقع يقلب Dark Mode الحروف تبقى بيضاء */
+body.dark-theme .agb-header-txt {
+    fill: #ffffff !important;
+}
+
+/* حركة شيك لما تقف بالماوس */
+.nav-brand:hover .agb-header-txt {
+    fill: var(--main-blue) !important;
+}
+
+/* تنسيق لوجو الدخلة (عشان يفضل زي ما هو) */
+.welcome-logo { 
+    width: 120px; 
+    height: 120px; 
+    margin-bottom: 25px; 
+    border-radius: 50%; 
+    border: 3px solid var(--main-blue); 
+    transition: 0.3s; 
+    object-fit: contain; 
+}
         .lang-switch { display: flex; gap: 12px; align-items: center; }
         .flag-btn { 
             width: 32px !important; 
@@ -252,17 +266,21 @@
     </div>
 </div>
 <div id="main-site">
-    <nav>
-        <div class="nav-brand">
-            <img src="agb-logo-png.png" class="nav-logo-img" id="nav-logo-img" onclick="location.reload()">
-        </div>
-        <div class="lang-switch">
-            <img src="https://flagcdn.com/w40/gb.png" class="flag-btn" id="lang-en" onclick="setLang('en')" title="English">
-            <img src="https://flagcdn.com/w40/eg.png" class="flag-btn" id="lang-ar" onclick="setLang('ar')" title="العربية">
-            <img src="https://flagcdn.com/w40/es.png" class="flag-btn" id="lang-es" onclick="setLang('es')" title="Español">
-            <div id="dark-mode-toggle" onclick="toggleDarkMode()"></div>
-        </div>
-    </nav>
+   <nav>
+    <div class="nav-brand" onclick="location.reload()" style="cursor: pointer; display: flex; align-items: center;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 60" style="width: 115px; height: auto;">
+            <text x="0" y="45" font-family="'Arial Black', sans-serif" font-size="52" font-weight="900" letter-spacing="-7" class="agb-header-txt">AGB</text>
+            <path d="M5 50 C 50 50, 100 45, 150 20" stroke="#0056b3" stroke-width="6" fill="none" stroke-linecap="round"/>
+            <polygon points="150,20 138,24 144,30" fill="#0056b3"/>
+        </svg>
+    </div>
+    <div class="lang-switch">
+        <img src="https://flagcdn.com/w40/gb.png" class="flag-btn" id="lang-en" onclick="setLang('en')" title="English">
+        <img src="https://flagcdn.com/w40/eg.png" class="flag-btn" id="lang-ar" onclick="setLang('ar')" title="العربية">
+        <img src="https://flagcdn.com/w40/es.png" class="flag-btn" id="lang-es" onclick="setLang('es')" title="Español">
+        <div id="dark-mode-toggle" onclick="toggleDarkMode()"></div>
+    </div>
+</nav>
     <header>
         <h1 id="main-name">Ahmed Gharib</h1>
         <span class="job-tag" id="job-title"></span>
@@ -493,12 +511,8 @@
         document.body.className = currentLang === 'ar' ? 'rtl' : '';
         if (isDarkMode) {
             document.body.classList.add('dark-theme');
-            document.getElementById('nav-logo-img').src = "agb-logo.png.1.jpeg";
-            document.getElementById('welcome-logo-img').src = "agb-logo.png.1.jpeg";
         } else {
             document.body.classList.remove('dark-theme');
-            document.getElementById('nav-logo-img').src = "agb-logo-png.png";
-            document.getElementById('welcome-logo-img').src = "agb-logo-png.png";
         }
         document.getElementById('welcome-name').innerText = t.name;
         document.getElementById('welcome-tagline').innerText = t.tagline;
