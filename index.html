@@ -10,7 +10,8 @@
     <style>
         :root { 
             --main-blue: #0056b3; 
-            --bg-white: #f9f9f9; /* الدرجة دي بتطابق خلفية اللوجو بالظبط */
+            --bg-white: #ffffff; /* الموقع هيفضل أبيض سادة */
+            --nav-bg: #f9f9f9;  /* لون خلفية اللوجو المخصوص للهيدر */
             --deep-black: #000000;
             --text-gray: #555555; 
             --glow-effect: 0 4px 15px rgba(0, 86, 179, 0.2);
@@ -48,18 +49,16 @@
             display: flex; 
             justify-content: space-between; 
             align-items: center; 
-            box-shadow: none;
-            background: var(--bg-white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.03); /* ظل خفيف جداً لفصل الهيدر */
+            background: var(--nav-bg); /* هنا الهيدر أخد لون اللوجو */
             position: sticky; 
             top: 0; 
             z-index: 1000;
             box-sizing: border-box;
             direction: ltr !important;
-            border: none;
         }
 
         .nav-brand { display: flex; align-items: center; gap: 10px; }
-        /* تم تعديل وضع الدمج ليظهر اللوجو بوضوح فوق لون الهيدر الجديد */
         .nav-logo-img { height: 80px; width: auto; transition: 0.4s ease; cursor: pointer; mix-blend-mode: normal; }
         .nav-logo-img:hover { transform: scale(1.1); }
         
@@ -236,8 +235,8 @@
         }
         .social-icons a { color: inherit; margin: 0 15px; display: inline-block; transition: 0.3s; text-decoration: none; }
 
-        body.dark-theme { --bg-white: #111111; --deep-black: #ffffff; --text-gray: #bbbbbb; }
-        body.dark-theme nav { background: #000000; border-bottom: 1px solid #222; } 
+        body.dark-theme { --bg-white: #111111; --nav-bg: #000000; --deep-black: #ffffff; --text-gray: #bbbbbb; }
+        body.dark-theme nav { background: var(--nav-bg); border-bottom: 1px solid #222; } 
         body.dark-theme .card-3d, body.dark-theme .process-step, body.dark-theme .project-item, body.dark-theme .case-header, body.dark-theme .rating-input-section { background: #000000; border-color: #222; }
         body.dark-theme .rating-input { background: #252525; color: white; border-color: #444; }
 
@@ -519,12 +518,10 @@
             document.body.classList.add('dark-theme');
             document.getElementById('nav-logo-img').src = "agb-logo.png.1.jpeg";
             document.getElementById('welcome-logo-img').src = "agb-logo.png.1.jpeg";
-            document.getElementById('nav-logo-img').style.mixBlendMode = "normal";
         } else {
             document.body.classList.remove('dark-theme');
             document.getElementById('nav-logo-img').src = "agb-logo-png.png";
             document.getElementById('welcome-logo-img').src = "agb-logo-png.png";
-            document.getElementById('nav-logo-img').style.mixBlendMode = "normal"; // تم التعديل لمنع أي تأثير دمج قديم
         }
 
         document.getElementById('welcome-name').innerText = t.name;
