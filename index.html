@@ -10,7 +10,7 @@
     <style>
         :root { 
             --main-blue: #0056b3; 
-            --bg-white: #ffffff; 
+            --bg-white: #f9f9f9; /* الدرجة دي بتطابق خلفية اللوجو بالظبط */
             --deep-black: #000000;
             --text-gray: #555555; 
             --glow-effect: 0 4px 15px rgba(0, 86, 179, 0.2);
@@ -59,8 +59,8 @@
         }
 
         .nav-brand { display: flex; align-items: center; gap: 10px; }
-        /* استخدام multiply لدمج خلفية اللوجو مع خلفية الهيدر تماماً */
-        .nav-logo-img { height: 80px; width: auto; transition: 0.4s ease; cursor: pointer; mix-blend-mode: multiply; }
+        /* تم تعديل وضع الدمج ليظهر اللوجو بوضوح فوق لون الهيدر الجديد */
+        .nav-logo-img { height: 80px; width: auto; transition: 0.4s ease; cursor: pointer; mix-blend-mode: normal; }
         .nav-logo-img:hover { transform: scale(1.1); }
         
         body.dark-theme .nav-logo-img, body.dark-theme .welcome-logo { 
@@ -477,7 +477,7 @@
         clean: {
             en: { title: "Data Cleaning & Transformation", desc: "Using Power Query to remove duplicates, fix errors, and transform data into a usable, structured format." },
             ar: { title: "تنظيف وتحويل البيانات", desc: "استخدام Power Query لإزالة التكرارات، وإصلاح الأخطاء، وتحويل البيانات إلى تنسيق هيكلي قابل للاستخدام." },
-            es: { title: "Limpieza de Datos", desc: "Uso de Power Query para eliminar duplicados, corregir errores y transformar los datos." }
+            es: { title: "Limpieza de Datos", desc: "Uso de Power Query para eliminar duplicados, corregير errores y transformar los datos." }
         },
         model: {
             en: { title: "Data Modeling & DAX", desc: "Creating relationships between tables and writing DAX formulas to calculate complex business metrics." },
@@ -507,7 +507,7 @@
         furniture: { 
             en: { title: "Furniture Loss Analysis", o: "Analyze loss patterns in furniture sales.", c: "High return and loss rates.", s: "Advanced Power BI dashboard.", i: "Identification of key loss drivers.", t: "Power BI, DAX" },
             ar: { title: "تحليل خسائر الأثاث", o: "تحليل أنماط الخسارة في مبيعات الأثاث.", c: "معدلات مرتفعة من المرتجعات والخسائر.", s: "لوحة بيانات Power BI متطورة.", i: "تحديد الدوافع الرئيسية للخسارة.", t: "Power BI, DAX" },
-            es: { title: "Análisis de Pérدida de Muebles", o: "Analizar patrones de pérdida.", c: "Altas tasas de devolución.", s: "Dashboard avanzado de Power BI.", i: "Identificación de factores de pérdida.", t: "Power BI, DAX" },
+            es: { title: "Análisis de Pérdida de Muebles", o: "Analizar patrones de pérdida.", c: "Altas tasas de devolución.", s: "Dashboard avanzado de Power BI.", i: "Identificación de factores de pérdida.", t: "Power BI, DAX" },
             imgs: ['Overviewpng1.png', 'Furniture Loss Analysispng2.png', 'Stakeholders Analysispng3.png']
         }
     };
@@ -524,7 +524,7 @@
             document.body.classList.remove('dark-theme');
             document.getElementById('nav-logo-img').src = "agb-logo-png.png";
             document.getElementById('welcome-logo-img').src = "agb-logo-png.png";
-            document.getElementById('nav-logo-img').style.mixBlendMode = "multiply";
+            document.getElementById('nav-logo-img').style.mixBlendMode = "normal"; // تم التعديل لمنع أي تأثير دمج قديم
         }
 
         document.getElementById('welcome-name').innerText = t.name;
