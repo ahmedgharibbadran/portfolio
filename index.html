@@ -136,11 +136,11 @@
         }
         body.rtl .section-title { text-align: right; border-left: none; border-right: 5px solid var(--main-blue); padding-left: 0; padding-right: 15px; margin: 40px 10% 20px 0; }
 
-      .grid-container, .process-flow { 
-            display: grid; /* تغيير من flex لـ grid */
-            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); /* توزيع تلقائي احترافي */
+        .grid-container, .process-flow { 
+            display: flex; 
             justify-content: center; 
             gap: 15px; 
+            flex-wrap: wrap; 
             padding: 0 10%; 
             margin-bottom: 40px; 
         }
@@ -346,40 +346,18 @@ body.dark-theme .agb-header-txt {
             <svg viewBox="0 0 24 24"><path d="M9 21c0 .55.45 1 1 1h4c.55 0 1-.45 1-1v-1H9v1zm3-19C8.14 2 5 5.14 5 9c0 2.38 1.19 4.47 3 5.74V17c0 .55.45 1 1 1h6c.55 0 1-.45 1-1v-2.26c1.81-1.27 3-3.36 3-5.74 0-3.86-3.14-7-7-7zm2.85 11.1l-.85.6V16h-4v-1.3l-.85-.6C7.8 13.15 7 11.18 7 9c0-2.76 2.24-5 5-5s5 2.24 5 5c0 2.18-.8 4.15-2.15 5.1z"/></svg>
             <h4 id="step5"></h4>
         </div>
+    </div>
+
+    <div class="section-title" id="title-expertise"></div>
     <div class="grid-container"> 
-    <div class="card-3d reveal" onclick="showSkillDetails('powerbi')" style="cursor: pointer;">
-        <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/></svg>
-        <span>Power BI</span>
+        <div class="card-3d reveal"><svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/></svg><span>Power BI</span></div>
+        <div class="card-3d reveal"><svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg><span>Excel</span></div>
+        <div class="card-3d reveal"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/></svg><span id="skill3"></span></div>
+        <div class="card-3d reveal"><svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg><span id="skill4"></span></div>
+        <div class="card-3d reveal"><svg viewBox="0 0 24 24"><path d="M20 6h-8l-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-6 10H6v-2h8v2zm4-4H6v-2h12v2z"/></svg><span>ETL</span></div>
+        <div class="card-3d reveal"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg><span id="skill6"></span></div>
     </div>
 
-    <div class="card-3d reveal" onclick="showSkillDetails('excel')" style="cursor: pointer;">
-        <svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
-        <span>Excel</span>
-    </div>
-
-    <div class="card-3d reveal" onclick="showSkillDetails('sql')" style="cursor: pointer;">
-        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/></svg>
-        <span>SQL</span>
-    </div>
-
-    <div class="card-3d reveal" onclick="showSkillDetails('modeling')" style="cursor: pointer;">
-        <svg viewBox="0 0 24 24"><path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3zM3.89 9L12 4.57 20.11 9 12 13.43 3.89 9z"/></svg>
-        <span id="skill3"></span> </div>
-
-    <div class="card-3d reveal" onclick="showSkillDetails('dax')" style="cursor: pointer;">
-        <svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
-        <span id="skill4"></span> </div>
-
-    <div class="card-3d reveal" onclick="showSkillDetails('etl')" style="cursor: pointer;">
-        <svg viewBox="0 0 24 24"><path d="M20 6h-8l-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-6 10H6v-2h8v2zm4-4H6v-2h12v2z"/></svg>
-        <span>ETL</span>
-    </div>
-
-    <div class="card-3d reveal" onclick="showSkillDetails('viz')" style="cursor: pointer;">
-        <svg viewBox="0 0 24 24"><path d="M3.5 18.49l6-6.01 4 4L22 6.92l-1.41-1.41-7.09 7.97-4-4L2 17.08l1.5 1.41z"/></svg>
-        <span id="skill6"></span> </div>
-</div>
-    </div>
     <div class="section-title" id="title-projects"></div>
     <div class="projects-wrapper">
         <div class="project-item reveal"> 
@@ -404,6 +382,7 @@ body.dark-theme .agb-header-txt {
             </div>
         </div>
     </div>
+
     <div class="section-title" id="title-ratings"></div>
     <div class="grid-container">
         <div class="card-3d reveal" onclick="openRatingsPage()" style="cursor: pointer; max-width: 250px;">
@@ -531,7 +510,7 @@ body.dark-theme .agb-header-txt {
         setTimeout(startTypingEffect, speed);
     }
 
-  const journeyData = {
+    const journeyData = {
         understand: {
             en: { title: "Understand Business Needs", desc: "Defining clear objectives and understanding the key performance indicators (KPIs) critical to the business success." },
             ar: { title: "فهم احتياجات العمل", desc: "تحديد أهداف واضحة وفهم مؤشرات الأداء الرئيسية (KPIs) الضرورية لنجاح الأعمال." },
@@ -558,53 +537,6 @@ body.dark-theme .agb-header-txt {
             es: { title: "Perspectivas y Visualización", desc: "Diseño de cuadros de mando intuitivos que cuentan una historia y ayudan a los tomadores de decisiones." }
         }
     };
-
-    // --- بداية الإضافة الجديدة: مهارات الـ Expertise ---
-    const skillDetails = {
-        powerbi: {
-            en: { title: "Power BI Expertise", desc: "Advanced dashboard creation, complex DAX measures, and end-to-end BI solutions for data-driven decisions." },
-            ar: { title: "خبرة Power BI", desc: "إنشاء لوحات بيانات متقدمة، ومقاييس DAX معقدة، وحلول ذكاء أعمال شاملة لاتخاذ قرارات قائمة على البيانات." }
-        },
-        excel: {
-            en: { title: "Advanced Excel", desc: "Expertise in Power Query, Pivot Tables, and advanced formulas for robust data organization and quick analysis." },
-            ar: { title: "إكسيل متقدم", desc: "خبرة في Power Query، والجداول المحورية (Pivot Tables)، والمعادلات المتقدمة لتنظيم البيانات وتحليلها بسرعة." }
-        },
-        sql: {
-            en: { title: "SQL Querying", desc: "Writing efficient queries to extract and pull data from relational databases, ensuring a solid foundation for analysis." },
-            ar: { title: "استعلامات SQL", desc: "كتابة استعلامات فعالة لسحب واستخراج البيانات من قواعد البيانات المختلفة، مما يضمن بناء أساس صحيح لأي تحليل." }
-        },
-        modeling: {
-            en: { title: "Data Modeling", desc: "Designing scalable data schemas (Star/Snowflake) to ensure high performance and data integrity in all reports." },
-            ar: { title: "نمذجة البيانات", desc: "تصميم مخططات بيانات قابلة للتوسع (Star/Snowflake) لضمان الأداء العالي وسلامة البيانات في جميع التقارير." }
-        },
-        dax: {
-            en: { title: "DAX Logic", desc: "Crafting powerful Calculated Columns and Measures to solve complex business logic and time-intelligence problems." },
-            ar: { title: "منطق DAX", desc: "صياغة أعمدة ومقاييس (Measures) قوية لحل منطق الأعمال المعقد ومشكلات ذكاء الوقت (Time-Intelligence)." }
-        },
-        etl: {
-            en: { title: "ETL Processes", desc: "Streamlining the Extract, Transform, and Load process to automate data workflows and reduce manual work." },
-            ar: { title: "عمليات ETL", desc: "تبسيط عمليات (استخراج، تحويل، تحميل) البيانات لأتمتة سير العمل وتقليل المجهود اليدوي." }
-        },
-        viz: {
-            en: { title: "Data Visualization", desc: "Applying storytelling principles to design intuitive visuals that highlight trends and drive action." },
-            ar: { title: "تمثيل البيانات بصرياً", desc: "تطبيق مبادئ سرد القصص بالبيانات لتصميم مرئيات بديهية توضح الاتجاهات وتدفع نحو اتخاذ القرار." }
-        }
-    };
-
-    function showSkillDetails(id) {
-        lastScrollPos = window.scrollY;
-        const d = skillDetails[id][currentLang];
-        document.getElementById('case-header-content').innerHTML = `
-            <div class="case-header">
-                <h2 style="color:var(--main-blue)">${d.title}</h2>
-                <p style="font-size:18px; line-height:1.8; color:var(--text-gray);">${d.desc}</p>
-            </div>`;
-        document.getElementById('study-images').innerHTML = ""; 
-        document.getElementById('main-site').style.display = 'none';
-        document.getElementById('case-study-view').style.display = 'block';
-        window.scrollTo(0,0);
-    }
-    // --- نهاية الإضافة الجديدة ---
 
     const projectData = {
         hr: { 
