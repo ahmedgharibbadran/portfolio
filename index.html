@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ahmed Gharib | AGBINSIGHTS</title>
-   <link rel="icon" type="image/svg+xml" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y="75" font-size="70" fill="%230056b3" font-family="Arial Black">A</text><path d="M5 85 L40 45 L95 10" stroke="%230056b3" stroke-width="12" fill="none" stroke-linecap="round"/></svg>'>
+    <link rel="icon" type="image/svg+xml" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y="75" font-size="70" fill="%230056b3" font-family="Arial Black">A</text><path d="M5 85 L40 45 L95 10" stroke="%230056b3" stroke-width="12" fill="none" stroke-linecap="round"/></svg>'>
     <style>
         :root { 
             --main-blue: #0056b3; 
@@ -16,9 +16,9 @@
             --footer-black: transparent; 
         }
 
-       body { background-color: var(--bg-white); color: var(--deep-black); font-family: 'Inter', sans-serif; margin: 0; text-align: center; scroll-behavior: smooth; overflow-x: hidden; }
-       body.rtl { direction: rtl; font-family: 'Cairo', sans-serif; }
-       
+        body { background-color: var(--bg-white); color: var(--deep-black); font-family: 'Inter', sans-serif; margin: 0; text-align: center; scroll-behavior: smooth; overflow-x: hidden; }
+        body.rtl { direction: rtl; font-family: 'Cairo', sans-serif; }
+        
         #welcome-overlay { 
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
             background: var(--bg-white);
@@ -136,7 +136,17 @@
         }
         body.rtl .section-title { text-align: right; border-left: none; border-right: 5px solid var(--main-blue); padding-left: 0; padding-right: 15px; margin: 40px 10% 20px 0; }
 
-        .grid-container, .process-flow { 
+        /* --- التعديل هنا لظبط الأيقونات --- */
+        .grid-container { 
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            justify-content: center; 
+            gap: 15px; 
+            padding: 0 10%; 
+            margin-bottom: 40px; 
+        }
+
+        .process-flow { 
             display: flex; 
             justify-content: center; 
             gap: 15px; 
@@ -149,8 +159,6 @@
             background: var(--bg-white); 
             border: 1px solid #eee; 
             padding: 25px 15px; 
-            flex: 1 1 130px; 
-            max-width: 200px;
             border-radius: 15px; 
             transition: all 0.3s ease; 
             cursor: default; 
@@ -158,7 +166,10 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: center;
+            min-height: 140px;
         }
+        /* ---------------------------------- */
 
         @media (max-width: 480px) {
             .grid-container, .process-flow {
@@ -241,34 +252,20 @@
         .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
         .reveal.active { opacity: 1; transform: translateY(0); }
         
-        .loading-text { font-style: italic; color: var(--text-gray); }
-        .social-icons a { color: inherit; margin: 0 15px; display: inline-block; transition: 0.3s; text-decoration: none; }
-
-        body.dark-theme { --bg-white: #111111; --nav-bg: #000000; --deep-black: #ffffff; --text-gray: #bbbbbb; }
-        body.dark-theme nav { background: var(--nav-bg); border-bottom: 1px solid #222; } 
-        body.dark-theme .card-3d, body.dark-theme .process-step, body.dark-theme .project-item, body.dark-theme .case-header, body.dark-theme .rating-input-section { background: #000000; border-color: #222; }
-        body.dark-theme .rating-input { background: #252525; color: white; border-color: #444; }
-
-        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
-        .reveal.active { opacity: 1; transform: translateY(0); }
-        
         .loading-text { font-style: italic; color: var(--text-gray);}
-      /* تنسيق لون حروف اللوجو في الهيدر */
-.agb-header-txt {
-    fill: #000000; /* أسود في الوضع العادي */
-    transition: fill 0.3s ease;
-}
 
-/* يقلب أبيض في الدارك مود */
-body.dark-theme .agb-header-txt {
-    fill: #ffffff !important;
-}
+        .agb-header-txt {
+            fill: #000000; /* أسود في الوضع العادي */
+            transition: fill 0.3s ease;
+        }
 
-/* يقلب أزرق لما تقف عليه بالماوس */
-.nav-brand:hover .agb-header-txt {
-    fill: var(--main-blue) !important;
-}                
-                    
+        body.dark-theme .agb-header-txt {
+            fill: #ffffff !important;
+        }
+
+        .nav-brand:hover .agb-header-txt {
+            fill: var(--main-blue) !important;
+        }                    
     </style>
 </head>
 <body>
@@ -558,6 +555,7 @@ body.dark-theme .agb-header-txt {
             imgs: ['Overviewpng1.png', 'Furniture Loss Analysispng2.png', 'Stakeholders Analysispng3.png']
         }
     };
+
 function updateUI() {
     const t = translations[currentLang];
     document.body.className = currentLang === 'ar' ? 'rtl' : '';
