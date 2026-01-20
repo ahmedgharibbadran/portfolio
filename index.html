@@ -199,12 +199,23 @@
         @media (max-width: 480px) {
             .grid-container, .process-flow, .why-container {
                 padding: 0 15px !important; 
-                gap: 12px !important;
+                gap: 15px !important; /* مسافة متناسقة */
                 display: grid !important;
                 grid-template-columns: repeat(1, 1fr) !important;
             }
-            .card-3d, .process-step {
+            .card-3d, .process-step, .why-card {
                 max-width: 100% !important;
+                padding: 20px !important;
+            }
+            .why-icon svg, .card-3d svg, .process-step svg {
+                width: 45px !important; /* تكبير الأيقونات في الموبايل */
+                height: 45px !important;
+                margin-bottom: 10px !important;
+            }
+            .section-title {
+                margin-left: 5% !important;
+                margin-right: 5% !important;
+                font-size: 20px !important;
             }
         }
         .card-3d svg, .process-step svg {
