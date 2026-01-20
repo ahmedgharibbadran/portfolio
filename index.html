@@ -196,28 +196,33 @@
             flex-direction: column;
             align-items: center;
         }
-        @media (max-width: 480px) {
-            .grid-container, .process-flow, .why-container {
-                padding: 0 15px !important; 
-                gap: 15px !important; /* مسافة متناسقة */
-                display: grid !important;
-                grid-template-columns: repeat(1, 1fr) !important;
+
+        /* --- تعديل وضع الموبايل (الجزء المطلوب) --- */
+        @media (max-width: 768px) {
+            nav { padding: 10px 3%; }
+            .nav-logo-img { height: 60px; }
+            .lang-switch { gap: 8px; }
+            
+            .why-container, .grid-container, .process-flow, .projects-wrapper { 
+                padding: 0 5% !important; 
+                display: flex !important;
+                flex-direction: column !important;
+                align-items: center !important;
+                gap: 20px !important;
             }
-            .card-3d, .process-step, .why-card {
-                max-width: 100% !important;
-                padding: 20px !important;
+            .why-card, .card-3d, .process-step, .project-item { 
+                width: 90% !important; 
+                max-width: 400px !important; 
+                flex: none !important;
             }
-            .why-icon svg, .card-3d svg, .process-step svg {
-                width: 45px !important; /* تكبير الأيقونات في الموبايل */
-                height: 45px !important;
-                margin-bottom: 10px !important;
-            }
-            .section-title {
-                margin-left: 5% !important;
-                margin-right: 5% !important;
+            .section-title { 
+                margin: 30px 5% 15px 5% !important; 
                 font-size: 20px !important;
             }
+            .about-text { font-size: 15px; }
+            h1 { font-size: 40px; }
         }
+
         .card-3d svg, .process-step svg {
             margin-bottom: 15px;
             opacity: 0.7;
@@ -642,7 +647,7 @@
         hr: { 
             en: { title: "HR Attrition Analysis", o: "Identify factors behind turnover.", c: "High turnover rates.", s: "Power BI dashboard with DAX.", i: "15% reduction opportunity.", t: "Power BI, DAX" },
             ar: { title: "تحليل استقالات الموظفين", o: "تحديد أسباب ترك العمل.", c: "معدلات دوران عالية.", s: "لوحة بيانات Power BI.", i: "فرصة تقليل 15%.", t: "Power BI, DAX" },
-            es: { title: "Análisis de Rotación", o: "Identificar factores.", c: "Alta rotación.", s: "Dashboard Power BI.", i: "Mejora del 15%.", t: "Power BI, DAX" },
+            es: { title: "Análisis de Rotación", o: "Identificar factores.", c: "Alta rotación.", s: "Dashboard Power BI.", i: "Meجora del 15%.", t: "Power BI, DAX" },
             imgs: ['hr.png.png', 'hr.png2.png', 'hr.png3.png']
         },
         sales: {
