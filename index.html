@@ -70,23 +70,6 @@
             object-fit: cover !important; 
             border: 2px solid transparent !important;
         }
-
-        /* CV Button Style */
-        .cv-btn {
-            background: var(--main-blue);
-            color: white;
-            padding: 8px 15px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: bold;
-            transition: 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-        .cv-btn:hover { transform: scale(1.05); box-shadow: var(--glow-effect); }
-
         #dark-mode-toggle {
             cursor: pointer;
             width: 32px;
@@ -197,8 +180,6 @@
             flex-direction: column;
             align-items: center;
         }
-
-        /* Mobile Adjustments */
         @media (max-width: 480px) {
             .grid-container, .process-flow, .why-container {
                 padding: 0 15px !important; 
@@ -209,10 +190,7 @@
             .card-3d, .process-step {
                 max-width: 100% !important;
             }
-            nav { padding: 10px 2%; }
-            .cv-btn span { display: none; } /* Hide text on very small screens, icon only */
         }
-
         .card-3d svg, .process-step svg {
             margin-bottom: 15px;
             opacity: 0.7;
@@ -342,10 +320,6 @@
             </svg>
         </div>
         <div class="lang-switch">
-            <a href="Ahmed_Gharib_Data_Analyst.pdf" download class="cv-btn" id="cv-download">
-                <svg style="width:18px;height:18px;fill:white" viewBox="0 0 24 24"><path d="M5,20H19V18H5M19,9H15V3H9V9H5L12,16L19,9Z" /></svg>
-                <span id="cv-text">CV</span>
-            </a>
             <img src="https://flagcdn.com/w40/gb.png" class="flag-btn" id="lang-en" onclick="setLang('en')" title="English">
             <img src="https://flagcdn.com/w40/eg.png" class="flag-btn" id="lang-ar" onclick="setLang('ar')" title="العربية">
             <img src="https://flagcdn.com/w40/es.png" class="flag-btn" id="lang-es" onclick="setLang('es')" title="Español">
@@ -411,21 +385,21 @@
     <div class="section-title" id="title-projects"></div>
     <div class="projects-wrapper">
         <div class="project-item reveal"> 
-            <div class="p-img"><img src="hr.png.png" loading="lazy"></div>
+            <div class="p-img"><img src="hr.png.png"></div>
             <div class="p-text">
                 <h3 id="p1-title"></h3>
                 <div class="btn-view" onclick="showStudy('hr')" id="p1-btn" style="cursor: pointer;"></div>
             </div>
         </div>
         <div class="project-item reveal">
-            <div class="p-img"><img src="sales.png1.png" loading="lazy"></div>
+            <div class="p-img"><img src="sales.png1.png"></div>
             <div class="p-text">
                 <h3 id="p2-title"></h3>
                 <div class="btn-view" onclick="showStudy('sales')" id="p2-btn" style="cursor: pointer;"></div>
             </div>
         </div>
         <div class="project-item reveal"> 
-            <div class="p-img"><img src="Overviewpng1.png" loading="lazy"></div>
+            <div class="p-img"><img src="Overviewpng1.png"></div>
             <div class="p-text">
                 <h3 id="p3-title"></h3>
                 <div class="btn-view" onclick="showStudy('furniture')" id="p3-btn" style="cursor: pointer;"></div>
@@ -444,11 +418,10 @@
             <a href="https://www.linkedin.com/in/ahmed-gharib-20989a272/" target="_blank" rel="noopener noreferrer">
                 <svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
             </a>
-            <a href="javascript:void(0)" onclick="copyEmail('info@agbinsights.com')">
+            <a href="mailto:info@agbinsights.com">
                 <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
             </a>
         </div>
-        <p id="email-display" style="margin-top: 10px; opacity: 0.8; font-size: 14px; cursor: pointer;" onclick="copyEmail('info@agbinsights.com')">info@agbinsights.com</p>
         <p style="margin-top: 20px; opacity: 0.6; font-size: 12px;">©️ AHMED GHARIB | AGBINSIGHTS</p>
     </footer>
 </div>
@@ -484,8 +457,7 @@
             obj: "OBJECTIVE", ch: "CHALLENGE", sol: "SOLUTION", imp: "IMPACT", tool: "TOOLS",
             ratePrompt: "Leave a Review", namePlace: "Name", ratePlace: "Write your feedback...", rateBtn: "Submit",
             alert: "Please enter both name and comment", thanks: "Thank you for your feedback!",
-            viewRatings: "View & Add Reviews", loading: "Loading reviews...",
-            cv: "Download CV", emailCopied: "Email Copied!"
+            viewRatings: "View & Add Reviews", loading: "Loading reviews..."
         },
         ar: {
             name: "أحمد غريب", 
@@ -506,8 +478,7 @@
             obj: "الهدف", ch: "التحدي", sol: "الحل", imp: "الأثر", tool: "الأدوات",
             ratePrompt: "أضف تقييمك", namePlace: "الاسم", ratePlace: "اكتب رأيك هنا...", rateBtn: "إرسال",
             alert: "يرجى إدخال الاسم والتعليق", thanks: "شكراً لتقييمك!",
-            viewRatings: "عرض وإضافة التقييمات", loading: "جاري تحميل التقييمات...",
-            cv: "تحميل السيرة الذاتية", emailCopied: "تم نسخ الإيميل!"
+            viewRatings: "عرض وإضافة التقييمات", loading: "جاري تحميل التقييمات..."
         },
         es: {
             name: "Ahmed Gharib", 
@@ -528,24 +499,9 @@
             obj: "OBJETIVO", ch: "DESAFÍO", sol: "SOLUCIÓN", imp: "IMPACTO", tool: "HERRAMIENTAS",
             ratePrompt: "Deja una reseña", namePlace: "Nombre", ratePlace: "Escribe tu opinión...", rateBtn: "Enviar",
             alert: "Por favor, introduzca su nombre y commentario", thanks: "¡Gracias por tu comentario!",
-            viewRatings: "Ver y añadir reseñas", loading: "Cargando reseñas...",
-            cv: "Bajar CV", emailCopied: "¡Email Copiado!"
+            viewRatings: "Ver y añadir reseñas", loading: "Cargando reseñas..."
         }
     };
-
-    function copyEmail(email) {
-        navigator.clipboard.writeText(email).then(() => {
-            const display = document.getElementById('email-display');
-            const originalText = display.innerText;
-            display.innerText = translations[currentLang].emailCopied;
-            display.style.color = "var(--main-blue)";
-            setTimeout(() => {
-                display.innerText = originalText;
-                display.style.color = "";
-            }, 2000);
-        });
-    }
-
     const typingJobs = {
         en: ["Data Analyst", "Power BI Specialist", "Problem Solver", "Insights Explorer"],
         ar: ["محلل بيانات", "خبير Power BI", "محلل مشكلات", "مستكشف رؤى"],
@@ -648,7 +604,7 @@
         hr: { 
             en: { title: "HR Attrition Analysis", o: "Identify factors behind turnover.", c: "High turnover rates.", s: "Power BI dashboard with DAX.", i: "15% reduction opportunity.", t: "Power BI, DAX" },
             ar: { title: "تحليل استقالات الموظفين", o: "تحديد أسباب ترك العمل.", c: "معدلات دوران عالية.", s: "لوحة بيانات Power BI.", i: "فرصة تقليل 15%.", t: "Power BI, DAX" },
-            es: { title: "Análisis de Rotación", o: "Identificar factores.", c: "Alta rotación.", s: "Dashboard Power BI.", i: "Meجora del 15%.", t: "Power BI, DAX" },
+            es: { title: "Análisis de Rotación", o: "Identificar factores.", c: "Alta rotación.", s: "Dashboard Power BI.", i: "Mejora del 15%.", t: "Power BI, DAX" },
             imgs: ['hr.png.png', 'hr.png2.png', 'hr.png3.png']
         },
         sales: {
@@ -707,7 +663,6 @@ function updateUI() {
     document.getElementById('p3-btn').innerText = t.viewBtn;
     document.getElementById('back-btn').innerText = t.back;
     document.getElementById('view-ratings-text').innerText = t.viewRatings;
-    document.getElementById('cv-text').innerText = t.cv;
     document.querySelectorAll('.flag-btn').forEach(f => f.classList.remove('active'));
     if(document.getElementById('lang-' + currentLang)) document.getElementById('lang-' + currentLang).classList.add('active');   
     const iconContainer = document.getElementById('dark-mode-toggle');
@@ -855,7 +810,7 @@ function updateUI() {
         lastScrollPos = window.scrollY;
         const d = projectData[id][currentLang];
         const t = translations[currentLang];
-        const imgs = projectData[id].imgs.map(src => `<img src="${src}" style="width:100%; margin-bottom:20px; border-radius:15px;" loading="lazy">`).join('');
+        const imgs = projectData[id].imgs.map(src => `<img src="${src}" style="width:100%; margin-bottom:20px; border-radius:15px;">`).join('');
         document.getElementById('case-header-content').innerHTML = `
             <div class="case-header">
                 <h2>${d.title}</h2>
