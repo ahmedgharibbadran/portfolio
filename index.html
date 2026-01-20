@@ -18,7 +18,7 @@
             --glow-effect: 0 4px 15px rgba(0, 86, 179, 0.2);
             --footer-black: transparent; 
         }
-        body { background-color: var(--bg-white); color: var(--deep-black); font-family: 'Inter', sans-serif; margin: 0; text-align: center; scroll-behavior: smooth; overflow-x: hidden; width: 100%; }
+        body { background-color: var(--bg-white); color: var(--deep-black); font-family: 'Inter', sans-serif; margin: 0; text-align: center; scroll-behavior: smooth; overflow-x: hidden; }
         body.rtl { direction: rtl; font-family: 'Cairo', sans-serif; }
         
         #welcome-overlay { 
@@ -30,14 +30,14 @@
         #welcome-overlay.slide-up {
             transform: translateY(-100%);
         }
-        .welcome-box { text-align: center; padding: 20px; width: 100%; }
+        .welcome-box { text-align: center; padding: 20px; }
         .welcome-logo { width: 120px; height: 120px; margin-bottom: 25px; border-radius: 50%; border: 3px solid var(--main-blue); transition: 0.3s; object-fit: contain; }        
         .start-btn { 
             background: var(--main-blue); color: white; padding: 15px 40px; 
             border: none; border-radius: 50px; font-weight: 900; cursor: pointer; 
             margin-top: 30px; text-transform: uppercase; letter-spacing: 2px;
         }
-        #main-site { opacity: 0; display: none; width: 100%; }        
+        #main-site { opacity: 0; display: none; }        
         nav { 
             width: 100%; 
             padding: 10px 5%; 
@@ -60,43 +60,43 @@
             mix-blend-mode: normal; filter: none; 
         }
 
-        /* تعديلات اللغات والسيرة الذاتية لتعمل بشكل ممتاز على الموبايل */
-        .lang-switch { display: flex; gap: 10px; align-items: center; flex-wrap: nowrap; }
+        /* تعديلات اللغات والسيرة الذاتية */
+        .lang-switch { display: flex; gap: 15px; align-items: center; }
         
-        .lang-dropdown { position: relative; display: inline-block; cursor: pointer; padding: 6px 10px; background: rgba(0, 86, 179, 0.05); border-radius: 8px; transition: 0.3s; }
-        .lang-trigger { display: flex; align-items: center; gap: 5px; font-weight: 700; color: var(--main-blue); font-size: 12px; }
-        .lang-trigger svg { width: 10px; height: 10px; transition: 0.3s; fill: var(--main-blue); }
+        .lang-dropdown { position: relative; display: inline-block; cursor: pointer; padding: 8px 12px; background: rgba(0, 86, 179, 0.05); border-radius: 8px; transition: 0.3s; }
+        .lang-trigger { display: flex; align-items: center; gap: 8px; font-weight: 700; color: var(--main-blue); font-size: 14px; }
+        .lang-trigger svg { width: 12px; height: 12px; transition: 0.3s; fill: var(--main-blue); }
         .lang-dropdown:hover .lang-trigger svg { transform: rotate(180deg); }
-        .lang-menu { position: absolute; top: 110%; right: 0; background: var(--bg-white); box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-radius: 12px; display: none; min-width: 130px; z-index: 1000; padding: 10px 0; border: 1px solid #eee; }
+        .lang-menu { position: absolute; top: 110%; right: 0; background: var(--bg-white); box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-radius: 12px; display: none; min-width: 140px; z-index: 1000; padding: 10px 0; border: 1px solid #eee; }
         .lang-dropdown:hover .lang-menu { display: block; }
-        .lang-item { display: flex; align-items: center; gap: 10px; padding: 10px 15px; transition: 0.2s; color: var(--deep-black); text-decoration: none; font-size: 13px; }
+        .lang-item { display: flex; align-items: center; gap: 10px; padding: 10px 20px; transition: 0.2s; color: var(--deep-black); text-decoration: none; font-size: 14px; }
         .lang-item:hover { background: var(--nav-bg); color: var(--main-blue); }
-        .lang-item img { width: 18px; border-radius: 2px; }
+        .lang-item img { width: 20px; border-radius: 2px; }
 
         .cv-header-btn { 
-            background: var(--main-blue); color: white; padding: 6px 12px; border-radius: 8px; 
-            text-decoration: none; font-size: 11px; font-weight: 800; display: flex; 
-            align-items: center; gap: 5px; transition: 0.3s; white-space: nowrap;
+            background: var(--main-blue); color: white; padding: 8px 16px; border-radius: 8px; 
+            text-decoration: none; font-size: 13px; font-weight: 800; display: flex; 
+            align-items: center; gap: 6px; transition: 0.3s;
         }
         .cv-header-btn:hover { transform: translateY(-2px); box-shadow: var(--glow-effect); }
 
         #dark-mode-toggle {
             cursor: pointer;
-            width: 28px;
-            height: 28px;
+            width: 32px;
+            height: 32px;
             display: flex;
             align-items: center;
             justify-content: center;
             transition: 0.3s;
         }
         #dark-mode-toggle svg, .card-3d svg, .process-step svg, .social-icons svg, .why-icon svg {
-            width: 28px;
-            height: 28px;
+            width: 30px;
+            height: 30px;
             fill: var(--main-blue);
             transition: all 0.3s ease;
         }
         
-        .social-icons svg { width: 30px; height: 30px; fill: var(--deep-black); }
+        .social-icons svg { width: 35px; height: 35px; fill: var(--deep-black); }
         .social-icons a:hover svg { fill: var(--main-blue); transform: translateY(-3px); }
 
         .flag-btn { 
@@ -114,14 +114,12 @@
             border: 2px solid var(--main-blue) !important; 
             transform: scale(1.15);
         }
-
-        /* --- التحسينات الأساسية للموبايل --- */
-        header { padding: 40px 15px; text-align: center; }
-        h1 { font-size: clamp(32px, 9vw, 75px); margin: 0; font-weight: 900; line-height: 1.1; }        
+        header { padding: 60px 20px; text-align: center; }
+        h1 { font-size: clamp(35px, 8vw, 75px); margin: 0; font-weight: 900; }        
         .job-tag { 
             color: var(--main-blue); 
-            font-size: clamp(14px, 4vw, 16px); 
-            letter-spacing: 2px; 
+            font-size: 16px; 
+            letter-spacing: 3px; 
             font-weight: 700; 
             text-transform: uppercase; 
             display: inline-block; 
@@ -130,56 +128,70 @@
         }
         .job-tag::after { content: "|"; animation: blink 0.7s infinite; }
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
-        
         .about-text { 
             max-width: 800px; 
-            margin: 20px auto; 
+            margin: 25px auto; 
             color: var(--text-gray); 
-            font-size: clamp(14px, 4vw, 17px); 
+            font-size: 17px; 
             line-height: 1.6; 
-            padding: 0 15px;
+            padding: 0 20px;
             border-left: 3px solid var(--main-blue);
-            text-align: justify;
         }
-        body.rtl .about-text { border-left: none; border-right: 3px solid var(--main-blue); text-align: justify; }
-
+        body.rtl .about-text { border-left: none; border-right: 3px solid var(--main-blue); }
         .section-title { 
-            text-align: left; margin: 40px 0 20px 5%; color: var(--deep-black); 
+            text-align: left; margin: 40px 0 20px 10%; color: var(--deep-black); 
             border-left: 5px solid var(--main-blue); padding-left: 15px; 
-            font-weight: bold; font-size: clamp(18px, 5vw, 24px);
+            font-weight: bold; font-size: 24px;
         }
-        body.rtl .section-title { text-align: right; border-left: none; border-right: 5px solid var(--main-blue); padding-left: 0; padding-right: 15px; margin: 40px 5% 20px 0; }
+        body.rtl .section-title { text-align: right; border-left: none; border-right: 5px solid var(--main-blue); padding-left: 0; padding-right: 15px; margin: 40px 10% 20px 0; }
 
-        /* تعديلات قسم لماذا أنا ليكون تفاعلي */
-        .why-trigger-card {
+        /* Why Me Section Style */
+        .why-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            padding: 0 10%;
+            margin-bottom: 50px;
+        }
+        .why-card {
             background: var(--bg-white);
-            border: 2px dashed var(--main-blue);
-            padding: 40px 20px;
+            border: 1px solid #eee;
+            padding: 30px;
             border-radius: 20px;
-            cursor: pointer;
-            transition: 0.3s;
-            margin: 0 5% 40px 5%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 15px;
+            transition: 0.3s ease;
+            text-align: center;
         }
-        .why-trigger-card:hover { background: rgba(0, 86, 179, 0.03); transform: scale(1.02); }
-
+        .why-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--glow-effect);
+            border-color: var(--main-blue);
+        }
+        .why-icon {
+            margin-bottom: 20px;
+        }
+        .why-card h3 {
+            color: var(--main-blue);
+            margin-bottom: 15px;
+        }
+        .why-card p {
+            color: var(--text-gray);
+            font-size: 15px;
+            line-height: 1.6;
+        }
         .grid-container, .process-flow { 
             display: flex; 
             justify-content: center; 
-            gap: 12px; 
+            gap: 15px; 
             flex-wrap: wrap; 
-            padding: 0 5%; 
+            padding: 0 10%; 
             margin-bottom: 40px; 
         }
         .card-3d, .process-step { 
             background: var(--bg-white); 
             border: 1px solid #eee; 
-            padding: 20px 10px; 
-            flex: 1 1 140px; 
-            max-width: 180px;
+            padding: 25px 15px; 
+            flex: 1 1 130px; 
+            max-width: 200px;
             border-radius: 15px; 
             transition: all 0.3s ease; 
             cursor: pointer; 
@@ -188,31 +200,30 @@
             flex-direction: column;
             align-items: center;
         }
-
         @media (max-width: 480px) {
-            .grid-container, .process-flow {
+            .grid-container, .process-flow, .why-container {
+                padding: 0 15px !important; 
+                gap: 12px !important;
                 display: grid !important;
-                grid-template-columns: repeat(2, 1fr) !important;
-                gap: 10px !important;
-                padding: 0 10px !important;
+                grid-template-columns: repeat(1, 1fr) !important;
             }
             .card-3d, .process-step {
                 max-width: 100% !important;
-                flex: none !important;
-                padding: 15px 5px !important;
             }
-            .nav-brand svg { width: 80px !important; }
-            .lang-switch { gap: 6px !important; }
-            .cv-header-btn { padding: 5px 8px !important; font-size: 10px !important; }
         }
-
-        .card-3d svg, .process-step svg { margin-bottom: 10px; opacity: 0.8; }
-        
+        .card-3d svg, .process-step svg {
+            margin-bottom: 15px;
+            opacity: 0.7;
+        }
+        .card-3d:hover svg, .process-step:hover svg {
+            opacity: 1;
+            transform: scale(1.1);
+        }
         .projects-wrapper { 
             display: flex; 
             flex-direction: column; 
-            gap: 30px; 
-            padding: 0 5%; 
+            gap: 40px; 
+            padding: 0 10%; 
         }
         .project-item { 
             display: flex; 
@@ -223,68 +234,71 @@
             overflow: hidden; 
             width: 100%; 
         }
-        .p-img { width: 100%; }
+        .p-img { width: 100%; line-height: 0; }
         .p-img img { width: 100%; height: auto; display: block; object-fit: cover; }
-        .p-text { width: 100%; padding: 25px; box-sizing: border-box; text-align: center; }
+        .p-text { width: 100%; padding: 30px; box-sizing: border-box; text-align: center; }
 
         @media (min-width: 768px) {
-            .grid-container, .process-flow { padding: 0 10% !important; gap: 20px !important; }
+            .why-container { grid-template-columns: repeat(3, 1fr) !important; }
             .project-item { flex-direction: row; align-items: stretch; }
             .p-img { width: 60%; } 
             .p-text { width: 40%; padding: 40px; display: flex; flex-direction: column; justify-content: center; text-align: left; }
             body.rtl .p-text { text-align: right; }
-            .projects-wrapper { padding: 0 10% !important; }
         }
-
-        .btn-view { border: 2px solid var(--main-blue); color: var(--main-blue); padding: 10px 25px; border-radius: 10px; cursor: pointer; display: inline-block; margin-top: 15px; font-weight: 800; transition: 0.3s; font-size: 14px; }
+        .btn-view { border: 2px solid var(--main-blue); color: var(--main-blue); padding: 12px 30px; border-radius: 10px; cursor: pointer; display: inline-block; margin-top: 20px; font-weight: 800; transition: 0.3s; }
         .btn-view:hover { background: var(--main-blue); color: #fff; }        
-        
-        #case-study-view { display:none; background: var(--bg-white); padding: 30px 5%; text-align: left; width: 100%; box-sizing: border-box; }
+        #case-study-view { display:none; background: var(--bg-white); padding: 40px 10%; text-align: left; }
         body.rtl #case-study-view { text-align: right; }
-        .case-header { background: #f9f9f9; padding: 25px; border-radius: 20px; border-left: 6px solid var(--main-blue); margin-bottom: 30px; }
+        .case-header { background: #f9f9f9; padding: 30px; border-radius: 20px; border-left: 6px solid var(--main-blue); margin-bottom: 30px; }
         body.rtl .case-header { border-left: none; border-right: 6px solid var(--main-blue); }
         .detail-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 20px; }
-        
-        /* تنسيق الإيميل الجديد مع أيقونة الكوبي */
-        .email-copy-wrapper {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: rgba(0, 86, 179, 0.05);
-            padding: 12px 20px;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: 0.3s;
-            margin-top: 20px;
-        }
-        .email-copy-wrapper:hover { background: rgba(0, 86, 179, 0.1); }
-        .copy-btn-icon { width: 18px; height: 18px; fill: var(--main-blue); }
+        .rating-input-section { margin-bottom: 30px; padding: 30px; background: #f9f9f9; border-radius: 20px; text-align: center; }
+        .stars { font-size: 24px; margin-bottom: 10px; cursor: pointer; color: #ccc; }
+        .stars .active { color: #ffce00; }
+        .rating-input { width: 100%; max-width: 400px; padding: 12px; border: 1px solid #ddd; border-radius: 10px; margin-bottom: 10px; font-family: inherit; }
+        .submit-rate-btn { background: var(--main-blue); color: white; border: none; padding: 10px 25px; border-radius: 8px; cursor: pointer; font-weight: bold; }
 
-        footer { padding: 40px 20px; background: transparent; color: var(--deep-black); margin-top: 40px; width: 100%; }
-        .social-icons a { color: inherit; margin: 0 10px; display: inline-block; transition: 0.3s; text-decoration: none; }
+        footer { 
+            padding: 60px 20px; 
+            background: transparent; 
+            color: var(--deep-black); 
+            margin-top: 50px; 
+            transition: 0.3s;
+        }
+        .social-icons a { color: inherit; margin: 0 15px; display: inline-block; transition: 0.3s; text-decoration: none; }
 
         body.dark-theme { --bg-white: #111111; --nav-bg: #000000; --deep-black: #ffffff; --text-gray: #bbbbbb; }
         body.dark-theme nav { background: var(--nav-bg); border-bottom: 1px solid #222; } 
-        body.dark-theme .card-3d, body.dark-theme .process-step, body.dark-theme .project-item, body.dark-theme .case-header, body.dark-theme .why-trigger-card { background: #000000; border-color: #222; }
+        body.dark-theme .card-3d, body.dark-theme .process-step, body.dark-theme .project-item, body.dark-theme .case-header, body.dark-theme .rating-input-section, body.dark-theme .why-card { background: #000000; border-color: #222; }
+        body.dark-theme .rating-input { background: #252525; color: white; border-color: #444; }
 
+        /* زر العودة للأعلى */
         #back-to-top {
-            position: fixed; bottom: 20px; right: 20px; width: 40px; height: 40px;
+            position: fixed; bottom: 30px; right: 30px; width: 45px; height: 45px;
             background: var(--main-blue); color: white; border: none; border-radius: 50%;
             cursor: pointer; display: none; align-items: center; justify-content: center;
             box-shadow: 0 4px 10px rgba(0,0,0,0.2); z-index: 2000; transition: 0.3s;
         }
+        #back-to-top:hover { transform: scale(1.1); }
 
-        .reveal { opacity: 0; transform: translateY(20px); transition: all 0.6s ease-out; }
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
         .reveal.active { opacity: 1; transform: translateY(0); }
-        .agb-header-txt { fill: #000000; transition: fill 0.3s ease; }
-        body.dark-theme .agb-header-txt { fill: #ffffff !important; }
-        .nav-brand:hover .agb-header-txt { fill: var(--main-blue) !important; }                                     
+        .agb-header-txt {
+            fill: #000000;
+            transition: fill 0.3s ease;
+        }
+        body.dark-theme .agb-header-txt {
+            fill: #ffffff !important;
+        }
+        .nav-brand:hover .agb-header-txt {
+            fill: var(--main-blue) !important;
+        }                                     
     </style>
 </head>
 <body>
 <div id="welcome-overlay">
     <div class="welcome-box">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 170 60" style="width: 120px; height: auto; margin-bottom: 20px; display: block; margin-left: auto; margin-right: auto;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 170 60" style="width: 140px; height: auto; margin-bottom: 20px; display: block; margin-left: auto; margin-right: auto;">
             <defs>
                 <linearGradient id="welcomeGradient" x1="0%" y1="100%" x2="100%" y2="0%">
                     <stop offset="0%" style="stop-color:#0056b3; stop-opacity:0.2" />
@@ -294,29 +308,40 @@
             <text x="0" y="48" font-family="'Arial Black', sans-serif" font-size="44" font-weight="900" letter-spacing="-3" fill="#0056b3">AGB</text>
             <path d="M5 55 L45 55 L75 32 L115 38 L158 12" stroke="url(#welcomeGradient)" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
             <path d="M158 12 L145 15 L152 23 Z" fill="#0056b3" />
+            <circle cx="75" cy="32" r="2.5" fill="#0056b3" fill-opacity="0.5" />
+            <circle cx="115" cy="38" r="2.5" fill="#0056b3" fill-opacity="0.5" />
         </svg>
 
         <h2 id="welcome-name">Ahmed Gharib</h2>
-        <p id="welcome-tagline" style="font-size: 14px;">Turning Complex Data into Strategic Assets</p>
+        <p id="welcome-tagline">Turning Complex Data into Strategic Assets</p>
         <button class="start-btn" onclick="startExploring()" id="welcome-btn">Explore Insights</button>
     </div>
 </div>
 
 <button id="back-to-top" onclick="window.scrollTo(0,0)">
-    <svg style="width:20px; height:20px; fill:white" viewBox="0 0 24 24"><path d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z" /></svg>
+    <svg style="width:24px; height:24px; fill:white" viewBox="0 0 24 24"><path d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z" /></svg>
 </button>
 
 <div id="main-site">
  <nav>
         <div class="nav-brand" onclick="location.reload()" style="cursor: pointer;">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 170 60" style="width: 90px; height: auto; display: block;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 170 60" style="width: 100px; height: auto; display: block;">
+                <defs>
+                    <linearGradient id="analystGradient" x1="0%" y1="100%" x2="100%" y2="0%">
+                        <stop offset="0%" style="stop-color:#0056b3; stop-opacity:0.2" />
+                        <stop offset="100%" style="stop-color:#0056b3; stop-opacity:1" />
+                    </linearGradient>
+                </defs>
                 <text x="0" y="48" font-family="'Arial Black', sans-serif" font-size="44" font-weight="900" letter-spacing="-3" class="agb-header-txt">AGB</text>
-                <path d="M5 55 L45 55 L75 32 L115 38 L158 12" stroke="#0056b3" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M5 55 L45 55 L75 32 L115 38 L158 12" stroke="url(#analystGradient)" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M158 12 L145 15 L152 23 Z" fill="#0056b3" />
+                <circle cx="75" cy="32" r="2.5" fill="#0056b3" fill-opacity="0.5" />
+                <circle cx="115" cy="38" r="2.5" fill="#0056b3" fill-opacity="0.5" />
             </svg>
         </div>
         <div class="lang-switch">
             <a href="Ahmed_Gharib_Data_Analyst.pdf" download class="cv-header-btn">
-                <svg style="width:14px;height:14px;fill:white" viewBox="0 0 24 24"><path d="M5,20H19V18H5M19,9H15V3H9V9H5L12,16L19,9Z" /></svg>
+                <svg style="width:16px;height:16px;fill:white" viewBox="0 0 24 24"><path d="M5,20H19V18H5M19,9H15V3H9V9H5L12,16L19,9Z" /></svg>
                 <span id="cv-label">CV</span>
             </a>
             <div class="lang-dropdown">
@@ -338,32 +363,43 @@
         <span class="job-tag" id="job-title"></span>
         <p class="about-text" id="about-me"></p>
     </header>
-
     <div class="section-title" id="title-why-me"></div>
-    <div class="why-trigger-card reveal" onclick="showWhyDetails()">
-        <svg viewBox="0 0 24 24" style="width: 40px; height: 40px; fill: var(--main-blue);"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
-        <h3 id="why-trigger-text" style="color: var(--main-blue); font-weight: 800;"></h3>
+    <div class="why-container">
+        <div class="why-card reveal">
+            <div class="why-icon"><svg viewBox="0 0 24 24"><path d="M13 3c-4.97 0-9 4.03-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42C8.27 19.99 10.51 21 13 21c4.97 0 9-4.03 9-9s-4.03-9-9-9zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z"/></svg></div>
+            <h3 id="why1-t"></h3>
+            <p id="why1-d"></p>
+        </div>
+        <div class="why-card reveal">
+            <div class="why-icon"><svg viewBox="0 0 24 24"><path d="M21 7L9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59 21 7z"/></svg></div>
+            <h3 id="why2-t"></h3>
+            <p id="why2-d"></p>
+        </div>
+        <div class="why-card reveal">
+            <div class="why-icon"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></div>
+            <h3 id="why3-t"></h3>
+            <p id="why3-d"></p>
+        </div>
     </div>
-
     <div class="section-title" id="title-journey"></div>
     <div class="process-flow">
-        <div class="process-step reveal" onclick="showJourney('understand')">
+        <div class="process-step reveal" onclick="showJourney('understand')" style="cursor: pointer;">
             <svg viewBox="0 0 24 24"><path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71z"/></svg>
             <h4 id="step1"></h4>
         </div>
-        <div class="process-step reveal" onclick="showJourney('extract')">
+        <div class="process-step reveal" onclick="showJourney('extract')" style="cursor: pointer;">
             <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/></svg>
             <h4 id="step2"></h4>
         </div>
-        <div class="process-step reveal" onclick="showJourney('clean')">
+        <div class="process-step reveal" onclick="showJourney('clean')" style="cursor: pointer;">
             <svg viewBox="0 0 24 24"><path d="M14.79 10.62L3.5 21.91 2.09 20.5 13.38 9.21l1.41 1.41zm4.45-3.13l-1.41-1.41c-.78-.78-2.05-.78-2.83 0l-1.41 1.41 4.24 4.24 1.41-1.41c.78-.78.78-2.05 0-2.83z"/></svg>
             <h4 id="step3"></h4>
         </div>
-        <div class="process-step reveal" onclick="showJourney('model')">
+        <div class="process-step reveal" onclick="showJourney('model')" style="cursor: pointer;">
             <svg viewBox="0 0 24 24"><path d="M15 9H9v6h6V9zm-2 4h-2v-2h2v2zm8-2V9h-2V7c0-1.1-.9-2-2-2h-2V3h-2v2h-2V3H9v2H7c-1.1 0-2 .9-2 2v2H3v2h2v2H3v2h2v2c0 1.1.9 2 2 2h2v2h2v-2h2v2h2v-2h2c1.1 0 2-.9 2-2v-2h2v-2h-2v-2h2zm-4 6H7V7h10v10z"/></svg>
             <h4 id="step4"></h4>
         </div>
-        <div class="process-step reveal" onclick="showJourney('insight')">
+        <div class="process-step reveal" onclick="showJourney('insight')" style="cursor: pointer;">
             <svg viewBox="0 0 24 24"><path d="M9 21c0 .55.45 1 1 1h4c.55 0 1-.45 1-1v-1H9v1zm3-19C8.14 2 5 5.14 5 9c0 2.38 1.19 4.47 3 5.74V17c0 .55.45 1 1 1h6c.55 0 1-.45 1-1v-2.26c1.81-1.27 3-3.36 3-5.74 0-3.86-3.14-7-7-7zm2.85 11.1l-.85.6V16h-4v-1.3l-.85-.6C7.8 13.15 7 11.18 7 9c0-2.76 2.24-5 5-5s5 2.24 5 5c0 2.18-.8 4.15-2.15 5.1z"/></svg>
             <h4 id="step5"></h4>
         </div>
@@ -374,9 +410,9 @@
         <div class="card-3d reveal" onclick="showExpertise('excel')"><svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg><span id="exp2">Excel</span></div>
         <div class="card-3d reveal" onclick="showExpertise('sql')"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/></svg><span id="exp3">SQL</span></div>
         <div class="card-3d reveal" onclick="showExpertise('modeling')"><svg viewBox="0 0 24 24"><path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3z"/></svg><span id="skill3">Modeling</span></div>
-        <div class="card-3d reveal" onclick="showExpertise('dax')"><svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg><span id="skill4">DAX</span></div>
+        <div class="card-3d reveal" onclick="showExpertise('dax')"><svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg><span id="skill4"></span></div>
         <div class="card-3d reveal" onclick="showExpertise('etl')"><svg viewBox="0 0 24 24"><path d="M20 6h-8l-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-6 10H6v-2h8v2zm4-4H6v-2h12v2z"/></svg><span id="exp4">ETL</span></div>
-        <div class="card-3d reveal" onclick="showExpertise('viz')"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg><span id="skill6">Viz</span></div>
+        <div class="card-3d reveal" onclick="showExpertise('viz')"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg><span id="skill6"></span></div>
     </div>
     <div class="section-title" id="title-projects"></div>
     <div class="projects-wrapper">
@@ -414,11 +450,11 @@
             <a href="https://www.linkedin.com/in/ahmed-gharib-20989a272/" target="_blank" rel="noopener noreferrer">
                 <svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
             </a>
+            <a href="javascript:void(0)" onclick="copyEmail('info@agbinsights.com')">
+                <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+            </a>
         </div>
-        <div class="email-copy-wrapper" onclick="copyEmail('info@agbinsights.com')">
-            <span id="email-display">info@agbinsights.com</span>
-            <svg class="copy-btn-icon" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
-        </div>
+        <p id="email-display" onclick="copyEmail('info@agbinsights.com')" style="margin-top: 20px; font-weight: bold; cursor: pointer; transition: 0.3s;">info@agbinsights.com</p>
         <p style="margin-top: 10px; opacity: 0.6; font-size: 12px;">©️ AHMED GHARIB | AGBINSIGHTS</p>
     </footer>
 </div>
@@ -445,7 +481,6 @@
             projects: "Projects", 
             ratings: "Ratings",
             whyMe: "Why Choose Me?",
-            whyTrigger: "Click to See Why Me",
             why1t: "Business Driven", why1d: "I focus on delivering insights that directly impact ROI and decision-making.",
             why2t: "Clean Data First", why2d: "I ensure your data foundation is accurate and reliable before any analysis.",
             why3t: "Actionable Viz", why3d: "Complex data turned into intuitive, easy-to-understand visual stories.",
@@ -468,7 +503,6 @@
             projects: "المشاريع", 
             ratings: "التقييمات",
             whyMe: "لماذا تختارني؟",
-            whyTrigger: "إضغط لتعرف لماذا أنا",
             why1t: "موجه للأعمال", why1d: "أركز على تقديم رؤى تؤثر بشكل مباشر على العائد على الاستثمار واتخاذ القرار.",
             why2t: "بيانات نظيفة أولاً", why2d: "أضمن أن أساس بياناتك دقيق وموثوق قبل البدء في أي تحليل.",
             why3t: "تصوير فعال", why3d: "تحويل البيانات المعقدة إلى قصص مرئية بديهية وسهلة الفهم.",
@@ -491,7 +525,6 @@
             projects: "Proyectos", 
             ratings: "Valoraciones",
             whyMe: "¿Por qué elegirme?",
-            whyTrigger: "Haga clic para ver por qué yo",
             why1t: "Impulsado por Negocios", why1d: "Me enfoco en entregar ideas que impacten directamente en el ROI.",
             why2t: "Datos Limpios Primero", why2d: "Aseguro que sus datos sean precisos y confiables antes de cualquier análisis.",
             why3t: "Visualización Accionable", why3d: "Datos complejos convertidos en historias visuales intuitivas.",
@@ -505,38 +538,6 @@
             copyMsg: "¡Copiado!", cv: "CV", lang: "Idiomas"
         }
     };
-
-    function showWhyDetails() {
-        lastScrollPos = window.scrollY;
-        const t = translations[currentLang];
-        const whyHtml = `
-            <div class="case-header">
-                <h2>${t.whyMe}</h2>
-            </div>
-            <div class="grid-container">
-                <div class="card-3d active" style="max-width:100%; flex: 1 1 300px;">
-                    <div class="why-icon"><svg viewBox="0 0 24 24" style="width:30px; fill:var(--main-blue);"><path d="M13 3c-4.97 0-9 4.03-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42C8.27 19.99 10.51 21 13 21c4.97 0 9-4.03 9-9s-4.03-9-9-9zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z"/></svg></div>
-                    <h3>${t.why1t}</h3>
-                    <p>${t.why1d}</p>
-                </div>
-                <div class="card-3d active" style="max-width:100%; flex: 1 1 300px;">
-                    <div class="why-icon"><svg viewBox="0 0 24 24" style="width:30px; fill:var(--main-blue);"><path d="M21 7L9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59 21 7z"/></svg></div>
-                    <h3>${t.why2t}</h3>
-                    <p>${t.why2d}</p>
-                </div>
-                <div class="card-3d active" style="max-width:100%; flex: 1 1 300px;">
-                    <div class="why-icon"><svg viewBox="0 0 24 24" style="width:30px; fill:var(--main-blue);"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></div>
-                    <h3>${t.why3t}</h3>
-                    <p>${t.why3d}</p>
-                </div>
-            </div>`;
-        document.getElementById('case-header-content').innerHTML = whyHtml;
-        document.getElementById('study-images').innerHTML = "";
-        document.getElementById('main-site').style.display = 'none';
-        document.getElementById('case-study-view').style.display = 'block';
-        window.scrollTo(0,0);
-    }
-
     const typingJobs = {
         en: ["Data Analyst", "Power BI Specialist", "Problem Solver", "Insights Explorer"],
         ar: ["محلل بيانات", "خبير Power BI", "محلل مشكلات", "مستكشف رؤى"],
@@ -675,7 +676,9 @@ function updateUI() {
     document.getElementById('title-projects').innerText = t.projects;
     document.getElementById('title-ratings').innerText = t.ratings;
     document.getElementById('title-why-me').innerText = t.whyMe;
-    document.getElementById('why-trigger-text').innerText = t.whyTrigger;
+    document.getElementById('why1-t').innerText = t.why1t; document.getElementById('why1-d').innerText = t.why1d;
+    document.getElementById('why2-t').innerText = t.why2t; document.getElementById('why2-d').innerText = t.why2d;
+    document.getElementById('why3-t').innerText = t.why3t; document.getElementById('why3-d').innerText = t.why3d;
     document.getElementById('step1').innerText = t.step1;
     document.getElementById('step2').innerText = t.step2;
     document.getElementById('step3').innerText = t.step3;
@@ -881,8 +884,10 @@ function updateUI() {
 
     window.addEventListener('scroll', () => {
         const btn = document.getElementById('back-to-top');
-        if (btn) {
-            btn.style.display = window.scrollY > 500 ? "flex" : "none";
+        if (window.scrollY > 500) {
+            btn.style.display = "flex";
+        } else {
+            btn.style.display = "none";
         }
 
         document.querySelectorAll('.reveal').forEach(el => {
