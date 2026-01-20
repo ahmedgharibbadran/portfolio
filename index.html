@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Ahmed Gharib - Data Analyst Portfolio. Helping businesses turn complex data into strategic insights using Power BI, Excel, and SQL.">
+    <meta name="keywords" content="Data Analyst, Power BI, Ahmed Gharib, AGBINSIGHTS, Data Visualization, SQL, Portfolio, Business Intelligence">
+    
     <title>Ahmed Gharib | AGBINSIGHTS</title>
    <link rel="icon" type="image/svg+xml" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y="75" font-size="70" fill="%230056b3" font-family="Arial Black">A</text><path d="M5 85 L40 45 L95 10" stroke="%230056b3" stroke-width="12" fill="none" stroke-linecap="round"/></svg>'>
     <style>
@@ -15,15 +18,15 @@
             --glow-effect: 0 4px 15px rgba(0, 86, 179, 0.2);
             --footer-black: transparent; 
         }
-       body { background-color: var(--bg-white); color: var(--deep-black); font-family: 'Inter', sans-serif; margin: 0; text-align: center; scroll-behavior: smooth; overflow-x: hidden; }
-       body.rtl { direction: rtl; font-family: 'Cairo', sans-serif; }
-       
+        body { background-color: var(--bg-white); color: var(--deep-black); font-family: 'Inter', sans-serif; margin: 0; text-align: center; scroll-behavior: smooth; overflow-x: hidden; }
+        body.rtl { direction: rtl; font-family: 'Cairo', sans-serif; }
+        
         #welcome-overlay { 
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
             background: var(--bg-white);
             display: flex; align-items: center; justify-content: center; 
             z-index: 10000; transition: 1s cubic-bezier(0.85, 0, 0.15, 1); 
-        }       
+        }        
         #welcome-overlay.slide-up {
             transform: translateY(-100%);
         }
@@ -249,6 +252,15 @@
         body.dark-theme .card-3d, body.dark-theme .process-step, body.dark-theme .project-item, body.dark-theme .case-header, body.dark-theme .rating-input-section, body.dark-theme .why-card { background: #000000; border-color: #222; }
         body.dark-theme .rating-input { background: #252525; color: white; border-color: #444; }
 
+        /* زر العودة للأعلى */
+        #back-to-top {
+            position: fixed; bottom: 30px; right: 30px; width: 45px; height: 45px;
+            background: var(--main-blue); color: white; border: none; border-radius: 50%;
+            cursor: pointer; display: none; align-items: center; justify-content: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2); z-index: 2000; transition: 0.3s;
+        }
+        #back-to-top:hover { transform: scale(1.1); }
+
         .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
         .reveal.active { opacity: 1; transform: translateY(0); }
         .agb-header-txt {
@@ -285,6 +297,11 @@
         <button class="start-btn" onclick="startExploring()" id="welcome-btn">Explore Insights</button>
     </div>
 </div>
+
+<button id="back-to-top" onclick="window.scrollTo(0,0)">
+    <svg style="width:24px; height:24px; fill:white" viewBox="0 0 24 24"><path d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z" /></svg>
+</button>
+
 <div id="main-site">
  <nav>
         <div class="nav-brand" onclick="location.reload()" style="cursor: pointer;">
@@ -398,7 +415,7 @@
     </div>
     <footer>
         <div class="social-icons">
-            <a href="https://www.linkedin.com/in/ahmed-gharib-20989a272/" target="_blank">
+            <a href="https://www.linkedin.com/in/ahmed-gharib-20989a272/" target="_blank" rel="noopener noreferrer">
                 <svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
             </a>
             <a href="mailto:info@agbinsights.com">
@@ -481,7 +498,7 @@
             viewBtn: "Ver Details", back: "← VOLVER AL INICIO",
             obj: "OBJETIVO", ch: "DESAFÍO", sol: "SOLUCIÓN", imp: "IMPACTO", tool: "HERRAMIENTAS",
             ratePrompt: "Deja una reseña", namePlace: "Nombre", ratePlace: "Escribe tu opinión...", rateBtn: "Enviar",
-            alert: "Por favor, introduzca su nombre y comentario", thanks: "¡Gracias por tu comentario!",
+            alert: "Por favor, introduzca su nombre y commentario", thanks: "¡Gracias por tu comentario!",
             viewRatings: "Ver y añadir reseñas", loading: "Cargando reseñas..."
         }
     };
@@ -817,6 +834,14 @@ function updateUI() {
     }
 
     window.addEventListener('scroll', () => {
+        // التحكم بظهور زر العودة للأعلى
+        const btn = document.getElementById('back-to-top');
+        if (window.scrollY > 500) {
+            btn.style.display = "flex";
+        } else {
+            btn.style.display = "none";
+        }
+
         document.querySelectorAll('.reveal').forEach(el => {
             if (el.getBoundingClientRect().top < window.innerHeight - 50) el.classList.add('active');
         });
