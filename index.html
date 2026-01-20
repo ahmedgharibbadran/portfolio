@@ -47,8 +47,8 @@
             display: flex; 
             justify-content: space-between; 
             align-items: center; 
-            box-shadow: 0 2px 10px rgba(0,0,0,0.03); /* ظل خفيف جداً لفصل الهيدر */
-            background: var(--nav-bg); /* هنا الهيدر أخد لون اللوجو */
+            box-shadow: 0 2px 10px rgba(0,0,0,0.03); 
+            background: var(--nav-bg); 
             position: sticky; 
             top: 0; 
             z-index: 1000;
@@ -86,7 +86,7 @@
             transition: 0.3s;
         }
 
-        #dark-mode-toggle svg, .card-3d svg, .process-step svg, .social-icons svg {
+        #dark-mode-toggle svg, .card-3d svg, .process-step svg, .social-icons svg, .why-icon svg {
             width: 30px;
             height: 30px;
             fill: var(--main-blue);
@@ -136,6 +136,40 @@
         }
         body.rtl .section-title { text-align: right; border-left: none; border-right: 5px solid var(--main-blue); padding-left: 0; padding-right: 15px; margin: 40px 10% 20px 0; }
 
+        /* Why Me Section Style */
+        .why-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            padding: 0 10%;
+            margin-bottom: 50px;
+        }
+        .why-card {
+            background: var(--bg-white);
+            border: 1px solid #eee;
+            padding: 30px;
+            border-radius: 20px;
+            transition: 0.3s ease;
+            text-align: center;
+        }
+        .why-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--glow-effect);
+            border-color: var(--main-blue);
+        }
+        .why-icon {
+            margin-bottom: 20px;
+        }
+        .why-card h3 {
+            color: var(--main-blue);
+            margin-bottom: 15px;
+        }
+        .why-card p {
+            color: var(--text-gray);
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
         .grid-container, .process-flow { 
             display: flex; 
             justify-content: center; 
@@ -161,15 +195,14 @@
         }
 
         @media (max-width: 480px) {
-            .grid-container, .process-flow {
+            .grid-container, .process-flow, .why-container {
                 padding: 0 15px !important; 
                 gap: 12px !important;
                 display: grid !important;
-                grid-template-columns: repeat(2, 1fr) !important;
+                grid-template-columns: repeat(1, 1fr) !important;
             }
             .card-3d, .process-step {
                 max-width: 100% !important;
-                padding: 20px 10px !important;
             }
         }
 
@@ -203,6 +236,7 @@
         .p-text { width: 100%; padding: 30px; box-sizing: border-box; text-align: center; }
 
         @media (min-width: 768px) {
+            .why-container { grid-template-columns: repeat(3, 1fr) !important; }
             .project-item { flex-direction: row; align-items: stretch; }
             .p-img { width: 60%; } 
             .p-text { width: 40%; padding: 40px; display: flex; flex-direction: column; justify-content: center; text-align: left; }
@@ -235,39 +269,22 @@
 
         body.dark-theme { --bg-white: #111111; --nav-bg: #000000; --deep-black: #ffffff; --text-gray: #bbbbbb; }
         body.dark-theme nav { background: var(--nav-bg); border-bottom: 1px solid #222; } 
-        body.dark-theme .card-3d, body.dark-theme .process-step, body.dark-theme .project-item, body.dark-theme .case-header, body.dark-theme .rating-input-section { background: #000000; border-color: #222; }
+        body.dark-theme .card-3d, body.dark-theme .process-step, body.dark-theme .project-item, body.dark-theme .case-header, body.dark-theme .rating-input-section, body.dark-theme .why-card { background: #000000; border-color: #222; }
         body.dark-theme .rating-input { background: #252525; color: white; border-color: #444; }
 
         .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
         .reveal.active { opacity: 1; transform: translateY(0); }
         
-        .loading-text { font-style: italic; color: var(--text-gray); }
-        .social-icons a { color: inherit; margin: 0 15px; display: inline-block; transition: 0.3s; text-decoration: none; }
-
-        body.dark-theme { --bg-white: #111111; --nav-bg: #000000; --deep-black: #ffffff; --text-gray: #bbbbbb; }
-        body.dark-theme nav { background: var(--nav-bg); border-bottom: 1px solid #222; } 
-        body.dark-theme .card-3d, body.dark-theme .process-step, body.dark-theme .project-item, body.dark-theme .case-header, body.dark-theme .rating-input-section { background: #000000; border-color: #222; }
-        body.dark-theme .rating-input { background: #252525; color: white; border-color: #444; }
-
-        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
-        .reveal.active { opacity: 1; transform: translateY(0); }
-        
-        .loading-text { font-style: italic; color: var(--text-gray);}
-      /* تنسيق لون حروف اللوجو في الهيدر */
-.agb-header-txt {
-    fill: #000000; /* أسود في الوضع العادي */
-    transition: fill 0.3s ease;
-}
-
-/* يقلب أبيض في الدارك مود */
-body.dark-theme .agb-header-txt {
-    fill: #ffffff !important;
-}
-
-/* يقلب أزرق لما تقف عليه بالماوس */
-.nav-brand:hover .agb-header-txt {
-    fill: var(--main-blue) !important;
-}                                     
+        .agb-header-txt {
+            fill: #000000;
+            transition: fill 0.3s ease;
+        }
+        body.dark-theme .agb-header-txt {
+            fill: #ffffff !important;
+        }
+        .nav-brand:hover .agb-header-txt {
+            fill: var(--main-blue) !important;
+        }                                     
     </style>
 </head>
 <body>
@@ -322,6 +339,25 @@ body.dark-theme .agb-header-txt {
         <span class="job-tag" id="job-title"></span>
         <p class="about-text" id="about-me"></p>
     </header>
+
+    <div class="section-title" id="title-why-me"></div>
+    <div class="why-container">
+        <div class="why-card reveal">
+            <div class="why-icon"><svg viewBox="0 0 24 24"><path d="M13 3c-4.97 0-9 4.03-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42C8.27 19.99 10.51 21 13 21c4.97 0 9-4.03 9-9s-4.03-9-9-9zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z"/></svg></div>
+            <h3 id="why1-t"></h3>
+            <p id="why1-d"></p>
+        </div>
+        <div class="why-card reveal">
+            <div class="why-icon"><svg viewBox="0 0 24 24"><path d="M21 7L9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59 21 7z"/></svg></div>
+            <h3 id="why2-t"></h3>
+            <p id="why2-d"></p>
+        </div>
+        <div class="why-card reveal">
+            <div class="why-icon"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></div>
+            <h3 id="why3-t"></h3>
+            <p id="why3-d"></p>
+        </div>
+    </div>
 
     <div class="section-title" id="title-journey"></div>
     <div class="process-flow">
@@ -427,6 +463,10 @@ body.dark-theme .agb-header-txt {
             expertise: "02. Expertise", 
             projects: "03. Projects", 
             ratings: "04. Ratings",
+            whyMe: "01. Why Choose Me?",
+            why1t: "Business Driven", why1d: "I focus on delivering insights that directly impact ROI and decision-making.",
+            why2t: "Clean Data First", why2d: "I ensure your data foundation is accurate and reliable before any analysis.",
+            why3t: "Actionable Viz", why3d: "Complex data turned into intuitive, easy-to-understand visual stories.",
             step1: "Understand", step2: "Extract", step3: "Clean", step4: "Model", step5: "Insight",
             exp1: "Power BI", exp2: "Excel", exp3: "SQL", skill3: "Modeling", skill4: "DAX Logic", exp4: "ETL", skill6: "Viz",
             viewBtn: "View Details", back: "← BACK TO HOME",
@@ -440,10 +480,14 @@ body.dark-theme .agb-header-txt {
             welcomeBtn: "استكشاف التفاصيل", 
             tagline: "تحويل البيانات المعقدة إلى رؤى استراتيجية",
             about: "أساعد المؤسسات على فهم بياناتها من خلال تحويل مجموعات البيانات المعقدة إلى رؤى بسيطة وواضحة. ومن خلال تحليل البيانات وتمثيلها بصرياً، أدعم اتخاذ قرارات أفضل، وتحسين الأداء، وتحقيق نتائج أعمال ملموسة.",
-            journey: "01. الرحلة", 
-            expertise: "02. الخبرات", 
-            projects: "03. المشاريع", 
-            ratings: "04. التقييمات",
+            journey: "02. الرحلة", 
+            expertise: "03. الخبرات", 
+            projects: "04. المشاريع", 
+            ratings: "05. التقييمات",
+            whyMe: "01. لماذا تختارني؟",
+            why1t: "موجه للأعمال", why1d: "أركز على تقديم رؤى تؤثر بشكل مباشر على العائد على الاستثمار واتخاذ القرار.",
+            why2t: "بيانات نظيفة أولاً", why2d: "أضمن أن أساس بياناتك دقيق وموثوق قبل البدء في أي تحليل.",
+            why3t: "تصوير فعال", why3d: "تحويل البيانات المعقدة إلى قصص مرئية بديهية وسهلة الفهم.",
             step1: "الفهم", step2: "استخراج", step3: "تنظيف", step4: "نمذجة", step5: "رؤية",
             exp1: "باور بي آي", exp2: "إكسيل", exp3: "SQL", skill3: "النمذجة", skill4: "منطق DAX", exp4: "ETL", skill6: "التصوير",
             viewBtn: "عرض التفاصيل", back: "← العودة للرئيسية",
@@ -457,10 +501,14 @@ body.dark-theme .agb-header-txt {
             welcomeBtn: "Explorar Detalles", 
             tagline: "Convirtiendo Datos Complejos en Perspectivas Accionables",
             about: "Ayudo a las organizaciones a dar sentido a sus data convirtiendo conjuntos de data complejos en conocimientos sencillos y claros.",
-            journey: "01. Trayectoria", 
-            expertise: "02. Experience", 
-            projects: "03. Proyectos", 
-            ratings: "04. Valoraciones",
+            journey: "02. Trayectoria", 
+            expertise: "03. Experiencia", 
+            projects: "04. Proyectos", 
+            ratings: "05. Valoraciones",
+            whyMe: "01. ¿Por qué elegirme?",
+            why1t: "Impulsado por Negocios", why1d: "Me enfoco en entregar ideas que impacten directamente en el ROI.",
+            why2t: "Datos Limpios Primero", why2d: "Aseguro que sus datos sean precisos y confiables antes de cualquier análisis.",
+            why3t: "Visualización Accionable", why3d: "Datos complejos convertidos en historias visuales intuitivas.",
             step1: "Entender", step2: "Extraer", step3: "Limpiar", step4: "Modelar", step5: "Perspectiva",
             exp1: "Power BI", exp2: "Excel", exp3: "SQL", skill3: "Modelado", skill4: "DAX", exp4: "ETL", skill6: "Viz",
             viewBtn: "Ver Details", back: "← VOLVER AL INICIO",
@@ -616,6 +664,10 @@ function updateUI() {
     document.getElementById('title-expertise').innerText = t.expertise;
     document.getElementById('title-projects').innerText = t.projects;
     document.getElementById('title-ratings').innerText = t.ratings;
+    document.getElementById('title-why-me').innerText = t.whyMe;
+    document.getElementById('why1-t').innerText = t.why1t; document.getElementById('why1-d').innerText = t.why1d;
+    document.getElementById('why2-t').innerText = t.why2t; document.getElementById('why2-d').innerText = t.why2d;
+    document.getElementById('why3-t').innerText = t.why3t; document.getElementById('why3-d').innerText = t.why3d;
     document.getElementById('step1').innerText = t.step1;
     document.getElementById('step2').innerText = t.step2;
     document.getElementById('step3').innerText = t.step3;
@@ -625,7 +677,6 @@ function updateUI() {
     document.getElementById('skill4').innerText = t.skill4;
     document.getElementById('skill6').innerText = t.skill6;
     
-    // التعديل الجديد لترجمة أسماء الخبرات
     document.getElementById('exp1').innerText = t.exp1;
     document.getElementById('exp2').innerText = t.exp2;
     document.getElementById('exp3').innerText = t.exp3;
