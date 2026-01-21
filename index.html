@@ -266,8 +266,9 @@
             overflow: hidden; 
             width: 100%; 
         }
-        .p-img { width: 100%; line-height: 0; border-bottom: 1px solid #eee; background: #fefefe; }
-        .p-img img { width: 100%; height: auto; display: block; object-fit: cover; }
+        .p-img { width: 100%; line-height: 0; border-bottom: 1px solid #eee; background: #fefefe; overflow: hidden; }
+        .p-img img { width: 100%; height: auto; display: block; object-fit: cover; transition: 0.5s; }
+        .project-item:hover .p-img img { transform: scale(1.05); }
         .p-text { width: 100%; padding: 30px; box-sizing: border-box; text-align: center; }
 
         @media (min-width: 768px) {
@@ -289,7 +290,7 @@
             position: relative;
             width: 100%;
             height: 0;
-            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            padding-bottom: 65%; /* زيادة الارتفاع قليلاً للـ Power BI */
             margin-bottom: 30px;
             background: #f0f0f0;
             border-radius: 15px;
@@ -459,21 +460,21 @@
     <div class="section-title" id="title-projects"></div>
     <div class="projects-wrapper">
         <div class="project-item reveal"> 
-            <div class="p-img"><img src="hr.png.png"></div>
+            <div class="p-img"><img src="hr.png.png" id="p1-img"></div>
             <div class="p-text">
                 <h3 id="p1-title"></h3>
                 <div class="btn-view" onclick="showStudy('hr')" id="p1-btn" style="cursor: pointer;"></div>
             </div>
         </div>
         <div class="project-item reveal">
-            <div class="p-img"><img src="sales.png1.png"></div>
+            <div class="p-img"><img src="sales.png1.png" id="p2-img"></div>
             <div class="p-text">
                 <h3 id="p2-title"></h3>
                 <div class="btn-view" onclick="showStudy('sales')" id="p2-btn" style="cursor: pointer;"></div>
             </div>
         </div>
         <div class="project-item reveal"> 
-            <div class="p-img"><img src="Overviewpng1.png"></div>
+            <div class="p-img"><img src="Overviewpng1.png" id="p3-img"></div>
             <div class="p-text">
                 <h3 id="p3-title"></h3>
                 <div class="btn-view" onclick="showStudy('furniture')" id="p3-btn" style="cursor: pointer;"></div>
@@ -750,7 +751,7 @@
         furniture: { 
             en: { title: "Global Superstore Strategy", o: "Strategic analysis of global sales data.", c: "Complexity in international markets.", s: "Strategy Analytica Dashboard.", i: "Optimized expansion strategy.", t: "Power BI, DAX" },
             ar: { title: "استراتيجية المتجر العالمي", o: "تحليل استراتيجي لبيانات المبيعات العالمية.", c: "التعقيد في الأسواق الدولية.", s: "لوحة بيانات Strategy Analytica.", i: "استراتيجية توسع محسنة.", t: "Power BI, DAX" },
-            es: { title: "Estrategia Global", o: "Análisis estratégico de ventas.", c: "Complejidad en mercados internacionales.", s: "Dashboard Strategy Analytica.", i: "Estrategia de expansión optimizada.", t: "Power BI, DAX" },
+            es: { title: "Estrategia Global", o: "Análisis estratégico de ventas.", c: "Compleجidad en mercados internacionales.", s: "Dashboard Strategy Analytica.", i: "Estrategia de expansión optimizada.", t: "Power BI, DAX" },
             imgs: ['Overviewpng1.png', 'Furniture Loss Analysispng2.png', 'Stakeholders Analysispng3.png']
         }
     };
@@ -791,6 +792,12 @@ function updateUI() {
     document.getElementById('exp2').innerText = t.exp2;
     document.getElementById('exp3').innerText = t.exp3;
     document.getElementById('exp4').innerText = t.exp4;    
+
+    // تحديث صور المعاينة الخارجية لتكون أول صورة في المصفوفة
+    document.getElementById('p1-img').src = projectData.hr.imgs[0];
+    document.getElementById('p2-img').src = projectData.sales.imgs[0];
+    document.getElementById('p3-img').src = projectData.furniture.imgs[0];
+
     document.getElementById('p1-title').innerText = projectData.hr[currentLang].title;
     document.getElementById('p2-title').innerText = projectData.sales[currentLang].title;
     document.getElementById('p3-title').innerText = projectData.furniture[currentLang].title;
@@ -816,11 +823,6 @@ function updateUI() {
         isDarkMode = !isDarkMode;
         localStorage.setItem('ahmedDarkMode', isDarkMode);
         updateUI();
-    }
-    function copyEmail(email) {
-        navigator.clipboard.writeText(email).then(() => {
-            alert(translations[currentLang].copyMsg);
-        });
     }
     function startExploring() {
         const overlay = document.getElementById('welcome-overlay');
@@ -929,13 +931,7 @@ function updateUI() {
         const comment = document.getElementById('user-comment').value;
         const t = translations[currentLang];
         if (!name || !comment) { alert(t.alert); return; }
-
-        const data = {
-            Name: name,
-            Feedback: comment,
-            Rating: selectedRating,
-            Date: new Date().toLocaleDateString()
-        };
+        const data = { Name: name, Feedback: comment, Rating: selectedRating, Date: new Date().toLocaleDateString() };
         fetch(SHEETDB_URL, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -947,6 +943,7 @@ function updateUI() {
             openRatingsPage();
         });
     }
+
     function showStudy(id) {
         lastScrollPos = window.scrollY;
         const d = projectData[id][currentLang];
@@ -957,12 +954,13 @@ function updateUI() {
             furniture: "https://app.powerbi.com/view?r=eyJrIjoiYzU4Yjg3OGMtYTQwZC00MzRiLTk5YzctZjdiMzMzNGU5NzVkIiwidCI6ImRiYzRiODI5LTY3ZDgtNDYyMy1hOTA1LWY2YjY2ZmUwMWU1MiJ9"
         };
         
-        // تعديل ترتيب العناصر: الداشبورد التفاعلي يظهر أولاً قبل الصور
+        // الداشبورد التفاعلي يظهر أولاً قبل الصور التوضيحية
         let interactiveContent = `
             <div class="case-iframe-wrapper">
                 <iframe title="${d.title}" src="${iframeUrls[id]}" allowFullScreen="true"></iframe>
             </div>`;
             
+        // الصور التوضيحية المرتبطة بالمشروع فقط
         const projectImages = projectData[id].imgs.map(src => `<img src="${src}" style="width:100%; margin-bottom:20px; border-radius:15px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">`).join('');
         
         document.getElementById('case-header-content').innerHTML = `
@@ -982,6 +980,7 @@ function updateUI() {
         document.getElementById('case-study-view').style.display = 'block';
         window.scrollTo(0,0);
     }
+
     function hideStudy() {
         document.getElementById('case-study-view').style.display = 'none';
         document.getElementById('main-site').style.display = 'block';
@@ -990,12 +989,7 @@ function updateUI() {
 
     window.addEventListener('scroll', () => {
         const btn = document.getElementById('back-to-top');
-        if (window.scrollY > 500) {
-            btn.style.display = "flex";
-        } else {
-            btn.style.display = "none";
-        }
-
+        btn.style.display = window.scrollY > 500 ? "flex" : "none";
         document.querySelectorAll('.reveal').forEach(el => {
             if (el.getBoundingClientRect().top < window.innerHeight - 50) el.classList.add('active');
         });
