@@ -314,6 +314,64 @@
             border: 0;
         }
 
+        /* --- تنسيقات قسم التقييمات الجديد والمُحسن --- */
+        .rating-input-section {
+            background: #fdfdfd;
+            border: 1px solid #eee;
+            padding: 30px;
+            border-radius: 20px;
+            max-width: 500px;
+            margin: 20px auto 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+        }
+        .rating-input {
+            width: 100%;
+            padding: 12px 15px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            font-family: inherit;
+            font-size: 14px;
+            box-sizing: border-box;
+            transition: 0.3s;
+        }
+        .rating-input:focus {
+            border-color: var(--main-blue);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(0, 86, 179, 0.1);
+        }
+        .stars {
+            font-size: 35px;
+            margin-bottom: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            gap: 5px;
+        }
+        .stars span {
+            color: #ccc;
+            transition: 0.2s;
+        }
+        .stars span.active, .stars span:hover, .stars span:hover ~ span {
+            color: #ffce00;
+        }
+        .submit-rate-btn {
+            background: var(--main-blue);
+            color: white;
+            border: none;
+            padding: 12px 40px;
+            border-radius: 50px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: 0.3s;
+            width: 100%;
+        }
+        .submit-rate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 86, 179, 0.3);
+        }
+        .loading-text { color: var(--text-gray); font-weight: bold; }
+
         footer { 
             padding: 60px 20px; 
             background: transparent; 
@@ -903,12 +961,32 @@ function updateUI() {
         fetchReviews();
         setRating(5);
     }
+
     function setRating(val) {
         selectedRating = val;
-        document.querySelectorAll('#star-rating span').forEach((star, idx) => {
-            star.classList.toggle('active', idx < val);
+        const stars = document.querySelectorAll('#star-rating span');
+        stars.forEach((star, idx) => {
+            if (currentLang === 'ar') {
+                // التعامل مع الـ RTL للنجوم
+                star.classList.toggle('active', (stars.length - 1 - idx) < val);
+            } else {
+                star.classList.toggle('active', idx < val);
+            }
+        });
+        
+        // إعادة تعيين كود الـ Active بشكل أبسط ومباشر
+        stars.forEach((star) => {
+            const starValue = parseInt(star.getAttribute('data-value'));
+            if(starValue <= val) {
+                star.classList.add('active');
+                star.style.color = "#ffce00";
+            } else {
+                star.classList.remove('active');
+                star.style.color = "#ccc";
+            }
         });
     }
+
     function fetchReviews() {
         fetch(SHEETDB_URL)
         .then(res => res.json())
@@ -927,19 +1005,25 @@ function updateUI() {
                 card.innerHTML = `
                     <strong style="display:block; margin-top:5px; color:var(--main-blue);">${rev.Name}</strong>
                     <p style="font-style: italic; font-size: 14px; margin: 5px 0;">${rev.Feedback}</p>
-                    <div style="color: #ffce00;">${stars}</div>`;
+                    <div style="color: #ffce00; font-size: 18px;">${stars}</div>`;
                 container.appendChild(card);
             });
         }).catch(() => {
             document.getElementById('ratings-display-inner').innerHTML = "No reviews found.";
         });
     }
+
     function submitRating() {
         const name = document.getElementById('user-name').value;
         const comment = document.getElementById('user-comment').value;
         const t = translations[currentLang];
         if (!name || !comment) { alert(t.alert); return; }
         const data = { Name: name, Feedback: comment, Rating: selectedRating, Date: new Date().toLocaleDateString() };
+        
+        const btn = document.querySelector('.submit-rate-btn');
+        btn.disabled = true;
+        btn.innerText = "...";
+
         fetch(SHEETDB_URL, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -949,6 +1033,10 @@ function updateUI() {
         .then(() => {
             alert(t.thanks);
             openRatingsPage();
+        })
+        .catch(() => {
+            btn.disabled = false;
+            btn.innerText = t.rateBtn;
         });
     }
 
@@ -962,7 +1050,6 @@ function updateUI() {
             furniture: "https://app.powerbi.com/view?r=eyJrIjoiYzU4Yjg3OGMtYTQwZC00MzRiLTk5YzctZjdiMzMzNGU5NzVkIiwidCI6ImRiYzRiODI5LTY3ZDgtNDYyMy1hOTA1LWY2YjY2ZmUwMWU1MiJ9"
         };
         
-        // التعديل الأساسي: عرض لينك Power BI التفاعلي فقط وحذف الصور المتكررة
         let interactiveContent = `
             <div class="case-iframe-wrapper">
                 <iframe title="${d.title}" src="${iframeUrls[id]}" allowFullScreen="true"></iframe>
@@ -994,7 +1081,7 @@ function updateUI() {
 
     window.addEventListener('scroll', () => {
         const btn = document.getElementById('back-to-top');
-        btn.style.display = window.scrollY > 500 ? "flex" : "none";
+        if(btn) btn.style.display = window.scrollY > 500 ? "flex" : "none";
         document.querySelectorAll('.reveal').forEach(el => {
             if (el.getBoundingClientRect().top < window.innerHeight - 50) el.classList.add('active');
         });
