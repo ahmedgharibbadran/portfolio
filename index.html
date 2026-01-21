@@ -21,6 +21,7 @@
             --text-gray: #555555; 
             --glow-effect: 0 4px 15px rgba(0, 86, 179, 0.2);
             --footer-black: transparent; 
+            --status-green: #2ecc71;
         }
         body { background-color: var(--bg-white); color: var(--deep-black); font-family: 'Inter', sans-serif; margin: 0; text-align: center; scroll-behavior: smooth; overflow-x: hidden; -webkit-tap-highlight-color: transparent; }
         body.rtl { direction: rtl; font-family: 'Cairo', sans-serif; }
@@ -36,6 +37,23 @@
             transform: translateY(-100%);
         }
         .welcome-box { text-align: center; padding: 20px; width: 100%; max-width: 500px; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+        
+        /* ميزة حالة العمل الحية */
+        .status-badge {
+            display: inline-flex; align-items: center; gap: 8px; background: rgba(46, 204, 113, 0.1);
+            color: var(--status-green); padding: 6px 15px; border-radius: 20px; font-size: 13px; font-weight: 700;
+            margin-bottom: 20px; border: 1px solid rgba(46, 204, 113, 0.2);
+        }
+        .pulse-dot {
+            width: 8px; height: 8px; background: var(--status-green); border-radius: 50%;
+            animation: pulse-animation 2s infinite;
+        }
+        @keyframes pulse-animation {
+            0% { box-shadow: 0 0 0 0px rgba(46, 204, 113, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(46, 204, 113, 0); }
+            100% { box-shadow: 0 0 0 0px rgba(46, 204, 113, 0); }
+        }
+
         .welcome-logo { width: 120px; height: 120px; margin-bottom: 25px; border-radius: 50%; border: 3px solid var(--main-blue); transition: 0.3s; object-fit: contain; }        
         .start-btn { 
             background: var(--main-blue); color: white; padding: 15px 40px; 
@@ -209,6 +227,28 @@
             align-items: center;
         }
 
+        /* قسم الداشبورد التفاعلي */
+        .interactive-section {
+            padding: 0 10%;
+            margin-bottom: 50px;
+            text-align: center;
+        }
+        .dashboard-wrapper {
+            width: 100%;
+            height: 600px;
+            background: #fff;
+            border: 1px solid #eee;
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+            margin-top: 25px;
+            position: relative;
+        }
+        @media (max-width: 768px) {
+            .dashboard-wrapper { height: 450px; border-radius: 15px; }
+            .interactive-section { padding: 0 5%; }
+        }
+
         /* Mobile Grid Adjustment */
         @media (max-width: 768px) {
             .grid-container, .process-flow { 
@@ -287,7 +327,7 @@
 
         body.dark-theme { --bg-white: #111111; --nav-bg: #000000; --deep-black: #ffffff; --text-gray: #bbbbbb; }
         body.dark-theme nav { background: var(--nav-bg); border-bottom: 1px solid #222; } 
-        body.dark-theme .card-3d, body.dark-theme .process-step, body.dark-theme .project-item, body.dark-theme .case-header, body.dark-theme .rating-input-section, body.dark-theme .why-hero-card { background: #000000; border-color: #222; }
+        body.dark-theme .card-3d, body.dark-theme .process-step, body.dark-theme .project-item, body.dark-theme .case-header, body.dark-theme .rating-input-section, body.dark-theme .why-hero-card, body.dark-theme .dashboard-wrapper { background: #000000; border-color: #222; }
         body.dark-theme .rating-input { background: #252525; color: white; border-color: #444; }
 
         /* Back to top button */
@@ -316,6 +356,11 @@
 <body>
 <div id="welcome-overlay">
     <div class="welcome-box">
+        <div class="status-badge">
+            <div class="pulse-dot"></div>
+            <span id="welcome-status">Available for Projects</span>
+        </div>
+
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 170 60" style="width: 140px; height: auto; margin-bottom: 25px; display: block; pointer-events: none;">
             <defs>
                 <linearGradient id="welcomeGradient" x1="0%" y1="100%" x2="100%" y2="0%">
@@ -424,6 +469,15 @@
         <div class="card-3d reveal" onclick="showExpertise('etl')"><svg viewBox="0 0 24 24"><path d="M20 6h-8l-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-6 10H6v-2h8v2zm4-4H6v-2h12v2z"/></svg><span id="exp4">ETL</span></div>
         <div class="card-3d reveal" onclick="showExpertise('viz')"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg><span id="skill6"></span></div>
     </div>
+
+    <div class="section-title" id="title-interactive">Interactive Insights</div>
+    <div class="interactive-section reveal">
+        <p style="color: var(--text-gray); margin-bottom: 20px;" id="dashboard-desc">Dive into my analytics process with this live dashboard. Feel free to interact with filters!</p>
+        <div class="dashboard-wrapper">
+            <iframe title="AGB Insights - Interactive Experience" width="100%" height="100%" src="https://app.powerbi.com/view?r=eyJrIjoiYTRlZjI5NzEtYjRkMi00YzVmLWI4ZjItOGI3ZWRmZDI1YjliIiwidCI6IjQ5YzNlNDliLTk4MmUtNDUyYS04YjI2LWE2ZTM1ZTA0YzU3OCIsImMiOjh9" frameborder="0" allowFullScreen="true"></iframe>
+        </div>
+    </div>
+
     <div class="section-title" id="title-projects"></div>
     <div class="projects-wrapper">
         <div class="project-item reveal"> 
@@ -502,7 +556,10 @@
             ratePrompt: "Leave a Review", namePlace: "Name", ratePlace: "Write your feedback...", rateBtn: "Submit",
             alert: "Please enter both name and comment", thanks: "Thank you for your feedback!",
             viewRatings: "View & Add Reviews", loading: "Loading reviews...",
-            copyMsg: "Copied!", cv: "CV", lang: "Languages"
+            copyMsg: "Copied!", cv: "CV", lang: "Languages",
+            status: "Available for Projects",
+            interactive: "Interactive Experience",
+            dashDesc: "Dive into my analytics process with this live dashboard. Feel free to interact with filters!"
         },
         ar: {
             name: "أحمد غريب", 
@@ -526,7 +583,10 @@
             ratePrompt: "أضف تقييمك", namePlace: "الاسم", ratePlace: "اكتب رأيك هنا...", rateBtn: "إرسال",
             alert: "يرجى إدخال الاسم والتعليق", thanks: "شكراً لتقييمك!",
             viewRatings: "عرض وإضافة التقييمات", loading: "جاري تحميل التقييمات...",
-            copyMsg: "تم النسخ!", cv: "السيرة الذاتية", lang: "اللغات"
+            copyMsg: "تم النسخ!", cv: "السيرة الذاتية", lang: "اللغات",
+            status: "متاح للمشاريع الحالية",
+            interactive: "تجربة تفاعلية حية",
+            dashDesc: "انغمس في عملية التحليل الخاصة بي عبر لوحة البيانات الحية هذه. لا تتردد في استخدام الفلاتر!"
         },
         es: {
             name: "Ahmed Gharib", 
@@ -550,7 +610,10 @@
             ratePrompt: "Deja una reseña", namePlace: "Nombre", ratePlace: "Escribe tu opinión...", rateBtn: "Enviar",
             alert: "Por favor, introduzca su name y comentario", thanks: "¡Gracias por tu comentario!",
             viewRatings: "Ver y añadir reseñas", loading: "Cargando reseñas...",
-            copyMsg: "¡Copiado!", cv: "CV", lang: "Idiomas"
+            copyMsg: "¡Copiado!", cv: "CV", lang: "Idiomas",
+            status: "Disponible para Proyectos",
+            interactive: "Experiencia Interactiva",
+            dashDesc: "Explore mis habilidades analíticas con este panel interactivo. ¡No dude en usar los filtros!"
         }
     };
     
@@ -710,7 +773,7 @@
         furniture: { 
             en: { title: "Furniture Loss Analysis", o: "Analyze loss patterns in furniture sales.", c: "High return and loss rates.", s: "Advanced Power BI dashboard.", i: "Identification of key loss drivers.", t: "Power BI, DAX" },
             ar: { title: "تحليل خسائر الأثاث", o: "تحليل أنماط الخسارة في مبيعات الأثاث.", c: "معدلات مرتفعة من المرتجعات والخسائر.", s: "لوحة بيانات Power BI متطورة.", i: "تحديد الدوافع الرئيسية للخسارة.", t: "Power BI, DAX" },
-            es: { title: "Análisis de Pérدida de Muebles", o: "Analizar patrones de pérdida.", c: "Altas tasas de devolución.", s: "Dashboard avanzado de Power BI.", i: "Identificación de factores de pérdida.", t: "Power BI, DAX" },
+            es: { title: "Análisis de Pérdida de Muebles", o: "Analizar patrones de pérdida.", c: "Altas tasas de devolución.", s: "Dashboard avanzado de Power BI.", i: "Identificación de factores de pérdida.", t: "Power BI, DAX" },
             imgs: ['Overviewpng1.png', 'Furniture Loss Analysispng2.png', 'Stakeholders Analysispng3.png']
         }
     };
@@ -734,6 +797,9 @@ function updateUI() {
     document.getElementById('title-projects').innerText = t.projects;
     document.getElementById('title-ratings').innerText = t.ratings;
     document.getElementById('title-why-me').innerText = t.whyMe;
+    document.getElementById('title-interactive').innerText = t.interactive;
+    document.getElementById('dashboard-desc').innerText = t.dashDesc;
+    document.getElementById('welcome-status').innerText = t.status;
 
     /* Update New Why Hero Section */
     document.getElementById('why-me-hero-title').innerText = t.whyHeroTitle;
