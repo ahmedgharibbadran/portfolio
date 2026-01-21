@@ -285,18 +285,26 @@
         body.rtl .case-header { border-left: none; border-right: 6px solid var(--main-blue); }
         .detail-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 20px; }
 
-        /* تنسيق الـ iframe في وضع الموبايل */
+        /* تنسيق الـ iframe لضمان الاستجابة الكاملة للاب توب والموبايل */
         .case-iframe-wrapper {
             position: relative;
             width: 100%;
             height: 0;
-            padding-bottom: 65%; /* زيادة الارتفاع قليلاً للـ Power BI */
+            padding-bottom: 75%; /* الوضع الافتراضي للموبايل */
             margin-bottom: 30px;
             background: #f0f0f0;
             border-radius: 15px;
             overflow: hidden;
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
+        
+        /* تعديل النسبة للشاشات الكبيرة (اللاب توب) لتناسب الداشبورد */
+        @media (min-width: 1024px) {
+            .case-iframe-wrapper {
+                padding-bottom: 56.25%; /* نسبة 16:9 المثالية للـ Desktop */
+            }
+        }
+
         .case-iframe-wrapper iframe {
             position: absolute;
             top: 0;
