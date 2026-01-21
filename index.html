@@ -2,12 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="theme-color" content="#ffffff">
     <meta name="description" content="Ahmed Gharib - Data Analyst Portfolio. Helping businesses turn complex data into strategic insights using Power BI, Excel, and SQL.">
     <meta name="keywords" content="Data Analyst, Power BI, Ahmed Gharib, AGBINSIGHTS, Data Visualization, SQL, Portfolio, Business Intelligence">
     
     <title>Ahmed Gharib | AGBINSIGHTS</title>
    <link rel="icon" type="image/svg+xml" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y="75" font-size="70" fill="%230056b3" font-family="Arial Black">A</text><path d="M5 85 L40 45 L95 10" stroke="%230056b3" stroke-width="12" fill="none" stroke-linecap="round"/></svg>'>
+   <link rel="apple-touch-icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="white"/><text y="75" font-size="70" fill="%230056b3" font-family="Arial Black">A</text><path d="M5 85 L40 45 L95 10" stroke="%230056b3" stroke-width="12" fill="none" stroke-linecap="round"/></svg>'>
     <style>
         :root { 
             --main-blue: #0056b3; 
@@ -18,19 +22,20 @@
             --glow-effect: 0 4px 15px rgba(0, 86, 179, 0.2);
             --footer-black: transparent; 
         }
-        body { background-color: var(--bg-white); color: var(--deep-black); font-family: 'Inter', sans-serif; margin: 0; text-align: center; scroll-behavior: smooth; overflow-x: hidden; }
+        body { background-color: var(--bg-white); color: var(--deep-black); font-family: 'Inter', sans-serif; margin: 0; text-align: center; scroll-behavior: smooth; overflow-x: hidden; -webkit-tap-highlight-color: transparent; }
         body.rtl { direction: rtl; font-family: 'Cairo', sans-serif; }
         
         #welcome-overlay { 
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
             background: var(--bg-white);
             display: flex; align-items: center; justify-content: center; 
-            z-index: 10000; transition: 1s cubic-bezier(0.85, 0, 0.15, 1); 
+            z-index: 10000; transition: 1s cubic-bezier(0.85, 0, 0.15, 1);
+            direction: ltr !important; /* ضمان ثبات توزيع العناصر في شاشة الترحيب */
         }        
         #welcome-overlay.slide-up {
             transform: translateY(-100%);
         }
-        .welcome-box { text-align: center; padding: 20px; }
+        .welcome-box { text-align: center; padding: 20px; width: 100%; max-width: 500px; }
         .welcome-logo { width: 120px; height: 120px; margin-bottom: 25px; border-radius: 50%; border: 3px solid var(--main-blue); transition: 0.3s; object-fit: contain; }        
         .start-btn { 
             background: var(--main-blue); color: white; padding: 15px 40px; 
@@ -311,7 +316,7 @@
 <body>
 <div id="welcome-overlay">
     <div class="welcome-box">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 170 60" style="width: 140px; height: auto; margin-bottom: 20px; display: block; margin-left: auto; margin-right: auto;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 170 60" style="width: 140px; height: auto; margin-bottom: 20px; display: block; margin-left: auto; margin-right: auto; pointer-events: none;">
             <defs>
                 <linearGradient id="welcomeGradient" x1="0%" y1="100%" x2="100%" y2="0%">
                     <stop offset="0%" style="stop-color:#0056b3; stop-opacity:0.2" />
