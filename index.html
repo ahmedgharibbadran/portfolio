@@ -31,14 +31,13 @@
             background: var(--bg-white);
             display: flex; align-items: center; justify-content: center; 
             z-index: 10000; transition: 1s cubic-bezier(0.85, 0, 0.15, 1);
-            direction: ltr !important; /* ضمان ثبات توزيع العناصر في شاشة الترحيب */
+            direction: ltr !important; 
         }        
         #welcome-overlay.slide-up {
             transform: translateY(-100%);
         }
         .welcome-box { text-align: center; padding: 20px; width: 100%; max-width: 500px; display: flex; flex-direction: column; align-items: center; justify-content: center; }
         
-        /* ميزة حالة العمل الحية في الهيدر حصرياً */
         .header-status {
             display: inline-flex; align-items: center; gap: 6px; background: rgba(46, 204, 113, 0.08);
             color: var(--status-green); padding: 4px 10px; border-radius: 12px; font-size: 11px; font-weight: 800;
@@ -83,7 +82,6 @@
             mix-blend-mode: normal; filter: none; 
         }
 
-        /* تعديلات اللغات والسيرة الذاتية */
         .lang-switch { display: flex; gap: 15px; align-items: center; }
         
         .lang-dropdown { position: relative; display: inline-block; cursor: pointer; padding: 8px 12px; background: rgba(0, 86, 179, 0.05); border-radius: 8px; transition: 0.3s; }
@@ -225,29 +223,6 @@
             align-items: center;
         }
 
-        /* قسم الداشبورد التفاعلي - تم تحسينه ووضعه أسفل المشاريع */
-        .interactive-section {
-            padding: 0 10%;
-            margin: 50px 0;
-            text-align: center;
-        }
-        .dashboard-wrapper {
-            width: 100%;
-            max-width: 1000px; 
-            height: 550px; 
-            background: #fff;
-            border: 1px solid #eee;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 5px 25px rgba(0,0,0,0.05);
-            margin: 25px auto;
-            position: relative;
-        }
-        @media (max-width: 768px) {
-            .dashboard-wrapper { height: 400px; border-radius: 15px; }
-            .interactive-section { padding: 0 15px; }
-        }
-
         @media (max-width: 768px) {
             .grid-container, .process-flow { 
                 display: grid !important;
@@ -292,7 +267,7 @@
             width: 100%; 
         }
         .p-img { width: 100%; line-height: 0; border-bottom: 1px solid #eee; background: #fefefe; }
-        .p-img iframe { width: 100%; height: 350px; border: none; }
+        .p-img img { width: 100%; height: auto; display: block; object-fit: cover; }
         .p-text { width: 100%; padding: 30px; box-sizing: border-box; text-align: center; }
 
         @media (min-width: 768px) {
@@ -308,11 +283,27 @@
         .case-header { background: #f9f9f9; padding: 30px; border-radius: 20px; border-left: 6px solid var(--main-blue); margin-bottom: 30px; }
         body.rtl .case-header { border-left: none; border-right: 6px solid var(--main-blue); }
         .detail-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 20px; }
-        .rating-input-section { margin-bottom: 30px; padding: 30px; background: #f9f9f9; border-radius: 20px; text-align: center; }
-        .stars { font-size: 24px; margin-bottom: 10px; cursor: pointer; color: #ccc; }
-        .stars .active { color: #ffce00; }
-        .rating-input { width: 100%; max-width: 400px; padding: 12px; border: 1px solid #ddd; border-radius: 10px; margin-bottom: 10px; font-family: inherit; }
-        .submit-rate-btn { background: var(--main-blue); color: white; border: none; padding: 10px 25px; border-radius: 8px; cursor: pointer; font-weight: bold; }
+
+        /* تنسيق الـ iframe في وضع الموبايل */
+        .case-iframe-wrapper {
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            margin-bottom: 30px;
+            background: #f0f0f0;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .case-iframe-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
 
         footer { 
             padding: 60px 20px; 
@@ -325,8 +316,7 @@
 
         body.dark-theme { --bg-white: #111111; --nav-bg: #000000; --deep-black: #ffffff; --text-gray: #bbbbbb; }
         body.dark-theme nav { background: var(--nav-bg); border-bottom: 1px solid #222; } 
-        body.dark-theme .card-3d, body.dark-theme .process-step, body.dark-theme .project-item, body.dark-theme .case-header, body.dark-theme .rating-input-section, body.dark-theme .why-hero-card, body.dark-theme .dashboard-wrapper { background: #000000; border-color: #222; }
-        body.dark-theme .rating-input { background: #252525; color: white; border-color: #444; }
+        body.dark-theme .card-3d, body.dark-theme .process-step, body.dark-theme .project-item, body.dark-theme .case-header, body.dark-theme .rating-input-section, body.dark-theme .why-hero-card { background: #000000; border-color: #222; }
 
         #back-to-top {
             position: fixed; bottom: 30px; right: 30px; width: 45px; height: 45px;
@@ -469,39 +459,25 @@
     <div class="section-title" id="title-projects"></div>
     <div class="projects-wrapper">
         <div class="project-item reveal"> 
-            <div class="p-img">
-                <iframe title="HR_Attrition_Analysis_PowerBI" src="https://app.powerbi.com/view?r=eyJrIjoiMWRlYTkyZmUtMzk3MS00ZDQxLTkxZjktMTQ0NzdlMzM1ZWVjIiwidCI6ImRiYzRiODI5LTY3ZDgtNDYyMy1hOTA1LWY2YjY2ZmUwMWU1MiJ9" frameborder="0" allowFullScreen="true"></iframe>
-            </div>
+            <div class="p-img"><img src="hr.png.png"></div>
             <div class="p-text">
                 <h3 id="p1-title"></h3>
                 <div class="btn-view" onclick="showStudy('hr')" id="p1-btn" style="cursor: pointer;"></div>
             </div>
         </div>
         <div class="project-item reveal">
-            <div class="p-img">
-                <iframe title="Project Completion" src="https://app.powerbi.com/view?r=eyJrIjoiMDAwMzE3NmItMGJkZC00NGM4LTkzZTgtNGVmM2JkOWQ4YzJiIiwidCI6ImRiYzRiODI5LTY3ZDgtNDYyMy1hOTA1LWY2YjY2ZmUwMWU1MiJ9" frameborder="0" allowFullScreen="true"></iframe>
-            </div>
+            <div class="p-img"><img src="sales.png1.png"></div>
             <div class="p-text">
                 <h3 id="p2-title"></h3>
                 <div class="btn-view" onclick="showStudy('sales')" id="p2-btn" style="cursor: pointer;"></div>
             </div>
         </div>
         <div class="project-item reveal"> 
-            <div class="p-img">
-                <iframe title="Global Superstore Dataset_Strategy Analytica" src="https://app.powerbi.com/view?r=eyJrIjoiYzU4Yjg3OGMtYTQwZC00MzRiLTk5YzctZjdiMzMzNGU5NzVkIiwidCI6ImRiYzRiODI5LTY3ZDgtNDYyMy1hOTA1LWY2YjY2ZmUwMWU1MiJ9" frameborder="0" allowFullScreen="true"></iframe>
-            </div>
+            <div class="p-img"><img src="Overviewpng1.png"></div>
             <div class="p-text">
                 <h3 id="p3-title"></h3>
                 <div class="btn-view" onclick="showStudy('furniture')" id="p3-btn" style="cursor: pointer;"></div>
             </div>
-        </div>
-    </div>
-
-    <div class="section-title" id="title-interactive">Interactive Insights</div>
-    <div class="interactive-section reveal">
-        <p style="color: var(--text-gray); margin-bottom: 20px;" id="dashboard-desc">Dive into my analytics process with this live dashboard. Feel free to interact with filters!</p>
-        <div class="dashboard-wrapper">
-            <iframe title="Global Superstore Dataset_Strategy Analytica" width="100%" height="100%" src="https://app.powerbi.com/view?r=eyJrIjoiYzU4Yjg3OGMtYTQwZC00MzRiLTk5YzctZjdiMzMzNGU5NzVkIiwidCI6ImRiYzRiODI5LTY3ZDgtNDYyMy1hOTA1LWY2YjY2ZmUwMWU1MiJ9" frameborder="0" allowFullScreen="true"></iframe>
         </div>
     </div>
 
@@ -763,19 +739,19 @@
             en: { title: "HR Attrition Analysis", o: "Identify factors behind turnover.", c: "High turnover rates.", s: "Power BI dashboard with DAX.", i: "15% reduction opportunity.", t: "Power BI, DAX" },
             ar: { title: "تحليل استقالات الموظفين", o: "تحديد أسباب ترك العمل.", c: "معدلات دوران عالية.", s: "لوحة بيانات Power BI.", i: "فرصة تقليل 15%.", t: "Power BI, DAX" },
             es: { title: "Análisis de Rotación", o: "Identificar factores.", c: "Alta rotación.", s: "Dashboard Power BI.", i: "Meجورا del 15%.", t: "Power BI, DAX" },
-            imgs: []
+            imgs: ['hr.png.png', 'hr.png2.png', 'hr.png3.png']
         },
         sales: {
             en: { title: "Project Completion Report", o: "Track project milestones and timelines.", c: "Fragmented progress tracking.", s: "Unified Power BI report.", i: "Improved deadline compliance.", t: "Excel, Power BI" },
             ar: { title: "تقرير إنجاز المشاريع", o: "تتبع المعالم والخطوط الزمنية للمشروع.", c: "تتبع غير منظم للتقدم.", s: "تقرير Power BI موحد.", i: "تحسين الالتزام بالمواعيد النهائية.", t: "Excel, Power BI" },
             es: { title: "Informe de Cumplimiento", o: "Rastrear hitos y plazos.", c: "Seguimiento fragmentado.", s: "Informe Power BI unificado.", i: "Cumplimiento de plazos mejorado.", t: "Excel, Power BI" },
-            imgs: []
+            imgs: ['sales.png1.png', 'sales.png2.png', 'sales.png3.png']
         },
         furniture: { 
             en: { title: "Global Superstore Strategy", o: "Strategic analysis of global sales data.", c: "Complexity in international markets.", s: "Strategy Analytica Dashboard.", i: "Optimized expansion strategy.", t: "Power BI, DAX" },
             ar: { title: "استراتيجية المتجر العالمي", o: "تحليل استراتيجي لبيانات المبيعات العالمية.", c: "التعقيد في الأسواق الدولية.", s: "لوحة بيانات Strategy Analytica.", i: "استراتيجية توسع محسنة.", t: "Power BI, DAX" },
             es: { title: "Estrategia Global", o: "Análisis estratégico de ventas.", c: "Complejidad en mercados internacionales.", s: "Dashboard Strategy Analytica.", i: "Estrategia de expansión optimizada.", t: "Power BI, DAX" },
-            imgs: []
+            imgs: ['Overviewpng1.png', 'Furniture Loss Analysispng2.png', 'Stakeholders Analysispng3.png']
         }
     };
 
@@ -798,8 +774,6 @@ function updateUI() {
     document.getElementById('title-projects').innerText = t.projects;
     document.getElementById('title-ratings').innerText = t.ratings;
     document.getElementById('title-why-me').innerText = t.whyMe;
-    document.getElementById('title-interactive').innerText = t.interactive;
-    document.getElementById('dashboard-desc').innerText = t.dashDesc;
     document.getElementById('nav-status').innerText = t.status;
 
     document.getElementById('why-me-hero-title').innerText = t.whyHeroTitle;
@@ -979,10 +953,18 @@ function updateUI() {
         const t = translations[currentLang];
         const iframeUrls = {
             hr: "https://app.powerbi.com/view?r=eyJrIjoiMWRlYTkyZmUtMzk3MS00ZDQxLTkxZjktMTQ0NzdlMzM1ZWVjIiwidCI6ImRiYzRiODI5LTY3ZDgtNDYyMy1hOTA1LWY2YjY2ZmUwMWU1MiJ9",
-            sales: "https://app.powerbi.com/view?r=eyJrIjoiMDAwMzE3NmBeMGJkZC00NGM4LTkzZTgtNGVmM2JkOWQ4YzJiIiwidCI6ImRiYzRiODI5LTY3ZDgtNDYyMy1hOTA1LWY2YjY2ZmUwMWU1MiJ9",
+            sales: "https://app.powerbi.com/view?r=eyJrIjoiMDAwMzE3NmItMGJkZC00NGM4LTkzZTgtNGVmM2JkOWQ4YzJiIiwidCI6ImRiYzRiODI5LTY3ZDgtNDYyMy1hOTA1LWY2YjY2ZmUwMWU1MiJ9",
             furniture: "https://app.powerbi.com/view?r=eyJrIjoiYzU4Yjg3OGMtYTQwZC00MzRiLTk5YzctZjdiMzMzNGU5NzVkIiwidCI6ImRiYzRiODI5LTY3ZDgtNDYyMy1hOTA1LWY2YjY2ZmUwMWU1MiJ9"
         };
-        const imgs = `<iframe title="${d.title}" src="${iframeUrls[id]}" style="width:100%; height:500px; border-radius:15px; border:none;" allowFullScreen="true"></iframe>`;
+        
+        // تعديل ترتيب العناصر: الداشبورد التفاعلي يظهر أولاً قبل الصور
+        let interactiveContent = `
+            <div class="case-iframe-wrapper">
+                <iframe title="${d.title}" src="${iframeUrls[id]}" allowFullScreen="true"></iframe>
+            </div>`;
+            
+        const projectImages = projectData[id].imgs.map(src => `<img src="${src}" style="width:100%; margin-bottom:20px; border-radius:15px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">`).join('');
+        
         document.getElementById('case-header-content').innerHTML = `
             <div class="case-header">
                 <h2>${d.title}</h2>
@@ -994,7 +976,8 @@ function updateUI() {
                     <div><b style="color:var(--main-blue)">${t.tool}</b><br>${d.t}</div>
                 </div>
             </div>`;
-        document.getElementById('study-images').innerHTML = imgs;
+            
+        document.getElementById('study-images').innerHTML = interactiveContent + projectImages;
         document.getElementById('main-site').style.display = 'none';
         document.getElementById('case-study-view').style.display = 'block';
         window.scrollTo(0,0);
