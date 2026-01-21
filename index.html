@@ -141,41 +141,55 @@
         }
         body.rtl .section-title { text-align: right; border-left: none; border-right: 5px solid var(--main-blue); padding-left: 0; padding-right: 15px; margin: 40px 10% 20px 0; }
 
-        /* Why Me Section Style */
+        /* Why Me Section Style - Modified for Single Hero Card */
         .why-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
+            display: flex;
+            justify-content: center;
             padding: 0 10%;
             margin-bottom: 50px;
         }
-        .why-card {
+        .why-hero-card {
             background: var(--bg-white);
             border: 1px solid #eee;
-            padding: 30px;
-            border-radius: 20px;
-            transition: 0.3s ease;
+            padding: 40px 20px;
+            border-radius: 25px;
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             text-align: center;
             cursor: pointer;
+            width: 100%;
+            max-width: 500px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+            position: relative;
+            overflow: hidden;
         }
-        .why-card:hover {
+        .why-hero-card:hover {
             transform: translateY(-10px);
             box-shadow: var(--glow-effect);
             border-color: var(--main-blue);
         }
-        .why-icon {
+        .why-hero-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%; width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 86, 179, 0.05), transparent);
+            transition: 0.5s;
+        }
+        .why-hero-card:hover::before { left: 100%; }
+        .why-hero-icon {
             margin-bottom: 20px;
+            display: inline-block;
+            background: rgba(0, 86, 179, 0.1);
+            padding: 20px;
+            border-radius: 50%;
         }
-        .why-card h3 {
+        .why-hero-icon svg { width: 50px; height: 50px; fill: var(--main-blue); }
+        .why-hero-card h3 {
             color: var(--main-blue);
-            margin-bottom: 15px;
+            font-size: 24px;
+            margin: 0;
+            font-weight: 800;
         }
-        .why-card p {
-            color: var(--text-gray);
-            font-size: 15px;
-            line-height: 1.6;
-            display: none; /* إخفاء الوصف في الرئيسية لتقليل المساحة */
-        }
+
         .grid-container, .process-flow { 
             display: flex; 
             justify-content: center; 
@@ -207,16 +221,10 @@
                 gap: 12px !important;
                 padding: 0 15px !important;
             }
-            .card-3d, .process-step, .why-card { 
+            .why-container { display: flex !important; } /* الكارت الرئيسي يفضل واخد العرض كله */
+            .card-3d, .process-step, .why-hero-card { 
                 max-width: 100% !important; 
-                padding: 15px 10px !important;
-            }
-            .why-card p, .card-3d span, .process-step h4 {
-                font-size: 12px !important;
-            }
-            .why-icon svg, .card-3d svg, .process-step svg {
-                width: 30px !important;
-                height: 30px !important;
+                padding: 20px 10px !important;
             }
             .section-title { 
                 margin: 30px 15px 15px 15px !important; 
@@ -254,7 +262,6 @@
         .p-text { width: 100%; padding: 30px; box-sizing: border-box; text-align: center; }
 
         @media (min-width: 768px) {
-            .why-container { grid-template-columns: repeat(3, 1fr) !important; }
             .project-item { flex-direction: row; align-items: stretch; }
             .p-img { width: 60%; } 
             .p-text { width: 40%; padding: 40px; display: flex; flex-direction: column; justify-content: center; text-align: left; }
@@ -284,10 +291,9 @@
 
         body.dark-theme { --bg-white: #111111; --nav-bg: #000000; --deep-black: #ffffff; --text-gray: #bbbbbb; }
         body.dark-theme nav { background: var(--nav-bg); border-bottom: 1px solid #222; } 
-        body.dark-theme .card-3d, body.dark-theme .process-step, body.dark-theme .project-item, body.dark-theme .case-header, body.dark-theme .rating-input-section, body.dark-theme .why-card { background: #000000; border-color: #222; }
+        body.dark-theme .card-3d, body.dark-theme .process-step, body.dark-theme .project-item, body.dark-theme .case-header, body.dark-theme .rating-input-section, body.dark-theme .why-hero-card { background: #000000; border-color: #222; }
         body.dark-theme .rating-input { background: #252525; color: white; border-color: #444; }
 
-        /* زر العودة للأعلى */
         #back-to-top {
             position: fixed; bottom: 30px; right: 30px; width: 45px; height: 45px;
             background: var(--main-blue); color: white; border: none; border-radius: 50%;
@@ -305,9 +311,6 @@
         body.dark-theme .agb-header-txt {
             fill: #ffffff !important;
         }
-        .nav-brand:hover .agb-header-txt {
-            fill: var(--main-blue) !important;
-        }                                     
     </style>
 </head>
 <body>
@@ -374,24 +377,17 @@
         <span class="job-tag" id="job-title"></span>
         <p class="about-text" id="about-me"></p>
     </header>
+
     <div class="section-title" id="title-why-me"></div>
     <div class="why-container">
-        <div class="why-card reveal" onclick="showWhyDetail('business')">
-            <div class="why-icon"><svg viewBox="0 0 24 24"><path d="M13 3c-4.97 0-9 4.03-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42C8.27 19.99 10.51 21 13 21c4.97 0 9-4.03 9-9s-4.03-9-9-9zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z"/></svg></div>
-            <h3 id="why1-t"></h3>
-            <p id="why1-d"></p>
-        </div>
-        <div class="why-card reveal" onclick="showWhyDetail('quality')">
-            <div class="why-icon"><svg viewBox="0 0 24 24"><path d="M21 7L9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59 21 7z"/></svg></div>
-            <h3 id="why2-t"></h3>
-            <p id="why2-d"></p>
-        </div>
-        <div class="why-card reveal" onclick="showWhyDetail('viz')">
-            <div class="why-icon"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></div>
-            <h3 id="why3-t"></h3>
-            <p id="why3-d"></p>
+        <div class="why-hero-card reveal" onclick="openWhyMeGrid()">
+            <div class="why-hero-icon">
+                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z"/></svg>
+            </div>
+            <h3 id="why-main-label">Why Choose Me?</h3>
         </div>
     </div>
+
     <div class="section-title" id="title-journey"></div>
     <div class="process-flow">
         <div class="process-step reveal" onclick="showJourney('understand')" style="cursor: pointer;">
@@ -490,7 +486,8 @@
             expertise: "Expertise", 
             projects: "Projects", 
             ratings: "Ratings",
-            whyMe: "Why Choose Me?",
+            whyMe: "Why Me?",
+            whyMeBtnLabel: "Why Choose Me?",
             why1t: "Business Driven", why1d: "I focus on delivering insights that directly impact ROI and decision-making.",
             why2t: "Clean Data First", why2d: "I ensure your data foundation is accurate and reliable before any analysis.",
             why3t: "Actionable Viz", why3d: "Complex data turned into intuitive, easy-to-understand visual stories.",
@@ -512,7 +509,8 @@
             expertise: "الخبرات", 
             projects: "المشاريع", 
             ratings: "التقييمات",
-            whyMe: "لماذا تختارني؟",
+            whyMe: "لماذا أنا؟",
+            whyMeBtnLabel: "لماذا تختارني؟ (اكتشف المميزات)",
             why1t: "موجه للأعمال", why1d: "أركز على تقديم رؤى تؤثر بشكل مباشر على العائد على الاستثمار واتخاذ القرار.",
             why2t: "بيانات نظيفة أولاً", why2d: "أضمن أن أساس بياناتك دقيق وموثوق قبل البدء في أي تحليل.",
             why3t: "تصوير فعال", why3d: "تحويل البيانات المعقدة إلى قصص مرئية بديهية وسهلة الفهم.",
@@ -534,7 +532,8 @@
             expertise: "Experiencia", 
             projects: "Proyectos", 
             ratings: "Valoraciones",
-            whyMe: "¿Por qué elegirme?",
+            whyMe: "¿Por qué yo?",
+            whyMeBtnLabel: "¿Por qué elegirme?",
             why1t: "Impulsado por Negocios", why1d: "Me enfoco en entregar ideas que impacten directamente en el ROI.",
             why2t: "Datos Limpios Primero", why2d: "Aseguro que sus datos sean precisos y confiables antes de cualquier análisis.",
             why3t: "Visualización Accionable", why3d: "Datos complejos convertidos en historias visuales intuitivas.",
@@ -645,44 +644,6 @@
             es: { title: "Visualización de Datos", desc: "Aplicación de principios de storytelling de datos." }
         }
     };
-    const whyDetailData = {
-        business: {
-            en: { title: "Business Driven Analysis", desc: "I believe data is only valuable if it leads to better business outcomes. My analysis focuses on ROI, cost reduction, and strategic growth opportunities." },
-            ar: { title: "تحليل موجه للأعمال", desc: "أؤمن أن البيانات قيمة فقط إذا أدت لنتائج أفضل. تركيزي دائماً على العائد على الاستثمار، تقليل التكاليف، وفرص النمو الاستراتيجي." },
-            es: { title: "Análisis de Negocio", desc: "Creo que los datos solo son valiosos si conducen a resultados comerciales. Mi análisis se centra en el ROI." }
-        },
-        quality: {
-            en: { title: "Data Quality First", desc: "Garbage in, garbage out. I apply rigorous ETL and cleaning processes to ensure that your reports are built on a 100% accurate foundation." },
-            ar: { title: "جودة البيانات أولاً", desc: "أساس التحليل هو دقة البيانات. أقوم بعمليات تنظيف وفلترة دقيقة لضمان أن تقاريرك مبنية على أساس صحيح بنسبة 100%." },
-            es: { title: "Calidad de Datos", desc: "Aplico procesos rigurosos de limpieza para asegurar que sus informes sean precisos." }
-        },
-        viz: {
-            en: { title: "Actionable Visuals", desc: "Visualizations should tell a story, not just show charts. I design dashboards that stakeholders can understand at a glance to take immediate action." },
-            ar: { title: "مرئيات قابلة للتنفيذ", desc: "تصوير البيانات يجب أن يحكي قصة. أصمم لوحات بيانات تمكن أصحاب القرار من فهم الموقف في لمحة واتخاذ إجراءات فورية." },
-            es: { title: "Visuales Accionables", desc: "Diseño cuadros de mando que se pueden entender de un vistazo para tomar medidas inmediatas." }
-        }
-    };
-
-    const projectData = {
-        hr: { 
-            en: { title: "HR Attrition Analysis", o: "Identify factors behind turnover.", c: "High turnover rates.", s: "Power BI dashboard with DAX.", i: "15% reduction opportunity.", t: "Power BI, DAX" },
-            ar: { title: "تحليل استقالات الموظفين", o: "تحديد أسباب ترك العمل.", c: "معدلات دوران عالية.", s: "لوحة بيانات Power BI.", i: "فرصة تقليل 15%.", t: "Power BI, DAX" },
-            es: { title: "Análisis de Rotación", o: "Identificar factores.", c: "Alta rotación.", s: "Dashboard Power BI.", i: "Mejora del 15%.", t: "Power BI, DAX" },
-            imgs: ['hr.png.png', 'hr.png2.png', 'hr.png3.png']
-        },
-        sales: {
-            en: { title: "Sales Performance Hub", o: "Centralize sales data.", c: "Fragmented data.", s: "Unified ETL pipeline.", i: "40% faster reporting.", t: "Excel, Power BI" },
-            ar: { title: "مركز أداء المبيعات", o: "مركزية البيانات.", c: "بيانات مشتتة.", s: "مسار ETL موحد.", i: "سرعة تقارير 40%.", t: "Excel, Power BI" },
-            es: { title: "Hub de Ventas", o: "Centralizar datos.", c: "Datos fragmentados.", s: "Pipeline ETL.", i: "40% más rápido.", t: "Excel, Power BI" },
-            imgs: ['sales.png1.png', 'sales.png2.png', 'sales.png3.png']
-        },
-        furniture: { 
-            en: { title: "Furniture Loss Analysis", o: "Analyze loss patterns in furniture sales.", c: "High return and loss rates.", s: "Advanced Power BI dashboard.", i: "Identification of key loss drivers.", t: "Power BI, DAX" },
-            ar: { title: "تحليل خسائر الأثاث", o: "تحليل أنماط الخسارة في مبيعات الأثاث.", c: "معدلات مرتفعة من المرتجعات والخسائر.", s: "لوحة بيانات Power BI متطورة.", i: "تحديد الدوافع الرئيسية للخسارة.", t: "Power BI, DAX" },
-            es: { title: "Análisis de Pérdida de Muebles", o: "Analizar patrones de pérdida.", c: "Altas tasas de devolución.", s: "Dashboard avanzado de Power BI.", i: "Identificación de factores de pérdida.", t: "Power BI, DAX" },
-            imgs: ['Overviewpng1.png', 'Furniture Loss Analysispng2.png', 'Stakeholders Analysispng3.png']
-        }
-    };
 
 function updateUI() {
     const t = translations[currentLang];
@@ -703,9 +664,7 @@ function updateUI() {
     document.getElementById('title-projects').innerText = t.projects;
     document.getElementById('title-ratings').innerText = t.ratings;
     document.getElementById('title-why-me').innerText = t.whyMe;
-    document.getElementById('why1-t').innerText = t.why1t; document.getElementById('why1-d').innerText = t.why1d;
-    document.getElementById('why2-t').innerText = t.why2t; document.getElementById('why2-d').innerText = t.why2d;
-    document.getElementById('why3-t').innerText = t.why3t; document.getElementById('why3-d').innerText = t.why3d;
+    document.getElementById('why-main-label').innerText = t.whyMeBtnLabel;
     document.getElementById('step1').innerText = t.step1;
     document.getElementById('step2').innerText = t.step2;
     document.getElementById('step3').innerText = t.step3;
@@ -763,6 +722,38 @@ function updateUI() {
             updateUI();
         }, 1000);
     }
+
+    /* دالة فتح شبكة "لماذا تختارني" في الصفحة التعريفية */
+    function openWhyMeGrid() {
+        lastScrollPos = window.scrollY;
+        const t = translations[currentLang];
+        document.getElementById('case-header-content').innerHTML = `
+            <div class="case-header">
+                <h2>${t.whyMe}</h2>
+            </div>
+            <div class="grid-container" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:20px; padding:20px 0;">
+                <div class="card-3d active" style="max-width:100%; cursor:default;">
+                    <svg viewBox="0 0 24 24" style="width:45px; fill:#0056b3; margin-bottom:15px;"><path d="M13 3c-4.97 0-9 4.03-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42C8.27 19.99 10.51 21 13 21c4.97 0 9-4.03 9-9s-4.03-9-9-9zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z"/></svg>
+                    <h3 style="color:var(--main-blue); margin-bottom:10px;">${t.why1t}</h3>
+                    <p style="color:var(--text-gray); font-size:15px; line-height:1.6;">${t.why1d}</p>
+                </div>
+                <div class="card-3d active" style="max-width:100%; cursor:default;">
+                    <svg viewBox="0 0 24 24" style="width:45px; fill:#0056b3; margin-bottom:15px;"><path d="M21 7L9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59 21 7z"/></svg>
+                    <h3 style="color:var(--main-blue); margin-bottom:10px;">${t.why2t}</h3>
+                    <p style="color:var(--text-gray); font-size:15px; line-height:1.6;">${t.why2d}</p>
+                </div>
+                <div class="card-3d active" style="max-width:100%; cursor:default;">
+                    <svg viewBox="0 0 24 24" style="width:45px; fill:#0056b3; margin-bottom:15px;"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                    <h3 style="color:var(--main-blue); margin-bottom:10px;">${t.why3t}</h3>
+                    <p style="color:var(--text-gray); font-size:15px; line-height:1.6;">${t.why3d}</p>
+                </div>
+            </div>`;
+        document.getElementById('study-images').innerHTML = "";
+        document.getElementById('main-site').style.display = 'none';
+        document.getElementById('case-study-view').style.display = 'block';
+        window.scrollTo(0,0);
+    }
+
     function showJourney(id) {
         lastScrollPos = window.scrollY;
         const d = journeyData[id][currentLang];
@@ -780,21 +771,6 @@ function updateUI() {
     function showExpertise(id) {
         lastScrollPos = window.scrollY;
         const d = expertiseData[id][currentLang];
-        document.getElementById('case-header-content').innerHTML = `
-            <div class="case-header">
-                <h2>${d.title}</h2>
-                <p style="font-size:18px; line-height:1.8; color:var(--text-gray);">${d.desc}</p>
-            </div>`;
-        document.getElementById('study-images').innerHTML = "";
-        document.getElementById('main-site').style.display = 'none';
-        document.getElementById('case-study-view').style.display = 'block';
-        window.scrollTo(0,0);
-    }
-
-    /* دالة عرض تفاصيل "لماذا تختارني" */
-    function showWhyDetail(id) {
-        lastScrollPos = window.scrollY;
-        const d = whyDetailData[id][currentLang];
         document.getElementById('case-header-content').innerHTML = `
             <div class="case-header">
                 <h2>${d.title}</h2>
