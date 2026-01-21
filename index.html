@@ -793,7 +793,7 @@ function updateUI() {
     document.getElementById('exp3').innerText = t.exp3;
     document.getElementById('exp4').innerText = t.exp4;    
 
-    // تحديث صور المعاينة الخارجية لتكون أول صورة في المصفوفة
+    // تحديث صور المعاينة الخارجية لتكون أول صورة في المصفوفة فقط
     document.getElementById('p1-img').src = projectData.hr.imgs[0];
     document.getElementById('p2-img').src = projectData.sales.imgs[0];
     document.getElementById('p3-img').src = projectData.furniture.imgs[0];
@@ -954,13 +954,13 @@ function updateUI() {
             furniture: "https://app.powerbi.com/view?r=eyJrIjoiYzU4Yjg3OGMtYTQwZC00MzRiLTk5YzctZjdiMzMzNGU5NzVkIiwidCI6ImRiYzRiODI5LTY3ZDgtNDYyMy1hOTA1LWY2YjY2ZmUwMWU1MiJ9"
         };
         
-        // الداشبورد التفاعلي يظهر أولاً قبل الصور التوضيحية
+        // التعديل الأساسي: لينك Power BI التفاعلي يظهر أولاً وبشكل بارز
         let interactiveContent = `
             <div class="case-iframe-wrapper">
                 <iframe title="${d.title}" src="${iframeUrls[id]}" allowFullScreen="true"></iframe>
             </div>`;
             
-        // الصور التوضيحية المرتبطة بالمشروع فقط
+        // الصور التوضيحية الإضافية تظهر بالأسفل كمرجع
         const projectImages = projectData[id].imgs.map(src => `<img src="${src}" style="width:100%; margin-bottom:20px; border-radius:15px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">`).join('');
         
         document.getElementById('case-header-content').innerHTML = `
