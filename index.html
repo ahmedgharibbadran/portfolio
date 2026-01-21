@@ -954,14 +954,11 @@ function updateUI() {
             furniture: "https://app.powerbi.com/view?r=eyJrIjoiYzU4Yjg3OGMtYTQwZC00MzRiLTk5YzctZjdiMzMzNGU5NzVkIiwidCI6ImRiYzRiODI5LTY3ZDgtNDYyMy1hOTA1LWY2YjY2ZmUwMWU1MiJ9"
         };
         
-        // التعديل الأساسي: لينك Power BI التفاعلي يظهر أولاً وبشكل بارز
+        // التعديل الأساسي: عرض لينك Power BI التفاعلي فقط وحذف الصور المتكررة
         let interactiveContent = `
             <div class="case-iframe-wrapper">
                 <iframe title="${d.title}" src="${iframeUrls[id]}" allowFullScreen="true"></iframe>
             </div>`;
-            
-        // الصور التوضيحية الإضافية تظهر بالأسفل كمرجع
-        const projectImages = projectData[id].imgs.map(src => `<img src="${src}" style="width:100%; margin-bottom:20px; border-radius:15px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">`).join('');
         
         document.getElementById('case-header-content').innerHTML = `
             <div class="case-header">
@@ -975,7 +972,7 @@ function updateUI() {
                 </div>
             </div>`;
             
-        document.getElementById('study-images').innerHTML = interactiveContent + projectImages;
+        document.getElementById('study-images').innerHTML = interactiveContent;
         document.getElementById('main-site').style.display = 'none';
         document.getElementById('case-study-view').style.display = 'block';
         window.scrollTo(0,0);
