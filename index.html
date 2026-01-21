@@ -233,8 +233,8 @@
         }
         .dashboard-wrapper {
             width: 100%;
-            max-width: 1000px; /* تحجيم العرض الأقصى للداشبورد */
-            height: 550px; /* تقليل الارتفاع ليصبح أكثر تناسقاً */
+            max-width: 1000px; 
+            height: 550px; 
             background: #fff;
             border: 1px solid #eee;
             border-radius: 20px;
@@ -291,8 +291,8 @@
             overflow: hidden; 
             width: 100%; 
         }
-        .p-img { width: 100%; line-height: 0; }
-        .p-img img { width: 100%; height: auto; display: block; object-fit: cover; }
+        .p-img { width: 100%; line-height: 0; border-bottom: 1px solid #eee; background: #fefefe; }
+        .p-img iframe { width: 100%; height: 350px; border: none; }
         .p-text { width: 100%; padding: 30px; box-sizing: border-box; text-align: center; }
 
         @media (min-width: 768px) {
@@ -469,21 +469,27 @@
     <div class="section-title" id="title-projects"></div>
     <div class="projects-wrapper">
         <div class="project-item reveal"> 
-            <div class="p-img"><img src="hr.png.png"></div>
+            <div class="p-img">
+                <iframe title="HR_Attrition_Analysis_PowerBI" src="https://app.powerbi.com/view?r=eyJrIjoiMWRlYTkyZmUtMzk3MS00ZDQxLTkxZjktMTQ0NzdlMzM1ZWVjIiwidCI6ImRiYzRiODI5LTY3ZDgtNDYyMy1hOTA1LWY2YjY2ZmUwMWU1MiJ9" frameborder="0" allowFullScreen="true"></iframe>
+            </div>
             <div class="p-text">
                 <h3 id="p1-title"></h3>
                 <div class="btn-view" onclick="showStudy('hr')" id="p1-btn" style="cursor: pointer;"></div>
             </div>
         </div>
         <div class="project-item reveal">
-            <div class="p-img"><img src="sales.png1.png"></div>
+            <div class="p-img">
+                <iframe title="Project Completion" src="https://app.powerbi.com/view?r=eyJrIjoiMDAwMzE3NmItMGJkZC00NGM4LTkzZTgtNGVmM2JkOWQ4YzJiIiwidCI6ImRiYzRiODI5LTY3ZDgtNDYyMy1hOTA1LWY2YjY2ZmUwMWU1MiJ9" frameborder="0" allowFullScreen="true"></iframe>
+            </div>
             <div class="p-text">
                 <h3 id="p2-title"></h3>
                 <div class="btn-view" onclick="showStudy('sales')" id="p2-btn" style="cursor: pointer;"></div>
             </div>
         </div>
         <div class="project-item reveal"> 
-            <div class="p-img"><img src="Overviewpng1.png"></div>
+            <div class="p-img">
+                <iframe title="Global Superstore Dataset_Strategy Analytica" src="https://app.powerbi.com/view?r=eyJrIjoiYzU4Yjg3OGMtYTQwZC00MzRiLTk5YzctZjdiMzMzNGU5NzVkIiwidCI6ImRiYzRiODI5LTY3ZDgtNDYyMy1hOTA1LWY2YjY2ZmUwMWU1MiJ9" frameborder="0" allowFullScreen="true"></iframe>
+            </div>
             <div class="p-text">
                 <h3 id="p3-title"></h3>
                 <div class="btn-view" onclick="showStudy('furniture')" id="p3-btn" style="cursor: pointer;"></div>
@@ -495,7 +501,7 @@
     <div class="interactive-section reveal">
         <p style="color: var(--text-gray); margin-bottom: 20px;" id="dashboard-desc">Dive into my analytics process with this live dashboard. Feel free to interact with filters!</p>
         <div class="dashboard-wrapper">
-            <iframe title="AGB Insights - Interactive Experience" width="100%" height="100%" src="https://app.powerbi.com/view?r=eyJrIjoiYTRlZjI5NzEtYjRkMi00YzVmLWI4ZjItOGI3ZWRmZDI1YjliIiwidCI6IjQ5YzNlNDliLTk4MmUtNDUyYS04YjI2LWE2ZTM1ZTA0YzU3OCIsImMiOjh9" frameborder="0" allowFullScreen="true"></iframe>
+            <iframe title="Global Superstore Dataset_Strategy Analytica" width="100%" height="100%" src="https://app.powerbi.com/view?r=eyJrIjoiYzU4Yjg3OGMtYTQwZC00MzRiLTk5YzctZjdiMzMzNGU5NzVkIiwidCI6ImRiYzRiODI5LTY3ZDgtNDYyMy1hOTA1LWY2YjY2ZmUwMWU1MiJ9" frameborder="0" allowFullScreen="true"></iframe>
         </div>
     </div>
 
@@ -757,19 +763,19 @@
             en: { title: "HR Attrition Analysis", o: "Identify factors behind turnover.", c: "High turnover rates.", s: "Power BI dashboard with DAX.", i: "15% reduction opportunity.", t: "Power BI, DAX" },
             ar: { title: "تحليل استقالات الموظفين", o: "تحديد أسباب ترك العمل.", c: "معدلات دوران عالية.", s: "لوحة بيانات Power BI.", i: "فرصة تقليل 15%.", t: "Power BI, DAX" },
             es: { title: "Análisis de Rotación", o: "Identificar factores.", c: "Alta rotación.", s: "Dashboard Power BI.", i: "Meجورا del 15%.", t: "Power BI, DAX" },
-            imgs: ['hr.png.png', 'hr.png2.png', 'hr.png3.png']
+            imgs: []
         },
         sales: {
-            en: { title: "Sales Performance Hub", o: "Centralize sales data.", c: "Fragmented data.", s: "Unified ETL pipeline.", i: "40% faster reporting.", t: "Excel, Power BI" },
-            ar: { title: "مركز أداء المبيعات", o: "مركزية البيانات.", c: "بيانات مشتتة.", s: "مسار ETL موحد.", i: "سرعة تقارير 40%.", t: "Excel, Power BI" },
-            es: { title: "Hub de Ventas", o: "Centralizar datos.", c: "Datos fragmentados.", s: "Pipeline ETL.", i: "40% más rápido.", t: "Excel, Power BI" },
-            imgs: ['sales.png1.png', 'sales.png2.png', 'sales.png3.png']
+            en: { title: "Project Completion Report", o: "Track project milestones and timelines.", c: "Fragmented progress tracking.", s: "Unified Power BI report.", i: "Improved deadline compliance.", t: "Excel, Power BI" },
+            ar: { title: "تقرير إنجاز المشاريع", o: "تتبع المعالم والخطوط الزمنية للمشروع.", c: "تتبع غير منظم للتقدم.", s: "تقرير Power BI موحد.", i: "تحسين الالتزام بالمواعيد النهائية.", t: "Excel, Power BI" },
+            es: { title: "Informe de Cumplimiento", o: "Rastrear hitos y plazos.", c: "Seguimiento fragmentado.", s: "Informe Power BI unificado.", i: "Cumplimiento de plazos mejorado.", t: "Excel, Power BI" },
+            imgs: []
         },
         furniture: { 
-            en: { title: "Furniture Loss Analysis", o: "Analyze loss patterns in furniture sales.", c: "High return and loss rates.", s: "Advanced Power BI dashboard.", i: "Identification of key loss drivers.", t: "Power BI, DAX" },
-            ar: { title: "تحليل خسائر الأثاث", o: "تحليل أنماط الخسارة في مبيعات الأثاث.", c: "معدلات مرتفعة من المرتجعات والخسائر.", s: "لوحة بيانات Power BI متطورة.", i: "تحديد الدوافع الرئيسية للخسارة.", t: "Power BI, DAX" },
-            es: { title: "Análisis de Pérdida de Muebles", o: "Analizar patrones de pérdida.", c: "Altas tasas de devolución.", s: "Dashboard avanzado de Power BI.", i: "Identificación de factores de pérdida.", t: "Power BI, DAX" },
-            imgs: ['Overviewpng1.png', 'Furniture Loss Analysispng2.png', 'Stakeholders Analysispng3.png']
+            en: { title: "Global Superstore Strategy", o: "Strategic analysis of global sales data.", c: "Complexity in international markets.", s: "Strategy Analytica Dashboard.", i: "Optimized expansion strategy.", t: "Power BI, DAX" },
+            ar: { title: "استراتيجية المتجر العالمي", o: "تحليل استراتيجي لبيانات المبيعات العالمية.", c: "التعقيد في الأسواق الدولية.", s: "لوحة بيانات Strategy Analytica.", i: "استراتيجية توسع محسنة.", t: "Power BI, DAX" },
+            es: { title: "Estrategia Global", o: "Análisis estratégico de ventas.", c: "Complejidad en mercados internacionales.", s: "Dashboard Strategy Analytica.", i: "Estrategia de expansión optimizada.", t: "Power BI, DAX" },
+            imgs: []
         }
     };
 
@@ -796,7 +802,6 @@ function updateUI() {
     document.getElementById('dashboard-desc').innerText = t.dashDesc;
     document.getElementById('nav-status').innerText = t.status;
 
-    /* Update New Why Hero Section */
     document.getElementById('why-me-hero-title').innerText = t.whyHeroTitle;
     document.getElementById('why-me-hero-desc').innerText = t.whyHeroDesc;
 
@@ -972,7 +977,12 @@ function updateUI() {
         lastScrollPos = window.scrollY;
         const d = projectData[id][currentLang];
         const t = translations[currentLang];
-        const imgs = projectData[id].imgs.map(src => `<img src="${src}" style="width:100%; margin-bottom:20px; border-radius:15px;">`).join('');
+        const iframeUrls = {
+            hr: "https://app.powerbi.com/view?r=eyJrIjoiMWRlYTkyZmUtMzk3MS00ZDQxLTkxZjktMTQ0NzdlMzM1ZWVjIiwidCI6ImRiYzRiODI5LTY3ZDgtNDYyMy1hOTA1LWY2YjY2ZmUwMWU1MiJ9",
+            sales: "https://app.powerbi.com/view?r=eyJrIjoiMDAwMzE3NmBeMGJkZC00NGM4LTkzZTgtNGVmM2JkOWQ4YzJiIiwidCI6ImRiYzRiODI5LTY3ZDgtNDYyMy1hOTA1LWY2YjY2ZmUwMWU1MiJ9",
+            furniture: "https://app.powerbi.com/view?r=eyJrIjoiYzU4Yjg3OGMtYTQwZC00MzRiLTk5YzctZjdiMzMzNGU5NzVkIiwidCI6ImRiYzRiODI5LTY3ZDgtNDYyMy1hOTA1LWY2YjY2ZmUwMWU1MiJ9"
+        };
+        const imgs = `<iframe title="${d.title}" src="${iframeUrls[id]}" style="width:100%; height:500px; border-radius:15px; border:none;" allowFullScreen="true"></iframe>`;
         document.getElementById('case-header-content').innerHTML = `
             <div class="case-header">
                 <h2>${d.title}</h2>
