@@ -15,7 +15,7 @@
             --nav-bg: #f9f9f9;  /* لون خلفية اللوجو المخصوص للهيدر */
             --deep-black: #000000;
             --text-gray: #555555; 
-            --glow-effect: 0 4px 15px rgba(0, 86, 179, 0.2);
+            --glow-effect: 0 10px 30px rgba(0, 86, 179, 0.15);
             --footer-black: transparent; 
         }
         body { background-color: var(--bg-white); color: var(--deep-black); font-family: 'Inter', sans-serif; margin: 0; text-align: center; scroll-behavior: smooth; overflow-x: hidden; }
@@ -141,50 +141,53 @@
         }
         body.rtl .section-title { text-align: right; border-left: none; border-right: 5px solid var(--main-blue); padding-left: 0; padding-right: 15px; margin: 40px 10% 20px 0; }
 
-        /* New Why Me Hero Card Design */
+        /* Improved Why Me Hero Card Design */
         .why-container-main {
             display: flex;
             justify-content: center;
-            padding: 0 10%;
+            padding: 20px 10%;
             margin-bottom: 50px;
         }
         .why-hero-card {
-            background: linear-gradient(135deg, #ffffff 0%, #f4f8ff 100%);
-            border: 1px solid rgba(0, 86, 179, 0.1);
-            padding: 40px;
-            border-radius: 25px;
-            transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(244,248,255,0.9) 100%);
+            border: 2px solid rgba(0, 86, 179, 0.1);
+            padding: 50px 30px;
+            border-radius: 30px;
+            transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             text-align: center;
             cursor: pointer;
             width: 100%;
-            max-width: 500px;
+            max-width: 600px;
             position: relative;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
-            overflow: hidden;
+            box-shadow: var(--glow-effect);
+            backdrop-filter: blur(10px);
         }
         .why-hero-card:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--glow-effect);
+            transform: translateY(-15px) scale(1.02);
             border-color: var(--main-blue);
+            box-shadow: 0 20px 40px rgba(0, 86, 179, 0.25);
         }
         .why-hero-card .icon-badge {
-            display: inline-block;
+            display: inline-flex;
             background: white;
-            padding: 15px;
+            padding: 20px;
             border-radius: 50%;
-            box-shadow: 0 5px 15px rgba(0, 86, 179, 0.1);
-            margin-bottom: 20px;
+            box-shadow: 0 10px 20px rgba(0, 86, 179, 0.1);
+            margin-bottom: 25px;
+            border: 1px solid #eee;
         }
         .why-hero-card h3 {
             color: var(--main-blue);
-            font-size: 24px;
-            font-weight: 800;
+            font-size: 28px;
+            font-weight: 900;
             margin: 0;
+            letter-spacing: -0.5px;
         }
         .why-hero-card p {
             color: var(--text-gray);
-            margin-top: 10px;
-            font-size: 15px;
+            margin-top: 15px;
+            font-size: 16px;
+            font-weight: 500;
         }
 
         .grid-container, .process-flow { 
@@ -210,16 +213,24 @@
             align-items: center;
         }
 
-        /* --- تعديل وضع الموبايل (Grid 2 Columns) --- */
+        /* --- استجابة الموبايل المطورة --- */
         @media (max-width: 768px) {
-            .why-container-main, .grid-container, .process-flow { 
+            .why-container-main {
+                padding: 10px 20px;
+            }
+            .why-hero-card {
+                padding: 40px 20px;
+            }
+            .why-hero-card h3 {
+                font-size: 22px;
+            }
+            .grid-container, .process-flow { 
                 display: grid !important;
-                grid-template-columns: repeat(2, 1fr) !important; /* مربعين جنب بعض */
+                grid-template-columns: repeat(2, 1fr) !important;
                 gap: 12px !important;
                 padding: 0 15px !important;
             }
-            .why-container-main { display: flex !important; }
-            .card-3d, .process-step, .why-hero-card { 
+            .card-3d, .process-step { 
                 max-width: 100% !important; 
                 padding: 20px 10px !important;
             }
@@ -383,7 +394,7 @@
     <div class="why-container-main">
         <div class="why-hero-card reveal" onclick="openWhyMeDetailed()">
             <div class="icon-badge">
-                <svg viewBox="0 0 24 24" style="width:40px; fill:#0056b3;"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z"/></svg>
+                <svg viewBox="0 0 24 24" style="width:50px; fill:#0056b3;"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z"/></svg>
             </div>
             <h3 id="why-me-hero-title">Why Choose Me?</h3>
             <p id="why-me-hero-desc">Discover how I turn data into value.</p>
@@ -586,35 +597,49 @@
         setTimeout(startTypingEffect, speed);
     }
 
-    /* New detailed page for Why Choose Me */
+    /* Updated detailed page for Why Choose Me */
     function openWhyMeDetailed() {
         lastScrollPos = window.scrollY;
         const t = translations[currentLang];
+        const isRtl = currentLang === 'ar' ? 'rtl' : 'ltr';
+        
         document.getElementById('case-header-content').innerHTML = `
-            <div class="case-header">
-                <h2>${t.whyMe}</h2>
+            <div class="case-header" style="text-align: center;">
+                <h2 style="font-size: 32px; margin-bottom: 10px;">${t.whyMe}</h2>
+                <div style="width: 60px; hieght: 4px; background: var(--main-blue); margin: 0 auto 20px;"></div>
             </div>
-            <div class="grid-container" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap:25px; padding:30px 10%;">
-                <div class="card-3d active" style="max-width:100%; cursor:default;">
-                    <div class="why-icon" style="margin-bottom:20px;"><svg viewBox="0 0 24 24" style="width:45px; fill:#0056b3;"><path d="M13 3c-4.97 0-9 4.03-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42C8.27 19.99 10.51 21 13 21c4.97 0 9-4.03 9-9s-4.03-9-9-9zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z"/></svg></div>
-                    <h3>${t.why1t}</h3>
-                    <p style="color:var(--text-gray); line-height:1.6; margin-top:10px;">${t.why1d}</p>
+            <div class="grid-container" dir="${isRtl}" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; padding: 40px 5%; max-width: 1200px; margin: 0 auto;">
+                <div class="card-3d active reveal" style="max-width: 350px; flex: 1 1 300px; padding: 40px 25px; cursor: default; border: 2px solid rgba(0, 86, 179, 0.05); box-shadow: 0 15px 35px rgba(0,0,0,0.05);">
+                    <div class="why-icon" style="margin-bottom: 25px; background: rgba(0, 86, 179, 0.05); padding: 20px; border-radius: 50%; width: fit-content;">
+                        <svg viewBox="0 0 24 24" style="width: 45px; fill: var(--main-blue);"><path d="M13 3c-4.97 0-9 4.03-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42C8.27 19.99 10.51 21 13 21c4.97 0 9-4.03 9-9s-4.03-9-9-9zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z"/></svg>
+                    </div>
+                    <h3 style="font-size: 22px; margin-bottom: 15px;">${t.why1t}</h3>
+                    <p style="color: var(--text-gray); line-height: 1.8; font-size: 15px;">${t.why1d}</p>
                 </div>
-                <div class="card-3d active" style="max-width:100%; cursor:default;">
-                    <div class="why-icon" style="margin-bottom:20px;"><svg viewBox="0 0 24 24" style="width:45px; fill:#0056b3;"><path d="M21 7L9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59 21 7z"/></svg></div>
-                    <h3>${t.why2t}</h3>
-                    <p style="color:var(--text-gray); line-height:1.6; margin-top:10px;">${t.why2d}</p>
+                <div class="card-3d active reveal" style="max-width: 350px; flex: 1 1 300px; padding: 40px 25px; cursor: default; border: 2px solid rgba(0, 86, 179, 0.05); box-shadow: 0 15px 35px rgba(0,0,0,0.05);">
+                    <div class="why-icon" style="margin-bottom: 25px; background: rgba(0, 86, 179, 0.05); padding: 20px; border-radius: 50%; width: fit-content;">
+                        <svg viewBox="0 0 24 24" style="width: 45px; fill: var(--main-blue);"><path d="M21 7L9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59 21 7z"/></svg>
+                    </div>
+                    <h3 style="font-size: 22px; margin-bottom: 15px;">${t.why2t}</h3>
+                    <p style="color: var(--text-gray); line-height: 1.8; font-size: 15px;">${t.why2d}</p>
                 </div>
-                <div class="card-3d active" style="max-width:100%; cursor:default;">
-                    <div class="why-icon" style="margin-bottom:20px;"><svg viewBox="0 0 24 24" style="width:45px; fill:#0056b3;"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></div>
-                    <h3>${t.why3t}</h3>
-                    <p style="color:var(--text-gray); line-height:1.6; margin-top:10px;">${t.why3d}</p>
+                <div class="card-3d active reveal" style="max-width: 350px; flex: 1 1 300px; padding: 40px 25px; cursor: default; border: 2px solid rgba(0, 86, 179, 0.05); box-shadow: 0 15px 35px rgba(0,0,0,0.05);">
+                    <div class="why-icon" style="margin-bottom: 25px; background: rgba(0, 86, 179, 0.05); padding: 20px; border-radius: 50%; width: fit-content;">
+                        <svg viewBox="0 0 24 24" style="width: 45px; fill: var(--main-blue);"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                    </div>
+                    <h3 style="font-size: 22px; margin-bottom: 15px;">${t.why3t}</h3>
+                    <p style="color: var(--text-gray); line-height: 1.8; font-size: 15px;">${t.why3d}</p>
                 </div>
             </div>`;
         document.getElementById('study-images').innerHTML = "";
         document.getElementById('main-site').style.display = 'none';
         document.getElementById('case-study-view').style.display = 'block';
         window.scrollTo(0,0);
+        
+        // Trigger reveal animations on the new page
+        setTimeout(() => {
+            document.querySelectorAll('#case-study-view .reveal').forEach(el => el.classList.add('active'));
+        }, 100);
     }
 
     const journeyData = {
