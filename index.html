@@ -323,7 +323,7 @@
                     <stop offset="100%" style="stop-color:#0056b3; stop-opacity:1" />
                 </linearGradient>
             </defs>
-            <text x="0" y="48" font-family="'Arial Black', sans-serif" font-size="44" font-weight="900" letter-spacing="-3" fill="#0056b3">AGB</text>
+            <text x="0" y="48" font-family="'Arial Black', sans-serif" font-size="44" font-weight="900" letter-spacing="-3" class="agb-header-txt" fill="currentColor">AGB</text>
             <path d="M5 55 L45 55 L75 32 L115 38 L158 12" stroke="url(#welcomeGradient)" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
             <path d="M158 12 L145 15 L152 23 Z" fill="#0056b3" />
             <circle cx="75" cy="32" r="2.5" fill="#0056b3" fill-opacity="0.5" />
@@ -551,11 +551,14 @@
             copyMsg: "¡Copiado!", cv: "CV", lang: "Idiomas"
         }
     };
+    
+    // تحديث النصوص لتكون واقعية ومهنية (تم حذف كلمة خبير)
     const typingJobs = {
-        en: ["Data Analyst", "Power BI Specialist", "Problem Solver", "Insights Explorer"],
-        ar: ["محلل بيانات", "خبير Power BI", "محلل مشكلات", "مستكشف رؤى"],
-        es: ["Analista de Datos", "Especialista en Power BI", "Analista de Problemas"]
+        en: ["Data Analyst", "Power BI", "SQL", "Excel", "Insights Explorer"],
+        ar: ["محلل بيانات", "باور بي آي", "SQL", "إكسيل", "مستكشف رؤى"],
+        es: ["Analista de Datos", "Power BI", "SQL", "Excel", "Analista de Problemas"]
     };
+    
     let jobIdx = 0;
     let charIdx = 0;
     let isDeleting = false;
