@@ -87,21 +87,10 @@
         .lang-dropdown { position: relative; display: inline-block; cursor: pointer; padding: 8px 12px; background: rgba(0, 86, 179, 0.05); border-radius: 8px; transition: 0.3s; }
         .lang-trigger { display: flex; align-items: center; gap: 8px; font-weight: 700; color: var(--main-blue); font-size: 14px; }
         .lang-trigger svg { width: 12px; height: 12px; transition: 0.3s; fill: var(--main-blue); }
+        .lang-dropdown:hover .lang-trigger svg { transform: rotate(180deg); }
+        .lang-menu { position: absolute; top: 110%; right: 0; background: var(--bg-white); box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-radius: 12px; display: none; min-width: 140px; z-index: 1000; padding: 10px 0; border: 1px solid #eee; }
         
-        /* تحسينات قائمة اللغات */
-        .lang-menu { 
-            position: absolute; 
-            top: 110%; 
-            right: 0; 
-            background: var(--bg-white); 
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1); 
-            border-radius: 12px; 
-            display: none; 
-            min-width: 140px; 
-            z-index: 1001; 
-            padding: 10px 0; 
-            border: 1px solid #eee;
-        }
+        /* تحسين استجابة القائمة */
         .lang-dropdown:hover .lang-menu, .lang-dropdown.active .lang-menu { display: block; }
         
         .lang-item { display: flex; align-items: center; gap: 10px; padding: 10px 20px; transition: 0.2s; color: var(--deep-black); text-decoration: none; font-size: 14px; }
@@ -473,11 +462,11 @@
         </div>
         <div class="lang-switch">
             <div class="lang-dropdown" id="lang-dropdown">
-                <div class="lang-trigger" onclick="toggleLangMenu(event)">
+                <div class="lang-trigger" onclick="toggleLangDropdown(event)">
                     <span id="lang-label">Languages</span>
                     <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
                 </div>
-                <div class="lang-menu" id="lang-menu">
+                <div class="lang-menu">
                     <a href="javascript:void(0)" class="lang-item" onclick="setLang('en', event)"><img src="https://flagcdn.com/w40/gb.png"> English</a>
                     <a href="javascript:void(0)" class="lang-item" onclick="setLang('ar', event)"><img src="https://flagcdn.com/w40/eg.png"> العربية</a>
                     <a href="javascript:void(0)" class="lang-item" onclick="setLang('es', event)"><img src="https://flagcdn.com/w40/es.png"> Español</a>
@@ -654,7 +643,7 @@
             tagline: "Convirtiendo Datos Complejos en Perspectivas Accionables",
             about: "Ayudo a las organizaciones a dar sentido a sus data convirtiendo conjuntos de data complejos en conocimientos sencillos y claros.",
             journey: "Trayectoria", 
-            expertise: "Experience", 
+            expertise: "Experiencia", 
             projects: "Proyectos", 
             ratings: "Valoraciones",
             whyMe: "¿Por qué elegirme?",
@@ -712,110 +701,6 @@
         setTimeout(startTypingEffect, speed);
     }
 
-    function toggleLangMenu(event) {
-        event.stopPropagation();
-        const dropdown = document.getElementById('lang-dropdown');
-        dropdown.classList.toggle('active');
-    }
-
-    // إغلاق القائمة عند النقر في أي مكان آخر
-    document.addEventListener('click', () => {
-        const dropdown = document.getElementById('lang-dropdown');
-        if(dropdown) dropdown.classList.remove('active');
-    });
-
-    function setLang(lang, event) {
-        if(event) event.stopPropagation();
-        currentLang = lang;
-        localStorage.setItem('ahmedLang', lang);
-        
-        // إغلاق القائمة فوراً
-        const dropdown = document.getElementById('lang-dropdown');
-        if(dropdown) dropdown.classList.remove('active');
-        
-        jobIdx = 0; charIdx = 0;
-        updateUI();
-    }
-
-    function updateUI() {
-        const t = translations[currentLang];
-        if(!t) return;
-        document.body.className = currentLang === 'ar' ? 'rtl' : '';
-        
-        if (isDarkMode) {
-            document.body.classList.add('dark-theme');
-        } else {
-            document.body.classList.remove('dark-theme');
-        }
-        document.getElementById('welcome-name').innerText = t.name;
-        document.getElementById('welcome-tagline').innerText = t.tagline;
-        document.getElementById('welcome-btn').innerText = t.welcomeBtn; 
-        document.getElementById('main-name').innerText = t.name;
-        document.getElementById('about-me').innerHTML = t.about;
-        document.getElementById('title-journey').innerText = t.journey;
-        document.getElementById('title-expertise').innerText = t.expertise;
-        document.getElementById('title-projects').innerText = t.projects;
-        document.getElementById('title-ratings').innerText = t.ratings;
-        document.getElementById('title-why-me').innerText = t.whyMe;
-        document.getElementById('nav-status').innerText = t.status;
-
-        document.getElementById('why-me-hero-title').innerText = t.whyHeroTitle;
-        document.getElementById('why-me-hero-desc').innerText = t.whyHeroDesc;
-
-        document.getElementById('step1').innerText = t.step1;
-        document.getElementById('step2').innerText = t.step2;
-        document.getElementById('step3').innerText = t.step3;
-        document.getElementById('step4').innerText = t.step4;
-        document.getElementById('step5').innerText = t.step5;
-        document.getElementById('skill3').innerText = t.skill3;
-        document.getElementById('skill4').innerText = t.skill4;
-        document.getElementById('skill6').innerText = t.skill6;    
-        document.getElementById('exp1').innerText = t.exp1;
-        document.getElementById('exp2').innerText = t.exp2;
-        document.getElementById('exp3').innerText = t.exp3;
-        document.getElementById('exp4').innerText = t.exp4;    
-
-        document.getElementById('p1-img').src = projectData.hr.imgs[0];
-        document.getElementById('p2-img').src = projectData.sales.imgs[0];
-        document.getElementById('p3-img').src = projectData.furniture.imgs[0];
-
-        document.getElementById('p1-title').innerText = projectData.hr[currentLang].title;
-        document.getElementById('p2-title').innerText = projectData.sales[currentLang].title;
-        document.getElementById('p3-title').innerText = projectData.furniture[currentLang].title;
-        document.getElementById('p1-btn').innerText = t.viewBtn;
-        document.getElementById('p2-btn').innerText = t.viewBtn;
-        document.getElementById('p3-btn').innerText = t.viewBtn;
-        document.getElementById('back-btn').innerText = t.back;
-        document.getElementById('view-ratings-text').innerText = t.viewRatings;
-        document.getElementById('lang-label').innerText = t.lang;
-
-        const iconContainer = document.getElementById('dark-mode-toggle');
-        iconContainer.innerHTML = isDarkMode ? 
-            `<svg viewBox="0 0 24 24"><path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1zM5.99 4.58a.996.996 0 00-1.41 0 .996.996 0 000 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41L5.99 4.58zm12.37 12.37a.996.996 0 00-1.41 0 .996.996 0 000 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41l-1.06-1.06zm1.06-10.96a.996.996 0 000-1.41.996.996 0 00-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06zM7.05 18.36a.996.996 0 000-1.41.996.996 0 00-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06z"/></svg>` : 
-            `<svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.389 5.389 0 0 1-4.4 5.06 5.406 5.406 0 0 1-5.6-5.6c.33-2.36 2.06-4.24 4.4-4.89C14.15 3.09 13.09 3 12 3z"/></svg>`;
-    }
-
-    function toggleDarkMode() {
-        isDarkMode = !isDarkMode;
-        localStorage.setItem('ahmedDarkMode', isDarkMode);
-        updateUI();
-    }
-
-    function startExploring() {
-        const overlay = document.getElementById('welcome-overlay');
-        overlay.classList.add('slide-up');  
-        setTimeout(() => { 
-            overlay.style.display = 'none'; 
-            const main = document.getElementById('main-site'); 
-            main.style.display = 'block'; 
-            setTimeout(() => {
-                main.style.opacity = '1';
-                startTypingEffect();
-            }, 50); 
-            updateUI();
-        }, 1000);
-    }
-
     function openWhyMeDetailed() {
         lastScrollPos = window.scrollY;
         const t = translations[currentLang];
@@ -854,6 +739,189 @@
         window.scrollTo(0,0);
     }
 
+    const journeyData = {
+        understand: {
+            en: { title: "Understand Business Needs", desc: "Defining clear objectives and understanding the key performance indicators (KPIs) critical to the business success." },
+            ar: { title: "فهم احتياجات العمل", desc: "تحديد أهداف واضحة وفهم مؤشرات الأداء الرئيسية (KPIs) الضرورية لنجاح الأعمال." },
+            es: { title: "Entender el Negocio", desc: "Definición de objetivos claros y comprensión de los indicadores clave de rendimiento (KPI) críticos." }
+        },
+        extract: {
+            en: { title: "Data Extraction", desc: "Connecting to various data sources to gather the raw information needed for analysis." },
+            ar: { title: "استخراج البيانات", desc: "الاتصال بمصادر البيانات المختلفة لجمع المعلومات الخام المطلوبة للتحليل." },
+            es: { title: "Extracción de Datos", desc: "Conexión a diversas fuentes de datos para recopilar la información necesaria para el análisis." }
+        },
+        clean: {
+            en: { title: "Data Cleaning & Transformation", desc: "Using Power Query to remove duplicates, fix errors, and transform data into a usable, structured format." },
+            ar: { title: "تنظيف وتحويل البيانات", desc: "استخدام Power Query لإزالة التكرارات، وإصلاح الأخطاء، وتحويل البيانات إلى تنسيق هيكلي قابل للاستخدام." },
+            es: { title: "Limpieza de Datos", desc: "Uso de Power Query para eliminar duplicados, corregير errores y transformar los datos." }
+        },
+        model: {
+            en: { title: "Data Modeling & DAX", desc: "Creating relationships between tables and writing DAX formulas to calculate complex business metrics." },
+            ar: { title: "نمذجة البيانات و DAX", desc: "إنشاء العلاقات بين الجداول وكتابة صيغ DAX لحساب مقاييس الأعمال المعقدة." },
+            es: { title: "Modelado y DAX", desc: "Creación de relaciones entre tablas y escritura de fórmulas DAX para métricas complejas." }
+        },
+        insight: {
+            en: { title: "Insights & Visualization", desc: "Designing intuitive dashboards that tell a story and help decision-makers take confident actions." },
+            ar: { title: "الرؤى والتمثيل المرئي", desc: "تصميم لوحات بيانات بديهية تحكي قصة البيانات وتساعد صناع القرار على اتخاذ إجراءات واثقة." },
+            es: { title: "Perspectivas y Visualización", desc: "Diseño de cuadros de mando intuitivos que cuentan una historia y ayudan a los tomadores de decisiones." }
+        }
+    };
+    const expertiseData = {
+        powerbi: {
+            en: { title: "Power BI", desc: "Advanced expertise in Power BI for creating interactive dashboards, connecting complex data sources, and building scalable BI solutions that drive strategic insights." },
+            ar: { title: "Power BI", desc: "خبرة متقدمة في Power BI لإنشاء لوحات بيانات تفاعلية، وربط مصادر البيانات المعقدة، وبناء حلول ذكاء أعمال قابلة للتوسع تدفع الرؤى الاستراتيجية." },
+            es: { title: "Power BI", desc: "Experiencia avanzada en Power BI para crear cuadros de mando interactivos y soluciones de BI." }
+        },
+        excel: {
+            en: { title: "Advanced Excel", desc: "Mastery of Excel for data manipulation, using Power Query for ETL processes, and Pivot Tables for rapid data summarization and analysis." },
+            ar: { title: "إكسيل متقدم", desc: "إتقان إكسيل لمعالجة البيانات، واستخدام Power Query لعمليات ETL، والجداول المحورية لتلخيص وتحليل البيانات بسرعة." },
+            es: { title: "Excel Avanzado", desc: "Maestría en Excel para manipulación de datos y Power Query." }
+        },
+        sql: {
+            en: { title: "SQL Querying", desc: "Proficient in writing complex SQL queries to extract, filter, and aggregate data from relational databases, ensuring a clean data foundation for analysis." },
+            ar: { title: "استعلامات SQL", desc: "براعة في كتابة استعلامات SQL المعقدة لاستخراج وتصفية وتجميع البيانات من قواعد البيانات المختلفة." },
+            es: { title: "SQL", desc: "Competente en la escritura de consultas SQL complejas." }
+        },
+        modeling: {
+            en: { title: "Data Modeling", desc: "Implementing Star and Snowflake schemas to optimize report performance and ensure data integrity across multiple tables." },
+            ar: { title: "نمذجة البيانات", desc: "تنفيذ مخططات Star و Snowflake لتحسين أداء التقارير وضمان سلامة البيانات عبر الجداول المتعددة." },
+            es: { title: "Modelado de Datos", desc: "Implementación de esquemas Star y Snowflake." }
+        },
+        dax: {
+            en: { title: "DAX Logic", desc: "Crafting efficient DAX formulas to calculate advanced business metrics, time intelligence, and custom dynamic KPIs." },
+            ar: { title: "منطق DAX", desc: "صياغة معادلات DAX فعالة لحساب مقاييس الأعمال المتقدمة، وذكاء الوقت، ومؤشرات الأداء الديناميكية." },
+            es: { title: "Lógica DAX", desc: "Creación de fórmulas DAX eficientes." }
+        },
+        etl: {
+            en: { title: "ETL Processes", desc: "Designing automated Extract, Transform, and Load workflows to streamline data preparation and reduce manual errors." },
+            ar: { title: "عمليات ETL", desc: "تصميم تدفقات عمل (استخراج، تحويل، تحميل) مؤتمتة لتبسيط إعداد البيانات وتقليل الأخطاء اليدوية." },
+            es: { title: "Procesos ETL", desc: "Diseño de flujos de trabajo ETL automatizados." }
+        },
+        viz: {
+            en: { title: "Data Visualization", desc: "Applying data storytelling principles to design clear and intuitive visuals that highlight trends and key findings for stakeholders." },
+            ar: { title: "تمثيل البيانات", desc: "تطبيق مبادئ سرد القصص بالبيانات لتصميم مرئيات واضحة وبديهية تبرز الاتجاهات والنتائج الرئيسية." },
+            es: { title: "Visualización de Datos", desc: "Aplicación de principios de storytelling de datos." }
+        }
+    };
+
+    const projectData = {
+        hr: { 
+            en: { title: "HR Attrition Analysis", o: "Identify factors behind turnover.", c: "High turnover rates.", s: "Power BI dashboard with DAX.", i: "15% reduction opportunity.", t: "Power BI, DAX" },
+            ar: { title: "تحليل استقالات الموظفين", o: "تحديد أسباب ترك العمل.", c: "معدلات دوران عالية.", s: "لوحة بيانات Power BI.", i: "فرصة تقليل 15%.", t: "Power BI, DAX" },
+            es: { title: "Análisis de Rotación", o: "Identificar factores.", c: "Alta rotación.", s: "Dashboard Power BI.", i: "Meجورا del 15%.", t: "Power BI, DAX" },
+            imgs: ['hr.png.png', 'hr.png2.png', 'hr.png3.png']
+        },
+        sales: {
+            en: { title: "Project Completion Report", o: "Track project milestones and timelines.", c: "Fragmented progress tracking.", s: "Unified Power BI report.", i: "Improved deadline compliance.", t: "Excel, Power BI" },
+            ar: { title: "تقرير إنجاز المشاريع", o: "تتبع المعالم والخطوط الزمنية للمشروع.", c: "تتبع غير منظم للتقدم.", s: "تقرير Power BI موحد.", i: "تحسين الالتزام بالمواعيد النهائية.", t: "Excel, Power BI" },
+            es: { title: "Informe de Cumplimiento", o: "Rastrear hitos y plazos.", c: "Seguimiento fragmentado.", s: "Informe Power BI unificado.", i: "Cumplimiento de plazos mejorado.", t: "Excel, Power BI" },
+            imgs: ['sales.png1.png', 'sales.png2.png', 'sales.png3.png']
+        },
+        furniture: { 
+            en: { title: "Global Superstore Strategy", o: "Strategic analysis of global sales data.", c: "Complexity in international markets.", s: "Strategy Analytica Dashboard.", i: "Optimized expansion strategy.", t: "Power BI, DAX" },
+            ar: { title: "استراتيجية المتجر العالمي", o: "تحليل استراتيجي لبيانات المبيعات العالمية.", c: "التعقيد في الأسواق الدولية.", s: "لوحة بيانات Strategy Analytica.", i: "استراتيجية توسع محسنة.", t: "Power BI, DAX" },
+            es: { title: "Estrategia Global", o: "Análisis estratégico de ventas.", c: "Compleجidad en mercados internacionales.", s: "Dashboard Strategy Analytica.", i: "Estrategia de expansión optimizada.", t: "Power BI, DAX" },
+            imgs: ['Overviewpng1.png', 'Furniture Loss Analysispng2.png', 'Stakeholders Analysispng3.png']
+        }
+    };
+
+function toggleLangDropdown(event) {
+    event.stopPropagation();
+    const dropdown = document.getElementById('lang-dropdown');
+    dropdown.classList.toggle('active');
+}
+
+// إغلاق القائمة عند الضغط في أي مكان خارجها
+document.addEventListener('click', () => {
+    const dropdown = document.getElementById('lang-dropdown');
+    if(dropdown) dropdown.classList.remove('active');
+});
+
+function updateUI() {
+    const t = translations[currentLang];
+    if(!t) return;
+    document.body.className = currentLang === 'ar' ? 'rtl' : '';
+    
+    if (isDarkMode) {
+        document.body.classList.add('dark-theme');
+    } else {
+        document.body.classList.remove('dark-theme');
+    }
+    document.getElementById('welcome-name').innerText = t.name;
+    document.getElementById('welcome-tagline').innerText = t.tagline;
+    document.getElementById('welcome-btn').innerText = t.welcomeBtn; 
+    document.getElementById('main-name').innerText = t.name;
+    document.getElementById('about-me').innerHTML = t.about;
+    document.getElementById('title-journey').innerText = t.journey;
+    document.getElementById('title-expertise').innerText = t.expertise;
+    document.getElementById('title-projects').innerText = t.projects;
+    document.getElementById('title-ratings').innerText = t.ratings;
+    document.getElementById('title-why-me').innerText = t.whyMe;
+    document.getElementById('nav-status').innerText = t.status;
+
+    document.getElementById('why-me-hero-title').innerText = t.whyHeroTitle;
+    document.getElementById('why-me-hero-desc').innerText = t.whyHeroDesc;
+
+    document.getElementById('step1').innerText = t.step1;
+    document.getElementById('step2').innerText = t.step2;
+    document.getElementById('step3').innerText = t.step3;
+    document.getElementById('step4').innerText = t.step4;
+    document.getElementById('step5').innerText = t.step5;
+    document.getElementById('skill3').innerText = t.skill3;
+    document.getElementById('skill4').innerText = t.skill4;
+    document.getElementById('skill6').innerText = t.skill6;    
+    document.getElementById('exp1').innerText = t.exp1;
+    document.getElementById('exp2').innerText = t.exp2;
+    document.getElementById('exp3').innerText = t.exp3;
+    document.getElementById('exp4').innerText = t.exp4;    
+
+    document.getElementById('p1-img').src = projectData.hr.imgs[0];
+    document.getElementById('p2-img').src = projectData.sales.imgs[0];
+    document.getElementById('p3-img').src = projectData.furniture.imgs[0];
+
+    document.getElementById('p1-title').innerText = projectData.hr[currentLang].title;
+    document.getElementById('p2-title').innerText = projectData.sales[currentLang].title;
+    document.getElementById('p3-title').innerText = projectData.furniture[currentLang].title;
+    document.getElementById('p1-btn').innerText = t.viewBtn;
+    document.getElementById('p2-btn').innerText = t.viewBtn;
+    document.getElementById('p3-btn').innerText = t.viewBtn;
+    document.getElementById('back-btn').innerText = t.back;
+    document.getElementById('view-ratings-text').innerText = t.viewRatings;
+    document.getElementById('lang-label').innerText = t.lang;
+
+    const iconContainer = document.getElementById('dark-mode-toggle');
+    iconContainer.innerHTML = isDarkMode ? 
+        `<svg viewBox="0 0 24 24"><path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1zM5.99 4.58a.996.996 0 00-1.41 0 .996.996 0 000 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41L5.99 4.58zm12.37 12.37a.996.996 0 00-1.41 0 .996.996 0 000 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41l-1.06-1.06zm1.06-10.96a.996.996 0 000-1.41.996.996 0 00-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06zM7.05 18.36a.996.996 0 000-1.41.996.996 0 00-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06z"/></svg>` : 
+        `<svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.389 5.389 0 0 1-4.4 5.06 5.406 5.406 0 0 1-5.6-5.6c.33-2.36 2.06-4.24 4.4-4.89C14.15 3.09 13.09 3 12 3z"/></svg>`;
+}
+    function setLang(lang, event) {
+        if(event) event.stopPropagation();
+        currentLang = lang;
+        localStorage.setItem('ahmedLang', lang);
+        const dropdown = document.getElementById('lang-dropdown');
+        if(dropdown) dropdown.classList.remove('active');
+        jobIdx = 0; charIdx = 0;
+        updateUI();
+    }
+    function toggleDarkMode() {
+        isDarkMode = !isDarkMode;
+        localStorage.setItem('ahmedDarkMode', isDarkMode);
+        updateUI();
+    }
+    function startExploring() {
+        const overlay = document.getElementById('welcome-overlay');
+        overlay.classList.add('slide-up');  
+        setTimeout(() => { 
+            overlay.style.display = 'none'; 
+            const main = document.getElementById('main-site'); 
+            main.style.display = 'block'; 
+            setTimeout(() => {
+                main.style.opacity = '1';
+                startTypingEffect();
+            }, 50); 
+            updateUI();
+        }, 1000);
+    }
     function showJourney(id) {
         lastScrollPos = window.scrollY;
         const d = journeyData[id][currentLang];
@@ -881,7 +949,6 @@
         document.getElementById('case-study-view').style.display = 'block';
         window.scrollTo(0,0);
     }
-
     function openRatingsPage() {
         lastScrollPos = window.scrollY;
         const t = translations[currentLang];
@@ -916,6 +983,14 @@
     function setRating(val) {
         selectedRating = val;
         const stars = document.querySelectorAll('#star-rating span');
+        stars.forEach((star, idx) => {
+            if (currentLang === 'ar') {
+                star.classList.toggle('active', (stars.length - 1 - idx) < val);
+            } else {
+                star.classList.toggle('active', idx < val);
+            }
+        });
+        
         stars.forEach((star) => {
             const starValue = parseInt(star.getAttribute('data-value'));
             if(starValue <= val) {
